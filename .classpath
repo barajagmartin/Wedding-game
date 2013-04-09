@@ -20,7 +20,7 @@
 	<classpathentry kind="lib" path="lib/LWJGL/jar/lwjgl.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="http://lwjgl.org/javadoc/"/>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Grupp1/lib/LWJGL/native/windows"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Grupp1/lib/LWJGL/native/macosx"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/slick.jar">
