@@ -7,9 +7,12 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class InGameModel extends BasicGameState {
 	private final int STATE_ID;
+	private WorldModel world;
+	//Ska vara en StatusBar med TODO
 	
-	public InGameModel(final int STATE_ID) {
-		this.STATE_ID = STATE_ID; 
+	public InGameModel(final int STATE_ID, PlayerModel player) {
+		this.STATE_ID = STATE_ID;
+		world = new WorldModel(player.getCharacter());
 	}
 	
 	@Override
@@ -22,7 +25,6 @@ public class InGameModel extends BasicGameState {
 	@Override
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2)
 			throws SlickException {
-		// TODO Auto-generated method stub
 		
 	}
 

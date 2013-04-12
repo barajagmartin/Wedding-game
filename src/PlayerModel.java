@@ -5,4 +5,8 @@ public class PlayerModel {
 	public PlayerModel() {
 		character = new CharacterModel();
 	}
+
+	public CharacterModel getCharacter() {
+		return character;
+	}
 }
