@@ -6,7 +6,12 @@ import org.newdawn.slick.state.StateBasedGame;
 
 
 public class InGameModel extends BasicGameState {
-
+	private final int STATE_ID;
+	
+	public InGameModel(final int STATE_ID) {
+		this.STATE_ID = STATE_ID; 
+	}
+	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {
@@ -30,7 +35,7 @@ public class InGameModel extends BasicGameState {
 
 	@Override
 	public int getID() {
-		return 1;
+		return STATE_ID;
 	}
 
 }
