@@ -1,7 +1,7 @@
 *.class
+# .classpath #
 
 # Package Files #
-#*.jar#
+# *.jar #
 *.war
 *.ear
-.classpath
