@@ -6,6 +6,7 @@ public class CharacterModel {
 	private int life;
 	private org.newdawn.slick.geom.Shape slickShape;
 	private org.jbox2d.collision.shapes.Shape jBox2DShape;
+
 	
 	
 	public CharacterModel(float x, float y){
@@ -27,3 +28,6 @@ public class CharacterModel {
 	}
 	
 }
+
+
+
