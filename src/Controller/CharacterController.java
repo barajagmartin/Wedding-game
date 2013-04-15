@@ -17,6 +17,7 @@ public class CharacterController {
 		Input input = gc.getInput();
 		posX = character.getX();
 		posY = character.getY();
+		
 		if(input.isKeyDown(Input.KEY_UP)){
 			posY -= speed * delta;
 		}

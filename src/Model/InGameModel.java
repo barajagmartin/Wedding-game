@@ -10,6 +10,8 @@ import org.newdawn.slick.state.StateBasedGame;
 public class InGameModel extends BasicGameState {
 	private final int STATE_ID;
 	private WorldModel world;
+	private Controller.CharacterController characterController;
+	
 	//Ska vara en StatusBar med TODO
 	
 	public InGameModel(final int STATE_ID, PlayerModel player) {
@@ -33,8 +35,7 @@ public class InGameModel extends BasicGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
-		keyPressedUpdate(gc, delta);
-		
+		characterController.keyPressedUpdate(gc, delta);
 	}
 
 	@Override
