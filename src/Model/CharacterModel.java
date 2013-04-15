@@ -12,7 +12,7 @@ public class CharacterModel {
 		this.x=x;
 		this.y=y;
 		this.life=3;
-		this.slickShape= new Rectangle(x, y, 50, 50);
+		this.slickShape= new Rectangle(this.x, this.y, 50, 50);
 	}
 	
 	public float getX(){
@@ -21,6 +21,16 @@ public class CharacterModel {
 	
 	public float getY(){
 		return this.y;
+	}
+	
+	public void setX(float x){
+		this.x=x;
+		slickShape.setX(x);
+	}
+	
+	public void setY(float y){
+		this.y=y;
+		slickShape.setY(y);
 	}
 	
 	public int getLife(){

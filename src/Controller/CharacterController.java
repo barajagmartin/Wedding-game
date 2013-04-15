@@ -11,6 +11,10 @@ public class CharacterController {
 	private float speed = 0.2f;
 	private float posX;
 	private float posY;
+	
+	public CharacterController(Model.CharacterModel character){
+		this.character = character;
+	}
 		
 	//check which key is pressed
 	public void keyPressedUpdate(GameContainer gc, int delta){
@@ -20,15 +24,19 @@ public class CharacterController {
 		
 		if(input.isKeyDown(Input.KEY_UP)){
 			posY -= speed * delta;
+			character.setY(posY);
 		}
 		if(input.isKeyDown(Input.KEY_DOWN)){
 			posY += speed * delta;
+			character.setY(posY);
 		}
 		if(input.isKeyDown(Input.KEY_RIGHT)){
 			posX += speed * delta;
+			character.setX(posX);
 		}
 		if(input.isKeyDown(Input.KEY_LEFT)){
 			posX -= speed * delta;
+			character.setX(posX);
 		}
 	}
 }

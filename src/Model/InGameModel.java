@@ -17,6 +17,7 @@ public class InGameModel extends BasicGameState {
 	public InGameModel(final int STATE_ID, PlayerModel player) {
 		this.STATE_ID = STATE_ID;
 		world = new WorldModel(player.getCharacter());
+		characterController = new Controller.CharacterController(world.getCharacter());
 	}
 	
 	@Override
@@ -29,7 +30,7 @@ public class InGameModel extends BasicGameState {
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-		
+		g.fill(world.getCharacter().getShape());
 	}
 
 	@Override
