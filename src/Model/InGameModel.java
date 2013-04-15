@@ -33,7 +33,7 @@ public class InGameModel extends BasicGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int id)
 			throws SlickException {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
