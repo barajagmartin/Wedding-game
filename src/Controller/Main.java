@@ -11,7 +11,6 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println("Hello World");
 		AppGameContainer app;
 		try {
 			app = new AppGameContainer(new GameModel(GAME_NAME));
