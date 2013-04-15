@@ -12,7 +12,7 @@ public class GameModel extends StateBasedGame {
 	
 	public GameModel(String name) {
 		super(name);
-		this.addState(new InGameModel(IN_GAME, PlayerModel player));
+		this.addState(new InGameModel(IN_GAME, new PlayerModel()));
 	}
 
 	@Override
