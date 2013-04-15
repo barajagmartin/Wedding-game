@@ -35,7 +35,7 @@ public class InGameModel extends BasicGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
-		characterController.keyPressedUpdate(gc, delta);
+		characterController.keyPressedUpdate(world.getCharacter(), gc, delta);
 	}
 
 	@Override
