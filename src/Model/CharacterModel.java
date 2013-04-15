@@ -12,7 +12,7 @@ public class CharacterModel {
 		this.x=x;
 		this.y=y;
 		this.life=3;
-		this.slickShape= new Rectangle(y, x, 50, 50);
+		this.slickShape= new Rectangle(x, y, 50, 50);
 	}
 	
 	public float getX(){
@@ -21,6 +21,14 @@ public class CharacterModel {
 	
 	public float getY(){
 		return this.y;
+	}
+	
+	public int getLife(){
+		return life;
+	}
+	
+	public org.newdawn.slick.geom.Shape getShape(){
+		return slickShape;
 	}
 	
 }
