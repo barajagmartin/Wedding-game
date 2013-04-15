@@ -9,4 +9,8 @@ public class WorldModel {
 	public WorldModel(CharacterModel character) {
 		this.character = character;
 	}
+	
+	public CharacterModel getCharacter(){
+		return character;
+	}
 }
