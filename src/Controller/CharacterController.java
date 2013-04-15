@@ -11,10 +11,13 @@ public class CharacterController {
 	private float speed = 0.2f;
 	private float posX;
 	private float posY;
+	
+	public CharacterController(Model.CharacterModel character){
+		this.character = character;
+	}
 		
 	//check which key is pressed
-	public void keyPressedUpdate(CharacterModel character, GameContainer gc, int delta){
-		this.character = character;
+	public void keyPressedUpdate(GameContainer gc, int delta){
 		Input input = gc.getInput();
 		posX = character.getX();
 		posY = character.getY();
