@@ -13,7 +13,8 @@ public class CharacterController {
 	private float posY;
 		
 	//check which key is pressed
-	public void keyPressedUpdate(GameContainer gc, int delta){
+	public void keyPressedUpdate(CharacterModel character, GameContainer gc, int delta){
+		this.character = character;
 		Input input = gc.getInput();
 		posX = character.getX();
 		posY = character.getY();
