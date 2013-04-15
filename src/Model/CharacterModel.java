@@ -24,11 +24,11 @@ public class CharacterModel {
 	}
 	
 	public int getLife(){
-		return life;
+		return this.life;
 	}
 	
 	public org.newdawn.slick.geom.Shape getShape(){
-		return slickShape;
+		return this.slickShape;
 	}
 	
 }
