@@ -24,15 +24,19 @@ public class CharacterController {
 		
 		if(input.isKeyDown(Input.KEY_UP)){
 			posY -= speed * delta;
+			character.setY(posY);
 		}
 		if(input.isKeyDown(Input.KEY_DOWN)){
 			posY += speed * delta;
+			character.setY(posY);
 		}
 		if(input.isKeyDown(Input.KEY_RIGHT)){
 			posX += speed * delta;
+			character.setX(posX);
 		}
 		if(input.isKeyDown(Input.KEY_LEFT)){
 			posX -= speed * delta;
+			character.setX(posX);
 		}
 	}
 }
