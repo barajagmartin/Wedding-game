@@ -11,20 +11,27 @@ public class InGameModel extends BasicGameState {
 	private final int STATE_ID;
 	private WorldModel world;
 	private Controller.CharacterController characterController;
+	private int velocityIterations = 6;
+	private int positionIterations = 2;
+	private PlayerModel player;
+	private int statusBarHeight;
 	
 	//Ska vara en StatusBar med TODO
 	
 	public InGameModel(final int STATE_ID, PlayerModel player) {
 		this.STATE_ID = STATE_ID;
-		world = new WorldModel(player.getCharacter());
-		characterController = new Controller.CharacterController(world.getCharacter());
+		this.player=player;
+		
+		
 	}
 	
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		// TODO Auto-generated method stub
+		this.statusBarHeight=gc.getHeight()/5;	
 		
+		world = new WorldModel(player.getCharacter(), gc.getWidth(), gc.getHeight()-statusBarHeight);
+		characterController = new Controller.CharacterController(world.getCharacter());
 	}
 
 	@Override
@@ -37,6 +44,9 @@ public class InGameModel extends BasicGameState {
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
 		characterController.keyPressedUpdate(gc, delta);
+		//simulate the JBox2D world
+		world.getJBox2DWorld().step(delta, velocityIterations, positionIterations);
+		
 	}
 
 	@Override
