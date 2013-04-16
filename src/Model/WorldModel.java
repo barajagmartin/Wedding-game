@@ -13,7 +13,7 @@ public class WorldModel {
 	//Kommer ha spikes, Items och CandyMonster
 	
 	
-	public WorldModel(CharacterModel character) {
+	public WorldModel(CharacterModel character, int worldWidth, int worldHeight) {
 		this.character = character;
 		gravity = new Vec2(0.0f, 9.82f);
 		doSleep = true;
@@ -26,5 +26,9 @@ public class WorldModel {
 	
 	public World getJBox2DWorld() {
 		return jBox2DWorld;
+	}
+	
+	private void addGround() {
+		
 	}
 }
