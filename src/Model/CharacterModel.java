@@ -8,15 +8,15 @@ public class CharacterModel {
 	private int life;
 	private org.newdawn.slick.geom.Shape slickShape;
 	private org.jbox2d.collision.shapes.Shape jBox2DShape;
-	private BodyDef bd;
+	private BodyDef bodyDef;
 	
 	public CharacterModel(float x, float y){
 		this.x=x;
 		this.y=y;
 		this.life=3;
-		this.slickShape= new Rectangle(this.x, this.y, 50, 50);
-		bd = new BodyDef();
-		bd.position.set(50,50);
+		this.slickShape= new Rectangle(this.x, this.y, 50, 50); //x, y, width, height
+		bodyDef = new BodyDef();
+		bodyDef.position.set(50,50); //x, y float
 	}
 	
 	public float getX(){
