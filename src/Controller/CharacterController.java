@@ -8,7 +8,7 @@ import Model.CharacterModel;
 public class CharacterController {
 	private CharacterModel character;
 	//determines how fast the character will move
-	private float speed = 0.2f;
+	private float speed = 0.4f;
 	private float posX;
 	private float posY;
 	
