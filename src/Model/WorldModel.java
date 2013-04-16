@@ -36,9 +36,9 @@ public class WorldModel {
 	}
 	
 	/**
-	 * Make a box around the screen to prevent character from falling down.
+	 * Make ground at the bottom of the screen to prevent character from falling down.
 	 */
-	public void addSolidGround() {
+	public void addGround() {
 		PolygonShape ps = new PolygonShape();
 		ps.setAsBox(worldWidth, worldHeight);
 		
