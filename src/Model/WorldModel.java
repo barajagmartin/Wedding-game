@@ -2,6 +2,8 @@ package Model;
 
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.BodyDef;
+import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
 
@@ -33,8 +35,19 @@ public class WorldModel {
 		return jBox2DWorld;
 	}
 	
-	private void addGround() {
+	/**
+	 * Make a box around the screen to prevent character from falling down.
+	 */
+	public void addSolidGround() {
 		PolygonShape ps = new PolygonShape();
-		ps.setA
+		ps.setAsBox(worldWidth, worldHeight);
+		
+		FixtureDef fd = new FixtureDef();
+		fd.shape = ps;
+		
+		BodyDef bd = new BodyDef();
+		bd.position = gravity;
+		
+		jBox2DWorld.createBody(bd).createFixture(fd);
 	}
 }
