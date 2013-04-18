@@ -5,7 +5,7 @@ public class PlayerModel {
 	private CharacterModel character;
 	
 	public PlayerModel() {
-		character = new CharacterModel(10, 525);
+		character = new CharacterModel(400, 100);
 	}
 
 	public CharacterModel getCharacter() {

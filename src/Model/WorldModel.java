@@ -16,7 +16,8 @@ public class WorldModel {
 	private World jBox2DWorld;
 	private int worldWidth;
 	private int worldHeight;
-	private Body body;
+	private Body characterBody;
+	private Body groundBody;
 	
 	//Kommer ha spikes, Items och CandyMonster
 	
@@ -29,10 +30,10 @@ public class WorldModel {
 		this.worldWidth = worldWidth;
 		this.worldHeight = worldHeight;
 		addGround();
-		addSide(0,worldHeight);
-		addSide(worldWidth, worldHeight);
-		body = jBox2DWorld.createBody(character.getBodyDef());
-		body.createFixture(character.getFixtureDef());
+		//addSide(0,worldHeight);
+		//addSide(worldWidth, worldHeight);
+		characterBody = jBox2DWorld.createBody(character.getBodyDef());
+		characterBody.createFixture(character.getFixtureDef());
 	}
 	
 	public CharacterModel getCharacter(){
@@ -48,15 +49,19 @@ public class WorldModel {
 	 */
 	private void addGround() {
 		PolygonShape ps = new PolygonShape();
-		ps.setAsBox(worldWidth, worldHeight);
+		ps.setAsBox(100.0f, 10.0f);
+		
 		
 		FixtureDef fixtureDef = new FixtureDef();
 		fixtureDef.shape = ps;
+		fixtureDef.density = 1.0f;
 		
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.position = gravity;
+		bodyDef.type = BodyType.STATIC;
 		
-		jBox2DWorld.createBody(bodyDef).createFixture(fixtureDef);
+		groundBody = jBox2DWorld.createBody(bodyDef);
+		groundBody.createFixture(fixtureDef);
 	}
 	
 	/**
@@ -66,7 +71,7 @@ public class WorldModel {
 	 */
 	private void addSide (float posX, float posY) {
 		PolygonShape ps = new PolygonShape();
-		ps.setAsBox(1, worldHeight);
+		ps.setAsBox(100, worldHeight);
 		
 		FixtureDef fixtureDef = new FixtureDef();
 		fixtureDef.shape = ps;
@@ -81,19 +86,17 @@ public class WorldModel {
 	}
 
 	public void updateSlick() {
-		character.setX(body.getPosition().x);
-		character.setY(body.getPosition().y);
+		character.setX(characterBody.getPosition().x);
+		character.setY(characterBody.getPosition().y);
+	}	
+	
+	public void moveBodyRight(){
+		//add force to move right
+	      this.characterBody.applyLinearImpulse(new Vec2(10, 0), characterBody.getPosition());
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public void moveBodyLeft(){
+		//add force to move left
+		 this.characterBody.applyLinearImpulse(new Vec2(-10, 0), characterBody.getPosition());
+	}
 }
