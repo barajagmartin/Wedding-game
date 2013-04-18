@@ -17,7 +17,7 @@ public class CharacterModel {
 		this.y=y;
 		this.life=3;
 		this.slickShape= new Rectangle(this.x, this.y, 50, 50); //x, y, width, height
-		this.color = Color.white;
+		this.color = Color.blue;
 		bodyDef = new BodyDef();
 		bodyDef.position.set(50,50); //x, y float
 	}
@@ -58,8 +58,7 @@ public class CharacterModel {
 	
 	public Color getColor(){
 		return color;
-	}
-	
+	}	
 }
 
 
