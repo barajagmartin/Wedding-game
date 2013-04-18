@@ -2,6 +2,7 @@ package Model;
 
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
@@ -15,6 +16,7 @@ public class WorldModel {
 	private World jBox2DWorld;
 	private int worldWidth;
 	private int worldHeight;
+	private Body body;
 	
 	//Kommer ha spikes, Items och CandyMonster
 	
@@ -29,6 +31,8 @@ public class WorldModel {
 		addGround();
 		addSide(0,worldHeight);
 		addSide(worldWidth, worldHeight);
+		body = jBox2DWorld.createBody(character.getBodyDef());
+		body.createFixture(character.getFixtureDef());
 	}
 	
 	public CharacterModel getCharacter(){
@@ -46,13 +50,13 @@ public class WorldModel {
 		PolygonShape ps = new PolygonShape();
 		ps.setAsBox(worldWidth, worldHeight);
 		
-		FixtureDef fd = new FixtureDef();
-		fd.shape = ps;
+		FixtureDef fixtureDef = new FixtureDef();
+		fixtureDef.shape = ps;
 		
-		BodyDef bd = new BodyDef();
-		bd.position = gravity;
+		BodyDef bodyDef = new BodyDef();
+		bodyDef.position = gravity;
 		
-		jBox2DWorld.createBody(bd).createFixture(fd);
+		jBox2DWorld.createBody(bodyDef).createFixture(fixtureDef);
 	}
 	
 	/**
@@ -71,9 +75,14 @@ public class WorldModel {
 		
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.position.set(posX, posY);
-		bodyDef.type = BodyType.STATIC;
+		bodyDef.type = BodyType.STATIC; // eller?
 		
 		jBox2DWorld.createBody(bodyDef).createFixture(fixtureDef);
+	}
+
+	public void updateSlick() {
+		character.setX(body.getPosition().x);
+		character.setY(body.getPosition().y);
 	}
 	
 	
