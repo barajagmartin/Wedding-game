@@ -31,7 +31,7 @@ public class WorldModel {
 		addGround();
 		addSide(0,worldHeight);
 		addSide(worldWidth, worldHeight);
-		jBox2DWorld.createBody(character.getBodyDef());
+		body = jBox2DWorld.createBody(character.getBodyDef());
 		body.createFixture(character.getFixtureDef());
 	}
 	
