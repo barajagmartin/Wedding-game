@@ -3,6 +3,7 @@ package Model;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.BodyDef;
+import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
@@ -63,15 +64,16 @@ public class WorldModel {
 		PolygonShape ps = new PolygonShape();
 		ps.setAsBox(1, worldHeight);
 		
-		FixtureDef fd = new FixtureDef();
-		fd.shape = ps;
-		fd.density = 1.0f;
-		fd.friction = 0.3f;
+		FixtureDef fixtureDef = new FixtureDef();
+		fixtureDef.shape = ps;
+		fixtureDef.density = 1.0f;
+		fixtureDef.friction = 0.3f;
 		
-		BodyDef bd = new BodyDef();
-		bd.position.set(posX, posY);
+		BodyDef bodyDef = new BodyDef();
+		bodyDef.position.set(posX, posY);
+		bodyDef.type = BodyType.STATIC;
 		
-		jBox2DWorld.createBody(bd).createFixture(fd);
+		jBox2DWorld.createBody(bodyDef).createFixture(fixtureDef);
 	}
 	
 	
