@@ -1,5 +1,6 @@
 package Controller;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 
@@ -33,10 +34,12 @@ public class CharacterController {
 		if(input.isKeyDown(Input.KEY_RIGHT)){
 			posX += speed * delta;
 			character.setX(posX);
+			character.setColor(Color.blue);
 		}
 		if(input.isKeyDown(Input.KEY_LEFT)){
 			posX -= speed * delta;
 			character.setX(posX);
+			character.setColor(Color.green);
 		}
 	}
 }
