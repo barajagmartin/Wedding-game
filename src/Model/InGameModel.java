@@ -48,6 +48,7 @@ public class InGameModel extends BasicGameState {
 		characterController.keyPressedUpdate(gc, delta);
 		//simulate the JBox2D world
 		world.getJBox2DWorld().step(timeStep, velocityIterations, positionIterations);
+		world.updateSlick();
 	}
 
 	@Override
