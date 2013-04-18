@@ -12,34 +12,95 @@ public class CharacterController {
 	private float speed = 0.4f;
 	private float posX;
 	private float posY;
+	/*Default keyvalues*/
+	private int keyRight = Input.KEY_RIGHT;
+	private int keyLeft = Input.KEY_LEFT;
+	private int keyDown;
+	private int keyUp;
+	private Input input;
+	
+	//TODO Fixa så default funkar. Fixa Så det hänger samman med faktiskt input,
+	//måste ju ha någon håller koll på keypresses. Just nu är ju allt bara siffor
+
 	
 	public CharacterController(Model.CharacterModel character){
 		this.character = character;
 	}
+	/*Getters for keypresses*/
+	public int getKeyRight(){
+		return keyRight;
+	}
+	
+	public int getKeyLeft(){
+		return keyLeft;
+	}
+	
+	public int getKeyUp(){
+		return keyUp;
+	}
+	
+	public int getKeyDown(){
+		return keyDown;
+	}
+	
+	/*Setters for keypresses*/
+	public void setKeyRight(int keyRight){
+		this.keyRight = keyRight;
+	}
+	
+	public void setKeyLeft(int keyLeft){
+		this.keyLeft = keyLeft;
+	}
+	
+	public void setKeyUp(int keyUp){
+		this.keyUp = keyUp;
+	}
+	
+	public void setKeyDown(int keyDown){
+		this.keyDown = keyDown;
+	}
+	
+	/*Check the key pressed matches the right key*/
+	
+	public boolean isControllerRight(int key){
+		return this.keyRight == key;
+	}
+	
+	public boolean isControllerLeft(int key){
+		return this.keyLeft == key;
+	}
+	
+	public boolean isControllerUp(int key){
+		return this.keyUp == key;
+	}
+	
+	public boolean isControllerDown(int key){
+		return this.keyUp == key;
+	}
 		
 	//check which key is pressed
 	public void keyPressedUpdate(GameContainer gc, int delta){
-		Input input = gc.getInput();
+		input = gc.getInput();
 		posX = character.getX();
 		posY = character.getY();
 		
-		if(input.isKeyDown(Input.KEY_UP)){
-			posY -= speed * delta;
-			character.setY(posY);
-		}
-		if(input.isKeyDown(Input.KEY_DOWN)){
-			posY += speed * delta;
-			character.setY(posY);
-		}
-		if(input.isKeyDown(Input.KEY_RIGHT)){
+		if(isControllerRight(Input.ANY_CONTROLLER)){
 			posX += speed * delta;
 			character.setX(posX);
 			character.setColor(Color.blue);
 		}
-		if(input.isKeyDown(Input.KEY_LEFT)){
+		if(isControllerLeft(Input.ANY_CONTROLLER)){
 			posX -= speed * delta;
 			character.setX(posX);
 			character.setColor(Color.green);
 		}
+		if(isControllerDown(Input.ANY_CONTROLLER)){
+			//plocka upp ett item
+		}
+		if(isControllerUp(Input.ANY_CONTROLLER)){
+			posY -= speed * delta;
+			character.setY(posY);
+		}
+
 	}
 }
