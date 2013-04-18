@@ -79,6 +79,11 @@ public class WorldModel {
 		
 		jBox2DWorld.createBody(bodyDef).createFixture(fixtureDef);
 	}
+
+	public void updateSlick() {
+		character.setX(body.getPosition().x);
+		character.setY(body.getPosition().y);
+	}
 	
 	
 	
