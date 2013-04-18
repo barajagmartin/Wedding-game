@@ -1,5 +1,6 @@
 package Model;
 
+import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
@@ -49,7 +50,7 @@ public class WorldModel {
 	 */
 	private void addGround() {
 		PolygonShape ps = new PolygonShape();
-		ps.setAsBox(100.0f, 10.0f);
+		ps.setAsBox(100,10);
 		
 		
 		FixtureDef fixtureDef = new FixtureDef();
@@ -57,7 +58,7 @@ public class WorldModel {
 		fixtureDef.density = 1.0f;
 		
 		BodyDef bodyDef = new BodyDef();
-		bodyDef.position = gravity;
+		bodyDef.position = new Vec2(0.0f, -9.82f);
 		bodyDef.type = BodyType.STATIC;
 		
 		groundBody = jBox2DWorld.createBody(bodyDef);
