@@ -75,7 +75,7 @@ public class WorldModel {
 		
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.position.set(posX, posY);
-		bodyDef.type = BodyType.STATIC;
+		bodyDef.type = BodyType.STATIC; // eller?
 		
 		jBox2DWorld.createBody(bodyDef).createFixture(fixtureDef);
 	}
