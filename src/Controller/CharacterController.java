@@ -15,13 +15,8 @@ public class CharacterController {
 	/*Default keyvalues*/
 	private int keyRight = Input.KEY_RIGHT;
 	private int keyLeft = Input.KEY_LEFT;
-	private int keyDown;
-	private int keyUp;
-	private Input input;
-	
-	//TODO Fixa så default funkar. Fixa Så det hänger samman med faktiskt input,
-	//måste ju ha någon håller koll på keypresses. Just nu är ju allt bara siffor
-
+	private int keyDown = Input.KEY_DOWN;
+	private int keyUp = Input.KEY_UP;
 	
 	public CharacterController(Model.CharacterModel character){
 		this.character = character;
@@ -80,7 +75,6 @@ public class CharacterController {
 		
 	//check which key is pressed
 	public void keyPressedUpdate(GameContainer gc, int delta){
-		input = gc.getInput();
 		posX = character.getX();
 		posY = character.getY();
 		
