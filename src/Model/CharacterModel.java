@@ -16,10 +16,10 @@ public class CharacterModel {
 		this.x=x;
 		this.y=y;
 		this.life=3;
-		this.slickShape= new Rectangle(this.x, this.y, 50, 50); //x, y, width, height
+		this.slickShape= new Rectangle(this.x, this.y, 50, 70); //x, y, width, height
 		this.color = Color.blue;
 		bodyDef = new BodyDef();
-		bodyDef.position.set(50,50); //x, y float
+		bodyDef.position.set(this.x,this.y); 
 	}
 	
 	public float getX(){
