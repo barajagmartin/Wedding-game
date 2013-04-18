@@ -1,5 +1,6 @@
 package Model;
 import org.jbox2d.dynamics.BodyDef;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.geom.Rectangle;
 
 
@@ -9,12 +10,14 @@ public class CharacterModel {
 	private org.newdawn.slick.geom.Shape slickShape;
 	private org.jbox2d.collision.shapes.Shape jBox2DShape;
 	private BodyDef bodyDef;
+	private Color color;
 	
 	public CharacterModel(float x, float y){
 		this.x=x;
 		this.y=y;
 		this.life=3;
 		this.slickShape= new Rectangle(this.x, this.y, 50, 50); //x, y, width, height
+		this.color = Color.white;
 		bodyDef = new BodyDef();
 		bodyDef.position.set(50,50); //x, y float
 	}
@@ -47,6 +50,14 @@ public class CharacterModel {
 	
 	public org.newdawn.slick.geom.Shape getShape(){
 		return this.slickShape;
+	}
+	
+	public void setColor(Color color){
+		this.color = color;
+	}
+	
+	public Color getColor(){
+		return color;
 	}
 	
 }
