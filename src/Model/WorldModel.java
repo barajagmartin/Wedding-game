@@ -25,6 +25,9 @@ public class WorldModel {
 		jBox2DWorld = new World(gravity, doSleep);
 		this.worldWidth = worldWidth;
 		this.worldHeight = worldHeight;
+		addGround();
+		addSide(0,worldHeight);
+		addSide(worldWidth, worldHeight);
 	}
 	
 	public CharacterModel getCharacter(){
@@ -38,7 +41,7 @@ public class WorldModel {
 	/**
 	 * Make ground at the bottom of the screen to prevent character from falling down.
 	 */
-	public void addGround() {
+	private void addGround() {
 		PolygonShape ps = new PolygonShape();
 		ps.setAsBox(worldWidth, worldHeight);
 		
@@ -50,4 +53,36 @@ public class WorldModel {
 		
 		jBox2DWorld.createBody(bd).createFixture(fd);
 	}
+	
+	/**
+	 * Make walls at the specified position of the screen.
+	 * @param posX where to place it
+	 * @param posY where to place it
+	 */
+	private void addSide (float posX, float posY) {
+		PolygonShape ps = new PolygonShape();
+		ps.setAsBox(1, worldHeight);
+		
+		FixtureDef fd = new FixtureDef();
+		fd.shape = ps;
+		fd.density = 1.0f;
+		fd.friction = 0.3f;
+		
+		BodyDef bd = new BodyDef();
+		bd.position.set(posX, posY);
+		
+		jBox2DWorld.createBody(bd).createFixture(fd);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
