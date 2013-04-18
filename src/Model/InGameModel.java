@@ -37,6 +37,7 @@ public class InGameModel extends BasicGameState {
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
+		g.setColor(this.player.getCharacter().getColor());
 		g.fill(world.getCharacter().getShape());
 	}
 
