@@ -46,13 +46,13 @@ public class WorldModel {
 		PolygonShape ps = new PolygonShape();
 		ps.setAsBox(worldWidth, worldHeight);
 		
-		FixtureDef fd = new FixtureDef();
-		fd.shape = ps;
+		FixtureDef fixtureDef = new FixtureDef();
+		fixtureDef.shape = ps;
 		
-		BodyDef bd = new BodyDef();
-		bd.position = gravity;
+		BodyDef bodyDef = new BodyDef();
+		bodyDef.position = gravity;
 		
-		jBox2DWorld.createBody(bd).createFixture(fd);
+		jBox2DWorld.createBody(bodyDef).createFixture(fixtureDef);
 	}
 	
 	/**
