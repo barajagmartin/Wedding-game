@@ -15,6 +15,7 @@ public class CharacterModel {
 	private org.newdawn.slick.geom.Shape slickShape;
 	private org.jbox2d.collision.shapes.PolygonShape jBox2DRectangle;
 	private BodyDef bodyDef;
+	private FixtureDef fixtureDef;
 	private Color color;
 	
 	public CharacterModel(float x, float y){
@@ -26,10 +27,10 @@ public class CharacterModel {
 		bodyDef = new BodyDef();
 		bodyDef.position.set(this.x,this.y);
 		bodyDef.type = BodyType.DYNAMIC;
+		bodyDef.fixedRotation = true;
 		this.jBox2DRectangle = new PolygonShape(); 
 		this.jBox2DRectangle.setAsBox(50, 60); 
-		bodyDef.fixedRotation = true;
-		FixtureDef fixtureDef = new FixtureDef();
+		fixtureDef = new FixtureDef();
 		fixtureDef.shape = this.jBox2DRectangle;
 		fixtureDef.density = 0.5f;
 		fixtureDef.friction = 0.3f;       
@@ -68,6 +69,14 @@ public class CharacterModel {
 	
 	public org.jbox2d.collision.shapes.PolygonShape getjBox2DRectangle() {
 		return jBox2DRectangle;
+	}
+
+	public BodyDef getBodyDef() {
+		return bodyDef;
+	}
+
+	public FixtureDef getFixtureDef() {
+		return fixtureDef;
 	}
 
 	public void setColor(Color color){
