@@ -46,7 +46,8 @@ public class InGameModel extends BasicGameState {
 			throws SlickException {
 		characterController.keyPressedUpdate(gc, delta);
 		//simulate the JBox2D world
-		world.getJBox2DWorld().step(delta, velocityIterations, positionIterations);
+		float timeStep = 1.0f / 60.0f;
+		world.getJBox2DWorld().step(timeStep, velocityIterations, positionIterations);
 		
 	}
 
