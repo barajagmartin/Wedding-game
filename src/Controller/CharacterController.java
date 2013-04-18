@@ -1,15 +1,16 @@
-package Controller;
+package controller;
+
+
+import model.Character;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 
-import Model.CharacterModel;
 
 public class CharacterController {
-	private CharacterModel character;
+	private Character character;
 	//determines how fast the character will move
-	private float speed = 0.4f;
 	private float posX;
 	private float posY;
 	/*Default keyvalues*/
@@ -18,7 +19,7 @@ public class CharacterController {
 	private int keyDown = Input.KEY_DOWN;
 	private int keyUp = Input.KEY_UP;
 	
-	public CharacterController(Model.CharacterModel character){
+	public CharacterController(Character character){
 		this.character = character;
 	}
 	/*Getters for keypresses*/
@@ -79,12 +80,12 @@ public class CharacterController {
 		posY = character.getY();
 		
 		if(isControllerRight(Input.ANY_CONTROLLER)){
-			posX += speed * delta;
+			//posX += speed * delta;
 			character.setX(posX);
 			character.setColor(Color.blue);
 		}
 		if(isControllerLeft(Input.ANY_CONTROLLER)){
-			posX -= speed * delta;
+			//posX -= speed * delta;
 			character.setX(posX);
 			character.setColor(Color.green);
 		}
@@ -92,7 +93,7 @@ public class CharacterController {
 			//plocka upp ett item
 		}
 		if(isControllerUp(Input.ANY_CONTROLLER)){
-			posY -= speed * delta;
+			//posY -= speed * delta;
 			character.setY(posY);
 		}
 
