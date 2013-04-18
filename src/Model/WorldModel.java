@@ -89,4 +89,14 @@ public class WorldModel {
 		character.setX(characterBody.getPosition().x);
 		character.setY(characterBody.getPosition().y);
 	}	
+	
+	public void moveBodyRight(){
+		//add force to move right
+	      this.characterBody.applyLinearImpulse(new Vec2(10, 0), characterBody.getPosition());
+	}
+	
+	public void moveBodyLeft(){
+		//add force to move left
+		 this.characterBody.applyLinearImpulse(new Vec2(-10, 0), characterBody.getPosition());
+	}
 }
