@@ -48,7 +48,6 @@ public class InGameModel extends BasicGameState {
 		//simulate the JBox2D world
 		float timeStep = 1.0f / 60.0f;
 		world.getJBox2DWorld().step(timeStep, velocityIterations, positionIterations);
-		
 	}
 
 	@Override

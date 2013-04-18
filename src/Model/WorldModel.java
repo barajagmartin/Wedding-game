@@ -2,6 +2,7 @@ package Model;
 
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
@@ -15,6 +16,7 @@ public class WorldModel {
 	private World jBox2DWorld;
 	private int worldWidth;
 	private int worldHeight;
+	private Body body;
 	
 	//Kommer ha spikes, Items och CandyMonster
 	
@@ -29,6 +31,8 @@ public class WorldModel {
 		addGround();
 		addSide(0,worldHeight);
 		addSide(worldWidth, worldHeight);
+		jBox2DWorld.createBody(character.getBodyDef());
+		body.createFixture(character.getFixtureDef());
 	}
 	
 	public CharacterModel getCharacter(){
