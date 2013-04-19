@@ -11,17 +11,19 @@ import org.newdawn.slick.state.StateBasedGame;
 
 
 public class GameController extends StateBasedGame {
-	private Game game;
-	public GameController(Game game, String name) {
+	private Game game; //ta eventuellt bort FIXME
+	private InGameController inGameController;
+	public GameController(String name) {
 		super(name);
-		this.game = game;
-		this.addState(new InGame(game.IN_GAME, new Player()));
+		this.game = new Game(); //So long this is unnecessary FIXME
+		this.inGameController = new InGameController();
+		this.addState(inGameController);
 	}
 
 	@Override
 	public void initStatesList(GameContainer container) throws SlickException {
-		this.getState(game.IN_GAME).init(container, this);
-		this.enterState(game.IN_GAME);
+		this.getState(inGameController.getID()).init(container, this);
+		this.enterState(inGameController.getID());
 	}
 
 }
