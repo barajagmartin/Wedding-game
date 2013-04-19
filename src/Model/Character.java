@@ -1,13 +1,17 @@
 package model;
 
 public class Character {
+	public final float width;
+	public final float height;
 	private float x, y;
 	private int life;
 	
-	public Character(float x, float y) {
+	public Character(final float x, final float y) {
 		this.x = x;
 		this.y = y;
 		this.life = 3;
+		this.width = 50;
+		this.height = 60;
 	}
 	
 	public float getX() {
@@ -18,11 +22,11 @@ public class Character {
 		return this.y;
 	}
 	
-	public void setX(float x) {
+	public void setX(final float x) {
 		this.x = x;
 	}
 	
-	public void setY(float y) {
+	public void setY(final float y) {
 		this.y = y;
 	}
 	
@@ -32,5 +36,5 @@ public class Character {
 	
 	public void loseOneLife() {
 		this.life--;
-	}		
+	}	
 }

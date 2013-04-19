@@ -2,19 +2,29 @@ package model;
 
 
 public class InGame {
-	private final int STATE_ID;
-	private Player player;
 	private World world;
+	private Player player;
 	private StatusBar statusBar;
 		
-	public InGame(final int STATE_ID) {
-		this.STATE_ID = STATE_ID;
-		player = new Player();
-		//world = new World(player.getCharacter()); FIXME
+	public InGame(model.World world) {
+		this.world = world; 
+		player = new Player(world.getCharacter());
 		statusBar = new StatusBar();
 	}
 
+	public Player getPlayer() {
+		return player;
+	}
+
+	public World getWorld() {
+		return world;
+	}
+
+	public StatusBar getStatusBar() {
+		return statusBar;
+	}
+
 	public int getID() {
-		return STATE_ID;
+		return Game.IN_GAME;
 	}
 }

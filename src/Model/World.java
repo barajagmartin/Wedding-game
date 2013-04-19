@@ -9,13 +9,21 @@ public class World {
 	private int worldHeight;
 	//Kommer ha spikes, Items och CandyMonster TODO
 	
-	public World(Character character, int worldWidth, int worldHeight) {
+	public World(final Character character, final int worldWidth, final int worldHeight) {
 		this.character = character;
 		this.worldWidth = worldWidth;
-		this.worldHeight = worldHeight;
+		this.worldHeight = worldHeight; //maybe we will change later to a percentual amount TODO
 	}
 	
 	public Character getCharacter() {
 		return character;
+	}
+
+	public int getWorldWidth() {
+		return worldWidth;
+	}
+
+	public int getWorldHeight() {
+		return worldHeight;
 	}
 }

@@ -5,8 +5,8 @@ package model;
 public class Player {
 	private Character character;
 
-	public Player() {
-		character = new Character(400, 100);
+	public Player(final Character character) {
+		this.character = character;
 	}
 
 	public Character getCharacter() {
