@@ -16,7 +16,7 @@ public class CharacterController {
 	private Character character;
 	private CharacterView characterView;
 
-	/*Default keyvalues*/
+	/*Default key values*/
 	private int keyRight = Input.KEY_RIGHT;
 	private int keyLeft = Input.KEY_LEFT;
 	private int keyDown = Input.KEY_DOWN;
@@ -71,7 +71,7 @@ public class CharacterController {
 	}
 	
 	/*Check the key pressed matches the right key*/
-	
+
 	public boolean isControllerRight(int key) {
 		return this.keyRight == key;
 	}
@@ -89,7 +89,6 @@ public class CharacterController {
 	}
 		
 	//check which key is pressed
-	//borde event-anropas från vyn
 	public void keyPressedUpdate(GameContainer gc) {
 		Input input = gc.getInput();
 		
