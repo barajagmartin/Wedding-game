@@ -30,6 +30,7 @@ public class WorldView {
 		//addSide(worldWidth, worldHeight);
 		characterBody = jBox2DWorld.createBody(characterView.getBodyDef());
 		characterBody.createFixture(characterView.getFixtureDef());
+		characterBody.m_mass = 1f;
 	}
 	
 	public CharacterView getCharacterView() {

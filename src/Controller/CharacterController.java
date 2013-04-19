@@ -4,9 +4,11 @@ package controller;
 import model.Character;
 
 import org.newdawn.slick.Color;
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 
 import view.CharacterView;
+import view.WorldView;
 
 
 public class CharacterController {
@@ -88,18 +90,21 @@ public class CharacterController {
 		
 	//check which key is pressed
 	//borde event-anropas från vyn
-	public void keyPressedUpdate() {
+	public void keyPressedUpdate(GameContainer gc) {
+		Input input = gc.getInput();
 		
-		if(isControllerRight(Input.ANY_CONTROLLER)) {
+		if(input.isKeyDown(Input.KEY_RIGHT)) {
 			characterView.setColor(Color.blue);
+			inGameController.getWorldController().moveBodyRight();
 		}
-		if(isControllerLeft(Input.ANY_CONTROLLER)) {
+		if(input.isKeyDown(Input.KEY_LEFT)) {
 			characterView.setColor(Color.green);
+			inGameController.getWorldController().moveBodyLeft();
 		}
-		if(isControllerDown(Input.ANY_CONTROLLER)) {
+		if(isControllerDown(input.ANY_CONTROLLER)) {
 			//plocka upp ett item TODO
 		}
-		if(isControllerUp(Input.ANY_CONTROLLER)) {
+		if(isControllerUp(input.ANY_CONTROLLER)) {
 			//hoppa TODO
 		}
 	}

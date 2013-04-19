@@ -27,12 +27,12 @@ public class WorldController {
 
 	public void moveBodyRight() {
 		//add force to move right
-	      worldView.getCharacterBody().applyLinearImpulse(new Vec2(10, 0), worldView.getCharacterBody().getPosition());
+	      worldView.getCharacterBody().applyLinearImpulse(new Vec2(1000000, 0), worldView.getCharacterBody().getPosition());
 	}
 	
 	public void moveBodyLeft() {
 		//add force to move left
-		 worldView.getCharacterBody().applyLinearImpulse(new Vec2(-10, 0), worldView.getCharacterBody().getPosition());
+		 worldView.getCharacterBody().applyLinearImpulse(new Vec2(-1000000, 0), worldView.getCharacterBody().getPosition());
 	}
 	
 	public void updateSlickShape() {
