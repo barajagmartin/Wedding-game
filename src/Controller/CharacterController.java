@@ -104,7 +104,8 @@ public class CharacterController {
 		if(isControllerDown(Input.KEY_DOWN)) {
 			//plocka upp ett item TODO
 		}
-		if(isControllerUp(Input.KEY_UP)) {
+		if(input.isKeyDown(Input.KEY_UP)) {
+			characterView.setColor(Color.red);
 			inGameController.getWorldController().jumpBody();
 		}
 	}
