@@ -1,5 +1,6 @@
 *.class
 !/.classpath
+*.md
 
 # Package Files #
 *.war
