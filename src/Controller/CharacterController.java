@@ -101,11 +101,11 @@ public class CharacterController {
 			characterView.setColor(Color.green);
 			inGameController.getWorldController().moveBodyLeft();
 		}
-		if(isControllerDown(input.ANY_CONTROLLER)) {
+		if(isControllerDown(Input.KEY_DOWN)) {
 			//plocka upp ett item TODO
 		}
-		if(isControllerUp(input.ANY_CONTROLLER)) {
-			//hoppa TODO
+		if(isControllerUp(Input.KEY_UP)) {
+			inGameController.getWorldController().jumpBody();
 		}
 	}
 }
