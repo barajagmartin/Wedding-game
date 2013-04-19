@@ -101,7 +101,7 @@ public class CharacterController {
 			characterView.setColor(Color.green);
 			inGameController.getWorldController().moveBodyLeft();
 		}
-		if(isControllerDown(Input.KEY_DOWN)) {
+		if(input.isKeyDown(Input.KEY_DOWN)) {
 			//plocka upp ett item TODO
 		}
 		if(input.isKeyDown(Input.KEY_UP)) {
