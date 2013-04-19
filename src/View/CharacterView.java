@@ -35,7 +35,7 @@ public class CharacterView {
 		fixtureDef = new FixtureDef();
 		fixtureDef.shape = this.jBox2DRectangle;
 		fixtureDef.density = 0.9f; //gör till konstanter TODO
-		fixtureDef.friction = 0.1f;       
+		fixtureDef.friction = 0.1f;
 		fixtureDef.restitution = 0.5f;
 		
 	}
