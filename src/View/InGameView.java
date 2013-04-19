@@ -8,35 +8,22 @@ import org.newdawn.slick.state.StateBasedGame;
 import model.InGame;
 
 /**
- * 	Visar upp World & StatusBar
+ * 	Visar upp World & StatusBar.
  */
 public class InGameView {
 	private InGame inGame;
+	private WorldView worldView;
 	
-	//Till controller
-	private float timeStep = 1.0f / 60.0f;
-	private int velocityIterations = 6;
-	private int positionIterations = 2;
-	
-	
-	public InGameView(InGame inGame) {
+	public InGameView(InGame inGame, WorldView worldView) {
 		this.inGame = inGame;
+		this.worldView = worldView;
 	}
-	
-	//Ska ligga i någon typ av init metod
-	characterController = new oldController.CharacterController(world.getCharacter());
 	
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-		g.setColor(this.player.getCharacter().getColor());
-		g.fill(world.getCharacter().getShape());
+		g.setColor(worldView.getCharacterView().getColor());
+		g.fill(worldView.getCharacterView().getSlickShape());
 	}
 
-	public void update(GameContainer gc, StateBasedGame sbg, int delta)
-			throws SlickException {
-		characterController.keyPressedUpdate(gc, delta);
-		//simulate the JBox2D world
-		world.getJBox2DWorld().step(timeStep, velocityIterations, positionIterations);
-		world.updateSlick();
-	}
+	
 }

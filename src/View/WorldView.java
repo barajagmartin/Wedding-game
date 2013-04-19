@@ -12,25 +12,41 @@ import org.jbox2d.dynamics.World;
 
 public class WorldView {
 	private model.World world;
+	private CharacterView characterView;
 	private Vec2 gravity;
 	boolean doSleep;
 	private World jBox2DWorld;
 	private Body characterBody;
 	private Body groundBody;
 	
-	public WorldView() {
+	public WorldView(model.World world, CharacterView characterView) {
+		this.world = world;
+		this.characterView = characterView;
 		gravity = new Vec2(0.0f, 9.82f);
 		doSleep = true;
 		jBox2DWorld = new World(gravity, doSleep);
 		addGround();
 		//addSide(0,worldHeight);
 		//addSide(worldWidth, worldHeight);
-		characterBody = jBox2DWorld.createBody(world.getCharacter().getBodyDef());
-		characterBody.createFixture(world.getCharacter().getFixtureDef());
+		characterBody = jBox2DWorld.createBody(characterView.getBodyDef());
+		characterBody.createFixture(characterView.getFixtureDef());
 	}
+	
+	public CharacterView getCharacterView() {
+		return characterView;
+	}
+
 	public World getJBox2DWorld() {
 		return jBox2DWorld;
 	}
+	
+	public Body getCharacterBody() {
+		return characterBody;
+	}
+	
+	
+	
+	
 	
 	/**
 	 * Make ground at the bottom of the screen to prevent character from falling down.
@@ -38,7 +54,6 @@ public class WorldView {
 	private void addGround() {
 		PolygonShape ps = new PolygonShape();
 		ps.setAsBox(100,10);
-		
 		
 		FixtureDef fixtureDef = new FixtureDef();
 		fixtureDef.shape = ps;
@@ -59,7 +74,7 @@ public class WorldView {
 	 */
 	private void addSide (float posX, float posY) {
 		PolygonShape ps = new PolygonShape();
-		ps.setAsBox(100, worldHeight);
+		ps.setAsBox(100, world.getWorldHeight());
 		
 		FixtureDef fixtureDef = new FixtureDef();
 		fixtureDef.shape = ps;
@@ -71,20 +86,5 @@ public class WorldView {
 		bodyDef.type = BodyType.STATIC; // eller?
 		
 		jBox2DWorld.createBody(bodyDef).createFixture(fixtureDef);
-	}
-
-	public void updateSlickShape() {
-		character.setX(characterBody.getPosition().x);
-		character.setY(characterBody.getPosition().y);
-	}
-	public void moveBodyRight(){
-		//add force to move right
-	      this.characterBody.applyLinearImpulse(new Vec2(10, 0), characterBody.getPosition());
-	}
-	
-	public void moveBodyLeft(){
-		//add force to move left
-		 this.characterBody.applyLinearImpulse(new Vec2(-10, 0), characterBody.getPosition());
-	}
-	
+	}	
 }
