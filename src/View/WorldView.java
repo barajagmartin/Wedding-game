@@ -1,4 +1,5 @@
-package Model;
+package view;
+
 
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
@@ -9,37 +10,24 @@ import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
 
-public class WorldModel {
-	private CharacterModel character;
+public class WorldView {
+	private model.World world;
 	private Vec2 gravity;
 	boolean doSleep;
 	private World jBox2DWorld;
-	private int worldWidth;
-	private int worldHeight;
 	private Body characterBody;
 	private Body groundBody;
 	
-	//Kommer ha spikes, Items och CandyMonster
-	
-	
-	public WorldModel(CharacterModel character, int worldWidth, int worldHeight) {
-		this.character = character;
+	public WorldView() {
 		gravity = new Vec2(0.0f, 9.82f);
 		doSleep = true;
 		jBox2DWorld = new World(gravity, doSleep);
-		this.worldWidth = worldWidth;
-		this.worldHeight = worldHeight;
 		addGround();
 		//addSide(0,worldHeight);
 		//addSide(worldWidth, worldHeight);
-		characterBody = jBox2DWorld.createBody(character.getBodyDef());
-		characterBody.createFixture(character.getFixtureDef());
+		characterBody = jBox2DWorld.createBody(world.getCharacter().getBodyDef());
+		characterBody.createFixture(world.getCharacter().getFixtureDef());
 	}
-	
-	public CharacterModel getCharacter(){
-		return character;
-	}
-	
 	public World getJBox2DWorld() {
 		return jBox2DWorld;
 	}
@@ -49,7 +37,7 @@ public class WorldModel {
 	 */
 	private void addGround() {
 		PolygonShape ps = new PolygonShape();
-		ps.setAsBox(100.0f, 10.0f);
+		ps.setAsBox(100,10);
 		
 		
 		FixtureDef fixtureDef = new FixtureDef();
@@ -57,7 +45,7 @@ public class WorldModel {
 		fixtureDef.density = 1.0f;
 		
 		BodyDef bodyDef = new BodyDef();
-		bodyDef.position = gravity;
+		bodyDef.position = new Vec2(0.0f, -9.82f);
 		bodyDef.type = BodyType.STATIC;
 		
 		groundBody = jBox2DWorld.createBody(bodyDef);
@@ -85,11 +73,10 @@ public class WorldModel {
 		jBox2DWorld.createBody(bodyDef).createFixture(fixtureDef);
 	}
 
-	public void updateSlick() {
+	public void updateSlickShape() {
 		character.setX(characterBody.getPosition().x);
 		character.setY(characterBody.getPosition().y);
-	}	
-	
+	}
 	public void moveBodyRight(){
 		//add force to move right
 	      this.characterBody.applyLinearImpulse(new Vec2(10, 0), characterBody.getPosition());
@@ -99,4 +86,5 @@ public class WorldModel {
 		//add force to move left
 		 this.characterBody.applyLinearImpulse(new Vec2(-10, 0), characterBody.getPosition());
 	}
+	
 }

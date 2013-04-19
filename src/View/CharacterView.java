@@ -1,28 +1,23 @@
-package Model;
-import org.jbox2d.collision.shapes.CircleShape;
+package view;
+
 import org.jbox2d.collision.shapes.PolygonShape;
-import org.jbox2d.collision.shapes.ShapeType;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.geom.Rectangle;
 
-
-public class CharacterModel {
-	private float x, y;
-	private int life;
+public class CharacterView {
+	private Character character;
 	private org.newdawn.slick.geom.Shape slickShape;
 	private org.jbox2d.collision.shapes.PolygonShape jBox2DRectangle;
 	private BodyDef bodyDef;
 	private FixtureDef fixtureDef;
 	private Color color;
 	
-	public CharacterModel(float x, float y){
-		this.x=x;
-		this.y=y;
-		this.life=3;
-		this.slickShape= new Rectangle(this.x, this.y, 50, 60); //x, y, width, height
+	public CharacterView(Character character) {
+		this.character = character;
+		this.slickShape= new Rectangle(character.getX(), character.getY(), 50, 60); //x, y, width, heigh
 		this.color = Color.blue;
 		bodyDef = new BodyDef();
 		bodyDef.position.set(this.x,this.y);
@@ -37,40 +32,22 @@ public class CharacterModel {
 		fixtureDef.restitution = 0.5f;
 	}
 	
-	public float getX(){
-		return this.x;
-	}
-	
-	public float getY(){
-		return this.y;
-	}
-	
-	public void setX(float x){
-		this.x=x;
+	public void setSlickShapeX(float x) {
 		slickShape.setX(x);
 	}
 	
-	public void setY(float y){
-		this.y=y;
+	public void setSlickShapeY(float y) {
 		slickShape.setY(y);
 	}
 	
-	public int getLife(){
-		return this.life;
-	}
-	
-	public void loseOneLife() {
-		this.life--;
-	}
-	
-	public org.newdawn.slick.geom.Shape getShape(){
+	public org.newdawn.slick.geom.Shape getSlickShape(){
 		return this.slickShape;
 	}
 	
 	public org.jbox2d.collision.shapes.PolygonShape getjBox2DRectangle() {
 		return jBox2DRectangle;
 	}
-
+	
 	public BodyDef getBodyDef() {
 		return bodyDef;
 	}
@@ -78,15 +55,12 @@ public class CharacterModel {
 	public FixtureDef getFixtureDef() {
 		return fixtureDef;
 	}
-
-	public void setColor(Color color){
-		this.color = color;
-	}
 	
 	public Color getColor(){
 		return color;
-	}	
+	}
+	
+	public void setColor(Color color){
+		this.color = color;
+	}
 }
-
-
-
