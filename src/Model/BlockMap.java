@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class BlockMap {	
 	private ArrayList<Block> blockList;
 	
-	public BlockMap(final String ref) {
+	public BlockMap() {
 		blockList = new ArrayList<Block>();		
 	}
 }
