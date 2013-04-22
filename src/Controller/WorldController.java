@@ -36,8 +36,8 @@ public class WorldController {
 	}
 	
 	public void jumpBody(){
-		float impulse = worldView.getCharacterBody().getMass() * 10;
-		worldView.getCharacterBody().applyLinearImpulse(new Vec2(0,impulse), worldView.getCharacterBody().getWorldCenter());
+		final float impulse = worldView.getCharacterBody().getMass() * 600;
+		worldView.getCharacterBody().applyLinearImpulse(new Vec2(0,-impulse), worldView.getCharacterBody().getWorldCenter());
 	}
 	
 	public void updateSlickShape() {
