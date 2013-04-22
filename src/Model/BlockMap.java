@@ -8,4 +8,8 @@ public class BlockMap {
 	public BlockMap() {
 		blockList = new ArrayList<Block>();		
 	}
+
+	public ArrayList<Block> getBlockList() {
+		return blockList;
+	}
 }
