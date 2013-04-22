@@ -53,7 +53,7 @@ public class InGameController extends BasicGameState {
 			throws SlickException {
 		characterController.keyPressedUpdate(gc);
 		//simulate the JBox2D world TODO timeStep --> delta
-		worldController.getWorldView().getJBox2DWorld().step(delta, velocityIterations, positionIterations);
+		worldController.getWorldView().getJBox2DWorld().step(5, velocityIterations, positionIterations);
 		worldController.updateSlickShape();
 	}
 
