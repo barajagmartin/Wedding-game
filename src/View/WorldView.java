@@ -26,7 +26,7 @@ public class WorldView {
 		gravity = new Vec2(0.0f, 9.82f);
 		doSleep = true;
 		jBox2DWorld = new World(gravity, doSleep);
-		addGround();
+		addSolidGround(0, world.getWorldHeight(), world.getWorldWidth(), 1);
 		addSide(-50,0);
 		addSide(world.getWorldWidth(), 0);
 		characterBody = jBox2DWorld.createBody(characterView.getBodyDef());
@@ -53,9 +53,9 @@ public class WorldView {
 	/**
 	 * Make ground at the bottom of the screen to prevent character from falling down.
 	 */
-	private void addGround() {
+	private void addSolidGround(final float posX, final float posY, final float width, final float height) {
 		PolygonShape ps = new PolygonShape();
-		ps.setAsBox(world.getWorldWidth(),1);
+		ps.setAsBox(width, height);
 		
 		FixtureDef fixtureDef = new FixtureDef();
 		fixtureDef.shape = ps;
@@ -63,7 +63,7 @@ public class WorldView {
 		fixtureDef.density = 1f;
 		
 		BodyDef bodyDef = new BodyDef();
-		bodyDef.position.set(0,world.getWorldHeight());
+		bodyDef.position.set(posX, posY);
 		bodyDef.type = BodyType.STATIC;
 		bodyDef.fixedRotation = true;
 		
