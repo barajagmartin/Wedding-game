@@ -1,5 +1,10 @@
 package controller;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -7,6 +12,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import view.InGameView;
+import model.BlockMap;
 import model.InGame;
 
 public class InGameController extends BasicGameState {
@@ -40,6 +46,15 @@ public class InGameController extends BasicGameState {
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		//TODO ladda in filer
+		InputStream a;
+		try {
+			a = new FileInputStream("ny.tmx");
+			new view.BlockMapView(new BlockMap(), a);
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
