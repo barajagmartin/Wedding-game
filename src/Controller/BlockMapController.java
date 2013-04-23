@@ -17,5 +17,9 @@ public class BlockMapController {
 		blockMapView = new BlockMapView(blockMap, io.BlockMapUtils.getTmxFile(1));
 	}
 	
+	public BlockMapView getBlockMapView() {
+		return this.blockMapView;
+	}
+	
 
 }

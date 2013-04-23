@@ -20,15 +20,17 @@ public class InGameController extends BasicGameState {
 	private InGameView inGameView;
 	private CharacterController characterController;
 	private WorldController worldController;
+	private BlockMapController blockMapController;
 	
 	//should be based on the frame update (delta or something like that)
 	private float timeStep = 1.0f / 60.0f;
 	private int velocityIterations = 6;
 	private int positionIterations = 2;
 	
-	public InGameController() {
+	public InGameController() throws FileNotFoundException, SlickException {
 		this.characterController = new CharacterController(this);
 		this.worldController = new WorldController(this);
+		this.blockMapController = new BlockMapController();
 		this.inGame = new InGame(worldController.getWorld());
 		this.inGameView = new InGameView(inGame, worldController.getWorldView());
 		//Will create ItemController etc.
@@ -40,6 +42,10 @@ public class InGameController extends BasicGameState {
 
 	public WorldController getWorldController() {
 		return worldController;
+	}
+	
+	public BlockMapController getBlockMapController() {
+		return blockMapController;
 	}
 
 	@Override
