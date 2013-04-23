@@ -14,9 +14,9 @@ public class BlockMapView {
 	private int mapWidth;
 	private int mapHeight;
 	
-	public BlockMapView(BlockMap blockMap, InputStream a) throws SlickException {
+	public BlockMapView(BlockMap blockMap, InputStream inputStream) throws SlickException {
 		this.blockMap = blockMap;
-		map = new TiledMap(a);
+		map = new TiledMap(inputStream);
 		mapWidth = map.getWidth() * map.getTileWidth();
 		mapHeight = map.getHeight() * map.getTileHeight();
 
