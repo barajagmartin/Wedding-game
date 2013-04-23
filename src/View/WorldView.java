@@ -1,6 +1,5 @@
 package view;
 
-
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
@@ -9,7 +8,6 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.Filter;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
-
 
 public class WorldView {
 	private model.World world;
@@ -26,6 +24,7 @@ public class WorldView {
 		gravity = new Vec2(0.0f, 9.82f);
 		doSleep = true;
 		jBox2DWorld = new World(gravity, doSleep);
+		//Need to convert world coordinates to pixels TODO
 		//ground
 		addSolidGround(0, world.getWorldHeight(), world.getWorldWidth(), 1); //(x, y, width, height)
 		//left wall
@@ -74,8 +73,7 @@ public class WorldView {
 	
 	//Pixel to world coordinate, y
 	public float toPosY(float posY) {
-	    float y = 100.0f - ((posY * 100 * 1.0f) / world.getWorldHeight()) ;
-	    return y;
+	    return 100.0f - ((posY * 100 * 1.0f) / world.getWorldHeight()) ;
 	}
 	
 	//world width to pixel width
