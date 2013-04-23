@@ -1,6 +1,7 @@
 package view;
 
-import junit.framework.Test;
+import java.io.InputStream;
+
 import model.Block;
 import model.BlockMap;
 
@@ -13,24 +14,27 @@ public class BlockMapView {
 	private int mapWidth;
 	private int mapHeight;
 	
-	public BlockMapView(BlockMap blockMap, String ref) throws SlickException {
+	public BlockMapView(BlockMap blockMap, InputStream a) throws SlickException {
 		this.blockMap = blockMap;
-		map = new TiledMap("test.tmx");
+		map = new TiledMap(a);
 		mapWidth = map.getWidth() * map.getTileWidth();
 		mapHeight = map.getHeight() * map.getTileHeight();
 
 		//loop through map and place out Blocks
-		for (int x = 1; x <= map.getWidth(); x++) {
-			for (int y = 1; y <= map.getHeight(); y++) {
-				//if the tile is solid ground, place a static object
-				int id = map.getTileId(x, y, map.getLayerIndex("two"));
-				String s = map.getTileProperty(id, "blocked", "true");
-				if ("true".equals(s)) {
-					blockMap.getBlockList().add(new Block(x*map.getTileWidth(),
-							y*map.getTileHeight(),map.getTileWidth(), map.getTileHeight()));
+		for (int x = 0; x < map.getWidth(); x++) {
+			for (int y = 0; y < map.getHeight(); y++) {
+			int firstgid = map.getTileId(x, y, map.getLayerIndex("two"));
+				String tileProperty = map.getTileProperty(firstgid, "blocked", "false"); //If there were no value it would return false
+				if (tileProperty.equals("true")) { //if the tile is solid ground, then add its properties to a Block-list
+					blockMap.getBlockList().add(new Block(x * map.getTileWidth(),
+							y * map.getTileHeight(),map.getTileWidth(), map.getTileHeight()));
 				}
 			}
 		}
+	}
+
+	public BlockMap getBlockMap() {
+		return blockMap;
 	}
 }
 //TODO ska delas upp i View och Controller

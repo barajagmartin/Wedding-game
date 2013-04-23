@@ -12,7 +12,26 @@ public class Block {
 		this.posY = posY;
 		this.width = width;
 		this.height = height;
-		
+	}
+
+
+	public float getPosX() {
+		return posX;
+	}
+
+
+	public float getPosY() {
+		return posY;
+	}
+
+
+	public float getWidth() {
+		return width;
+	}
+
+
+	public float getHeight() {
+		return height;
 	}
 
 }
