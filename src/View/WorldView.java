@@ -24,15 +24,15 @@ public class WorldView {
 		gravity = new Vec2(0.0f, 9.82f);
 		doSleep = true;
 		jBox2DWorld = new World(gravity, doSleep);
-		//Need to convert world coordinates to pixels TODO
+		// TODO måste använda f på något sätt.
 		//ground
-		addSolidGround(0, world.getWorldHeight(), world.getWorldWidth(), 1); //(x, y, width, height)
+		addSolidGround(0, 500, 800, 0); //(x, y, width, height)
 		//left wall
-		addSolidGround(-1, 0, 1, toPixelHeight(world.getWorldHeight()));
+		addSolidGround(0, 0, 0, 500);
 		//right wall
-		addSolidGround(world.getWorldWidth(), 0, 1, world.getWorldHeight());
+		addSolidGround(800, 0, 0, 600);
 		//roof
-		addSolidGround(-1, -1, world.getWorldHeight(), 1);
+		addSolidGround(0, 0, 800, 1);
 		characterBody = jBox2DWorld.createBody(characterView.getBodyDef());
 		characterBody.createFixture(characterView.getFixtureDef());
 		characterBody.m_mass = 1000f;
@@ -90,6 +90,11 @@ public class WorldView {
 	 * Add solid ground to prevent the character from moving outside of the window.
 	 */
 	private void addSolidGround(final float posX, final float posY, final float width, final float height) {
+		BodyDef bodyDef = new BodyDef();
+		bodyDef.position.set(posX, posY);
+		bodyDef.type = BodyType.STATIC;
+		bodyDef.fixedRotation = true;
+		
 		PolygonShape polygonShape = new PolygonShape();
 		polygonShape.setAsBox(width, height);
 		
@@ -97,12 +102,7 @@ public class WorldView {
 		fixtureDef.shape = polygonShape;
 		fixtureDef.friction = 0.1f;
 		fixtureDef.density = 1f;
-		
-		BodyDef bodyDef = new BodyDef();
-		bodyDef.position.set(posX, posY);
-		bodyDef.type = BodyType.STATIC;
-		bodyDef.fixedRotation = true;
-		
+
 		groundBody = jBox2DWorld.createBody(bodyDef);
 		groundBody.createFixture(fixtureDef);
 	}
