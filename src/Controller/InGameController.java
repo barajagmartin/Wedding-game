@@ -27,10 +27,10 @@ public class InGameController extends BasicGameState {
 	private int velocityIterations = 6;
 	private int positionIterations = 2;
 	
-	public InGameController() throws FileNotFoundException, SlickException {
+	public InGameController() {
 		this.characterController = new CharacterController(this);
-		this.worldController = new WorldController(this);
 		this.blockMapController = new BlockMapController();
+		this.worldController = new WorldController(this);
 		this.inGame = new InGame(worldController.getWorld());
 		this.inGameView = new InGameView(inGame, worldController.getWorldView());
 		//Will create ItemController etc.

@@ -55,6 +55,7 @@ public class WorldView {
 		characterBody = jBox2DWorld.createBody(characterView.getBodyDef());
 		characterBody.createFixture(characterView.getFixtureDef());
 		characterBody.m_mass = 1000f;
+		characterBody.shouldCollide(groundBody);
 	}
 	
 	public CharacterView getCharacterView() {
@@ -71,6 +72,10 @@ public class WorldView {
 	
 	public Body getGroundBody() {
 		return groundBody;
+	}
+
+	public BlockMapView getBlockMapView() {
+		return blockMapView;
 	}
 
 	/*

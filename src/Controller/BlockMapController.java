@@ -12,7 +12,7 @@ public class BlockMapController {
 	BlockMap blockMap;
 	BlockMapView blockMapView;
 	
-	public BlockMapController() throws FileNotFoundException, SlickException {
+	public BlockMapController() {
 		blockMap = new BlockMap();
 		blockMapView = new BlockMapView(blockMap, io.BlockMapUtils.getTmxFile(1));
 	}
