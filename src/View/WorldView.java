@@ -1,5 +1,8 @@
 package view;
 
+import java.util.ArrayList;
+
+import model.Block;
 
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
@@ -10,7 +13,6 @@ import org.jbox2d.dynamics.Filter;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
-
 public class WorldView {
 	private model.World world;
 	private CharacterView characterView;
@@ -19,13 +21,17 @@ public class WorldView {
 	private World jBox2DWorld;
 	private Body characterBody;
 	private Body groundBody;
+	private ArrayList<Body> tileBodyList;
+	private BlockMapView blockMapView;
 	
-	public WorldView(model.World world, CharacterView characterView) {
+	public WorldView(model.World world, CharacterView characterView, BlockMapView blockMapView) {
 		this.world = world;
 		this.characterView = characterView;
+		this.blockMapView = blockMapView;
 		gravity = new Vec2(0.0f, 9.82f);
 		doSleep = true;
 		jBox2DWorld = new World(gravity, doSleep);
+		//Need to convert world coordinates to pixels TODO
 		//ground
 		addSolidGround(0, world.getWorldHeight(), world.getWorldWidth(), 1); //(x, y, width, height)
 		//left wall
@@ -34,6 +40,11 @@ public class WorldView {
 		addSolidGround(world.getWorldWidth(), 0, 1, world.getWorldHeight());
 		//roof
 		addSolidGround(-1, -1, world.getWorldHeight(), 1);
+		
+		for (Block block : this.blockMapView.getBlockMap().getBlockList()) {
+			addSolidGround(block.getPosX(), block.getPosY(), block.getWidth(), block.getHeight());
+		}
+		
 		characterBody = jBox2DWorld.createBody(characterView.getBodyDef());
 		characterBody.createFixture(characterView.getFixtureDef());
 		characterBody.m_mass = 1000f;
@@ -78,8 +89,7 @@ public class WorldView {
 	
 	//Pixel to world coordinate, y
 	public float toPosY(float posY) {
-	    float y = 100.0f - ((posY * 100 * 1.0f) / world.getWorldHeight()) ;
-	    return y;
+	    return 100.0f - ((posY * 100 * 1.0f) / world.getWorldHeight()) ;
 	}
 	
 	//world width to pixel width
