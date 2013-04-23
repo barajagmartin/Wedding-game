@@ -46,15 +46,7 @@ public class InGameController extends BasicGameState {
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		//TODO ladda in filer
-		InputStream a;
-		try {
-			a = new FileInputStream("ny.tmx");
-			new view.BlockMapView(new BlockMap(), a);
-
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 	}
 
 	@Override
