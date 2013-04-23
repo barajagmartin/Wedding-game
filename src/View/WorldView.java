@@ -51,6 +51,10 @@ public class WorldView {
 		return characterBody;
 	}
 	
+	public Body getGroundBody() {
+		return groundBody;
+	}
+
 	/*
 	 * Convert methods that allows us to change between world coordinates and pixels
 	 */
