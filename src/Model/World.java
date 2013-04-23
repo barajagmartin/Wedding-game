@@ -1,7 +1,5 @@
 package model;
 
-
-
 public class World {
 	private Character character;
 	private BlockMap blockMap;

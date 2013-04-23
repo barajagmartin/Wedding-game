@@ -1,5 +1,8 @@
 package view;
 
+import java.util.ArrayList;
+
+import model.Block;
 
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
@@ -10,7 +13,6 @@ import org.jbox2d.dynamics.Filter;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
-
 public class WorldView {
 	private model.World world;
 	private CharacterView characterView;
@@ -19,16 +21,30 @@ public class WorldView {
 	private World jBox2DWorld;
 	private Body characterBody;
 	private Body groundBody;
+	private ArrayList<Body> tileBodyList;
+	private BlockMapView blockMapView;
 	
-	public WorldView(model.World world, CharacterView characterView) {
+	public WorldView(model.World world, CharacterView characterView, BlockMapView blockMapView) {
 		this.world = world;
 		this.characterView = characterView;
+		this.blockMapView = blockMapView;
 		gravity = new Vec2(0.0f, 9.82f);
 		doSleep = true;
 		jBox2DWorld = new World(gravity, doSleep);
-		addSolidGround(0, world.getWorldHeight(), world.getWorldWidth(), 1);
-		addSide(-50,0);
-		addSide(world.getWorldWidth(), 0);
+		//Need to convert world coordinates to pixels TODO
+		//ground
+		addSolidGround(0, world.getWorldHeight(), world.getWorldWidth(), 1); //(x, y, width, height)
+		//left wall
+		addSolidGround(-1, 0, 1, toPixelHeight(world.getWorldHeight()));
+		//right wall
+		addSolidGround(world.getWorldWidth(), 0, 1, world.getWorldHeight());
+		//roof
+		addSolidGround(-1, -1, world.getWorldHeight(), 1);
+		
+		for (Block block : this.blockMapView.getBlockMap().getBlockList()) {
+			addSolidGround(block.getPosX(), block.getPosY(), block.getWidth(), block.getHeight());
+		}
+		
 		characterBody = jBox2DWorld.createBody(characterView.getBodyDef());
 		characterBody.createFixture(characterView.getFixtureDef());
 		characterBody.m_mass = 1000f;
@@ -46,19 +62,51 @@ public class WorldView {
 		return characterBody;
 	}
 	
+	/*
+	 * Convert methods that allows us to change between world coordinates and pixels
+	 */
+	//World coordinate to pixel, x
+	public float toPixelPosX(float posX) {
+	    float x = world.getWorldWidth() * posX / 100.0f;
+	    return x;
+	}
 	
+	//Pixel to world coordinate, x
+	public float toPosX(float posX) {
+	    float x = (posX * 100.0f * 1.0f) / world.getWorldWidth();
+	    return x;
+	}
 	
+	//World coordinate to pixel, y
+	public float toPixelPosY(float posY) {
+	    float y = world.getWorldHeight() - (1.0f * world.getWorldHeight()) * posY / 100.0f;
+	    return y;
+	}
 	
+	//Pixel to world coordinate, y
+	public float toPosY(float posY) {
+	    return 100.0f - ((posY * 100 * 1.0f) / world.getWorldHeight()) ;
+	}
+	
+	//world width to pixel width
+	public float toPixelWidth(float width) {
+	    return world.getWorldWidth()*width / 100.0f;
+	}
+	
+	//world height to pixel height
+	public float toPixelHeight(float height) {
+	    return world.getWorldHeight() * height / 100.0f;
+	}
 	
 	/**
-	 * Make ground at the bottom of the screen to prevent character from falling down.
+	 * Add solid ground to prevent the character from moving outside of the window.
 	 */
 	private void addSolidGround(final float posX, final float posY, final float width, final float height) {
-		PolygonShape ps = new PolygonShape();
-		ps.setAsBox(width, height);
+		PolygonShape polygonShape = new PolygonShape();
+		polygonShape.setAsBox(width, height);
 		
 		FixtureDef fixtureDef = new FixtureDef();
-		fixtureDef.shape = ps;
+		fixtureDef.shape = polygonShape;
 		fixtureDef.friction = 0.1f;
 		fixtureDef.density = 1f;
 		
@@ -71,24 +119,4 @@ public class WorldView {
 		groundBody.createFixture(fixtureDef);
 	}
 	
-	/**
-	 * Make walls at the specified position of the screen.
-	 * @param posX where to place it
-	 * @param posY where to place it
-	 */
-	private void addSide (float posX, float posY) {
-		PolygonShape ps = new PolygonShape();
-		ps.setAsBox(1, world.getWorldHeight());
-		
-		FixtureDef fixtureDef = new FixtureDef();
-		fixtureDef.shape = ps;
-		fixtureDef.density = 1.0f;
-		fixtureDef.friction = 0.3f;
-		
-		BodyDef bodyDef = new BodyDef();
-		bodyDef.position.set(posX, posY);
-		bodyDef.type = BodyType.STATIC; // eller?
-		
-		jBox2DWorld.createBody(bodyDef).createFixture(fixtureDef);
-	}	
 }
