@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="40" height="30" tilewidth="20" tileheight="20">
+ <tileset firstgid="1" name="flower tile" tilewidth="20" tileheight="20">
+  <image source="../Desktop/flower tile.png" width="20" height="20"/>
+  <tile id="0">
+   <properties>
+    <property name="blocked" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="2" name="green tile" tilewidth="20" tileheight="20">
+  <image source="../Desktop/green tile.png" width="20" height="20"/>
+  <tile id="0">
+   <properties>
+    <property name="blocked" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="two" width="40" height="30">
+  <data encoding="base64" compression="zlib">
+   eJzt2DEKACEMRNGY+x/aKr0yESfwH0y7fCxkMSMizeeKPg19Gvo09GmqbzXs1M03p5yfK/o09Gmm9HXeb6XjTp1yfq7o09Cn6fy/erHf7wKMbe0bAlE=
+  </data>
+ </layer>
+</map>
