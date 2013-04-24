@@ -73,6 +73,7 @@ public class InGameController extends BasicGameState {
 		//simulate the JBox2D world TODO timeStep --> delta
 		worldController.getWorldView().getJBox2DWorld().step(5, velocityIterations, positionIterations);
 		worldController.updateSlickShape();
+		
 	}
 
 	@Override

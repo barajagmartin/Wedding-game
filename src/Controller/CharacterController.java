@@ -26,6 +26,8 @@ public class CharacterController {
 		this.inGameController = inGameController;
 		this.character = new Character(400, 300);
 		this.characterView = new CharacterView(character);
+		//this.jumping = false;
+		//this.jumpCount = 0;
 	}
 	
 	public Character getCharacter() {
@@ -35,6 +37,7 @@ public class CharacterController {
 	public CharacterView getCharacterView() {
 		return characterView;
 	}
+
 
 	/*Getters for keypresses*/
 	public int getKeyRight() {
@@ -104,8 +107,13 @@ public class CharacterController {
 			//plocka upp ett item TODO
 		}
 		if(input.isKeyDown(Input.KEY_UP)) {
-			characterView.setColor(Color.red);
-			inGameController.getWorldController().jumpBody();
+			
+			if(inGameController.getWorldController().getWorldView().getCharacterBody().getLinearVelocity().y < 0){
+				characterView.setColor(Color.red);
+				inGameController.getWorldController().jumpBody();
+			}
+			
+			
 		}
 	}
 }
