@@ -23,8 +23,4 @@ public class InGame {
 	public StatusBar getStatusBar() {
 		return statusBar;
 	}
-
-	public int getID() {
-		return Game.IN_GAME;
-	}
 }

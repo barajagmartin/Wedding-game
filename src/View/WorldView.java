@@ -49,7 +49,7 @@ public class WorldView {
 		for (Block block : this.blockMapView.getBlockMap().getBlockList()) {
 			Body temp = null;
 			addSolidGround(block.getPosX(), block.getPosY(), block.getWidth(), block.getHeight(), temp);
-			tileBodyList.add(temp);
+			//tileBodyList.add(temp);
 		}
 		
 		characterBody = jBox2DWorld.createBody(characterView.getBodyDef());

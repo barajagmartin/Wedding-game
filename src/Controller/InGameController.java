@@ -1,5 +1,7 @@
 package controller;
 
+import io.BlockMapUtils;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -10,9 +12,12 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.tiled.TiledMap;
 
+import view.BlockMapView;
 import view.InGameView;
 import model.BlockMap;
+import model.Game;
 import model.InGame;
 
 public class InGameController extends BasicGameState {
@@ -28,12 +33,7 @@ public class InGameController extends BasicGameState {
 	private int positionIterations = 2;
 	
 	public InGameController() {
-		this.characterController = new CharacterController(this);
-		this.blockMapController = new BlockMapController();
-		this.worldController = new WorldController(this);
-		this.inGame = new InGame(worldController.getWorld());
-		this.inGameView = new InGameView(inGame, worldController.getWorldView());
-		//Will create ItemController etc.
+		
 	}
 
 	public CharacterController getCharacterController() {
@@ -52,7 +52,12 @@ public class InGameController extends BasicGameState {
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		//TODO ladda in filer
-		
+		 this.blockMapController = new BlockMapController(new TiledMap(BlockMapUtils.getTmxFile(1)));
+		 this.characterController = new CharacterController(this);
+		 this.worldController = new WorldController(this);
+		 this.inGame = new InGame(worldController.getWorld());
+		 this.inGameView = new InGameView(inGame, worldController.getWorldView());
+		 //Will create ItemController etc.
 	}
 
 	@Override
@@ -72,6 +77,6 @@ public class InGameController extends BasicGameState {
 
 	@Override
 	public int getID() {
-		return inGame.getID();
+		return Game.IN_GAME;
 	}
 }
