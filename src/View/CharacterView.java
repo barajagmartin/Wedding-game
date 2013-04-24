@@ -8,6 +8,8 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 
+import controller.WorldUtils;
+
 import model.Character;
 
 public class CharacterView {
@@ -20,23 +22,23 @@ public class CharacterView {
 	
 	public CharacterView(Character character) {
 		this.character = character;
-		this.slickShape= new Rectangle(character.getX(), character.getY(), character.width, character.height); //x, y, width, heigh
+		this.slickShape= new Rectangle(character.getX(), character.getY(), character.WIDTH, character.HEIGHT); //x, y, width, height
 		this.color = Color.blue;
 		
 		jBox2DRectangle = new PolygonShape(); 
-		jBox2DRectangle.setAsBox(character.width, character.height);
+		jBox2DRectangle.setAsBox(character.WIDTH/25, character.HEIGHT/25);
 		
 		//ska inställningarna vara i controllern? vi tror det! :)
 		bodyDef = new BodyDef();
-		bodyDef.position.set(character.getX(),character.getY());
+		bodyDef.position.set(WorldUtils.pixel2Meter(character.getX()),WorldUtils.pixel2Meter(character.getY()));
 		bodyDef.type = BodyType.DYNAMIC;
 		bodyDef.fixedRotation = true;
 		
 		fixtureDef = new FixtureDef();
 		fixtureDef.shape = this.jBox2DRectangle;
 		fixtureDef.density = 0.9f; //gör till konstanter TODO
-		fixtureDef.friction = 0.1f;
-		fixtureDef.restitution = 0.5f;
+		fixtureDef.friction = 0.4f;
+		fixtureDef.restitution = 0f;
 		
 	}
 	

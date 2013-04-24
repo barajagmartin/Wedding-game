@@ -27,22 +27,22 @@ public class WorldController {
 
 	public void moveBodyRight() {
 		//add force to move right
-	      worldView.getCharacterBody().applyLinearImpulse(new Vec2(1000000, 0), worldView.getCharacterBody().getPosition());
+	      worldView.getCharacterBody().applyLinearImpulse(new Vec2(1, 0), worldView.getCharacterBody().getPosition());
 	}
 	
 	public void moveBodyLeft() {
 		//add force to move left
-		 worldView.getCharacterBody().applyLinearImpulse(new Vec2(-1000000, 0), worldView.getCharacterBody().getPosition());
+		 worldView.getCharacterBody().applyLinearImpulse(new Vec2(-1, 0), worldView.getCharacterBody().getPosition());
 	}
 	
 	public void jumpBody(){
-		final float impulse = worldView.getCharacterBody().getMass() * 600;
+		final float impulse = worldView.getCharacterBody().getMass() * 3;
 		worldView.getCharacterBody().applyLinearImpulse(new Vec2(0,-impulse), worldView.getCharacterBody().getWorldCenter());
 	}
 	
 	public void updateSlickShape() {
-		worldView.getCharacterView().getSlickShape().setX(worldView.getCharacterBody().getPosition().x);
-		worldView.getCharacterView().getSlickShape().setY(worldView.getCharacterBody().getPosition().y);	
+		worldView.getCharacterView().getSlickShape().setX(25*worldView.getCharacterBody().getPosition().x);
+		worldView.getCharacterView().getSlickShape().setY(25*worldView.getCharacterBody().getPosition().y);	
 	}
 	
 }

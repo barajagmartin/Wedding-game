@@ -9,6 +9,8 @@ import java.io.InputStream;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
+import org.newdawn.slick.KeyListener;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -71,9 +73,8 @@ public class InGameController extends BasicGameState {
 			throws SlickException {
 		characterController.keyPressedUpdate(gc);
 		//simulate the JBox2D world TODO timeStep --> delta
-		worldController.getWorldView().getJBox2DWorld().step(5, velocityIterations, positionIterations);
-		worldController.updateSlickShape();
-		
+		worldController.getWorldView().getJBox2DWorld().step(0.005f, velocityIterations, positionIterations);
+		worldController.updateSlickShape();		
 	}
 
 	@Override
