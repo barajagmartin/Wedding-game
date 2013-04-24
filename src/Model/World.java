@@ -17,11 +17,11 @@ public class World {
 		return character;
 	}
 
-	public int getWorldWidth() {
+	public int getWorldWidthPx() {
 		return worldWidth;
 	}
 
-	public int getWorldHeight() {
+	public int getWorldHeightPx() {
 		return worldHeight;
 	}
 }

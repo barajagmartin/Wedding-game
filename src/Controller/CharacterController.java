@@ -6,6 +6,7 @@ import model.Character;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.KeyListener;
 
 import view.CharacterView;
 import view.WorldView;
@@ -93,7 +94,7 @@ public class CharacterController {
 		
 	//check which key is pressed
 	public void keyPressedUpdate(GameContainer gc) {
-		Input input = gc.getInput();
+		Input input = gc.getInput();		
 		
 		if(input.isKeyDown(Input.KEY_RIGHT)) {
 			characterView.setColor(Color.blue);
@@ -107,13 +108,13 @@ public class CharacterController {
 			//plocka upp ett item TODO
 		}
 		if(input.isKeyDown(Input.KEY_UP)) {
-			
-			if(inGameController.getWorldController().getWorldView().getCharacterBody().getLinearVelocity().y < 0){
-				characterView.setColor(Color.red);
-				inGameController.getWorldController().jumpBody();
-			}
-			
-			
+			tryToJumpCharacter();
+		}
+	}
+	public void tryToJumpCharacter() {
+		if(inGameController.getWorldController().getWorldView().getCharacterBody().getLinearVelocity().y == 0){
+			characterView.setColor(Color.red);
+			inGameController.getWorldController().jumpBody();
 		}
 	}
 }
