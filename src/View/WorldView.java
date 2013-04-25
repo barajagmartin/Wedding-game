@@ -43,22 +43,8 @@ public class WorldView {
 		gravity = new Vec2(0.0f, 9.82f);
 		doSleep = true;
 		jBox2DWorld = new World(gravity, doSleep);
-		// TODO måste använda f på något sätt.
-		//ground
-<<<<<<< HEAD
-<<<<<<< HEAD
-		addSolidGround(0, 500, 800, 0); //(x, y, width, height)
-		//left wall
-		addSolidGround(0, 0, 0, 500);
-		//right wall
-		addSolidGround(800, 0, 0, 600);
-		//roof
-		addSolidGround(0, 0, 800, 1);
-=======
-		addSolidGround(0, world.getWorldHeight(), world.getWorldWidth(), 1, groundBody); //(x, y, width, height)
-=======
+
 		addSolidGround(new Vec2(0, worldHeightMeter), new Vec2(worldWidthMeter, WorldUtils.pixel2Meter(1)), groundBody); //(x, y, width, height)
->>>>>>> 9f91b5a8a4129bc0847bee302d109bb67437d970
 		//left wall
 		addSolidGround(new Vec2(WorldUtils.pixel2Meter(-1), 0), new Vec2(WorldUtils.pixel2Meter(1), worldHeightMeter), leftWallBody);
 		//right wall
@@ -73,7 +59,6 @@ public class WorldView {
 			//tileBodyList.add(temp);
 		}
 		
->>>>>>> aa2c4d2f1bc4ae7b4235799b5ed3d6f3d9db2c07
 		characterBody = jBox2DWorld.createBody(characterView.getBodyDef());
 		characterBody.createFixture(characterView.getFixtureDef());
 		characterBody.m_mass = 50f;
@@ -102,20 +87,14 @@ public class WorldView {
 	/**
 	 * Add solid ground to prevent the character from moving outside of the window.
 	 */
-<<<<<<< HEAD
-<<<<<<< HEAD
 	private void addSolidGround(final float posX, final float posY, final float width, final float height) {
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.position.set(posX, posY);
 		bodyDef.type = BodyType.STATIC;
 		bodyDef.fixedRotation = true;
+	}
 		
-=======
-	private void addSolidGround(final float posX, final float posY, final float width, final float height, Body body) {
->>>>>>> aa2c4d2f1bc4ae7b4235799b5ed3d6f3d9db2c07
-=======
 	private void addSolidGround(final Vec2 pos, final Vec2 size, Body body) {
->>>>>>> 9f91b5a8a4129bc0847bee302d109bb67437d970
 		PolygonShape polygonShape = new PolygonShape();
 		polygonShape.setAsBox(size.x, size.y);
 		
@@ -123,15 +102,7 @@ public class WorldView {
 		fixtureDef.shape = polygonShape;
 		fixtureDef.friction = 0.4f;
 		fixtureDef.density = 1f;
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-		groundBody = jBox2DWorld.createBody(bodyDef);
-		groundBody.createFixture(fixtureDef);
-=======
-=======
 		fixtureDef.restitution = 0f;
->>>>>>> 9f91b5a8a4129bc0847bee302d109bb67437d970
 		
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.position.set(pos);
@@ -140,7 +111,6 @@ public class WorldView {
 		
 		body = jBox2DWorld.createBody(bodyDef);
 		body.createFixture(fixtureDef);
->>>>>>> aa2c4d2f1bc4ae7b4235799b5ed3d6f3d9db2c07
 	}
 	
 }
