@@ -2,6 +2,7 @@ package controller;
 
 import org.jbox2d.common.Vec2;
 
+import utils.WorldUtils;
 import view.WorldView;
 
 import model.World;
@@ -14,7 +15,8 @@ public class WorldController {
 	public WorldController(InGameController inGameController) {
 		this.inGameController = inGameController;
 		this.world = new World(inGameController.getCharacterController().getCharacter(), 800, 600);
-		this.worldView = new WorldView(world, inGameController.getCharacterController().getCharacterView(), inGameController.getBlockMapController().getBlockMapView());
+		this.worldView = new WorldView(world, inGameController.getCharacterController().getCharacterView(),
+				inGameController.getBlockMapController().getBlockMapView());
 	}
 	
 	public model.World getWorld() {
@@ -41,8 +43,10 @@ public class WorldController {
 	}
 	
 	public void updateSlickShape() {
-		worldView.getCharacterView().getSlickShape().setX(25*(worldView.getCharacterBody().getPosition().x) - worldView.getCharacterView().getCharacter().WIDTH/2);
-		worldView.getCharacterView().getSlickShape().setY(25*(worldView.getCharacterBody().getPosition().y) - worldView.getCharacterView().getCharacter().HEIGHT/2);	
+		worldView.getCharacterView().getSlickShape().setX(
+				WorldUtils.meter2Pixel(worldView.getCharacterBody().getPosition().x) - worldView.getCharacterView().getCharacter().WIDTH/2);
+		worldView.getCharacterView().getSlickShape().setY(WorldUtils.meter2Pixel(
+				worldView.getCharacterBody().getPosition().y) - worldView.getCharacterView().getCharacter().HEIGHT/2);	
 	}
 	
 }

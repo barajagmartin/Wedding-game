@@ -1,13 +1,15 @@
-package controller;
+package utils;
 
 import view.WorldView;
 
 public class WorldUtils {
+	public static int SCALE = 25;
+	
 	public static float pixel2Meter(int px) {
-		return px / WorldView.SCALE;
+		return px / SCALE;
 	}
 	
 	public static int meter2Pixel(float meter) {
-		return (int) (meter * WorldView.SCALE);
+		return (int) (meter * SCALE);
 	}
 }

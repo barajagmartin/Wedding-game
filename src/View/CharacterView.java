@@ -8,9 +8,8 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 
-import com.sun.corba.se.impl.javax.rmi.CORBA.Util;
 
-import controller.WorldUtils;
+import utils.WorldUtils;
 
 import model.Character;
 
@@ -24,15 +23,16 @@ public class CharacterView {
 	
 	public CharacterView(Character character) {
 		this.character = character;
-		this.slickShape= new Rectangle(character.getX()+100, character.getY(), character.WIDTH, character.HEIGHT); //x, y, width, height
+		this.slickShape= new Rectangle(character.getX()-character.WIDTH/2, character.getY()-character.HEIGHT/2,
+				character.WIDTH, character.HEIGHT); //start position of character on the screen
 		this.color = Color.blue;
 		
 		jBox2DRectangle = new PolygonShape(); 
-		jBox2DRectangle.setAsBox(character.WIDTH/50, character.HEIGHT/50);
+		jBox2DRectangle.setAsBox(WorldUtils.pixel2Meter(character.WIDTH)/2, WorldUtils.pixel2Meter(character.HEIGHT)/2);
 		
 		//ska inställningarna vara i controllern? vi tror det! :)
 		bodyDef = new BodyDef();
-		bodyDef.position.set(WorldUtils.pixel2Meter((int)(character.getX())),WorldUtils.pixel2Meter(character.getY()));
+		bodyDef.position.set(WorldUtils.pixel2Meter(character.getX()),WorldUtils.pixel2Meter(character.getY()));
 		bodyDef.type = BodyType.DYNAMIC;
 		bodyDef.fixedRotation = true;
 		
@@ -44,7 +44,7 @@ public class CharacterView {
 		
 	}
 	
-	public org.newdawn.slick.geom.Shape getSlickShape(){
+	public org.newdawn.slick.geom.Shape getSlickShape() {
 		return this.slickShape;
 	}
 	
