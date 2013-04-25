@@ -67,15 +67,19 @@ public class InGameController extends BasicGameState {
 			throws SlickException {
 		this.inGameView.render(gc, sbg, g);
 	}
-	
+	private int prevFPS = 0;
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
+		
 		characterController.keyPressedUpdate(gc);
 		//simulate the JBox2D world TODO timeStep --> delta
-		worldController.getWorldView().getJBox2DWorld().step(0.005f * delta, velocityIterations, positionIterations);
+		if(prevFPS != 0) {
+		worldController.getWorldView().getJBox2DWorld().step(timeStep*(prevFPS/gc.getFPS()*1000/gc.getFPS()), velocityIterations, positionIterations);
+		}
 		System.out.println(delta);
-		worldController.updateSlickShape();		
+		worldController.updateSlickShape();
+		prevFPS = gc.getFPS();
 	}
 
 	@Override
