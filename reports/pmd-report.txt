@@ -1,0 +1,171 @@
+
+src/controller/CharacterController.java:11	Avoid unused imports such as 'view.WorldView'
+src/controller/CharacterController.java:11	Avoid unused imports such as 'view.WorldView'
+src/controller/CharacterController.java:15	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/controller/CharacterController.java:15	Private field 'inGameController' could be made final; it is only initialized in the declaration or constructor.
+src/controller/CharacterController.java:16	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/controller/CharacterController.java:16	Private field 'character' could be made final; it is only initialized in the declaration or constructor.
+src/controller/CharacterController.java:17	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/controller/CharacterController.java:17	Private field 'characterView' could be made final; it is only initialized in the declaration or constructor.
+src/controller/CharacterController.java:25	Parameter 'inGameController' is not assigned and could be declared final
+src/controller/CharacterController.java:57	Parameter 'keyRight' is not assigned and could be declared final
+src/controller/CharacterController.java:61	Parameter 'keyLeft' is not assigned and could be declared final
+src/controller/CharacterController.java:65	Parameter 'keyUp' is not assigned and could be declared final
+src/controller/CharacterController.java:69	Parameter 'keyDown' is not assigned and could be declared final
+src/controller/CharacterController.java:92	Avoid variables with short names like gc
+src/controller/CharacterController.java:93	Local variable 'input' could be declared final
+src/controller/CharacterController.java:103	Avoid empty if statements
+src/controller/GameController.java:4	Avoid unused imports such as 'model.InGame'
+src/controller/GameController.java:4	Avoid unused imports such as 'model.InGame'
+src/controller/GameController.java:5	Avoid unused imports such as 'model.Player'
+src/controller/GameController.java:5	Avoid unused imports such as 'model.Player'
+src/controller/GameController.java:14	Avoid unused private fields such as 'game'.
+src/controller/GameController.java:14	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/controller/GameController.java:14	Perhaps 'game' could be replaced by a local variable.
+src/controller/GameController.java:14	Private field 'game' could be made final; it is only initialized in the declaration or constructor.
+src/controller/GameController.java:15	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/controller/GameController.java:15	Private field 'inGameController' could be made final; it is only initialized in the declaration or constructor.
+src/controller/GameController.java:16	Parameter 'name' is not assigned and could be declared final
+src/controller/GameController.java:24	Parameter 'container' is not assigned and could be declared final
+src/controller/InGameController.java:13	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/controller/InGameController.java:13	Private field 'inGame' could be made final; it is only initialized in the declaration or constructor.
+src/controller/InGameController.java:14	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/controller/InGameController.java:14	Private field 'inGameView' could be made final; it is only initialized in the declaration or constructor.
+src/controller/InGameController.java:15	Avoid excessively long variable names like characterController
+src/controller/InGameController.java:15	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/controller/InGameController.java:15	Private field 'characterController' could be made final; it is only initialized in the declaration or constructor.
+src/controller/InGameController.java:16	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/controller/InGameController.java:16	Private field 'worldController' could be made final; it is only initialized in the declaration or constructor.
+src/controller/InGameController.java:19	Avoid unused private fields such as 'timeStep'.
+src/controller/InGameController.java:19	Private field 'timeStep' could be made final; it is only initialized in the declaration or constructor.
+src/controller/InGameController.java:20	Avoid excessively long variable names like velocityIterations
+src/controller/InGameController.java:20	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/controller/InGameController.java:21	Avoid excessively long variable names like positionIterations
+src/controller/InGameController.java:23	It is a good practice to call super() in a constructor
+src/controller/InGameController.java:40	Avoid variables with short names like gc
+src/controller/InGameController.java:40	Parameter 'gc' is not assigned and could be declared final
+src/controller/InGameController.java:40	Parameter 'sbg' is not assigned and could be declared final
+src/controller/InGameController.java:46	Avoid variables with short names like g
+src/controller/InGameController.java:46	Avoid variables with short names like gc
+src/controller/InGameController.java:46	Parameter 'g' is not assigned and could be declared final
+src/controller/InGameController.java:46	Parameter 'gc' is not assigned and could be declared final
+src/controller/InGameController.java:46	Parameter 'sbg' is not assigned and could be declared final
+src/controller/InGameController.java:52	Avoid variables with short names like gc
+src/controller/Main.java:9	All methods are static.  Consider using Singleton instead.  Alternatively, you could add a private constructor or make the class abstract to silence this warning.
+src/controller/Main.java:14	Parameter 'args' is not assigned and could be declared final
+src/controller/Main.java:21	Avoid printStackTrace(); use a logger call instead.
+src/controller/WorldController.java:10	Avoid unused private fields such as 'inGameController'.
+src/controller/WorldController.java:10	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/controller/WorldController.java:10	Perhaps 'inGameController' could be replaced by a local variable.
+src/controller/WorldController.java:10	Private field 'inGameController' could be made final; it is only initialized in the declaration or constructor.
+src/controller/WorldController.java:11	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/controller/WorldController.java:11	Private field 'world' could be made final; it is only initialized in the declaration or constructor.
+src/controller/WorldController.java:12	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/controller/WorldController.java:12	Private field 'worldView' could be made final; it is only initialized in the declaration or constructor.
+src/controller/WorldController.java:14	Parameter 'inGameController' is not assigned and could be declared final
+src/controller/WorldController.java:39	Local variable 'impulse' could be declared final
+src/model/Block.java:3	Each class should declare at least one constructor
+src/model/BlockMap.java:6	Avoid unused private fields such as 'blockList'.
+src/model/BlockMap.java:6	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/model/BlockMap.java:6	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/model/BlockMap.java:6	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/model/BlockMap.java:6	Perhaps 'blockList' could be replaced by a local variable.
+src/model/BlockMap.java:6	Private field 'blockList' could be made final; it is only initialized in the declaration or constructor.
+src/model/BlockMap.java:8	Avoid unused constructor parameters such as 'ref'.
+src/model/Character.java:4	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/model/Character.java:5	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/model/Character.java:6	Avoid variables with short names like x
+src/model/Character.java:6	Avoid variables with short names like y
+src/model/Character.java:7	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/model/Character.java:9	Avoid variables with short names like x
+src/model/Character.java:9	Avoid variables with short names like y
+src/model/Character.java:25	Avoid variables with short names like x
+src/model/Game.java:3	Each class should declare at least one constructor
+src/model/InGame.java:5	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/model/InGame.java:5	Private field 'world' could be made final; it is only initialized in the declaration or constructor.
+src/model/InGame.java:6	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/model/InGame.java:6	Private field 'player' could be made final; it is only initialized in the declaration or constructor.
+src/model/InGame.java:7	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/model/InGame.java:7	Private field 'statusBar' could be made final; it is only initialized in the declaration or constructor.
+src/model/InGame.java:9	Parameter 'world' is not assigned and could be declared final
+src/model/Player.java:6	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/model/Player.java:6	Private field 'character' could be made final; it is only initialized in the declaration or constructor.
+src/model/StatusBar.java:3	Each class should declare at least one constructor
+src/model/World.java:4	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/model/World.java:4	Private field 'character' could be made final; it is only initialized in the declaration or constructor.
+src/model/World.java:5	Avoid unused private fields such as 'blockMap'.
+src/model/World.java:6	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/model/World.java:6	Private field 'worldWidth' could be made final; it is only initialized in the declaration or constructor.
+src/model/World.java:7	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/model/World.java:7	Private field 'worldHeight' could be made final; it is only initialized in the declaration or constructor.
+src/view/BlockMapView.java:9	Avoid unused private fields such as 'blockMap'.
+src/view/BlockMapView.java:9	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/view/BlockMapView.java:9	Perhaps 'blockMap' could be replaced by a local variable.
+src/view/BlockMapView.java:9	Private field 'blockMap' could be made final; it is only initialized in the declaration or constructor.
+src/view/BlockMapView.java:10	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/view/BlockMapView.java:10	Perhaps 'map' could be replaced by a local variable.
+src/view/BlockMapView.java:10	Private field 'map' could be made final; it is only initialized in the declaration or constructor.
+src/view/BlockMapView.java:11	Avoid unused private fields such as 'mapWidth'.
+src/view/BlockMapView.java:11	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/view/BlockMapView.java:11	Perhaps 'mapWidth' could be replaced by a local variable.
+src/view/BlockMapView.java:11	Private field 'mapWidth' could be made final; it is only initialized in the declaration or constructor.
+src/view/BlockMapView.java:12	Avoid unused private fields such as 'mapHeight'.
+src/view/BlockMapView.java:12	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/view/BlockMapView.java:12	Perhaps 'mapHeight' could be replaced by a local variable.
+src/view/BlockMapView.java:12	Private field 'mapHeight' could be made final; it is only initialized in the declaration or constructor.
+src/view/BlockMapView.java:14	Parameter 'blockMap' is not assigned and could be declared final
+src/view/BlockMapView.java:14	Parameter 'ref' is not assigned and could be declared final
+src/view/CharacterView.java:14	Avoid unused private fields such as 'character'.
+src/view/CharacterView.java:14	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/view/CharacterView.java:14	Perhaps 'character' could be replaced by a local variable.
+src/view/CharacterView.java:14	Private field 'character' could be made final; it is only initialized in the declaration or constructor.
+src/view/CharacterView.java:15	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/view/CharacterView.java:15	Private field 'slickShape' could be made final; it is only initialized in the declaration or constructor.
+src/view/CharacterView.java:16	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/view/CharacterView.java:16	Private field 'jBox2DRectangle' could be made final; it is only initialized in the declaration or constructor.
+src/view/CharacterView.java:17	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/view/CharacterView.java:17	Private field 'bodyDef' could be made final; it is only initialized in the declaration or constructor.
+src/view/CharacterView.java:18	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/view/CharacterView.java:18	Private field 'fixtureDef' could be made final; it is only initialized in the declaration or constructor.
+src/view/CharacterView.java:21	Parameter 'character' is not assigned and could be declared final
+src/view/CharacterView.java:63	Parameter 'color' is not assigned and could be declared final
+src/view/InGameView.java:14	Avoid unused private fields such as 'inGame'.
+src/view/InGameView.java:14	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/view/InGameView.java:14	Perhaps 'inGame' could be replaced by a local variable.
+src/view/InGameView.java:14	Private field 'inGame' could be made final; it is only initialized in the declaration or constructor.
+src/view/InGameView.java:15	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/view/InGameView.java:15	Private field 'worldView' could be made final; it is only initialized in the declaration or constructor.
+src/view/InGameView.java:17	Parameter 'inGame' is not assigned and could be declared final
+src/view/InGameView.java:17	Parameter 'worldView' is not assigned and could be declared final
+src/view/InGameView.java:22	Avoid variables with short names like g
+src/view/InGameView.java:22	Avoid variables with short names like gc
+src/view/InGameView.java:22	Parameter 'g' is not assigned and could be declared final
+src/view/InGameView.java:22	Parameter 'gc' is not assigned and could be declared final
+src/view/InGameView.java:22	Parameter 'sbg' is not assigned and could be declared final
+src/view/WorldView.java:8	Avoid unused imports such as 'org.jbox2d.dynamics.Filter'
+src/view/WorldView.java:8	Avoid unused imports such as 'org.jbox2d.dynamics.Filter'
+src/view/WorldView.java:13	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/view/WorldView.java:13	Private field 'world' could be made final; it is only initialized in the declaration or constructor.
+src/view/WorldView.java:14	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/view/WorldView.java:14	Private field 'characterView' could be made final; it is only initialized in the declaration or constructor.
+src/view/WorldView.java:15	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/view/WorldView.java:15	Perhaps 'gravity' could be replaced by a local variable.
+src/view/WorldView.java:15	Private field 'gravity' could be made final; it is only initialized in the declaration or constructor.
+src/view/WorldView.java:16	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/view/WorldView.java:16	Use explicit scoping instead of the default package private level
+src/view/WorldView.java:17	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/view/WorldView.java:17	Private field 'jBox2DWorld' could be made final; it is only initialized in the declaration or constructor.
+src/view/WorldView.java:18	Private field 'characterBody' could be made final; it is only initialized in the declaration or constructor.
+src/view/WorldView.java:19	Perhaps 'groundBody' could be replaced by a local variable.
+src/view/WorldView.java:21	Parameter 'characterView' is not assigned and could be declared final
+src/view/WorldView.java:21	Parameter 'world' is not assigned and could be declared final
+src/view/WorldView.java:79	Avoid variables with short names like ps
+src/view/WorldView.java:79	Local variable 'ps' could be declared final
+src/view/WorldView.java:83	Local variable 'fixtureDef' could be declared final
+src/view/WorldView.java:86	Local variable 'bodyDef' could be declared final
+test/model/CharacterTest.java:3	Avoid unused imports such as 'org.junit.Assert'
+test/model/CharacterTest.java:5	No need to import a type that lives in the same package
+test/model/CharacterTest.java:12	Local variable 'character' could be declared final
+test/model/CharacterTest.java:13	Local variable 'lifeFromStart' could be declared final
+test/model/CharacterTest.java:15	JUnit assertions should include a message
+test/model/CharacterTest.java:15	Use assertSame(x, y) instead of assertTrue(x==y), or assertNotSame(x,y) vs assertFalse(x==y)
