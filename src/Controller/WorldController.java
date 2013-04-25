@@ -14,7 +14,7 @@ public class WorldController {
 	public WorldController(InGameController inGameController) {
 		this.inGameController = inGameController;
 		this.world = new World(inGameController.getCharacterController().getCharacter(), 800, 500);
-		this.worldView = new WorldView(world, inGameController.getCharacterController().getCharacterView());
+		this.worldView = new WorldView(world, inGameController.getCharacterController().getCharacterView(), inGameController.getBlockMapController().getBlockMapView());
 	}
 	
 	public model.World getWorld() {

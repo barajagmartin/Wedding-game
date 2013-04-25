@@ -1,5 +1,9 @@
 package view;
 
+import java.util.ArrayList;
+
+import model.Block;
+
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
@@ -9,6 +13,8 @@ import org.jbox2d.dynamics.Filter;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
+import sun.font.CreatedFontTracker;
+
 public class WorldView {
 	private model.World world;
 	private CharacterView characterView;
@@ -17,15 +23,22 @@ public class WorldView {
 	private World jBox2DWorld;
 	private Body characterBody;
 	private Body groundBody;
+	private Body leftWallBody;
+	private Body rightWallBody;
+	private Body roofBody;
+	private ArrayList<Body> tileBodyList;
+	private BlockMapView blockMapView;
 	
-	public WorldView(model.World world, CharacterView characterView) {
+	public WorldView(model.World world, CharacterView characterView, BlockMapView blockMapView) {
 		this.world = world;
 		this.characterView = characterView;
+		this.blockMapView = blockMapView;
 		gravity = new Vec2(0.0f, 9.82f);
 		doSleep = true;
 		jBox2DWorld = new World(gravity, doSleep);
 		// TODO måste använda f på något sätt.
 		//ground
+<<<<<<< HEAD
 		addSolidGround(0, 500, 800, 0); //(x, y, width, height)
 		//left wall
 		addSolidGround(0, 0, 0, 500);
@@ -33,6 +46,22 @@ public class WorldView {
 		addSolidGround(800, 0, 0, 600);
 		//roof
 		addSolidGround(0, 0, 800, 1);
+=======
+		addSolidGround(0, world.getWorldHeight(), world.getWorldWidth(), 1, groundBody); //(x, y, width, height)
+		//left wall
+		addSolidGround(-1, 0, 1, toPixelHeight(world.getWorldHeight()), leftWallBody);
+		//right wall
+		addSolidGround(world.getWorldWidth(), 0, 1, world.getWorldHeight(), rightWallBody);
+		//roof
+		addSolidGround(-1, -1, world.getWorldHeight(), 1, roofBody);
+		
+		for (Block block : this.blockMapView.getBlockMap().getBlockList()) {
+			Body temp = null;
+			addSolidGround(block.getPosX(), block.getPosY(), block.getWidth(), block.getHeight(), temp);
+			tileBodyList.add(temp);
+		}
+		
+>>>>>>> aa2c4d2f1bc4ae7b4235799b5ed3d6f3d9db2c07
 		characterBody = jBox2DWorld.createBody(characterView.getBodyDef());
 		characterBody.createFixture(characterView.getFixtureDef());
 		characterBody.m_mass = 1000f;
@@ -50,6 +79,10 @@ public class WorldView {
 		return characterBody;
 	}
 	
+	public Body getGroundBody() {
+		return groundBody;
+	}
+
 	/*
 	 * Convert methods that allows us to change between world coordinates and pixels
 	 */
@@ -89,12 +122,16 @@ public class WorldView {
 	/**
 	 * Add solid ground to prevent the character from moving outside of the window.
 	 */
+<<<<<<< HEAD
 	private void addSolidGround(final float posX, final float posY, final float width, final float height) {
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.position.set(posX, posY);
 		bodyDef.type = BodyType.STATIC;
 		bodyDef.fixedRotation = true;
 		
+=======
+	private void addSolidGround(final float posX, final float posY, final float width, final float height, Body body) {
+>>>>>>> aa2c4d2f1bc4ae7b4235799b5ed3d6f3d9db2c07
 		PolygonShape polygonShape = new PolygonShape();
 		polygonShape.setAsBox(width, height);
 		
@@ -102,9 +139,20 @@ public class WorldView {
 		fixtureDef.shape = polygonShape;
 		fixtureDef.friction = 0.1f;
 		fixtureDef.density = 1f;
+<<<<<<< HEAD
 
 		groundBody = jBox2DWorld.createBody(bodyDef);
 		groundBody.createFixture(fixtureDef);
+=======
+		
+		BodyDef bodyDef = new BodyDef();
+		bodyDef.position.set(posX, posY);
+		bodyDef.type = BodyType.STATIC;
+		bodyDef.fixedRotation = true;
+		
+		body = jBox2DWorld.createBody(bodyDef);
+		body.createFixture(fixtureDef);
+>>>>>>> aa2c4d2f1bc4ae7b4235799b5ed3d6f3d9db2c07
 	}
 	
 }
