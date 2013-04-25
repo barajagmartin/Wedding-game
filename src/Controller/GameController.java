@@ -15,7 +15,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class GameController extends StateBasedGame {
 	private Game game; //ta eventuellt bort FIXME
 	private InGameController inGameController;
-	public GameController(String name) throws FileNotFoundException, SlickException {
+	public GameController(String name) {
 		super(name);
 		this.game = new Game(); //So long this is unnecessary FIXME
 		this.inGameController = new InGameController();

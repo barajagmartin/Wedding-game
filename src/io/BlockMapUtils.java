@@ -9,8 +9,13 @@ public class BlockMapUtils {
 	private BlockMapUtils() {
 		
 	}
-	public static InputStream getTmxFile(int level) throws FileNotFoundException {
-		return new FileInputStream("ny.tmx");
+	public static InputStream getTmxFile(int level) {
+		try {
+			return new FileInputStream("entill.tmx");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return null; //to satisfy compiler
 	}
 
 }

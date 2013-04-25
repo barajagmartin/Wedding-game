@@ -14,7 +14,7 @@ public class Main {
 	 * @param args
 	 * @throws FileNotFoundException 
 	 */
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) {
 		AppGameContainer app;
 		try {
 			app = new AppGameContainer(new GameController(GAME_NAME));

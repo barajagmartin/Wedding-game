@@ -1,5 +1,7 @@
 package controller;
 
+import io.BlockMapUtils;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -7,12 +9,17 @@ import java.io.InputStream;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
+import org.newdawn.slick.KeyListener;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.tiled.TiledMap;
 
+import view.BlockMapView;
 import view.InGameView;
 import model.BlockMap;
+import model.Game;
 import model.InGame;
 
 public class InGameController extends BasicGameState {
@@ -27,13 +34,8 @@ public class InGameController extends BasicGameState {
 	private int velocityIterations = 6;
 	private int positionIterations = 2;
 	
-	public InGameController() throws FileNotFoundException, SlickException {
-		this.characterController = new CharacterController(this);
-		this.worldController = new WorldController(this);
-		this.blockMapController = new BlockMapController();
-		this.inGame = new InGame(worldController.getWorld());
-		this.inGameView = new InGameView(inGame, worldController.getWorldView());
-		//Will create ItemController etc.
+	public InGameController() {
+		
 	}
 
 	public CharacterController getCharacterController() {
@@ -52,7 +54,12 @@ public class InGameController extends BasicGameState {
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		//TODO ladda in filer
-		
+		 this.blockMapController = new BlockMapController(new TiledMap(BlockMapUtils.getTmxFile(1)));
+		 this.characterController = new CharacterController(this);
+		 this.worldController = new WorldController(this);
+		 this.inGame = new InGame(worldController.getWorld());
+		 this.inGameView = new InGameView(inGame, worldController.getWorldView());
+		 //Will create ItemController etc.
 	}
 
 	@Override
@@ -66,12 +73,12 @@ public class InGameController extends BasicGameState {
 			throws SlickException {
 		characterController.keyPressedUpdate(gc);
 		//simulate the JBox2D world TODO timeStep --> delta
-		worldController.getWorldView().getJBox2DWorld().step(5, velocityIterations, positionIterations);
-		worldController.updateSlickShape();
+		worldController.getWorldView().getJBox2DWorld().step(0.005f, velocityIterations, positionIterations);
+		worldController.updateSlickShape();		
 	}
 
 	@Override
 	public int getID() {
-		return inGame.getID();
+		return Game.IN_GAME;
 	}
 }

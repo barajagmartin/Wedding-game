@@ -1,32 +1,32 @@
 package model;
 
 public class Character {
-	public final float width;
-	public final float height;
-	private float x, y;
+	public final float WIDTH;
+	public final float HEIGHT;
+	private int x, y;
 	private int life;
 	
-	public Character(final float x, final float y) {
+	public Character(final int x, final int y) {
 		this.x = x;
 		this.y = y;
 		this.life = 3;
-		this.width = 50;
-		this.height = 60;
+		this.WIDTH = 40;
+		this.HEIGHT = 50;
 	}
 	
-	public float getX() {
+	public int getX() {
 		return this.x;
 	}
 	
-	public float getY() {
+	public int getY() {
 		return this.y;
 	}
 	
-	public void setX(final float x) {
+	public void setX(final int x) {
 		this.x = x;
 	}
 	
-	public void setY(final float y) {
+	public void setY(final int y) {
 		this.y = y;
 	}
 	

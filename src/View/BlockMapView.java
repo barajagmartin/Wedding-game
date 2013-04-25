@@ -10,24 +10,24 @@ import org.newdawn.slick.tiled.TiledMap;
 
 public class BlockMapView {
 	private BlockMap blockMap;
-	private TiledMap map;
+	private TiledMap tiledMap;
 	private int mapWidth;
 	private int mapHeight;
 	
-	public BlockMapView(BlockMap blockMap, InputStream inputStream) throws SlickException {
+	public BlockMapView(BlockMap blockMap, TiledMap tiledMap) {
 		this.blockMap = blockMap;
-		map = new TiledMap(inputStream);
-		mapWidth = map.getWidth() * map.getTileWidth();
-		mapHeight = map.getHeight() * map.getTileHeight();
+		this.tiledMap = tiledMap;
+		mapWidth = tiledMap.getWidth() * tiledMap.getTileWidth();
+		mapHeight = tiledMap.getHeight() * tiledMap.getTileHeight();
 
 		//loop through map and place out Blocks
-		for (int x = 0; x < map.getWidth(); x++) {
-			for (int y = 0; y < map.getHeight(); y++) {
-			int firstgid = map.getTileId(x, y, map.getLayerIndex("two"));
-				String tileProperty = map.getTileProperty(firstgid, "blocked", "false"); //If there were no value it would return false
+		for (int x = 0; x < tiledMap.getWidth(); x++) {
+			for (int y = 0; y < tiledMap.getHeight(); y++) {
+			int firstgid = tiledMap.getTileId(x, y, tiledMap.getLayerIndex("two"));
+				String tileProperty = tiledMap.getTileProperty(firstgid, "blocked", "false"); //If there were no value it would return false
 				if (tileProperty.equals("true")) { //if the tile is solid ground, then add its properties to a Block-list
-					blockMap.getBlockList().add(new Block(x * map.getTileWidth(),
-							y * map.getTileHeight(),map.getTileWidth(), map.getTileHeight()));
+					blockMap.getBlockList().add(new Block(x * tiledMap.getTileWidth(),
+							y * tiledMap.getTileHeight(),tiledMap.getTileWidth(), tiledMap.getTileHeight()));
 				}
 			}
 		}
@@ -35,6 +35,10 @@ public class BlockMapView {
 
 	public BlockMap getBlockMap() {
 		return blockMap;
+	}
+
+	public TiledMap getTiledMap() {
+		return tiledMap;
 	}
 }
 //TODO ska delas upp i View och Controller
