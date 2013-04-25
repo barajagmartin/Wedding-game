@@ -43,8 +43,7 @@ public class WorldView {
 		gravity = new Vec2(0.0f, 9.82f);
 		doSleep = true;
 		jBox2DWorld = new World(gravity, doSleep);
-		//Need to convert world coordinates to pixels TODO
-		//ground
+
 		addSolidGround(new Vec2(0, worldHeightMeter), new Vec2(worldWidthMeter, WorldUtils.pixel2Meter(1)), groundBody); //(x, y, width, height)
 		//left wall
 		addSolidGround(new Vec2(WorldUtils.pixel2Meter(-1), 0), new Vec2(WorldUtils.pixel2Meter(1), worldHeightMeter), leftWallBody);
@@ -88,6 +87,13 @@ public class WorldView {
 	/**
 	 * Add solid ground to prevent the character from moving outside of the window.
 	 */
+	private void addSolidGround(final float posX, final float posY, final float width, final float height) {
+		BodyDef bodyDef = new BodyDef();
+		bodyDef.position.set(posX, posY);
+		bodyDef.type = BodyType.STATIC;
+		bodyDef.fixedRotation = true;
+	}
+		
 	private void addSolidGround(final Vec2 pos, final Vec2 size, Body body) {
 		PolygonShape polygonShape = new PolygonShape();
 		polygonShape.setAsBox(size.x, size.y);
