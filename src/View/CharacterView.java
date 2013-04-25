@@ -8,7 +8,8 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 
-import controller.WorldUtils;
+import utils.WorldUtils;
+
 
 import model.Character;
 

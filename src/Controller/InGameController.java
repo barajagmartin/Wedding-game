@@ -1,6 +1,5 @@
 package controller;
 
-import io.BlockMapUtils;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -16,6 +15,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
+import utils.BlockMapUtils;
 import view.BlockMapView;
 import view.InGameView;
 import model.BlockMap;

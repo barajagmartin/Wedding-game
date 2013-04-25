@@ -13,9 +13,9 @@ import org.jbox2d.dynamics.Filter;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
-import controller.WorldUtils;
 
 import sun.font.CreatedFontTracker;
+import utils.WorldUtils;
 
 public class WorldView {
 	private model.World world;
@@ -30,7 +30,7 @@ public class WorldView {
 	private Body roofBody;
 	private ArrayList<Body> tileBodyList;
 	private BlockMapView blockMapView;
-	public static int SCALE = 25;
+	
 	private float worldWidthMeter;
 	private float worldHeightMeter;
 	
