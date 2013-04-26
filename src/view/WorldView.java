@@ -60,8 +60,8 @@ public class WorldView {
 			Body temp = null;
 			System.out.println("xA: " + (block.getPosX()) + "\t\tyA: " + block.getPosY());
 			
-			addSolidGround(new Vec2(WorldUtils.pixel2Meter(block.getPosX()/* + (block.getWidth()/2)*/),
-					WorldUtils.pixel2Meter(block.getPosY()/* + (block.getHeight()/2)*/)),
+			addSolidGround(new Vec2(WorldUtils.pixel2Meter(block.getPosX()),
+					WorldUtils.pixel2Meter(block.getPosY())),
 					new Vec2(WorldUtils.pixel2Meter(block.getWidth()/2),
 							WorldUtils.pixel2Meter(block.getHeight()/2)), temp);
 			//tileBodyList.add(temp);
