@@ -9,10 +9,20 @@ import org.newdawn.slick.geom.Shape;
 public class SpikesView {
 	private Image image;
 	private Shape shape;
-	private Spikes spikes;
+	public Shape getShape() {
+		return shape;
+	}
 	
 	public SpikesView(Spikes spikes){
 		this.spikes = spikes;
 		
 	}
+
+	public Spikes getSpikes() {
+		return spikes;
+	}
+
+	private Spikes spikes;
+	
+	
 }
