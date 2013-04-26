@@ -11,7 +11,7 @@ public class ItemController {
 	
 	public ItemController(InGameController inGameController, int candyNumber) {
 		this.inGameController = inGameController;
-		this.item = new Item(100, 200, candyNumber); //x, y, candyNumber TODO fix x, y
+		this.item = new Item(200, 100, candyNumber); //x, y, candyNumber TODO fix x, y
 		this.itemView = new ItemView(item, candyNumber); 
 		
 	}
