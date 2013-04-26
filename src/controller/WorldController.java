@@ -28,15 +28,15 @@ public class WorldController {
 
 	public void moveBodyRight() {
 		//add force to move right - maxSpeed right
-		if(worldView.getCharacterBody().m_linearVelocity.x <= 10){
-	      worldView.getCharacterBody().applyLinearImpulse(new Vec2(0.1f, 0), worldView.getCharacterBody().getPosition());
+		if(worldView.getCharacterBody().m_linearVelocity.x <= 4){
+	      worldView.getCharacterBody().applyLinearImpulse(new Vec2(0.2f, 0), worldView.getCharacterBody().getPosition());
 		}
 	}
 	
 	public void moveBodyLeft() {
 		//add force to move left - maxSpeed left
-		if(worldView.getCharacterBody().m_linearVelocity.x >= -10){
-			worldView.getCharacterBody().applyLinearImpulse(new Vec2(-0.1f, 0), worldView.getCharacterBody().getPosition()); 
+		if(worldView.getCharacterBody().m_linearVelocity.x >= -4){
+			worldView.getCharacterBody().applyLinearImpulse(new Vec2(-0.2f, 0), worldView.getCharacterBody().getPosition()); 
 		}
 	}
 
