@@ -23,7 +23,7 @@ public class CharacterView {
 	
 	public CharacterView(Character character) {
 		this.character = character;
-		this.slickShape= new Rectangle(character.getX()-character.WIDTH/2, character.getY()-character.HEIGHT/2,
+		this.slickShape= new Rectangle(character.getX() - character.WIDTH/2, character.getY() - character.HEIGHT/2,
 				character.WIDTH, character.HEIGHT); //start position of character on the screen
 		this.color = Color.blue;
 		
