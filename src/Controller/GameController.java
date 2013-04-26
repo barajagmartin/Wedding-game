@@ -24,7 +24,7 @@ public class GameController extends StateBasedGame {
 
 	@Override
 	public void initStatesList(GameContainer container) throws SlickException {
-		this.getState(inGameController.getID()).init(container, this);
+		//this.getState(inGameController.getID()).init(container, this); TODO, ska den här anropas alls?! den anropas ändå!
 		this.enterState(inGameController.getID());
 	}
 

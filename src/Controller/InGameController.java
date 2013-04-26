@@ -75,9 +75,8 @@ public class InGameController extends BasicGameState {
 		characterController.keyPressedUpdate(gc);
 		//simulate the JBox2D world TODO timeStep --> delta
 		if(prevFPS != 0) {
-		worldController.getWorldView().getJBox2DWorld().step(timeStep*(prevFPS/gc.getFPS()*1000/gc.getFPS()), velocityIterations, positionIterations);
+		worldController.getWorldView().getJBox2DWorld().step(/*timeStep*(prevFPS/gc.getFPS()*1000/gc.getFPS())*/0.005f, velocityIterations, positionIterations);
 		}
-		System.out.println(delta);
 		worldController.updateSlickShape();
 		prevFPS = gc.getFPS();
 	}

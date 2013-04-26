@@ -25,7 +25,7 @@ public class CharacterController {
 	
 	public CharacterController(InGameController inGameController) {
 		this.inGameController = inGameController;
-		this.character = new Character(400, 300);
+		this.character = new Character(400, 100);
 		this.characterView = new CharacterView(character);
 		//this.jumping = false;
 		//this.jumpCount = 0;

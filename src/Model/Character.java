@@ -10,7 +10,7 @@ public class Character {
 		this.x = x;
 		this.y = y;
 		this.life = 3;
-		this.WIDTH = 80;
+		this.WIDTH = 40;
 		this.HEIGHT = 50;
 	}
 	
