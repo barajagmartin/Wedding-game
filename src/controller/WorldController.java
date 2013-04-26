@@ -14,12 +14,8 @@ public class WorldController {
 	public WorldController(InGameController inGameController) {
 		this.inGameController = inGameController;
 		this.world = new World(inGameController.getCharacterController().getCharacter(), 800, 500);
-<<<<<<< HEAD:src/Controller/WorldController.java
 		this.worldView = new WorldView(world, inGameController.getCharacterController().getCharacterView(),
 				inGameController.getBlockMapController().getBlockMapView());
-=======
-		this.worldView = new WorldView(world, inGameController.getCharacterController().getCharacterView(), inGameController.getBlockMapController().getBlockMapView());
->>>>>>> 71c0784e5bc8216234ae90c5b6b40cffdb561a68:src/controller/WorldController.java
 	}
 	
 	public model.World getWorld() {
