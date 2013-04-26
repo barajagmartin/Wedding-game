@@ -33,8 +33,4 @@ public class CandyMonster {
 		this.y = y;
 	}
 	
-	public int getCandyNumber() {
-		return this.CANDY_NUMBER;
-	}
-	
 }
