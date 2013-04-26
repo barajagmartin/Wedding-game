@@ -29,7 +29,7 @@ public class BlockMapView {
 				String tileProperty = tiledMap.getTileProperty(firstgid, "blocked", "false"); //If there were no value it would return false
 				if (tileProperty.equals("true")) { //if the tile is solid ground, then add its properties to a Block-list
 					blockMap.getBlockList().add(new Block(x * tiledMap.getTileWidth(),
-							y * tiledMap.getTileHeight(), tiledMap.getTileWidth(), tiledMap.getTileHeight()));
+							y * tiledMap.getTileHeight()));
 				}
 			}
 		}

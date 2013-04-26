@@ -7,11 +7,9 @@ public class Block {
 	private int height;
 
 	
-	public Block(final int posX, final int posY, final int width, final int height) {
+	public Block(final int posX, final int posY) {
 		this.posX = posX;
 		this.posY = posY;
-		this.width = width;
-		this.height = height;
 	}
 
 
@@ -23,15 +21,4 @@ public class Block {
 	public int getPosY() {
 		return posY;
 	}
-
-
-	public int getWidth() {
-		return width;
-	}
-
-
-	public int getHeight() {
-		return height;
-	}
-
 }
