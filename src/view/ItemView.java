@@ -12,10 +12,11 @@ public class ItemView {
 	private Shape slickShape;
 	private Color color;
 	
-	public ItemView(Item item, Color color) {
+	public ItemView(Item item, int i) {
 		this.item = item;
 		this.slickShape = new Rectangle(item.getX(), item.getY(), item.WIDTH, item.HEIGHT);
-		this.color = color;
+		
+		//switch that determines which colour to set
 	}
 
 }

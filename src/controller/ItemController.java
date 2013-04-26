@@ -9,8 +9,9 @@ public class ItemController {
 	private Item item;
 	private ItemView itemView;
 	
-	public ItemController(InGameController inGameController) {
-		
+	public ItemController(InGameController inGameController, int i) {
+		this.item = new Item(0, 0, i);
+		this.itemView = new ItemView(item, i); 
 		
 	}
 
