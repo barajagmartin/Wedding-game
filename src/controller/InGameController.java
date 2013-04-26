@@ -61,8 +61,8 @@ public class InGameController extends BasicGameState {
 		 this.characterController = new CharacterController(this);
 		 /*Create all candy monsters and their items*/
 		 for(int i = 1; i <= 3; i++){
-			 this.candyMonsterController = new CandyMonsterController(this, i); //TODO fix candynumber
-			 this.itemController = new ItemController(this, i); //TODO fix candynumber
+			 this.candyMonsterController = new CandyMonsterController(this, i); 
+			 this.itemController = new ItemController(this, i); 
 		 }
 		 this.worldController = new WorldController(this);
 		 this.inGame = new InGame(worldController.getWorld());
