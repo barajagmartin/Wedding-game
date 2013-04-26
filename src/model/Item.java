@@ -1,11 +1,12 @@
 package model;
 
+
 public class Item {
 	
 	private int x;
 	private int y;
-	private final int WIDTH = 30;
-	private final int HEIGHT = 20;
+	public final int WIDTH = 30;
+	public final int HEIGHT = 20;
 	public final int CANDY_NUMBER;
 	
 	public Item(int x, int y, int candyNumber) {
@@ -28,16 +29,5 @@ public class Item {
 	
 	public void setY(int y) {
 		this.y = y;
-	}
-
-	public int getWIDTH() {
-		return WIDTH;
-	}
-
-	public int getHEIGHT() {
-		return HEIGHT;
-	}
-	
-	
-
+	}		
 }
