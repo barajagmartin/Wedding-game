@@ -1,8 +1,7 @@
 package model;
 
 public class Character {
-	public final int WIDTH;
-	public final int HEIGHT;
+	public final int RADIUS;
 	private int x, y;
 	private int life;
 	
@@ -10,8 +9,7 @@ public class Character {
 		this.x = x;
 		this.y = y;
 		this.life = 3;
-		this.WIDTH = 40;
-		this.HEIGHT = 50;
+		this.RADIUS = 30;
 	}
 	
 	public int getX() {

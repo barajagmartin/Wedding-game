@@ -19,6 +19,8 @@ public class BlockMapView {
 		this.tiledMap = tiledMap;
 		mapWidth = tiledMap.getWidth() * tiledMap.getTileWidth();
 		mapHeight = tiledMap.getHeight() * tiledMap.getTileHeight();
+		System.out.println(tiledMap.getTileHeight());
+		System.out.println(tiledMap.getTileWidth());
 
 		//loop through map and place out Blocks
 		for (int x = 0; x < tiledMap.getWidth(); x++) {
@@ -26,8 +28,8 @@ public class BlockMapView {
 			int firstgid = tiledMap.getTileId(x, y, tiledMap.getLayerIndex("two"));
 				String tileProperty = tiledMap.getTileProperty(firstgid, "blocked", "false"); //If there were no value it would return false
 				if (tileProperty.equals("true")) { //if the tile is solid ground, then add its properties to a Block-list
-					blockMap.getBlockList().add(new Block((x+10) * tiledMap.getTileWidth(),
-							(y+10) * tiledMap.getTileHeight(),tiledMap.getTileWidth(), tiledMap.getTileHeight()));
+					blockMap.getBlockList().add(new Block(x * tiledMap.getTileWidth(),
+							y * tiledMap.getTileHeight(), tiledMap.getTileWidth(), tiledMap.getTileHeight()));
 				}
 			}
 		}

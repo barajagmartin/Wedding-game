@@ -13,7 +13,7 @@ public class WorldController {
 	
 	public WorldController(InGameController inGameController) {
 		this.inGameController = inGameController;
-		this.world = new World(inGameController.getCharacterController().getCharacter(), 800, 500);
+		this.world = new World(inGameController.getCharacterController().getCharacter(), 800, 600);
 		this.worldView = new WorldView(world, inGameController.getCharacterController().getCharacterView(),
 				inGameController.getBlockMapController().getBlockMapView());
 	}
@@ -47,8 +47,8 @@ public class WorldController {
 	}
 	
 	public void updateSlickShape() {
-	worldView.getCharacterView().getSlickShape().setX(25*worldView.getCharacterBody().getPosition().x);
-		worldView.getCharacterView().getSlickShape().setY(25*worldView.getCharacterBody().getPosition().y);	
+		worldView.getCharacterView().getSlickShape().setX(25*worldView.getCharacterBody().getPosition().x - worldView.getCharacterView().getCharacter().RADIUS);
+		worldView.getCharacterView().getSlickShape().setY(25*worldView.getCharacterBody().getPosition().y - worldView.getCharacterView().getCharacter().RADIUS);
 	}
 	
 }
