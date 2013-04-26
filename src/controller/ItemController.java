@@ -15,5 +15,13 @@ public class ItemController {
 		this.itemView = new ItemView(item, candyNumber); 
 		
 	}
+	
+	public Item getItem(){
+		return item;
+	}
+	
+	public ItemView getItemView(){
+		return itemView;
+	}
 
 }
