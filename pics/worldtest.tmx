@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="16" height="12" tilewidth="50" tileheight="50">
+ <tileset firstgid="1" name="bigTile" tilewidth="50" tileheight="50">
+  <image source="pics/bigTile.png" width="100" height="100"/>
+  <tile id="0">
+   <properties>
+    <property name="property" value="solidGround"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="property" value="solidGround"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="property" value="solidGround"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="property" value="solidGround"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="5" name="invisibles" tilewidth="50" tileheight="50">
+  <image source="pics/invisibles.png" width="150" height="50"/>
+  <tile id="0">
+   <properties>
+    <property name="property" value="spikes"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="layer" width="16" height="12">
+  <data encoding="base64" compression="zlib">
+   eJydjkkKADAIA7Xr/3/cHsxFrFYDQRCSCRNRo7xYcv16yG8n8sihB51whe9pfvA9lt6W5Wt5fL31tcniW1uzfI8Z8aP8evCrFz3VewD6uADZ
+  </data>
+ </layer>
+</map>
