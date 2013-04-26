@@ -28,6 +28,7 @@ public class InGameController extends BasicGameState {
 	private CharacterController characterController;
 	private WorldController worldController;
 	private BlockMapController blockMapController;
+	private int prevFPS = 0;
 	
 	//should be based on the frame update (delta or something like that)
 	private float timeStep = 1.0f / 60.0f;
@@ -67,17 +68,15 @@ public class InGameController extends BasicGameState {
 			throws SlickException {
 		this.inGameView.render(gc, sbg, g);
 	}
-	private int prevFPS = 0;
+	
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
-		
 		characterController.keyPressedUpdate(gc);
 		//simulate the JBox2D world TODO timeStep --> delta
 		if(prevFPS != 0) {
-		worldController.getWorldView().getJBox2DWorld().step(timeStep*(prevFPS/gc.getFPS()*1000/gc.getFPS()), velocityIterations, positionIterations);
+			worldController.getWorldView().getJBox2DWorld().step(/*timeStep*(prevFPS/gc.getFPS()*1000/gc.getFPS())*/0.005f, velocityIterations, positionIterations);
 		}
-		System.out.println(delta);
 		worldController.updateSlickShape();
 		prevFPS = gc.getFPS();
 	}

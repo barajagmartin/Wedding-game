@@ -27,7 +27,7 @@ public class CharacterView {
 				character.WIDTH, character.HEIGHT); //start position of character on the screen
 		this.color = Color.blue;
 		
-		jBox2DRectangle = new PolygonShape(); 
+		jBox2DRectangle = new PolygonShape();
 		jBox2DRectangle.setAsBox(WorldUtils.pixel2Meter(character.WIDTH)/2, WorldUtils.pixel2Meter(character.HEIGHT)/2);
 		
 		//ska inställningarna vara i controllern? vi tror det! :)
