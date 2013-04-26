@@ -44,20 +44,23 @@ public class WorldView {
 		doSleep = true;
 		jBox2DWorld = new World(gravity, doSleep);
 
-		addSolidGround(new Vec2(0, worldHeightMeter), new Vec2(worldWidthMeter, WorldUtils.pixel2Meter(1)), groundBody); //(x, y, width, height)
+		//ground
+		addSolidGround(new Vec2(0, worldHeightMeter), new Vec2(worldWidthMeter, WorldUtils.pixel2Meter(2)), groundBody); //(x, y, width, height)
 		//left wall
-		addSolidGround(new Vec2(WorldUtils.pixel2Meter(-1), 0), new Vec2(WorldUtils.pixel2Meter(1), worldHeightMeter), leftWallBody);
+		addSolidGround(new Vec2(0, 0), new Vec2(WorldUtils.pixel2Meter(2), worldHeightMeter), leftWallBody);
 		//right wall
-		addSolidGround(new Vec2(worldWidthMeter, 0), new Vec2(WorldUtils.pixel2Meter(1), worldHeightMeter), rightWallBody);
+		addSolidGround(new Vec2(worldWidthMeter, 0), new Vec2(WorldUtils.pixel2Meter(2), worldHeightMeter), rightWallBody);
 		//roof
-		addSolidGround(new Vec2(WorldUtils.pixel2Meter(-1), WorldUtils.pixel2Meter(-1)), new Vec2(worldHeightMeter, WorldUtils.pixel2Meter(1)), roofBody);
-		
-		for (Block block : this.blockMapView.getBlockMap().getBlockList()) {
+		addSolidGround(new Vec2(0, 0), new Vec2(worldWidthMeter, WorldUtils.pixel2Meter(2)), roofBody);
+
+/*		for (Block block : this.blockMapView.getBlockMap().getBlockList()) {
 			Body temp = null;
-			addSolidGround(new Vec2(WorldUtils.pixel2Meter((int)block.getPosX()), WorldUtils.pixel2Meter((int)block.getPosY())),
-					new Vec2(WorldUtils.pixel2Meter((int)block.getWidth()), WorldUtils.pixel2Meter((int)block.getHeight())), temp);
+			addSolidGround(new Vec2(WorldUtils.pixel2Meter(block.getPosX() + (block.getWidth()/2)),
+					WorldUtils.pixel2Meter(block.getPosY() + (block.getHeight()/2))),
+					new Vec2(WorldUtils.pixel2Meter(block.getWidth()/2),
+							WorldUtils.pixel2Meter(block.getHeight()/2)), temp);
 			//tileBodyList.add(temp);
-		}
+		}*/
 		
 		characterBody = jBox2DWorld.createBody(characterView.getBodyDef());
 		characterBody.createFixture(characterView.getFixtureDef());
@@ -100,7 +103,7 @@ public class WorldView {
 		
 		FixtureDef fixtureDef = new FixtureDef();
 		fixtureDef.shape = polygonShape;
-		fixtureDef.friction = 0.4f;
+		fixtureDef.friction = 0.7f;
 		fixtureDef.density = 1f;
 		fixtureDef.restitution = 0f;
 		

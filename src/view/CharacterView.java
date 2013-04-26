@@ -8,8 +8,8 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 
-import utils.WorldUtils;
 
+import utils.WorldUtils;
 
 import model.Character;
 
@@ -23,11 +23,12 @@ public class CharacterView {
 	
 	public CharacterView(Character character) {
 		this.character = character;
-		this.slickShape= new Rectangle(character.getX(), character.getY(), character.WIDTH, character.HEIGHT); //x, y, width, height
+		this.slickShape= new Rectangle(character.getX()-character.WIDTH/2, character.getY()-character.HEIGHT/2,
+				character.WIDTH, character.HEIGHT); //start position of character on the screen
 		this.color = Color.blue;
 		
 		jBox2DRectangle = new PolygonShape(); 
-		jBox2DRectangle.setAsBox(character.WIDTH/25, character.HEIGHT/25);
+		jBox2DRectangle.setAsBox(WorldUtils.pixel2Meter(character.WIDTH)/2, WorldUtils.pixel2Meter(character.HEIGHT)/2);
 		
 		//ska inställningarna vara i controllern? vi tror det! :)
 		bodyDef = new BodyDef();
@@ -37,13 +38,13 @@ public class CharacterView {
 		
 		fixtureDef = new FixtureDef();
 		fixtureDef.shape = this.jBox2DRectangle;
-		fixtureDef.density = 0.9f; //gör till konstanter TODO
+		fixtureDef.density = 1f; //gör till konstanter TODO
 		fixtureDef.friction = 0.4f;
 		fixtureDef.restitution = 0f;
 		
 	}
 	
-	public org.newdawn.slick.geom.Shape getSlickShape(){
+	public org.newdawn.slick.geom.Shape getSlickShape() {
 		return this.slickShape;
 	}
 	
@@ -66,5 +67,9 @@ public class CharacterView {
 	public void setColor(Color color) {
 		this.color = color;
 		
+	}
+
+	public Character getCharacter() {
+		return this.character;
 	}
 }

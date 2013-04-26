@@ -23,7 +23,7 @@ public class InGameView {
 			throws SlickException {
 		g.setColor(worldView.getCharacterView().getColor());
 		g.fill(worldView.getCharacterView().getSlickShape());
-		worldView.getBlockMapView().getTiledMap().render(0, 0);
+		//worldView.getBlockMapView().getTiledMap().render(0, 0);
 	}
 
 	

@@ -1,13 +1,13 @@
 package model;
 
 public class Block {
-	private float posX;
-	private float posY;
-	private float width;
-	private float height;
+	private int posX;
+	private int posY;
+	private int width;
+	private int height;
 
 	
-	public Block(final float posX, final float posY, final float width, final float height) {
+	public Block(final int posX, final int posY, final int width, final int height) {
 		this.posX = posX;
 		this.posY = posY;
 		this.width = width;
@@ -15,22 +15,22 @@ public class Block {
 	}
 
 
-	public float getPosX() {
+	public int getPosX() {
 		return posX;
 	}
 
 
-	public float getPosY() {
+	public int getPosY() {
 		return posY;
 	}
 
 
-	public float getWidth() {
+	public int getWidth() {
 		return width;
 	}
 
 
-	public float getHeight() {
+	public int getHeight() {
 		return height;
 	}
 

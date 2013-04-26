@@ -1,8 +1,8 @@
 package model;
 
 public class Character {
-	public final float WIDTH;
-	public final float HEIGHT;
+	public final int WIDTH;
+	public final int HEIGHT;
 	private int x, y;
 	private int life;
 	
@@ -10,7 +10,7 @@ public class Character {
 		this.x = x;
 		this.y = y;
 		this.life = 3;
-		this.WIDTH = 40;
+		this.WIDTH = 80;
 		this.HEIGHT = 50;
 	}
 	
