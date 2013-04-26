@@ -47,8 +47,8 @@ public class WorldController {
 	}
 	
 	public void updateSlickShape() {
-		worldView.getCharacterView().getSlickShape().setX(25*worldView.getCharacterBody().getPosition().x - worldView.getCharacterView().getCharacter().WIDTH/2);
-		worldView.getCharacterView().getSlickShape().setY(25*worldView.getCharacterBody().getPosition().y - worldView.getCharacterView().getCharacter().HEIGHT/2);
+		worldView.getCharacterView().getSlickShape().setX(25*worldView.getCharacterBody().getPosition().x - worldView.getCharacterView().getCharacter().RADIUS);
+		worldView.getCharacterView().getSlickShape().setY(25*worldView.getCharacterBody().getPosition().y - worldView.getCharacterView().getCharacter().RADIUS);
 	}
 	
 }
