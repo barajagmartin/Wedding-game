@@ -30,6 +30,16 @@
     <property name="property" value="spikes"/>
    </properties>
   </tile>
+  <tile id="1">
+   <properties>
+    <property name="property" value="item"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="property" value="candyMonster"/>
+   </properties>
+  </tile>
  </tileset>
  <layer name="layer" width="16" height="12">
   <data encoding="base64" compression="zlib">
