@@ -10,10 +10,22 @@ public class CandyMonsterView {
 	private Shape slickShape;
 	private Color color;
 	
-	public CandyMonsterView(CandyMonster candyMonster) {
+	public CandyMonsterView(CandyMonster candyMonster, int candyNumber) {
 		this.candyMonster = candyMonster;
 		this.slickShape = new Rectangle(candyMonster.getX(), candyMonster.getY(), candyMonster.WIDTH, candyMonster.HEIGHT);
 		
+		/*Set the color of a candy monster depending on its ID*/
+		switch(candyNumber){
+			case 1: candyNumber = 1;
+					color = Color.orange;
+					break;
+			case 2: candyNumber = 2;
+					color = Color.magenta;
+					break;
+			case 3: candyNumber = 3;
+					color = Color.yellow;
+					break;
+		}
 	}
 	
 	public CandyMonster getCandyMonster() {
@@ -28,7 +40,4 @@ public class CandyMonsterView {
 		return this.color;
 	}
 	
-	public void setColor(Color color) {
-		this.color = color;
-	}
 }

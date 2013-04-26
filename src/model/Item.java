@@ -5,22 +5,24 @@ public class Item {
 	
 	private int x;
 	private int y;
-	public final int WIDTH = 30;
-	public final int HEIGHT = 20;
+	public final int WIDTH;
+	public final int HEIGHT;
 	public final int CANDY_NUMBER;
 	
 	public Item(int x, int y, int candyNumber) {
 		this.x = x;
 		this.y = y;
 		this.CANDY_NUMBER = candyNumber;
+		this.WIDTH = 10;
+		this.HEIGHT = 15;
 	}
 
 	public int getX() {
-		return x;
+		return this.x;
 	}
 
 	public int getY() {
-		return y;
+		return this.y;
 	}
 
 	public void setX(int x) {

@@ -9,10 +9,10 @@ public class CandyMonster {
 	public final int WIDTH;
 	public final int HEIGHT;
 	
-	public CandyMonster(int candyNumber, int x, int y){
-		this.CANDY_NUMBER = candyNumber;
+	public CandyMonster(int x, int y, int candyNumber) {
 		this.x = x;
 		this.y = y;
+		this.CANDY_NUMBER = candyNumber;
 		this.WIDTH = 20;
 		this.HEIGHT = 25;
 	}
@@ -21,15 +21,15 @@ public class CandyMonster {
 		return this.x;
 	}
 	
-	public int getY(){
+	public int getY() {
 		return this.y;
 	}
 	
-	public void setX(int x){
+	public void setX(int x) {
 		this.x = x;
 	}
 	
-	public void setY(int y){
+	public void setY(int y) {
 		this.y = y;
 	}
 	
