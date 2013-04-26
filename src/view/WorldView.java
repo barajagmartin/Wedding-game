@@ -52,13 +52,9 @@ public class WorldView {
 		addSolidGround(new Vec2(worldWidthMeter, 0), new Vec2(WorldUtils.pixel2Meter(2), worldHeightMeter), rightWallBody);
 		//roof
 		addSolidGround(new Vec2(0, 0), new Vec2(worldWidthMeter, WorldUtils.pixel2Meter(2)), roofBody);
-		System.out.println();
-		System.out.println();
-		System.out.println();
-		ArrayList<Block> a = this.blockMapView.getBlockMap().getBlockList(); 
-		for (Block block : a) {
+
+		for (Block block : this.blockMapView.getSolidGroundMap().getBlockList()) {
 			Body temp = null;
-			System.out.println("xA: " + (block.getPosX()) + "\t\tyA: " + block.getPosY());
 			
 			addSolidGround(new Vec2(WorldUtils.pixel2Meter(block.getPosX() + this.blockMapView.getTiledMap().getTileWidth()/2),
 					WorldUtils.pixel2Meter(block.getPosY() + this.blockMapView.getTiledMap().getTileWidth()/2)),
@@ -103,7 +99,6 @@ public class WorldView {
 	}
 		
 	private void addSolidGround(final Vec2 pos, final Vec2 size, Body body) {
-		//System.out.println("Width: " + sizex + "  \tHeight: " + sizey);
 		PolygonShape polygonShape = new PolygonShape();
 		polygonShape.setAsBox(size.x, size.y);
 		FixtureDef fixtureDef = new FixtureDef();
@@ -119,8 +114,6 @@ public class WorldView {
 		
 		body = jBox2DWorld.createBody(bodyDef);
 		body.createFixture(fixtureDef);
-		System.out.println("xB: " + 25*body.getPosition().x + "  \tyB: " + 25*body.getPosition().y);
-		System.out.println();
 	}
 	
 }
