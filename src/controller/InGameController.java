@@ -28,6 +28,8 @@ public class InGameController extends BasicGameState {
 	private CharacterController characterController;
 	private WorldController worldController;
 	private BlockMapController blockMapController;
+	private CandyMonsterController candyMonsterController;
+	private ItemController itemController;
 	private int prevFPS = 0;
 	
 	//should be based on the frame update (delta or something like that)
@@ -57,10 +59,14 @@ public class InGameController extends BasicGameState {
 		//TODO ladda in filer
 		 this.blockMapController = new BlockMapController(new TiledMap(BlockMapUtils.getTmxFile(1)));
 		 this.characterController = new CharacterController(this);
+		 /*Create all candy monsters and their items*/
+		 for(int i = 1; i <= 3; i++){
+			 this.candyMonsterController = new CandyMonsterController(this, i); 
+			 this.itemController = new ItemController(this, i); 
+		 }
 		 this.worldController = new WorldController(this);
 		 this.inGame = new InGame(worldController.getWorld());
 		 this.inGameView = new InGameView(inGame, worldController.getWorldView());
-		 //Will create ItemController etc.
 	}
 
 	@Override
@@ -74,9 +80,10 @@ public class InGameController extends BasicGameState {
 			throws SlickException {
 		characterController.keyPressedUpdate(gc);
 		//simulate the JBox2D world TODO timeStep --> delta
-		if(prevFPS != 0) {
-			worldController.getWorldView().getJBox2DWorld().step(/*timeStep*(prevFPS/gc.getFPS()*1000/gc.getFPS())*/0.005f, velocityIterations, positionIterations);
+		if(delta > 0) {
+			this.timeStep = (float) delta / 1000f;
 		}
+		worldController.getWorldView().getJBox2DWorld().step(timeStep, velocityIterations, positionIterations);
 		worldController.updateSlickShape();
 		prevFPS = gc.getFPS();
 	}

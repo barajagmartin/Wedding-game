@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="17" height="13" tilewidth="45" tileheight="45">
+ <tileset firstgid="1" name="bigTile" tilewidth="45" tileheight="45">
+  <image source="bigTile.png" width="100" height="100"/>
+  <tile id="3">
+   <properties>
+    <property name="blocked" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Tile Layer 1" width="17" height="13">
+  <data encoding="base64" compression="zlib">
+   eJxjYWBgYKECpgQMNjNw+Y0Y8webX0hVT0nckmsGNdIYqWZQI82TiwEtcgGR
+  </data>
+ </layer>
+</map>
