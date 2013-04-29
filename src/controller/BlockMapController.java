@@ -28,6 +28,22 @@ public class BlockMapController {
 	public BlockMapView getBlockMapView() {
 		return this.blockMapView;
 	}
+
+	public BlockMap getSolidGroundMap() {
+		return solidGroundMap;
+	}
+
+	public BlockMap getCandyMonsterMap() {
+		return candyMonsterMap;
+	}
+
+	public BlockMap getSpikesMap() {
+		return spikesMap;
+	}
+
+	public BlockMap getItemMap() {
+		return itemMap;
+	}
 	
 
 }
