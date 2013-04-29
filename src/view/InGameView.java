@@ -39,6 +39,9 @@ public class InGameView {
 		//draw character
 		g.setColor(worldView.getCharacterView().getColor());
 		g.fill(worldView.getCharacterView().getSlickShape());
+		Image player = new Image("pics/player.png");
+		
+		player.draw(worldView.getCharacterView().getSlickShape().getX(),worldView.getCharacterView().getSlickShape().getY());
 		//draw items
 		for (int j = 0; j < worldView.getItemViewList().size(); j++) {
 			g.setColor(worldView.getItemViewList().get(j).getColor());
