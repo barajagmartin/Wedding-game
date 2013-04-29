@@ -23,7 +23,7 @@ public class InGameView {
 	
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-		Image i = new Image("pics/pinkbg.png"); //Will be get from the Multimedia class later
+		Image i = new Image("pics/bluebg.png"); //Will be get from the Multimedia class later
 		i.draw();
 		worldView.getBlockMapView().getTiledMap().render(0, 0);
 		//draw candyMonsters
