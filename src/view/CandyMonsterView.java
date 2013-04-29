@@ -7,12 +7,12 @@ import model.CandyMonster;
 
 public class CandyMonsterView {
 	private CandyMonster candyMonster;
-	private Shape slickShape;
+	private Shape shape;
 	private Color color;
 	
 	public CandyMonsterView(CandyMonster candyMonster, int candyNumber) {
 		this.candyMonster = candyMonster;
-		this.slickShape = new Rectangle(candyMonster.getX(), candyMonster.getY(), candyMonster.WIDTH, candyMonster.HEIGHT);
+		this.shape = new Rectangle(candyMonster.getX(), candyMonster.getY(), candyMonster.WIDTH, candyMonster.HEIGHT);
 		
 		/*Set the color of a candy monster depending on its ID*/
 		switch(candyNumber){
@@ -29,8 +29,8 @@ public class CandyMonsterView {
 		return this.candyMonster;
 	}
 	
-	public Shape slickShape() {
-		return this.slickShape;
+	public Shape getShape() {
+		return this.shape;
 	}
 	
 	public Color getColor() {
