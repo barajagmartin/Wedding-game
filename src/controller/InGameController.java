@@ -60,11 +60,15 @@ public class InGameController extends BasicGameState {
 		//TODO ladda in filer
 		 this.blockMapController = new BlockMapController(new TiledMap(BlockMapUtils.getTmxFile(1)));
 		 this.characterController = new CharacterController(this);
-		 /*Create all candy monsters and their items*/
-		 for(int i = 1; i <= 3; i++){
+		 /*Create candy monster and its items*/
+		 for(int i = 0; i < blockMapController.getCandyMonsterMap().getBlockList().size(); i++){
 			 this.candyMonsterController = new CandyMonsterController(this, i); 
 			 this.itemController = new ItemController(this, i);
-			 
+		 }
+		 /*Create spikes*/
+		 for(int i = 0; i < blockMapController.getSpikesMap().getBlockList().size(); i++){
+			 this.spikeController = new SpikesController(this, blockMapController.getSpikesMap().getBlockList().get(i).getPosX(), 
+					 											blockMapController.getSpikesMap().getBlockList().get(i).getPosY());
 		 }
 		 this.worldController = new WorldController(this);
 		 this.inGame = new InGame(worldController.getWorld());
