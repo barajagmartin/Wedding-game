@@ -2,6 +2,7 @@ package controller;
 
 import org.jbox2d.common.Vec2;
 
+import utils.WorldUtils;
 import view.WorldView;
 
 import model.World;
@@ -28,15 +29,15 @@ public class WorldController {
 
 	public void moveBodyRight() {
 		//add force to move right - maxSpeed right
-		if(worldView.getCharacterBody().m_linearVelocity.x <= 4){
-	      worldView.getCharacterBody().applyLinearImpulse(new Vec2(20f, 0), worldView.getCharacterBody().getPosition());
+		if(worldView.getCharacterBody().m_linearVelocity.x <= 8){
+	      worldView.getCharacterBody().applyLinearImpulse(new Vec2(5f, 0), worldView.getCharacterBody().getPosition());
 		}
 	}
 	
 	public void moveBodyLeft() {
 		//add force to move left - maxSpeed left
-		if(worldView.getCharacterBody().m_linearVelocity.x >= -4){
-			worldView.getCharacterBody().applyLinearImpulse(new Vec2(-20f, 0), worldView.getCharacterBody().getPosition()); 
+		if(worldView.getCharacterBody().m_linearVelocity.x >= -8){
+			worldView.getCharacterBody().applyLinearImpulse(new Vec2(-5f, 0), worldView.getCharacterBody().getPosition()); 
 		}
 	}
 
@@ -47,8 +48,8 @@ public class WorldController {
 	}
 	
 	public void updateSlickShape() {
-		worldView.getCharacterView().getSlickShape().setX(25*worldView.getCharacterBody().getPosition().x - worldView.getCharacterView().getCharacter().RADIUS);
-		worldView.getCharacterView().getSlickShape().setY(25*worldView.getCharacterBody().getPosition().y - worldView.getCharacterView().getCharacter().RADIUS);
+		worldView.getCharacterView().getSlickShape().setX(WorldUtils.meter2Pixel(worldView.getCharacterBody().getPosition().x) - worldView.getCharacterView().getCharacter().RADIUS);
+		worldView.getCharacterView().getSlickShape().setY(WorldUtils.meter2Pixel(worldView.getCharacterBody().getPosition().y) - worldView.getCharacterView().getCharacter().RADIUS);
 	}
 	
 }

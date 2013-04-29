@@ -78,7 +78,7 @@ public class InGameController extends BasicGameState {
 		characterController.keyPressedUpdate(gc);
 		//simulate the JBox2D world TODO timeStep --> delta
 		if(delta > 0) {
-			this.timeStep = (float) delta / 1000f;
+			this.timeStep = (float) delta / 1000f * 4; //4 is for getting a good speed
 		}
 		worldController.getWorldView().getJBox2DWorld().step(timeStep, velocityIterations, positionIterations);
 		worldController.updateSlickShape();
