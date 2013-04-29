@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="25" height="14" tilewidth="50" tileheight="50">
+ <tileset firstgid="1" name="invisibles" tilewidth="50" tileheight="50">
+  <image source="pics/invisibles.png" width="200" height="50"/>
+  <tile id="0">
+   <properties>
+    <property name="property" value="spikes"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="property" value="item"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="property" value="candyMonster"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="property" value="player"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="5" name="pinkstar" tilewidth="50" tileheight="50">
+  <image source="pics/pinkstar.png" width="50" height="50"/>
+  <tile id="0">
+   <properties>
+    <property name="property" value="blocked"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="layer" width="25" height="14">
+  <data encoding="base64" compression="zlib">
+   eJztkjsOACAIQ0Xl/ld2kcQQgfrbbNKt9gmB01tx902ViwwOHDEQLvo3Yej5kM5VxurOyGAiuzvtn2mH4XWhjIiLMJC78mR1eRm5q6pyZFje54CRh8w37gbHUAK6
+  </data>
+ </layer>
+</map>

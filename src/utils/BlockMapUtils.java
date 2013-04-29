@@ -11,7 +11,7 @@ public class BlockMapUtils {
 	}
 	public static InputStream getTmxFile(int level) {
 		try {
-			return new FileInputStream("pics/worldtest.tmx");
+			return new FileInputStream("pics/level" + String.valueOf(level) + ".tmx");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
