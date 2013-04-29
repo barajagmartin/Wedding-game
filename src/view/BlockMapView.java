@@ -14,6 +14,7 @@ public class BlockMapView {
 	private BlockMap spikesMap;
 	private BlockMap itemMap;
 	private TiledMap tiledMap;
+	private Block startingPos;
 	
 	public BlockMapView(BlockMap solidGroundMap, BlockMap candyMonsterMap, BlockMap spikesMap, BlockMap itemMap, TiledMap tiledMap) {
 		this.solidGroundMap = solidGroundMap;
@@ -39,6 +40,9 @@ public class BlockMapView {
 				} else if (tileProperty.equals("item")) {
 					itemMap.getBlockList().add(new Block(x * tiledMap.getTileWidth(),
 							y * tiledMap.getTileHeight()));
+				}else if (tileProperty.equals("player")) {
+					this.startingPos = new Block(x * tiledMap.getTileWidth(),
+							y * tiledMap.getTileHeight());
 				}
 				
 			}
