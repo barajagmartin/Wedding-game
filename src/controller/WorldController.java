@@ -29,21 +29,21 @@ public class WorldController {
 
 	public void moveBodyRight() {
 		//add force to move right - maxSpeed right
-		if(worldView.getCharacterBody().m_linearVelocity.x <= 8){
+		if(worldView.getCharacterBody().m_linearVelocity.x <= 2.5){
 	      worldView.getCharacterBody().applyLinearImpulse(new Vec2(5f, 0), worldView.getCharacterBody().getPosition());
 		}
 	}
 	
 	public void moveBodyLeft() {
 		//add force to move left - maxSpeed left
-		if(worldView.getCharacterBody().m_linearVelocity.x >= -8){
+		if(worldView.getCharacterBody().m_linearVelocity.x >= -2.5){
 			worldView.getCharacterBody().applyLinearImpulse(new Vec2(-5f, 0), worldView.getCharacterBody().getPosition()); 
 		}
 	}
 
 	
 	public void jumpBody(){
-		final float impulse = worldView.getCharacterBody().getMass() * 1;
+		final float impulse = worldView.getCharacterBody().getMass();
 		worldView.getCharacterBody().applyLinearImpulse(new Vec2(0,-impulse), worldView.getCharacterBody().getWorldCenter());
 	}
 	

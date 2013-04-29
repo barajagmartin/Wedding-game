@@ -65,7 +65,7 @@ public class WorldView {
 		
 		characterBody = jBox2DWorld.createBody(characterView.getBodyDef());
 		characterBody.createFixture(characterView.getFixtureDef());
-		characterBody.m_mass = 50f;
+		characterBody.m_mass = 35f;
 	}
 	
 	public CharacterView getCharacterView() {
