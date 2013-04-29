@@ -88,13 +88,6 @@ public class WorldView {
 	/**
 	 * Add solid ground to prevent the character from moving outside of the window.
 	 */
-	private void addSolidGround(final float posX, final float posY, final float width, final float height) {
-		BodyDef bodyDef = new BodyDef();
-		bodyDef.position.set(posX, posY);
-		bodyDef.type = BodyType.STATIC;
-		bodyDef.fixedRotation = true;
-	}
-		
 	private void addSolidGround(final Vec2 pos, final Vec2 size, Body body) {
 		PolygonShape polygonShape = new PolygonShape();
 		polygonShape.setAsBox(size.x, size.y);
