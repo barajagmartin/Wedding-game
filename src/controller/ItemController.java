@@ -15,7 +15,6 @@ public class ItemController {
 								this.inGameController.getBlockMapController().getItemMap().getBlockList().get(candyNumber).getPosY(), 
 								candyNumber); //x, y, candyNumber
 		this.itemView = new ItemView(this.item, candyNumber); 
-		
 	}
 	
 	public Item getItem(){

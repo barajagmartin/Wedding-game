@@ -9,9 +9,10 @@ public class SpikesController {
 	private SpikesView spikesView;
 	private InGameController inGameController;
 
-	public SpikesController(InGameController inGameController, int x, int y){
+	public SpikesController(InGameController inGameController, int index){
 		this.inGameController = inGameController;
-		this.spikes = new Spikes(x, y);
+		this.spikes = new Spikes(inGameController.getBlockMapController().getSpikesMap().getBlockList().get(index).getPosX(), 
+								inGameController.getBlockMapController().getSpikesMap().getBlockList().get(index).getPosY());
 		this.spikesView = new SpikesView(this.spikes);
 	}
 
