@@ -24,7 +24,7 @@
   </tile>
  </tileset>
  <tileset firstgid="5" name="invisibles" tilewidth="50" tileheight="50">
-  <image source="pics/invisibles.png" width="150" height="50"/>
+  <image source="pics/invisibles.png" width="200" height="50"/>
   <tile id="0">
    <properties>
     <property name="property" value="spikes"/>
@@ -43,7 +43,7 @@
  </tileset>
  <layer name="layer" width="16" height="12">
   <data encoding="base64" compression="zlib">
-   eJydjkkKADAIA7Xr/3/cHsxFrFYDQRCSCRNRo7xYcv16yG8n8sihB51whe9pfvA9lt6W5Wt5fL31tcniW1uzfI8Z8aP8evCrFz3VewD6uADZ
+   eJydjtsKADAIQmv3///i7SFfYpOVIEGgRxWRInGp5epxs98M5JFDDzrhDJ+pf/AZy2+L8r0Y3299bbrxb1ujfMZk/PWRHw9+9qInezcAZwDh
   </data>
  </layer>
 </map>
