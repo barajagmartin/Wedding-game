@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -28,10 +29,9 @@ public class InGameController extends BasicGameState {
 	private CharacterController characterController;
 	private WorldController worldController;
 	private BlockMapController blockMapController;
-	private CandyMonsterController candyMonsterController;
-	private ItemController itemController;
-	private SpikesController spikeController;
-	private int prevFPS = 0;
+	private ArrayList <CandyMonsterController> candyMonsterController;
+	private ArrayList <ItemController> itemController;
+	private ArrayList <SpikesController> spikeController;
 	
 	//should be based on the frame update (delta or something like that)
 	private float timeStep = 1.0f / 60.0f;
@@ -42,18 +42,7 @@ public class InGameController extends BasicGameState {
 		
 	}
 
-	public CharacterController getCharacterController() {
-		return characterController;
-	}
-
-	public WorldController getWorldController() {
-		return worldController;
-	}
 	
-	public BlockMapController getBlockMapController() {
-		return blockMapController;
-	}
-
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
@@ -62,13 +51,12 @@ public class InGameController extends BasicGameState {
 		 this.characterController = new CharacterController(this);
 		 /*Create candy monster and its items*/
 		 for(int i = 0; i < blockMapController.getCandyMonsterMap().getBlockList().size(); i++){
-			 this.candyMonsterController = new CandyMonsterController(this, i); 
-			 this.itemController = new ItemController(this, i);
+			 this.candyMonsterController.add(new CandyMonsterController(this, i)); 
+			 this.itemController.add(new ItemController(this, i));
 		 }
 		 /*Create spikes*/
 		 for(int i = 0; i < blockMapController.getSpikesMap().getBlockList().size(); i++){
-			 this.spikeController = new SpikesController(this, blockMapController.getSpikesMap().getBlockList().get(i).getPosX(), 
-					 											blockMapController.getSpikesMap().getBlockList().get(i).getPosY());
+			 this.spikeController.add(new SpikesController(this);
 		 }
 		 this.worldController = new WorldController(this);
 		 this.inGame = new InGame(worldController.getWorld());
@@ -91,11 +79,38 @@ public class InGameController extends BasicGameState {
 		}
 		worldController.getWorldView().getJBox2DWorld().step(timeStep, velocityIterations, positionIterations);
 		worldController.updateSlickShape();
-		prevFPS = gc.getFPS();
 	}
 
 	@Override
 	public int getID() {
 		return Game.IN_GAME;
 	}
+	
+	public CharacterController getCharacterController() {
+		return characterController;
+	}
+
+	public WorldController getWorldController() {
+		return worldController;
+	}
+	
+	public BlockMapController getBlockMapController() {
+		return blockMapController;
+	}
+
+
+	public ArrayList<CandyMonsterController> getCandyMonsterController() {
+		return candyMonsterController;
+	}
+
+
+	public ArrayList<ItemController> getItemController() {
+		return itemController;
+	}
+
+
+	public ArrayList<SpikesController> getSpikeController() {
+		return spikeController;
+	}
+
 }
