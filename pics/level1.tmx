@@ -27,7 +27,7 @@
   <image source="pics/pinkstar.png" width="50" height="50"/>
   <tile id="0">
    <properties>
-    <property name="property" value="blocked"/>
+    <property name="property" value="solidGround"/>
    </properties>
   </tile>
  </tileset>

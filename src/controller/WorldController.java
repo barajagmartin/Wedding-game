@@ -39,7 +39,7 @@ public class WorldController {
 		}
 		
 		
-		this.world = new World(inGameController.getCharacterController().getCharacter(), 800, 600);
+		this.world = new World(inGameController.getCharacterController().getCharacter(), 1250, 700);
 		this.worldView = new WorldView(world, inGameController.getCharacterController().getCharacterView(),
 				inGameController.getBlockMapController().getBlockMapView(),
 				itemViewList,

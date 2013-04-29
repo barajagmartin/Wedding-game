@@ -18,7 +18,7 @@ public class Main {
 		AppGameContainer app;
 		try {
 			app = new AppGameContainer(new GameController(GAME_NAME));
-			app.setDisplayMode(800, 600, false);
+			app.setDisplayMode(1250, 700, false);
 			app.start();
 		} catch (SlickException e) {
 			e.printStackTrace();
