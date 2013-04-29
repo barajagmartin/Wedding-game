@@ -9,7 +9,7 @@ public class SpikesController {
 	private SpikesView spikesView;
 	private InGameController inGameController;
 
-	public SpikesController(int x, int y, InGameController inGameController){
+	public SpikesController(InGameController inGameController, int x, int y){
 		this.inGameController = inGameController;
 		this.spikes = new Spikes(x, y);
 		this.spikesView = new SpikesView(this.spikes);

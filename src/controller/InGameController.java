@@ -30,6 +30,7 @@ public class InGameController extends BasicGameState {
 	private BlockMapController blockMapController;
 	private CandyMonsterController candyMonsterController;
 	private ItemController itemController;
+	private SpikesController spikeController;
 	private int prevFPS = 0;
 	
 	//should be based on the frame update (delta or something like that)
@@ -62,7 +63,8 @@ public class InGameController extends BasicGameState {
 		 /*Create all candy monsters and their items*/
 		 for(int i = 1; i <= 3; i++){
 			 this.candyMonsterController = new CandyMonsterController(this, i); 
-			 this.itemController = new ItemController(this, i); 
+			 this.itemController = new ItemController(this, i);
+			 
 		 }
 		 this.worldController = new WorldController(this);
 		 this.inGame = new InGame(worldController.getWorld());
