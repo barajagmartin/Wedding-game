@@ -56,7 +56,7 @@ public class InGameController extends BasicGameState {
 		 }
 		 /*Create spikes*/
 		 for(int i = 0; i < blockMapController.getSpikesMap().getBlockList().size(); i++){
-			 this.spikeController.add(new SpikesController(this);
+			 this.spikeController.add(new SpikesController(this, i));
 		 }
 		 this.worldController = new WorldController(this);
 		 this.inGame = new InGame(worldController.getWorld());
