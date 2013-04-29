@@ -46,6 +46,9 @@ public class InGameController extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
+		this.candyMonsterController = new ArrayList<CandyMonsterController>();
+		this.itemController = new ArrayList<ItemController>();
+		this.spikeController = new ArrayList<SpikesController>();
 		//TODO ladda in filer
 		 this.blockMapController = new BlockMapController(new TiledMap(BlockMapUtils.getTmxFile(1)));
 		 this.characterController = new CharacterController(this);
