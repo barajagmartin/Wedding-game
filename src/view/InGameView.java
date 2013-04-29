@@ -27,22 +27,22 @@ public class InGameView {
 		i.draw();
 		worldView.getBlockMapView().getTiledMap().render(0, 0);
 		//draw candyMonsters
-		for (int j = 0; j < worldView.getCandyMonsterViewList().length; j++) {
-			g.setColor(worldView.getCandyMonsterViewList()[j].getColor());
-			g.fill(worldView.getCandyMonsterViewList()[j].getShape());
-		}
+		for (int j = 0; j < worldView.getCandyMonsterViewList().size(); j++) {
+			g.setColor(worldView.getCandyMonsterViewList().get(j).getColor());
+			g.fill(worldView.getCandyMonsterViewList().get(j).getShape());
+		}	
+		//draw spikes
+				for (int j = 0; j < worldView.getSpikesViewList().size(); j++) {
+					g.setColor(worldView.getSpikesViewList().get(j).getColor());
+					g.fill(worldView.getSpikesViewList().get(j).getShape());
+				}
 		//draw character
 		g.setColor(worldView.getCharacterView().getColor());
 		g.fill(worldView.getCharacterView().getSlickShape());
 		//draw items
-		for (int j = 0; j < worldView.getItemViewList().length; j++) {
-			g.setColor(worldView.getItemViewList()[j].getColor());
-			g.fill(worldView.getItemViewList()[j].getShape());
-		}
-		//draw spikes
-		for (int j = 0; j < worldView.getSpikesViewList().length; j++) {
-			g.setColor(worldView.getSpikesViewList()[j].getColor());
-			g.fill(worldView.getSpikesViewList()[j].getShape());
+		for (int j = 0; j < worldView.getItemViewList().size(); j++) {
+			g.setColor(worldView.getItemViewList().get(j).getColor());
+			g.fill(worldView.getItemViewList().get(j).getShape());
 		}
 		
 	}
