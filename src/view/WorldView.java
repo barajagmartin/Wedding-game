@@ -9,12 +9,8 @@ import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
-import org.jbox2d.dynamics.Filter;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
-
-
-import sun.font.CreatedFontTracker;
 import utils.WorldUtils;
 
 public class WorldView {
@@ -34,7 +30,8 @@ public class WorldView {
 	private float worldWidthMeter;
 	private float worldHeightMeter;
 	
-	public WorldView(model.World world, CharacterView characterView, BlockMapView blockMapView) {
+	public WorldView(model.World world, CharacterView characterView, BlockMapView blockMapView,
+			ItemView[] itemViews, CandyMonsterView[] candyMonsterViews, SpikesView[] spikes) {
 		this.world = world;
 		worldWidthMeter = WorldUtils.pixel2Meter(world.getWorldWidthPx());
 		worldHeightMeter = WorldUtils.pixel2Meter(world.getWorldHeightPx());

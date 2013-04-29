@@ -112,7 +112,7 @@ public class InGameController extends BasicGameState {
 	}
 
 
-	public ArrayList<SpikesController> getSpikeController() {
+	public ArrayList<SpikesController> getSpikesController() {
 		return spikeController;
 	}
 

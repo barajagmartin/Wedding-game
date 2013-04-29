@@ -1,22 +1,50 @@
 package controller;
 
+import java.util.ArrayList;
+
 import org.jbox2d.common.Vec2;
 
 import utils.WorldUtils;
+import view.CandyMonsterView;
+import view.ItemView;
+import view.SpikesView;
 import view.WorldView;
 
+import model.CandyMonster;
+import model.Item;
 import model.World;
 
 public class WorldController {
 	private InGameController inGameController;
+	private ArrayList<ItemView> itemViewList;
+	private ArrayList<CandyMonsterView> candyMonsterViewList;
+	private ArrayList<SpikesView> spikesViewList;
 	private model.World world;
 	private WorldView worldView;
 	
 	public WorldController(InGameController inGameController) {
 		this.inGameController = inGameController;
+		itemViewList = new ArrayList<ItemView>();
+		candyMonsterViewList = new ArrayList<CandyMonsterView>();
+		spikesViewList = new ArrayList<SpikesView>();
+		
+		for (ItemController itemController : inGameController.getItemController()) {
+			itemViewList.add(itemController.getItemView());
+		}
+		for (CandyMonsterController candyMonsterController : inGameController.getCandyMonsterController()) {
+			candyMonsterViewList.add(candyMonsterController.getCandyMonsterView());
+		}
+		for (SpikesController spikesController : inGameController.getSpikesController()) {
+			spikesViewList.add(spikesController.getSpikesView());
+		}
+		
+		
 		this.world = new World(inGameController.getCharacterController().getCharacter(), 800, 600);
 		this.worldView = new WorldView(world, inGameController.getCharacterController().getCharacterView(),
-				inGameController.getBlockMapController().getBlockMapView());
+				inGameController.getBlockMapController().getBlockMapView(),
+				(ItemView[])itemViewList.toArray(),
+				(CandyMonsterView[])candyMonsterViewList.toArray(),
+				(SpikesView[])spikesViewList.toArray());
 	}
 	
 	public model.World getWorld() {
