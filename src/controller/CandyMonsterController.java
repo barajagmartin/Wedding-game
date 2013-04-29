@@ -10,8 +10,10 @@ public class CandyMonsterController {
 	
 	public CandyMonsterController(InGameController inGameController, int candyNumber){
 		this.inGameController = inGameController;
-		this.candyMonster = new CandyMonster(100, 200, candyNumber); //x, y, candyNumber TODO fix x, y
-		this.candyMonsterView = new CandyMonsterView(candyMonster, candyNumber);
+		this.candyMonster = new CandyMonster(this.inGameController.getBlockMapController().getCandyMonsterMap().getBlockList().get(candyNumber).getPosX(), 
+											this.inGameController.getBlockMapController().getCandyMonsterMap().getBlockList().get(candyNumber).getPosY(), 
+											candyNumber); //x, y, candyNumber
+		this.candyMonsterView = new CandyMonsterView(this.candyMonster, candyNumber);
 	}
 	
 	public CandyMonster getCandyMonster(){

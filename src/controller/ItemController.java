@@ -11,8 +11,10 @@ public class ItemController {
 	
 	public ItemController(InGameController inGameController, int candyNumber) {
 		this.inGameController = inGameController;
-		this.item = new Item(200, 100, candyNumber); //x, y, candyNumber TODO fix x, y
-		this.itemView = new ItemView(item, candyNumber); 
+		this.item = new Item(this.inGameController.getBlockMapController().getItemMap().getBlockList().get(candyNumber).getPosX(), 
+								this.inGameController.getBlockMapController().getItemMap().getBlockList().get(candyNumber).getPosY(), 
+								candyNumber); //x, y, candyNumber
+		this.itemView = new ItemView(this.item, candyNumber); 
 		
 	}
 	
