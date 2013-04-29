@@ -26,6 +26,9 @@ public class WorldView {
 	private Body roofBody;
 	private ArrayList<Body> tileBodyList;
 	private BlockMapView blockMapView;
+	private ItemView[] itemViewList;
+	private CandyMonsterView[] candyMonsterViewList;
+	private SpikesView[] spikesViewList;
 	
 	private float worldWidthMeter;
 	private float worldHeightMeter;
@@ -37,9 +40,13 @@ public class WorldView {
 		worldHeightMeter = WorldUtils.pixel2Meter(world.getWorldHeightPx());
 		this.characterView = characterView;
 		this.blockMapView = blockMapView;
+		this.itemViewList = itemViews;
+		this.candyMonsterViewList = candyMonsterViews;
+		this.spikesViewList = spikes;
 		gravity = new Vec2(0.0f, 9.82f);
 		doSleep = true;
 		jBox2DWorld = new World(gravity, doSleep);
+		
 
 		//ground
 		addSolidGround(new Vec2(0, worldHeightMeter), new Vec2(worldWidthMeter, WorldUtils.pixel2Meter(2)), groundBody); //(x, y, width, height)
@@ -68,6 +75,22 @@ public class WorldView {
 	public CharacterView getCharacterView() {
 		return characterView;
 	}
+	
+	public BlockMapView getBlockMapView() {
+		return blockMapView;
+	}
+
+	public ItemView[] getItemViewList() {
+		return itemViewList;
+	}
+
+	public CandyMonsterView[] getCandyMonsterViewList() {
+		return candyMonsterViewList;
+	}
+
+	public SpikesView[] getSpikesViewList() {
+		return spikesViewList;
+	}
 
 	public World getJBox2DWorld() {
 		return jBox2DWorld;
@@ -81,9 +104,7 @@ public class WorldView {
 		return groundBody;
 	}
 
-	public BlockMapView getBlockMapView() {
-		return blockMapView;
-	}
+	
 	
 	/**
 	 * Add solid ground to prevent the character from moving outside of the window.
