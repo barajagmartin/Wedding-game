@@ -26,23 +26,25 @@ public class WorldView {
 	private Body roofBody;
 	private ArrayList<Body> tileBodyList;
 	private BlockMapView blockMapView;
-	private ItemView[] itemViewList;
-	private CandyMonsterView[] candyMonsterViewList;
-	private SpikesView[] spikesViewList;
+	private ArrayList<ItemView> itemViewList;
+	private ArrayList<CandyMonsterView> candyMonsterViewList;
+	private ArrayList<SpikesView> spikesViewList;
 	
 	private float worldWidthMeter;
 	private float worldHeightMeter;
 	
-	public WorldView(model.World world, CharacterView characterView, BlockMapView blockMapView,
-			ItemView[] itemViews, CandyMonsterView[] candyMonsterViews, SpikesView[] spikes) {
+	public WorldView(model.World world, CharacterView characterView, BlockMapView blockMapView, 
+			ArrayList<ItemView> itemViewList, 
+			ArrayList<CandyMonsterView> candyMonsterViewList, 
+			ArrayList<SpikesView> spikesViewList) {
 		this.world = world;
 		worldWidthMeter = WorldUtils.pixel2Meter(world.getWorldWidthPx());
 		worldHeightMeter = WorldUtils.pixel2Meter(world.getWorldHeightPx());
 		this.characterView = characterView;
 		this.blockMapView = blockMapView;
-		this.itemViewList = itemViews;
-		this.candyMonsterViewList = candyMonsterViews;
-		this.spikesViewList = spikes;
+		this.itemViewList = itemViewList;
+		this.candyMonsterViewList = candyMonsterViewList;
+		this.spikesViewList = spikesViewList;
 		gravity = new Vec2(0.0f, 9.82f);
 		doSleep = true;
 		jBox2DWorld = new World(gravity, doSleep);
@@ -80,15 +82,15 @@ public class WorldView {
 		return blockMapView;
 	}
 
-	public ItemView[] getItemViewList() {
+	public ArrayList<ItemView> getItemViewList() {
 		return itemViewList;
 	}
 
-	public CandyMonsterView[] getCandyMonsterViewList() {
+	public ArrayList<CandyMonsterView> getCandyMonsterViewList() {
 		return candyMonsterViewList;
 	}
 
-	public SpikesView[] getSpikesViewList() {
+	public ArrayList<SpikesView> getSpikesViewList() {
 		return spikesViewList;
 	}
 
