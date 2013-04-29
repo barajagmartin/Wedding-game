@@ -23,10 +23,14 @@ public class CharacterController {
 	
 	public CharacterController(InGameController inGameController) {
 		this.inGameController = inGameController;
-		this.character = new Character(400, 100);
+		if (this.inGameController.getBlockMapController().getBlockMapView().getStartingPos() == null) {
+			this.character = new Character(400, 100);
+		} else {
+			this.character = new Character(this.inGameController.getBlockMapController().getBlockMapView().getStartingPos().getPosX(),
+					this.inGameController.getBlockMapController().getBlockMapView().getStartingPos().getPosY());
+		}
+		
 		this.characterView = new CharacterView(character);
-		//this.jumping = false;
-		//this.jumpCount = 0;
 	}
 	
 	public Character getCharacter() {

@@ -68,4 +68,8 @@ public class BlockMapView {
 	public TiledMap getTiledMap() {
 		return tiledMap;
 	}
+
+	public Block getStartingPos() {
+		return startingPos;
+	}
 }
