@@ -23,7 +23,11 @@ public class InGameView {
 	
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-		Image i = new Image("pics/bluebg.png"); //Will be get from the Multimedia class later
+		
+		//draw character
+		g.setColor(worldView.getCharacterView().getColor());
+		g.fill(worldView.getCharacterView().getSlickShape());
+		Image i = new Image("pics/rainbow.jpg"); //Will be get from the Multimedia class later
 		i.draw();
 		worldView.getBlockMapView().getTiledMap().render(0, 0);
 		//draw candyMonsters
@@ -36,10 +40,8 @@ public class InGameView {
 					g.setColor(worldView.getSpikesViewList().get(j).getColor());
 					g.fill(worldView.getSpikesViewList().get(j).getShape());
 				}
-		//draw character
-		g.setColor(worldView.getCharacterView().getColor());
-		g.fill(worldView.getCharacterView().getSlickShape());
-		Image player = new Image("pics/player.png");
+		
+		Image player = new Image("pics/GulNelson.png");
 		
 		player.draw(worldView.getCharacterView().getSlickShape().getX(),worldView.getCharacterView().getSlickShape().getY());
 		//draw items
