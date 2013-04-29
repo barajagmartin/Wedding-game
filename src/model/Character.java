@@ -9,7 +9,7 @@ public class Character {
 		this.x = x;
 		this.y = y;
 		this.life = 3;
-		this.RADIUS = 30;
+		this.RADIUS = 25;
 	}
 	
 	public int getX() {
