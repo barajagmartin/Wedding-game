@@ -1,6 +1,6 @@
 package view;
 
-import java.awt.Color;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 import model.CandyMonster;
