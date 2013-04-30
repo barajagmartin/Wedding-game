@@ -2,6 +2,8 @@ package controller;
 
 
 import model.Character;
+import model.Item;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
@@ -107,7 +109,11 @@ public class CharacterController {
 			inGameController.getWorldController().moveBodyLeft();
 		}
 		if(input.isKeyDown(Input.KEY_DOWN)) {
-			//plocka upp ett item TODO
+			if (tryToPickUpItem()!= null) {
+				characterView.setColor(Color.pink);
+				character.pickUpItem(tryToPickUpItem());
+			}
+			
 		}
 		if(input.isKeyDown(Input.KEY_UP)) {
 			tryToJumpCharacter();
@@ -118,5 +124,19 @@ public class CharacterController {
 			characterView.setColor(Color.red);
 			inGameController.getWorldController().jumpBody();
 		}
+	}
+	/**
+	 * checks if the character is close enough to an item to pick it up.
+	 * @return the item that the character is standing at.
+	 */
+	public Item tryToPickUpItem() {
+		for (int i = 0; i < inGameController.getWorldController().getItemViewList().size(); i++) {
+			if (characterView.getSlickShape().intersects(inGameController.getWorldController().getItemViewList().get(i).getShape()) ||
+					characterView.getSlickShape().contains(inGameController.getWorldController().getItemViewList().get(i).getShape())) {
+				return inGameController.getWorldController().getItemViewList().get(i).getItem();
+			}
+		}
+		return null;
+		
 	}
 }
