@@ -38,8 +38,8 @@ public class BlockMapView {
 					candyMonsterMap.getBlockList().add(new Block(x * tiledMap.getTileWidth()+(tiledMap.getTileWidth()/2 - CandyMonster.WIDTH/2),
 							y * tiledMap.getTileHeight()+(tiledMap.getTileHeight() - CandyMonster.HEIGHT)));
 				} else if (tileProperty.equals("spikes")) {
-					spikesMap.getBlockList().add(new Block(x * tiledMap.getTileWidth() + (tiledMap.getTileWidth()/2-Spikes.RADIUS),
-							y * tiledMap.getTileHeight()+(tiledMap.getTileHeight()/2-Spikes.RADIUS)));
+					spikesMap.getBlockList().add(new Block(x * tiledMap.getTileWidth() + (tiledMap.getTileWidth()/2),
+							y * tiledMap.getTileHeight() + (tiledMap.getTileHeight()/2)));
 				} else if (tileProperty.equals("item")) {
 					itemMap.getBlockList().add(new Block(x * tiledMap.getTileWidth() + (tiledMap.getTileWidth()/2 - Item.WIDTH/2),
 							y * tiledMap.getTileHeight() + (tiledMap.getTileHeight() - Item.HEIGHT)));
