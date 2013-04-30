@@ -108,17 +108,12 @@ public class CharacterController {
 			characterView.setColor(Color.green);
 			inGameController.getWorldController().moveBodyLeft();
 		}
-		if(input.isKeyDown(Input.KEY_DOWN)) {
-			if (tryToPickUpItem()!= null && !isHoldingItem()) {
-				characterView.setColor(Color.pink);
-				character.pickUpItem(tryToPickUpItem());
-			}
-			
-		}
 		if(input.isKeyDown(Input.KEY_UP)) {
 			tryToJumpCharacter();
 		}
 	}
+	
+	
 	public void tryToJumpCharacter() {
 		if(inGameController.getWorldController().getWorldView().getCharacterBody().getLinearVelocity().y == 0){
 			characterView.setColor(Color.red);
@@ -129,7 +124,7 @@ public class CharacterController {
 	 * checks if the character is close enough to an item to pick it up.
 	 * @return the item that the character is standing at.
 	 */
-	public Item tryToPickUpItem() {
+	public Item FindItemToPickUp() {
 		for (int i = 0; i < inGameController.getWorldController().getItemViewList().size(); i++) {
 			if (characterView.getSlickShape().intersects(inGameController.getWorldController().getItemViewList().get(i).getShape()) ||
 					characterView.getSlickShape().contains(inGameController.getWorldController().getItemViewList().get(i).getShape())) {

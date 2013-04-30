@@ -4,11 +4,13 @@ public class Character {
 	public static final int RADIUS = 25;
 	private int x, y;
 	private int life;
-	
+	private Item heldItem;
+
 	public Character(final int x, final int y) {
 		this.x = x;
 		this.y = y;
 		this.life = 3;
+		this.heldItem = null;
 	}
 	
 	public int getX() {
@@ -31,6 +33,10 @@ public class Character {
 		return this.life;
 	}
 	
+	public Item getHeldItem() {
+		return heldItem;
+	}
+	
 	public void loseOneLife() {
 		this.life--;
 	}	
@@ -39,10 +45,13 @@ public class Character {
 		item.setX(this.x);
 		item.setY(this.y);
 		item.setPickedUp(true);
+		this.heldItem = item;
 	}
 	
 	public void dropDownItem(Item item){
 		item.setY(this.y-RADIUS);
+		item.setX(this.x);
 		item.setPickedUp(false);
+		this.heldItem = null;
 	}
 }
