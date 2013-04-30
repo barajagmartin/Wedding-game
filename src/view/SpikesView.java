@@ -4,7 +4,7 @@ import model.Spikes;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Image;
-import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Circle;
 import org.newdawn.slick.geom.Shape;
 
 public class SpikesView {
@@ -16,7 +16,7 @@ public class SpikesView {
 	public SpikesView(Spikes spikes){
 		this.spikes = spikes;
 		this.color = color.gray;
-		this.shape = new Rectangle(spikes.getX(), spikes.getY(), spikes.WIDTH, spikes.HEIGHT);
+		this.shape = new Circle(spikes.getX(), spikes.getY(), Spikes.RADIUS);
 		
 	}
 
