@@ -82,6 +82,7 @@ public class InGameController extends BasicGameState {
 		}
 		worldController.getWorldView().getJBox2DWorld().step(timeStep, velocityIterations, positionIterations);
 		worldController.updateSlickShape();
+		worldController.updateItemShape(worldController.getItemViewList(), characterController.getCharacter());
 	}
 
 	@Override

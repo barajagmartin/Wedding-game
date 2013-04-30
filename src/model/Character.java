@@ -34,4 +34,15 @@ public class Character {
 	public void loseOneLife() {
 		this.life--;
 	}	
+	
+	public void pickUpItem(Item item){
+		item.setX(this.x);
+		item.setY(this.y);
+		item.setPickedUp(true);
+	}
+	
+	public void dropDownItem(Item item){
+		item.setY(this.y-RADIUS);
+		item.setPickedUp(false);
+	}
 }

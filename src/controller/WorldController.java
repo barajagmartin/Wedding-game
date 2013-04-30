@@ -11,6 +11,7 @@ import view.SpikesView;
 import view.WorldView;
 
 import model.CandyMonster;
+import model.Character;
 import model.Item;
 import model.World;
 
@@ -55,6 +56,10 @@ public class WorldController {
 		return worldView;
 	}
 
+	public ArrayList<ItemView> getItemViewList() {
+		return itemViewList;
+	}
+
 	public void moveBodyRight() {
 		//add force to move right - maxSpeed right
 		if(worldView.getCharacterBody().m_linearVelocity.x <= 2.5){
@@ -78,6 +83,15 @@ public class WorldController {
 	public void updateSlickShape() {
 		worldView.getCharacterView().getSlickShape().setX(WorldUtils.meter2Pixel(worldView.getCharacterBody().getPosition().x) - worldView.getCharacterView().getCharacter().RADIUS);
 		worldView.getCharacterView().getSlickShape().setY(WorldUtils.meter2Pixel(worldView.getCharacterBody().getPosition().y) - worldView.getCharacterView().getCharacter().RADIUS);
+	}
+	
+	public void updateItemShape(ArrayList<ItemView> itemList, Character character){
+		for (int i = 0; i < itemList.size(); i++) {
+			if (itemList.get(i).getItem().isPickedUp()) {
+				itemList.get(i).getItem().setX(character.getX());
+				itemList.get(i).getItem().setY(character.getY());
+			}
+		}
 	}
 	
 }
