@@ -6,6 +6,7 @@ import org.jbox2d.common.Vec2;
 
 import utils.WorldUtils;
 import view.CandyMonsterView;
+import view.CharacterView;
 import view.ItemView;
 import view.SpikesView;
 import view.WorldView;
@@ -85,11 +86,11 @@ public class WorldController {
 		worldView.getCharacterView().getSlickShape().setY(WorldUtils.meter2Pixel(worldView.getCharacterBody().getPosition().y) - worldView.getCharacterView().getCharacter().RADIUS);
 	}
 	
-	public void updateItemShape(ArrayList<ItemView> itemList, Character character){
+	public void updateItemShape(ArrayList<ItemView> itemList, CharacterView characterView){
 		for (int i = 0; i < itemList.size(); i++) {
 			if (itemList.get(i).getItem().isPickedUp()) {
-				itemList.get(i).getItem().setX(character.getX());
-				itemList.get(i).getItem().setY(character.getY());
+				itemList.get(i).getShape().setX(characterView.getSlickShape().getX() + Character.RADIUS);
+				itemList.get(i).getShape().setY(characterView.getSlickShape().getY() + Character.RADIUS);
 			}
 		}
 	}

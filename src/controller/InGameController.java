@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-import org.jbox2d.dynamics.contacts.ContactEdge;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -83,9 +83,25 @@ public class InGameController extends BasicGameState {
 		}
 		worldController.getWorldView().getJBox2DWorld().step(timeStep, velocityIterations, positionIterations);
 		worldController.updateSlickShape();
-		worldController.updateItemShape(worldController.getItemViewList(), characterController.getCharacter());
+		worldController.updateItemShape(worldController.getItemViewList(), characterController.getCharacterView());
+		characterController.getCharacter().setX((int)characterController.getCharacterView().getSlickShape().getX());
+		characterController.getCharacter().setY((int)characterController.getCharacterView().getSlickShape().getY());
+		
 	}
 
+	@Override
+	public void keyPressed (int key, char c) {
+		if (key == Input.KEY_DOWN) {
+			if (characterController.FindItemToPickUp()!= null && !characterController.isHoldingItem()) {
+				characterController.getCharacterView().setColor(Color.pink);
+				characterController.getCharacter().pickUpItem(characterController.FindItemToPickUp());
+			} else if (characterController.isHoldingItem() && 
+					getWorldController().getWorldView().getCharacterBody().getLinearVelocity().y == 0) {
+				characterController.getCharacter().dropDownItem(characterController.getCharacter().getHeldItem());
+			}
+		}
+	}
+	
 	@Override
 	public int getID() {
 		return Game.IN_GAME;

@@ -2,6 +2,8 @@ package controller;
 
 
 import model.Character;
+import model.Item;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
@@ -106,17 +108,42 @@ public class CharacterController {
 			characterView.setColor(Color.green);
 			inGameController.getWorldController().moveBodyLeft();
 		}
-		if(input.isKeyDown(Input.KEY_DOWN)) {
-			//plocka upp ett item TODO
-		}
 		if(input.isKeyDown(Input.KEY_UP)) {
 			tryToJumpCharacter();
 		}
 	}
+	
+	
 	public void tryToJumpCharacter() {
 		if(inGameController.getWorldController().getWorldView().getCharacterBody().getLinearVelocity().y == 0){
 			characterView.setColor(Color.red);
 			inGameController.getWorldController().jumpBody();
 		}
+	}
+	/**
+	 * checks if the character is close enough to an item to pick it up.
+	 * @return the item that the character is standing at.
+	 */
+	public Item FindItemToPickUp() {
+		for (int i = 0; i < inGameController.getWorldController().getItemViewList().size(); i++) {
+			if (characterView.getSlickShape().intersects(inGameController.getWorldController().getItemViewList().get(i).getShape()) ||
+					characterView.getSlickShape().contains(inGameController.getWorldController().getItemViewList().get(i).getShape())) {
+				return inGameController.getWorldController().getItemViewList().get(i).getItem();
+			}
+		}
+		return null;
+	}
+	/**
+	 * 
+	 * @return true if the a character is holding an item.
+	 */
+	public boolean isHoldingItem() {
+		for (int i = 0; i < inGameController.getWorldController().getItemViewList().size(); i++) {
+			if (inGameController.getWorldController().getItemViewList().get(i).getItem().isPickedUp()) {
+				return true;
+			}
+			 
+		} 
+		return false; //måste vara här annars gnälls det.
 	}
 }
