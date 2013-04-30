@@ -27,8 +27,8 @@ public class CharacterView {
 		this.character = character;
 		//this.slickShape= new Rectangle(character.getX() - character.WIDTH/2, character.getY() - character.HEIGHT/2,
 			//	character.WIDTH, character.HEIGHT); //start position of character on the screen
-		this.slickShape = new Circle(this.character.getX()-(character.RADIUS/2), 
-				this.character.getY()-(character.RADIUS/2), this.character.RADIUS);
+		this.slickShape = new Circle(this.character.getX()-(Character.RADIUS/2), 
+				this.character.getY()-(Character.RADIUS/2), Character.RADIUS);
 		this.color = Color.blue;
 		
 		jBox2DRectangle = new CircleShape();

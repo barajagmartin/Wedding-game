@@ -1,7 +1,7 @@
 package model;
 
 public class Character {
-	public final int RADIUS;
+	public static final int RADIUS = 25;
 	private int x, y;
 	private int life;
 	
@@ -9,7 +9,6 @@ public class Character {
 		this.x = x;
 		this.y = y;
 		this.life = 3;
-		this.RADIUS = 25;
 	}
 	
 	public int getX() {

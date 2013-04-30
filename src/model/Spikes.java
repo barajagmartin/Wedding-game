@@ -3,7 +3,7 @@ package model;
 public class Spikes {
 	private int x;
 	private int y;
-	public static final int RADIUS = 20;
+	public static final int RADIUS = 15;
 	
 	public Spikes(int x, int y){
 		this.x = x;

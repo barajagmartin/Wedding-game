@@ -4,6 +4,9 @@ import java.io.InputStream;
 
 import model.Block;
 import model.BlockMap;
+import model.CandyMonster;
+import model.Item;
+import model.Spikes;
 
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
@@ -32,14 +35,14 @@ public class BlockMapView {
 					solidGroundMap.getBlockList().add(new Block(x * tiledMap.getTileWidth(),
 							y * tiledMap.getTileHeight()));
 				} else if (tileProperty.equals("candyMonster")) {
-					candyMonsterMap.getBlockList().add(new Block(x * tiledMap.getTileWidth(),
-							y * tiledMap.getTileHeight()));
+					candyMonsterMap.getBlockList().add(new Block(x * tiledMap.getTileWidth()+(tiledMap.getTileWidth()/2 - CandyMonster.WIDTH/2),
+							y * tiledMap.getTileHeight()+(tiledMap.getTileHeight() - CandyMonster.HEIGHT)));
 				} else if (tileProperty.equals("spikes")) {
-					spikesMap.getBlockList().add(new Block(x * tiledMap.getTileWidth(),
-							y * tiledMap.getTileHeight()));
+					spikesMap.getBlockList().add(new Block(x * tiledMap.getTileWidth() + (tiledMap.getTileWidth()/2-Spikes.RADIUS),
+							y * tiledMap.getTileHeight()+(tiledMap.getTileHeight()/2-Spikes.RADIUS)));
 				} else if (tileProperty.equals("item")) {
-					itemMap.getBlockList().add(new Block(x * tiledMap.getTileWidth(),
-							y * tiledMap.getTileHeight()));
+					itemMap.getBlockList().add(new Block(x * tiledMap.getTileWidth() + (tiledMap.getTileWidth()/2 - Item.WIDTH/2),
+							y * tiledMap.getTileHeight() + (tiledMap.getTileHeight() - Item.HEIGHT)));
 				}else if (tileProperty.equals("player")) {
 					this.startingPos = new Block(x * tiledMap.getTileWidth(),
 							y * tiledMap.getTileHeight());

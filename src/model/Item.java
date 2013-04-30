@@ -5,16 +5,14 @@ public class Item {
 	
 	private int x;
 	private int y;
-	public final int WIDTH;
-	public final int HEIGHT;
+	public static final int WIDTH = 10;
+	public static final int HEIGHT = 15;
 	public final int CANDY_NUMBER;
 	
 	public Item(int x, int y, int candyNumber) {
 		this.x = x;
 		this.y = y;
 		this.CANDY_NUMBER = candyNumber;
-		this.WIDTH = 10;
-		this.HEIGHT = 15;
 	}
 
 	public int getX() {
