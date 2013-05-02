@@ -15,18 +15,20 @@ import model.InGame;
 public class InGameView {
 	private InGame inGame;
 	private WorldView worldView;
+	private CharacterView characterView;
 	
-	public InGameView(InGame inGame, WorldView worldView) {
+	public InGameView(InGame inGame, WorldView worldView, CharacterView characterView) {
 		this.inGame = inGame;
 		this.worldView = worldView;
+		this.characterView = characterView;
 	}
 	
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		
 		//draw character
-		g.setColor(worldView.getCharacterView().getColor());
-		g.fill(worldView.getCharacterView().getSlickShape());
+		g.setColor(characterView.getColor());
+		g.fill(characterView.getSlickShape());
 		Image i = new Image("pics/rainbow.jpg"); //Will be get from the Multimedia class later
 		i.draw();
 		worldView.getBlockMapView().getTiledMap().render(0, 0);
@@ -43,7 +45,7 @@ public class InGameView {
 		
 		Image player = new Image("pics/GulNelson.png");
 		
-		player.draw(worldView.getCharacterView().getSlickShape().getX(),worldView.getCharacterView().getSlickShape().getY());
+		player.draw(characterView.getSlickShape().getX(), characterView.getSlickShape().getY());
 		//draw items
 		for (int j = 0; j < worldView.getItemViewList().size(); j++) {
 			g.setColor(worldView.getItemViewList().get(j).getColor());

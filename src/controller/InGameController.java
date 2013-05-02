@@ -54,7 +54,6 @@ public class InGameController extends BasicGameState {
 		this.spikeController = new ArrayList<SpikesController>();
 		//TODO ladda in filer
 		 this.blockMapController = new BlockMapController(new TiledMap(BlockMapUtils.getTmxFile(1)));
-		 this.characterController = new CharacterController(this);
 		 /*Create candy monster and its items*/
 		 for(int i = 0; i < blockMapController.getCandyMonsterMap().getBlockList().size(); i++){
 			 this.candyMonsterController.add(new CandyMonsterController(this, i)); 
@@ -65,8 +64,9 @@ public class InGameController extends BasicGameState {
 			 this.spikeController.add(new SpikesController(this, i));
 		 }
 		 this.worldController = new WorldController(this);
-		 this.inGame = new InGame(worldController.getWorld());
-		 this.inGameView = new InGameView(inGame, worldController.getWorldView());
+		 this.characterController = new CharacterController(this);
+		 this.inGame = new InGame(characterController.getCharacter());
+		 this.inGameView = new InGameView(inGame, worldController.getWorldView(), characterController.getCharacterView());
 	}
 
 	@Override
@@ -86,7 +86,7 @@ public class InGameController extends BasicGameState {
 		if(delta > 0) {
 			this.timeStep = (float) delta / 1000f * 4; //4 is for getting a good speed
 		}
-		worldController.getWorldView().getJBox2DWorld().step(timeStep, velocityIterations, positionIterations);
+		worldController.getWorldView().getjBox2DWorld().step(timeStep, velocityIterations, positionIterations);
 		worldController.updateSlickShape();
 		worldController.updateItemShape(worldController.getItemViewList(), characterController.getCharacterView());
 		characterController.getCharacter().setX((int)characterController.getCharacterView().getSlickShape().getX());
@@ -101,7 +101,7 @@ public class InGameController extends BasicGameState {
 				characterController.getCharacterView().setColor(Color.pink);
 				characterController.getCharacter().pickUpItem(characterController.FindItemToPickUp());
 			} else if (characterController.isHoldingItem() && 
-					getWorldController().getWorldView().getCharacterBody().getLinearVelocity().y == 0) {
+					characterController.getCharacterView().getCharacterBody().getLinearVelocity().y == 0) {
 				lastHeldItem = characterController.getCharacter().getHeldItem();	
 				characterController.getCharacter().dropDownItem(characterController.getCharacter().getHeldItem());
 				this.itemController.get(lastHeldItem.CANDY_NUMBER).uppdateItemShape();

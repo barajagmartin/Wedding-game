@@ -41,9 +41,8 @@ public class WorldController {
 		}
 		
 		
-		this.world = new World(inGameController.getCharacterController().getCharacter(), 1250, 700);
-		this.worldView = new WorldView(world, inGameController.getCharacterController().getCharacterView(),
-				inGameController.getBlockMapController().getBlockMapView(),
+		this.world = new World(1250, 700);
+		this.worldView = new WorldView(world, inGameController.getBlockMapController().getBlockMapView(),
 				itemViewList,
 				candyMonsterViewList,
 				spikesViewList);
@@ -63,27 +62,34 @@ public class WorldController {
 
 	public void moveBodyRight() {
 		//add force to move right - maxSpeed right
-		if(worldView.getCharacterBody().m_linearVelocity.x <= 2.5){
-	      worldView.getCharacterBody().applyLinearImpulse(new Vec2(5f, 0), worldView.getCharacterBody().getPosition());
+		if(inGameController.getCharacterController().getCharacterView().getCharacterBody().m_linearVelocity.x <= 2.5){
+			inGameController.getCharacterController().getCharacterView().getCharacterBody().applyLinearImpulse(new Vec2(5f, 0),
+					inGameController.getCharacterController().getCharacterView().getCharacterBody().getPosition());
 		}
 	}
 	
 	public void moveBodyLeft() {
 		//add force to move left - maxSpeed left
-		if(worldView.getCharacterBody().m_linearVelocity.x >= -2.5){
-			worldView.getCharacterBody().applyLinearImpulse(new Vec2(-5f, 0), worldView.getCharacterBody().getPosition()); 
+		if(inGameController.getCharacterController().getCharacterView().getCharacterBody().m_linearVelocity.x >= -2.5){
+			inGameController.getCharacterController().getCharacterView().getCharacterBody().applyLinearImpulse(new Vec2(-5f, 0),
+					inGameController.getCharacterController().getCharacterView().getCharacterBody().getPosition()); 
 		}
 	}
 
 	
 	public void jumpBody(){
-		final float impulse = worldView.getCharacterBody().getMass();
-		worldView.getCharacterBody().applyLinearImpulse(new Vec2(0,-impulse), worldView.getCharacterBody().getWorldCenter());
+		final float impulse = inGameController.getCharacterController().getCharacterView().getCharacterBody().getMass();
+		inGameController.getCharacterController().getCharacterView().getCharacterBody().applyLinearImpulse(new Vec2(0,-impulse),
+				inGameController.getCharacterController().getCharacterView().getCharacterBody().getWorldCenter());
 	}
 	
 	public void updateSlickShape() {
-		worldView.getCharacterView().getSlickShape().setX(WorldUtils.meter2Pixel(worldView.getCharacterBody().getPosition().x) - worldView.getCharacterView().getCharacter().RADIUS);
-		worldView.getCharacterView().getSlickShape().setY(WorldUtils.meter2Pixel(worldView.getCharacterBody().getPosition().y) - worldView.getCharacterView().getCharacter().RADIUS);
+		inGameController.getCharacterController().getCharacterView().getSlickShape().setX(WorldUtils.meter2Pixel(
+				inGameController.getCharacterController().getCharacterView().getCharacterBody().getPosition().x) -
+				inGameController.getCharacterController().getCharacter().RADIUS);
+		inGameController.getCharacterController().getCharacterView().getSlickShape().setY(WorldUtils.meter2Pixel(
+				inGameController.getCharacterController().getCharacterView().getCharacterBody().getPosition().y) -
+				inGameController.getCharacterController().getCharacter().RADIUS);
 	}
 	
 	public void updateItemShape(ArrayList<ItemView> itemList, CharacterView characterView){

@@ -6,9 +6,9 @@ public class InGame {
 	private Player player;
 	private StatusBar statusBar;
 		
-	public InGame(model.World world) {
+	public InGame(Character character) {
 		this.world = world; 
-		player = new Player(world.getCharacter());
+		player = new Player(character);
 		statusBar = new StatusBar();
 	}
 

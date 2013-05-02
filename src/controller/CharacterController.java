@@ -32,7 +32,7 @@ public class CharacterController {
 					this.inGameController.getBlockMapController().getBlockMapView().getStartingPos().getPosY());
 		}
 		
-		this.characterView = new CharacterView(character);
+		this.characterView = new CharacterView(character, inGameController.getWorldController().getWorldView());
 	}
 	
 	public Character getCharacter() {
@@ -115,7 +115,7 @@ public class CharacterController {
 	
 	
 	public void tryToJumpCharacter() {
-		if(inGameController.getWorldController().getWorldView().getCharacterBody().getLinearVelocity().y == 0){
+		if(characterView.getCharacterBody().getLinearVelocity().y == 0){
 			characterView.setColor(Color.red);
 			inGameController.getWorldController().jumpBody();
 		}
