@@ -49,9 +49,9 @@ public class Character {
 	}
 	
 	public void dropDownItem(Item item){
-		item.setY(this.y-RADIUS);
-		item.setX(this.x);
 		item.setPickedUp(false);
+		item.setY((this.y+RADIUS*2-item.HEIGHT));
+		item.setX(this.x+RADIUS);
 		this.heldItem = null;
 	}
 }

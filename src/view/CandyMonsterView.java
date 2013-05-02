@@ -4,6 +4,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 import model.CandyMonster;
+import model.Item;
 
 public class CandyMonsterView {
 	private CandyMonster candyMonster;
@@ -36,5 +37,10 @@ public class CandyMonsterView {
 	public Color getColor() {
 		return this.color;
 	}
+	
+	public void setColor(Color color){
+		this.color = color;
+	}
+
 	
 }
