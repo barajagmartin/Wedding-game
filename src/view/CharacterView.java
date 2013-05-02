@@ -5,6 +5,7 @@ import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
+import org.jbox2d.dynamics.joints.WeldJointDef;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.geom.Circle;
 import org.newdawn.slick.geom.Rectangle;
@@ -18,10 +19,13 @@ import model.Character;
 public class CharacterView {
 	private Character character;
 	private Shape slickShape;
-	private CircleShape jBox2DRectangle;
+	private CircleShape jBox2DCircle;
 	private BodyDef bodyDef;
 	private FixtureDef fixtureDef;
 	private Color color;
+	private CircleShape feetShape;
+	private BodyDef feetBodyDef;
+	private FixtureDef feetFixtureDef;
 	
 	public CharacterView(Character character) {
 		this.character = character;
@@ -31,8 +35,8 @@ public class CharacterView {
 				this.character.getY()-(Character.RADIUS/2), Character.RADIUS);
 		this.color = Color.blue;
 		
-		jBox2DRectangle = new CircleShape();
-		jBox2DRectangle.m_radius = WorldUtils.pixel2Meter(character.RADIUS);
+		jBox2DCircle = new CircleShape();
+		jBox2DCircle.m_radius = WorldUtils.pixel2Meter(Character.RADIUS);
 		//jBox2DRectangle.setAsBox(WorldUtils.pixel2Meter(character.WIDTH)/2, WorldUtils.pixel2Meter(character.HEIGHT)/2);
 		
 		//ska inställningarna vara i controllern? vi tror det! :)
@@ -42,10 +46,24 @@ public class CharacterView {
 		bodyDef.fixedRotation = true;
 		
 		fixtureDef = new FixtureDef();
-		fixtureDef.shape = this.jBox2DRectangle;
+		fixtureDef.shape = this.jBox2DCircle;
 		fixtureDef.density = 1f; //gör till konstanter TODO
 		fixtureDef.friction = 0.4f;
 		fixtureDef.restitution = 0f;
+		
+		feetShape = new CircleShape();
+		feetShape.m_radius = WorldUtils.pixel2Meter(Character.RADIUS*2);
+		
+		feetBodyDef = new BodyDef();
+		feetBodyDef.position.set(WorldUtils.pixel2Meter(character.getX()), WorldUtils.pixel2Meter(character.getY()-1));
+		feetBodyDef.type = BodyType.DYNAMIC;
+		feetBodyDef.fixedRotation = true;
+		
+		feetFixtureDef = new FixtureDef();
+		feetFixtureDef.shape = feetShape;
+		feetFixtureDef.density = 0.1f;
+		feetFixtureDef.friction = 0f;
+		
 		
 	}
 	
@@ -53,8 +71,8 @@ public class CharacterView {
 		return this.slickShape;
 	}
 	
-	public org.jbox2d.collision.shapes.CircleShape getjBox2DRectangle() {
-		return this.jBox2DRectangle;
+	public org.jbox2d.collision.shapes.CircleShape getjBox2DCircle() {
+		return this.jBox2DCircle;
 	}
 	
 	public BodyDef getBodyDef() {
@@ -76,5 +94,13 @@ public class CharacterView {
 
 	public Character getCharacter() {
 		return this.character;
+	}
+
+	public BodyDef getFeetBodyDef() {
+		return feetBodyDef;
+	}
+
+	public FixtureDef getFeetFixtureDef() {
+		return feetFixtureDef;
 	}
 }

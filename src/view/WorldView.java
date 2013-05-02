@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import model.Block;
 
+import org.jbox2d.callbacks.ContactImpulse;
+import org.jbox2d.callbacks.ContactListener;
+import org.jbox2d.collision.Manifold;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
@@ -11,15 +14,20 @@ import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
+import org.jbox2d.dynamics.contacts.Contact;
+import org.jbox2d.dynamics.joints.WeldJointDef;
+
 import utils.WorldUtils;
 
-public class WorldView {
+public class WorldView implements ContactListener {
 	private model.World world;
 	private CharacterView characterView;
 	private Vec2 gravity;
 	boolean doSleep;
 	private World jBox2DWorld;
 	private Body characterBody;
+	private Body feetBody;
+	private WeldJointDef weldJointDef;
 	private Body groundBody;
 	private Body leftWallBody;
 	private Body rightWallBody;
@@ -72,6 +80,20 @@ public class WorldView {
 		characterBody = jBox2DWorld.createBody(characterView.getBodyDef());
 		characterBody.createFixture(characterView.getFixtureDef());
 		characterBody.m_mass = 35f;
+		feetBody = jBox2DWorld.createBody(characterView.getFeetBodyDef());
+		feetBody.createFixture(characterView.getFeetFixtureDef());
+		feetBody.m_mass = 0f;
+		weldJointDef = new WeldJointDef();
+		weldJointDef.initialize(characterBody, feetBody, characterBody.getWorldCenter());
+		weldJointDef.bodyA = characterBody;
+		weldJointDef.bodyB = feetBody;
+		weldJointDef.collideConnected = true;
+		weldJointDef.referenceAngle = 0;
+		
+		
+		
+		jBox2DWorld.createJoint(weldJointDef);
+		jBox2DWorld.setContactListener(this);
 	}
 	
 	public CharacterView getCharacterView() {
@@ -102,6 +124,14 @@ public class WorldView {
 		return characterBody;
 	}
 	
+	public Body getFeetBody() {
+		return feetBody;
+	}
+
+	public WeldJointDef getWeldJointDef() {
+		return weldJointDef;
+	}
+
 	public Body getGroundBody() {
 		return groundBody;
 	}
@@ -127,6 +157,31 @@ public class WorldView {
 		
 		body = jBox2DWorld.createBody(bodyDef);
 		body.createFixture(fixtureDef);
+	}
+
+	@Override
+	public void beginContact(Contact contact) {
+		System.out.println();
+		System.out.println("x: " + characterBody.getPosition().x + "\ty: " + characterBody.getPosition().x);
+		System.out.println("x: " + feetBody.getPosition().x + "\ty: " + feetBody.getPosition().x);
+	}
+
+	@Override
+	public void endContact(Contact contact) {
+		System.out.println("Nuddar inte mark!");
+		
+	}
+
+	@Override
+	public void postSolve(Contact contact, ContactImpulse impulse) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void preSolve(Contact contact, Manifold oldManifold) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
