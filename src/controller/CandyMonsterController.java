@@ -29,9 +29,10 @@ public class CandyMonsterController {
 	
 	public void isDroppedOnMonster(Item item){
 		if(!item.isPickedUp() && item.CANDY_NUMBER == candyMonster.CANDY_NUMBER && 
-				candyMonsterView.getShape().contains(inGameController.getItemController().get(candyMonster.CANDY_NUMBER).getItemView().getShape())){
+				(candyMonsterView.getShape().contains(inGameController.getItemController().get(candyMonster.CANDY_NUMBER).getItemView().getShape())) ||
+				candyMonsterView.getShape().intersects(inGameController.getItemController().get(candyMonster.CANDY_NUMBER).getItemView().getShape())){
 			candyMonsterView.setColor(Color.black); //senare ändra bild
-			inGameController.getItemController().remove(candyMonster.CANDY_NUMBER);
+			//inGameController.getItemController().remove(candyMonster.CANDY_NUMBER);
 		}
 	}
 }
