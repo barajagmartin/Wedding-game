@@ -76,6 +76,9 @@ public class InGameController extends BasicGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
+		//check if the game is over
+		checkGameOverConditions();
+		//check key presses
 		characterController.keyPressedUpdate(gc);
 		//simulate the JBox2D world TODO timeStep --> delta
 		if(delta > 0) {
@@ -98,7 +101,23 @@ public class InGameController extends BasicGameState {
 			} else if (characterController.isHoldingItem() && 
 					getWorldController().getWorldView().getCharacterBody().getLinearVelocity().y == 0) {
 				characterController.getCharacter().dropDownItem(characterController.getCharacter().getHeldItem());
+				for (int i = 0; i < this.itemController.size(); i++) {
+					this.itemController.get(i).uppdateItemShape();
+				}
 			}
+		}
+	}
+	
+	/**
+	 * checks if the game is done by checking the lives on the character 
+	 * and the items left in the world.
+	 * 
+	 */
+	public void checkGameOverConditions() {
+		if (this.itemController.isEmpty()) {
+			System.out.println("No more items to pick up, level cleared!");
+		} else if (this.characterController.getCharacter().getLife() == 0) {
+			System.out.println("No more lives, you are dead!");
 		}
 	}
 	
