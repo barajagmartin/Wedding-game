@@ -27,7 +27,7 @@ public class CandyMonsterController {
 		return this.candyMonsterView;
 	}
 	
-	public void isDropedDown(Item item){
+	public void isDroppedOnMonster(Item item){
 		if(!item.isPickedUp() && item.CANDY_NUMBER == candyMonster.CANDY_NUMBER && 
 				candyMonsterView.getShape().contains(inGameController.getItemController().get(candyMonster.CANDY_NUMBER).getItemView().getShape())){
 			candyMonsterView.setColor(Color.black); //senare ändra bild
