@@ -1,6 +1,9 @@
 package controller;
 
+import org.newdawn.slick.Color;
+
 import model.CandyMonster;
+import model.Item;
 import view.CandyMonsterView;
 
 public class CandyMonsterController {
@@ -22,5 +25,13 @@ public class CandyMonsterController {
 	
 	public CandyMonsterView getCandyMonsterView(){
 		return this.candyMonsterView;
+	}
+	
+	public void isDropedDown(Item item){
+		if(!item.isPickedUp() && item.CANDY_NUMBER == candyMonster.CANDY_NUMBER && 
+				candyMonsterView.getShape().contains(inGameController.getItemController().get(candyMonster.CANDY_NUMBER).getItemView().getShape())){
+			candyMonsterView.setColor(Color.black); //senare ändra bild
+			inGameController.getItemController().remove(candyMonster.CANDY_NUMBER);
+		}
 	}
 }
