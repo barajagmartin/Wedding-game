@@ -105,7 +105,7 @@ public class InGameController extends BasicGameState {
 				lastHeldItem = characterController.getCharacter().getHeldItem();	
 				characterController.getCharacter().dropDownItem(characterController.getCharacter().getHeldItem());
 				this.itemController.get(lastHeldItem.CANDY_NUMBER).uppdateItemShape();
-				candyMonsterController.get(lastHeldItem.CANDY_NUMBER).isDroppedDown(lastHeldItem);
+				candyMonsterController.get(lastHeldItem.CANDY_NUMBER).isDroppedOnMonster(lastHeldItem);
 			}
 		}
 	}
