@@ -24,5 +24,10 @@ public class ItemController {
 	public ItemView getItemView(){
 		return itemView;
 	}
+	
+	public void uppdateItemShape(){
+		this.itemView.getShape().setX(this.item.getX());
+		this.itemView.getShape().setY(this.item.getY());
+	}
 
 }

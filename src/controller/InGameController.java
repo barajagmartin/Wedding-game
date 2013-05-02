@@ -98,6 +98,9 @@ public class InGameController extends BasicGameState {
 			} else if (characterController.isHoldingItem() && 
 					getWorldController().getWorldView().getCharacterBody().getLinearVelocity().y == 0) {
 				characterController.getCharacter().dropDownItem(characterController.getCharacter().getHeldItem());
+				for (int i = 0; i < this.itemController.size(); i++) {
+					this.itemController.get(i).uppdateItemShape();
+				}
 			}
 		}
 	}
