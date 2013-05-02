@@ -67,6 +67,7 @@ public class InGameController extends BasicGameState {
 		 this.worldController = new WorldController(this);
 		 this.inGame = new InGame(worldController.getWorld());
 		 this.inGameView = new InGameView(inGame, worldController.getWorldView());
+		 
 	}
 
 	@Override
