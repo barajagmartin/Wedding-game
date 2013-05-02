@@ -26,12 +26,14 @@ public class CandyMonsterController {
 	public CandyMonsterView getCandyMonsterView(){
 		return this.candyMonsterView;
 	}
-	
+	/*Checks if the item is dropped correctly by checking if: the item is picked up, the candynumbers are the same
+	 * and if the item contains/intersects with the character*/
 	public void isDroppedOnMonster(Item item){
 		if(!item.isPickedUp() && item.CANDY_NUMBER == candyMonster.CANDY_NUMBER && 
 				(candyMonsterView.getShape().contains(inGameController.getItemController().get(candyMonster.CANDY_NUMBER).getItemView().getShape())) ||
-				candyMonsterView.getShape().intersects(inGameController.getItemController().get(candyMonster.CANDY_NUMBER).getItemView().getShape())){
-			candyMonsterView.setColor(Color.black); //senare ändra bild
+				 candyMonsterView.getShape().intersects(inGameController.getItemController().get(candyMonster.CANDY_NUMBER).getItemView().getShape())){
+			candyMonsterView.setColor(Color.black); //ändra senare till bild
+			//kolla isDelivered
 			//inGameController.getItemController().remove(candyMonster.CANDY_NUMBER);
 		}
 	}
