@@ -1,7 +1,7 @@
 *.class
-!/.classpath
+/.classpath
 *.md
-
+*/bin
 # Package Files #
 *.war
 *.ear

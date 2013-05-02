@@ -83,18 +83,13 @@ public class WorldView implements ContactListener {
 		characterBody.m_mass = 35f;
 		feetBody = jBox2DWorld.createBody(characterView.getFeetBodyDef());
 		feetBody.createFixture(characterView.getFeetFixtureDef());
-		feetBody.m_mass = 5f;
+		feetBody.m_mass = 0.00000001f;
+		feetBody.setAwake(false);
 		weldJointDef = new WeldJointDef();
-		weldJointDef.bodyA = characterBody;
-		weldJointDef.bodyB = feetBody;
 		
 		weldJointDef.collideConnected = false;
-		weldJointDef.referenceAngle = 0;
-		weldJointDef.localAnchorA.set(4,4);
-		weldJointDef.localAnchorB.set(4,4);
-		weldJointDef.referenceAngle = 0;
-		System.out.println("LocalAnchorA" + weldJointDef.localAnchorA);
-		System.out.println("LocalAnchorB" + weldJointDef.localAnchorB);
+		weldJointDef.localAnchorA.set(0,10);
+		weldJointDef.localAnchorB.set(0,-10);
 		weldJointDef.initialize(characterBody, feetBody, characterBody.getPosition());
 		
 		jBox2DWorld.createJoint(weldJointDef);
