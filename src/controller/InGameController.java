@@ -23,6 +23,7 @@ import view.InGameView;
 import model.BlockMap;
 import model.Game;
 import model.InGame;
+import model.Item;
 
 public class InGameController extends BasicGameState {
 	private InGame inGame;
@@ -33,6 +34,7 @@ public class InGameController extends BasicGameState {
 	private ArrayList <CandyMonsterController> candyMonsterController;
 	private ArrayList <ItemController> itemController;
 	private ArrayList <SpikesController> spikeController;
+	private Item lastHeldItem;
 	
 	//should be based on the frame update (delta or something like that)
 	private float timeStep = 1.0f / 60.0f;
@@ -100,10 +102,10 @@ public class InGameController extends BasicGameState {
 				characterController.getCharacter().pickUpItem(characterController.FindItemToPickUp());
 			} else if (characterController.isHoldingItem() && 
 					getWorldController().getWorldView().getCharacterBody().getLinearVelocity().y == 0) {
+				lastHeldItem = characterController.getCharacter().getHeldItem();	
 				characterController.getCharacter().dropDownItem(characterController.getCharacter().getHeldItem());
-				for (int i = 0; i < this.itemController.size(); i++) {
-					this.itemController.get(i).uppdateItemShape();
-				}
+				this.itemController.get(lastHeldItem.CANDY_NUMBER).uppdateItemShape();
+				candyMonsterController.get(lastHeldItem.CANDY_NUMBER).isDropedDown(lastHeldItem);
 			}
 		}
 	}
