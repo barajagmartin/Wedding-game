@@ -39,5 +39,6 @@ public class Item {
 
 	public void setPickedUp(boolean isPickedUp) {
 		this.isPickedUp = isPickedUp;
-	}		
+	}	
+	
 }

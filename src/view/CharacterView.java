@@ -52,10 +52,10 @@ public class CharacterView {
 		fixtureDef.restitution = 0f;
 		
 		feetShape = new CircleShape();
-		feetShape.m_radius = WorldUtils.pixel2Meter(Character.RADIUS*2);
+		feetShape.m_radius = WorldUtils.pixel2Meter(Character.RADIUS);
 		
 		feetBodyDef = new BodyDef();
-		feetBodyDef.position.set(WorldUtils.pixel2Meter(character.getX()), WorldUtils.pixel2Meter(character.getY()-1));
+		feetBodyDef.position.set(WorldUtils.pixel2Meter(character.getX()), WorldUtils.pixel2Meter(character.getY()));
 		feetBodyDef.type = BodyType.DYNAMIC;
 		feetBodyDef.fixedRotation = true;
 		
@@ -63,6 +63,7 @@ public class CharacterView {
 		feetFixtureDef.shape = feetShape;
 		feetFixtureDef.density = 0.1f;
 		feetFixtureDef.friction = 0f;
+		feetFixtureDef.restitution = 0f;
 		
 		
 	}

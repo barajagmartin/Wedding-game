@@ -15,6 +15,7 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 import org.jbox2d.dynamics.contacts.Contact;
+import org.jbox2d.dynamics.joints.Joint;
 import org.jbox2d.dynamics.joints.WeldJointDef;
 
 import utils.WorldUtils;
@@ -82,15 +83,19 @@ public class WorldView implements ContactListener {
 		characterBody.m_mass = 35f;
 		feetBody = jBox2DWorld.createBody(characterView.getFeetBodyDef());
 		feetBody.createFixture(characterView.getFeetFixtureDef());
-		feetBody.m_mass = 0f;
+		feetBody.m_mass = 5f;
 		weldJointDef = new WeldJointDef();
-		weldJointDef.initialize(characterBody, feetBody, characterBody.getWorldCenter());
 		weldJointDef.bodyA = characterBody;
 		weldJointDef.bodyB = feetBody;
-		weldJointDef.collideConnected = true;
+		
+		weldJointDef.collideConnected = false;
 		weldJointDef.referenceAngle = 0;
-		
-		
+		weldJointDef.localAnchorA.set(4,4);
+		weldJointDef.localAnchorB.set(4,4);
+		weldJointDef.referenceAngle = 0;
+		System.out.println("LocalAnchorA" + weldJointDef.localAnchorA);
+		System.out.println("LocalAnchorB" + weldJointDef.localAnchorB);
+		weldJointDef.initialize(characterBody, feetBody, characterBody.getPosition());
 		
 		jBox2DWorld.createJoint(weldJointDef);
 		jBox2DWorld.setContactListener(this);

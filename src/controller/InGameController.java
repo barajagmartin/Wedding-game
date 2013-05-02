@@ -23,6 +23,7 @@ import view.InGameView;
 import model.BlockMap;
 import model.Game;
 import model.InGame;
+import model.Item;
 
 public class InGameController extends BasicGameState {
 	private InGame inGame;
@@ -33,6 +34,7 @@ public class InGameController extends BasicGameState {
 	private ArrayList <CandyMonsterController> candyMonsterController;
 	private ArrayList <ItemController> itemController;
 	private ArrayList <SpikesController> spikeController;
+	private Item lastHeldItem;
 	
 	//should be based on the frame update (delta or something like that)
 	private float timeStep = 1.0f / 60.0f;
@@ -76,6 +78,9 @@ public class InGameController extends BasicGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
+		//check if the game is over
+		checkGameOverConditions();
+		//check key presses
 		characterController.keyPressedUpdate(gc);
 		//simulate the JBox2D world TODO timeStep --> delta
 		if(delta > 0) {
@@ -97,8 +102,24 @@ public class InGameController extends BasicGameState {
 				characterController.getCharacter().pickUpItem(characterController.FindItemToPickUp());
 			} else if (characterController.isHoldingItem() && 
 					getWorldController().getWorldView().getCharacterBody().getLinearVelocity().y == 0) {
+				lastHeldItem = characterController.getCharacter().getHeldItem();	
 				characterController.getCharacter().dropDownItem(characterController.getCharacter().getHeldItem());
+				this.itemController.get(lastHeldItem.CANDY_NUMBER).uppdateItemShape();
+				candyMonsterController.get(lastHeldItem.CANDY_NUMBER).isDroppedOnMonster(lastHeldItem);
 			}
+		}
+	}
+	
+	/**
+	 * checks if the game is done by checking the lives on the character 
+	 * and the items left in the world.
+	 * 
+	 */
+	public void checkGameOverConditions() {
+		if (this.itemController.isEmpty()) {
+			System.out.println("No more items to pick up, level cleared!");
+		} else if (this.characterController.getCharacter().getLife() == 0) {
+			System.out.println("No more lives, you are dead!");
 		}
 	}
 	
