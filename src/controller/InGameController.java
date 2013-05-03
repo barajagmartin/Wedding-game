@@ -36,7 +36,6 @@ public class InGameController extends BasicGameState {
 	private ArrayList <SpikesController> spikeController;
 	private Item lastHeldItem;
 	private int itemsDelivered;
-	private GameContainer gc;
 	
 	//should be based on the frame update (delta or something like that)
 	private float timeStep = 1.0f / 60.0f;
@@ -51,7 +50,6 @@ public class InGameController extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		this.gc = gc;
 		this.candyMonsterController = new ArrayList<CandyMonsterController>();
 		this.itemController = new ArrayList<ItemController>();
 		this.spikeController = new ArrayList<SpikesController>();
