@@ -35,6 +35,7 @@ public class InGameController extends BasicGameState {
 	private ArrayList <ItemController> itemController;
 	private ArrayList <SpikesController> spikeController;
 	private Item lastHeldItem;
+	private int itemsDelivered = 0;
 	
 	//should be based on the frame update (delta or something like that)
 	private float timeStep = 1.0f / 60.0f;
@@ -129,6 +130,16 @@ public class InGameController extends BasicGameState {
 		return Game.IN_GAME;
 	}
 	
+	public int getItemsDelivered() {
+		return itemsDelivered;
+	}
+
+
+	public void setItemsDelivered(int itemsDelivered) {
+		this.itemsDelivered = itemsDelivered;
+	}
+
+
 	public CharacterController getCharacterController() {
 		return characterController;
 	}
