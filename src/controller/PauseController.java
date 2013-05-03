@@ -52,7 +52,14 @@ public class PauseController extends BasicGameState{
 		if(key == Input.KEY_ESCAPE){
 			sbg.enterState(Game.IN_GAME);
 		}
-		//Check "buttons aka Rects if pressed TODO
+		if(key == Input.KEY_DOWN){
+			pauseView.markButtonDown();
+			//enter state depending on which button is marked TODO
+		}
+		if(key == Input.KEY_UP){
+			pauseView.markButtonUp();
+			//enter state depending on which button is marked TODO
+		}
 	}
 
 	@Override
