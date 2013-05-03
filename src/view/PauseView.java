@@ -46,7 +46,7 @@ public class PauseView {
 			//Start coordinates same as pause menu
 			int buttonX = worldWidth/4;
 			int buttonY = worldHeight/5;
-			for(int i = 0; i < buttonList.size(); i++){
+			for(int i = 0; i < 4; i++){
 				this.buttonList.add(new Rectangle(buttonX, buttonY, buttonWidth, buttonHeight ));
 				g.draw(buttonList.get(i));
 				g.setColor(Color.green);
