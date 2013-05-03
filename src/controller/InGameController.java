@@ -30,6 +30,7 @@ public class InGameController extends BasicGameState {
 	private InGameView inGameView;
 	private CharacterController characterController;
 	private WorldController worldController;
+	private StatusBarController statusBarController;
 	private BlockMapController blockMapController;
 	private ArrayList <CandyMonsterController> candyMonsterController;
 	private ArrayList <ItemController> itemController;
@@ -67,9 +68,11 @@ public class InGameController extends BasicGameState {
 			 this.spikeController.add(new SpikesController(this, i));
 		 }
 		 this.worldController = new WorldController(this);
+		 this.statusBarController = new StatusBarController(this);
 		 this.characterController = new CharacterController(this);
-		 this.inGame = new InGame(characterController.getCharacter());
-		 this.inGameView = new InGameView(inGame, worldController.getWorldView(), characterController.getCharacterView());
+		 this.inGame = new InGame();
+		 this.inGameView = new InGameView(inGame, worldController.getWorldView(), statusBarController.getStatusBarView(), 
+				 characterController.getCharacterView());
 		 itemsDelivered = 0;
 
 	}

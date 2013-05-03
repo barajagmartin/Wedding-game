@@ -8,6 +8,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import model.InGame;
+import model.StatusBar;
 
 /**
  * 	Visar upp World & StatusBar.
@@ -15,11 +16,13 @@ import model.InGame;
 public class InGameView {
 	private InGame inGame;
 	private WorldView worldView;
+	private StatusBarView statusBarView;
 	private CharacterView characterView;
 	
-	public InGameView(InGame inGame, WorldView worldView, CharacterView characterView) {
+	public InGameView(InGame inGame, WorldView worldView, StatusBarView statusBarView, CharacterView characterView) {
 		this.inGame = inGame;
 		this.worldView = worldView;
+		this.statusBarView = statusBarView;
 		this.characterView = characterView;
 	}
 	
@@ -53,6 +56,12 @@ public class InGameView {
 		}
 		//draw a temporary timer
 		g.drawString("Time : " + this.inGame.getTime(), 10, 25);
+		
+		//draw status bar
+		
+		for(int k = 0; k < characterView.getCharacter().getLife(); k++) {
+			statusBarView.getHeart()[k].draw(StatusBar.HEART_POSX[k], StatusBar.HEART_POSY);
+		}		
 	}
 
 	

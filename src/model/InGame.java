@@ -6,9 +6,9 @@ public class InGame {
 	private StatusBar statusBar;
 	private float time;
 		
-	public InGame(Character character) { 
+	public InGame() { 
 		this.time = 2*60; //set specific to level (in this case it is 2 min)
-		player = new Player(character);
+		
 		statusBar = new StatusBar();
 	}
 
