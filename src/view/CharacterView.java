@@ -57,7 +57,7 @@ public class CharacterView {
 		fixtureDef = new FixtureDef();
 		fixtureDef.shape = this.jBox2DCircle;
 		fixtureDef.density = 1f; //gör till konstanter TODO
-		fixtureDef.friction = 0.4f;
+		fixtureDef.friction = 0.8f;
 		fixtureDef.restitution = 0f;
 		
 		characterBody = worldView.getjBox2DWorld().createBody(bodyDef);
