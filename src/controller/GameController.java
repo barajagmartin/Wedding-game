@@ -25,7 +25,8 @@ public class GameController extends StateBasedGame {
 		this.addState(inGameController);
 		this.addState(pauseController);
 	}
-
+	
+	/** Initialise the list of states making up the game */
 	@Override
 	public void initStatesList(GameContainer container) throws SlickException {
 		//this.getState(inGameController.getID()).init(container, this); TODO, ska den här anropas alls?! den anropas ändå!
