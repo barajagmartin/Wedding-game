@@ -1,5 +1,7 @@
 package view;
 
+import java.util.ArrayList;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -10,10 +12,16 @@ import org.newdawn.slick.state.StateBasedGame;
 public class PauseView {
 	private int worldWidth;
 	private int worldHeight;
+	private int buttonHeight;
+	private int buttonWidth;
+	private ArrayList<Rectangle> buttonList;
 	
 	public PauseView(int worldWidth, int worldHeight){
 		this.worldWidth = worldWidth;
 		this.worldHeight = worldHeight;
+		this.buttonWidth = worldWidth/2;
+		this.buttonHeight = (2*worldHeight)/15;
+		buttonList = new ArrayList<Rectangle>();
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
@@ -31,12 +39,19 @@ public class PauseView {
 			 * doing noting, the state is paused (not rendered or updated) until you go back to that state*/
 
 			/*Create pause menu*/
-			Rectangle pauseMenu = new Rectangle(worldWidth/4, worldHeight/4, worldWidth/2, worldHeight/2); //x, y, width, height
+			Rectangle pauseMenu = new Rectangle(worldWidth/4, worldHeight/5, worldWidth/2, (2*worldHeight)/3); //x, y, width, height
 			g.draw(pauseMenu);
 			g.setColor(Color.green);
 			/*Create "buttons" in menu*/
-			for(int i = 0; i < 4; i++){
-				//buttonList = 
+			//Start coordinates same as pause menu
+			int buttonX = worldWidth/4;
+			int buttonY = worldHeight/5;
+			for(int i = 0; i < buttonList.size(); i++){
+				this.buttonList.add(new Rectangle(buttonX, buttonY, buttonWidth, buttonHeight ));
+				g.draw(buttonList.get(i));
+				g.setColor(Color.green);
+				//increase Y with buttonHeight to place the button under each other
+				buttonY = buttonY + buttonHeight;
 			}
 		//}
 	}
