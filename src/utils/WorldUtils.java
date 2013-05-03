@@ -3,7 +3,7 @@ package utils;
 import view.WorldView;
 
 public class WorldUtils {
-	public static int SCALE = 25;
+	public static float SCALE = 25;
 	
 	public static float pixel2Meter(int px) {
 		return px / SCALE;

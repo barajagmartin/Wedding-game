@@ -62,7 +62,7 @@ public class WorldController {
 
 	public void moveBodyRight() {
 		//add force to move right - maxSpeed right
-		if(inGameController.getCharacterController().getCharacterView().getCharacterBody().m_linearVelocity.x <= 2.5){
+		if(inGameController.getCharacterController().getCharacterView().getCharacterBody().m_linearVelocity.x <= 3){
 			inGameController.getCharacterController().getCharacterView().getCharacterBody().applyLinearImpulse(new Vec2(5f, 0),
 					inGameController.getCharacterController().getCharacterView().getCharacterBody().getPosition());
 		}
@@ -70,7 +70,7 @@ public class WorldController {
 	
 	public void moveBodyLeft() {
 		//add force to move left - maxSpeed left
-		if(inGameController.getCharacterController().getCharacterView().getCharacterBody().m_linearVelocity.x >= -2.5){
+		if(inGameController.getCharacterController().getCharacterView().getCharacterBody().m_linearVelocity.x >= -3){
 			inGameController.getCharacterController().getCharacterView().getCharacterBody().applyLinearImpulse(new Vec2(-5f, 0),
 					inGameController.getCharacterController().getCharacterView().getCharacterBody().getPosition()); 
 		}
@@ -78,7 +78,7 @@ public class WorldController {
 
 	
 	public void jumpBody(){
-		final float impulse = inGameController.getCharacterController().getCharacterView().getCharacterBody().getMass();
+		final float impulse = inGameController.getCharacterController().getCharacterView().getCharacterBody().getMass()+70;
 		inGameController.getCharacterController().getCharacterView().getCharacterBody().applyLinearImpulse(new Vec2(0,-impulse),
 				inGameController.getCharacterController().getCharacterView().getCharacterBody().getWorldCenter());
 	}
