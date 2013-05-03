@@ -36,6 +36,7 @@ public class InGameController extends BasicGameState {
 	private ArrayList <SpikesController> spikeController;
 	private Item lastHeldItem;
 	private int itemsDelivered;
+	private StateBasedGame sbg;
 	
 	//should be based on the frame update (delta or something like that)
 	private float timeStep = 1.0f / 60.0f;
@@ -50,6 +51,7 @@ public class InGameController extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
+		this.sbg = sbg;
 		this.candyMonsterController = new ArrayList<CandyMonsterController>();
 		this.itemController = new ArrayList<ItemController>();
 		this.spikeController = new ArrayList<SpikesController>();
@@ -120,6 +122,9 @@ public class InGameController extends BasicGameState {
 				this.itemController.get(lastHeldItem.CANDY_NUMBER).uppdateItemShape();
 				candyMonsterController.get(lastHeldItem.CANDY_NUMBER).isDroppedOnMonster(lastHeldItem);
 			}
+		}
+		if (key == Input.KEY_ESCAPE){
+			sbg.enterState(Game.PAUSE_MENU);
 		}
 	}
 	
