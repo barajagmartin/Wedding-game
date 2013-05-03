@@ -11,7 +11,8 @@ public class StatusBarView {
 
 	private StatusBar statusBar;
 	private Image[] heart;
-	private Shape fixedBar;
+	private Rectangle fixedBar;
+	private Rectangle timeBar;
 	
 	public StatusBarView(StatusBar statusBar) throws SlickException {
 		this.statusBar = statusBar;
@@ -20,6 +21,11 @@ public class StatusBarView {
 		heart[1] = heart[0].copy();
 		heart[2] = heart[0].copy();
 		fixedBar = new Rectangle(StatusBar.FIXED_BAR_POSX, StatusBar.HEART_POSY, StatusBar.FIXED_BAR_WIDTH, StatusBar.FIXED_BAR_HEIGHT);
+		timeBar = new Rectangle(fixedBar.getX()+5, fixedBar.getY()+5, fixedBar.getWidth()-10, fixedBar.getHeight()-10);
+	}
+	
+	public void updateTimeBar (float levelTime, float remainingTime) {
+		this.timeBar.setWidth((fixedBar.getWidth()-10)*(remainingTime/levelTime));
 	}
 
 	public Image[] getHeart() {
@@ -28,5 +34,9 @@ public class StatusBarView {
 
 	public Shape getFixedBar() {
 		return fixedBar;
+	}
+
+	public Rectangle getTimeBar() {
+		return timeBar;
 	}
 }
