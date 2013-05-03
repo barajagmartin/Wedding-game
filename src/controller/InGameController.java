@@ -140,8 +140,10 @@ public class InGameController extends BasicGameState {
 	public void checkGameOverConditions() {
 		if (this.itemController.size() == itemsDelivered) {
 			System.out.println("No more items to pick up, level cleared!");
+			sbg.enterState(Game.END_OF_LEVEL);
 		} else if (this.characterController.getCharacter().getLife() == 0) {
 			System.out.println("No more lives, you are dead!");
+			sbg.enterState(Game.END_OF_LEVEL);
 		}
 	}
 	

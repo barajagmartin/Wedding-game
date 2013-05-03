@@ -18,6 +18,7 @@ public class BlockMapView {
 	private BlockMap itemMap;
 	private TiledMap tiledMap;
 	private Block startingPos;
+	private float levelTime;
 	
 	public BlockMapView(BlockMap solidGroundMap, BlockMap candyMonsterMap, BlockMap spikesMap, BlockMap itemMap, TiledMap tiledMap) {
 		this.solidGroundMap = solidGroundMap;
@@ -74,5 +75,9 @@ public class BlockMapView {
 
 	public Block getStartingPos() {
 		return startingPos;
+	}
+
+	public float getLevelTime() {
+		return levelTime;
 	}
 }

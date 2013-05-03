@@ -16,14 +16,17 @@ public class GameController extends StateBasedGame {
 	private Game game; //ta eventuellt bort FIXME
 	private InGameController inGameController;
 	private PauseController pauseController;
+	private EndOfLevelController endOfLevelController;
 	
 	public GameController(String name) {
 		super(name);
 		this.game = new Game(); //So long this is unnecessary FIXME
 		this.inGameController = new InGameController();
 		this.pauseController = new PauseController(this);
+		this.endOfLevelController = new EndOfLevelController(this);
 		this.addState(inGameController);
 		this.addState(pauseController);
+		this.addState(endOfLevelController);
 	}
 	
 	/** Initialise the list of states making up the game */
