@@ -81,7 +81,9 @@ public class InGameController extends BasicGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
+		//change the time for the game and the character
 		this.inGame.setTime(this.inGame.getTime()-(delta/1000f));
+		this.characterController.getCharacter().setTimeSinceHit(this.characterController.getCharacter().getTimeSinceHit() + delta/1000f);
 		
 		//check if the game is over
 		checkGameOverConditions();
@@ -97,8 +99,10 @@ public class InGameController extends BasicGameState {
 		characterController.getCharacter().setX((int)characterController.getCharacterView().getSlickShape().getX());
 		characterController.getCharacter().setY((int)characterController.getCharacterView().getSlickShape().getY());
 		
-		if(spikeController.get(0).getSpikesView().getShape().intersects(characterController.getCharacterView().getSlickShape())) {
+		if(spikeController.get(0).getSpikesView().getShape().intersects(characterController.getCharacterView().getSlickShape()) 
+				&& this.characterController.getCharacter().getTimeSinceHit() > 1) {
 			characterController.getCharacter().loseOneLife();
+			this.characterController.getCharacter().setTimeSinceHit(0);
 			System.out.println(characterController.getCharacter().getLife());
 		}
 	}
