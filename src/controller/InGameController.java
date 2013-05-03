@@ -35,7 +35,8 @@ public class InGameController extends BasicGameState {
 	private ArrayList <ItemController> itemController;
 	private ArrayList <SpikesController> spikeController;
 	private Item lastHeldItem;
-	private int itemsDelivered = 0;
+	private int itemsDelivered;
+	private GameContainer gc;
 	
 	//should be based on the frame update (delta or something like that)
 	private float timeStep = 1.0f / 60.0f;
@@ -50,6 +51,7 @@ public class InGameController extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
+		this.gc = gc;
 		this.candyMonsterController = new ArrayList<CandyMonsterController>();
 		this.itemController = new ArrayList<ItemController>();
 		this.spikeController = new ArrayList<SpikesController>();
@@ -68,6 +70,7 @@ public class InGameController extends BasicGameState {
 		 this.characterController = new CharacterController(this);
 		 this.inGame = new InGame(characterController.getCharacter());
 		 this.inGameView = new InGameView(inGame, worldController.getWorldView(), characterController.getCharacterView());
+		 itemsDelivered = 0;
 
 	}
 
@@ -114,6 +117,9 @@ public class InGameController extends BasicGameState {
 				candyMonsterController.get(lastHeldItem.CANDY_NUMBER).isDroppedOnMonster(lastHeldItem);
 			}
 		}
+		if(key == Input.KEY_ESCAPE){
+			
+		}
 	}
 	
 	/**
@@ -122,7 +128,7 @@ public class InGameController extends BasicGameState {
 	 * 
 	 */
 	public void checkGameOverConditions() {
-		if (this.itemController.isEmpty()) {
+		if (this.itemController.size() == itemsDelivered) {
 			System.out.println("No more items to pick up, level cleared!");
 		} else if (this.characterController.getCharacter().getLife() == 0) {
 			System.out.println("No more lives, you are dead!");
