@@ -89,7 +89,8 @@ public class InGameController extends BasicGameState {
 		//change the time for the game and the character
 		this.inGame.setTime(this.inGame.getTime()-(delta/1000f));
 		this.characterController.getCharacter().setTimeSinceHit(this.characterController.getCharacter().getTimeSinceHit() + delta/1000f);
-		
+		//update the timeBar
+		this.statusBarController.getStatusBarView().updateTimeBar(120, this.inGame.getTime());
 		//check if the game is over
 		checkGameOverConditions();
 		//check key presses
