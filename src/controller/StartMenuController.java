@@ -1,5 +1,7 @@
 package controller;
 
+import model.Game;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -9,7 +11,6 @@ import org.newdawn.slick.state.StateBasedGame;
 import view.StartMenuView;
 
 public class StartMenuController extends BasicGameState {
-
 	private StartMenuView startMenuView;
 	
 	public StartMenuController() {
@@ -39,8 +40,7 @@ public class StartMenuController extends BasicGameState {
 
 	@Override
 	public int getID() {
-		// TODO Auto-generated method stub
-		return 0;
+		return Game.START_MENU;
 	}
 
 }
