@@ -126,8 +126,9 @@ public class CharacterController {
 	 */
 	public Item FindItemToPickUp() {
 		for (int i = 0; i < inGameController.getWorldController().getItemViewList().size(); i++) {
-			if (characterView.getSlickShape().intersects(inGameController.getWorldController().getItemViewList().get(i).getShape()) ||
-					characterView.getSlickShape().contains(inGameController.getWorldController().getItemViewList().get(i).getShape())) {
+			if ((characterView.getSlickShape().intersects(inGameController.getWorldController().getItemViewList().get(i).getShape()) ||
+					characterView.getSlickShape().contains(inGameController.getWorldController().getItemViewList().get(i).getShape()))
+					&& !inGameController.getWorldController().getItemViewList().get(i).getItem().isDlivered) {
 				return inGameController.getWorldController().getItemViewList().get(i).getItem();
 			}
 		}

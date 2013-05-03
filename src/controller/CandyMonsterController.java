@@ -34,7 +34,8 @@ public class CandyMonsterController {
 				 candyMonsterView.getShape().intersects(inGameController.getItemController().get(candyMonster.CANDY_NUMBER).getItemView().getShape())){
 			candyMonsterView.setColor(Color.black); //ändra senare till bild
 			//kolla isDelivered
-			//inGameController.getItemController().remove(candyMonster.CANDY_NUMBER);
+			item.setDlivered(true);
+			this.inGameController.setItemsDelivered(inGameController.getItemsDelivered()+1);
 		}
 	}
 }

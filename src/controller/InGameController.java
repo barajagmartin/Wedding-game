@@ -35,6 +35,7 @@ public class InGameController extends BasicGameState {
 	private ArrayList <ItemController> itemController;
 	private ArrayList <SpikesController> spikeController;
 	private Item lastHeldItem;
+	private int itemsDelivered;
 	
 	//should be based on the frame update (delta or something like that)
 	private float timeStep = 1.0f / 60.0f;
@@ -67,6 +68,7 @@ public class InGameController extends BasicGameState {
 		 this.characterController = new CharacterController(this);
 		 this.inGame = new InGame(characterController.getCharacter());
 		 this.inGameView = new InGameView(inGame, worldController.getWorldView(), characterController.getCharacterView());
+		 itemsDelivered = 0;
 
 	}
 
@@ -93,6 +95,10 @@ public class InGameController extends BasicGameState {
 		characterController.getCharacter().setX((int)characterController.getCharacterView().getSlickShape().getX());
 		characterController.getCharacter().setY((int)characterController.getCharacterView().getSlickShape().getY());
 		
+		if(spikeController.get(0).getSpikesView().getShape().intersects(characterController.getCharacterView().getSlickShape())) {
+			characterController.getCharacter().loseOneLife();
+			System.out.println(characterController.getCharacter().getLife());
+		}
 	}
 
 	@Override
@@ -117,7 +123,7 @@ public class InGameController extends BasicGameState {
 	 * 
 	 */
 	public void checkGameOverConditions() {
-		if (this.itemController.isEmpty()) {
+		if (this.itemController.size() == itemsDelivered) {
 			System.out.println("No more items to pick up, level cleared!");
 		} else if (this.characterController.getCharacter().getLife() == 0) {
 			System.out.println("No more lives, you are dead!");
@@ -129,6 +135,16 @@ public class InGameController extends BasicGameState {
 		return Game.IN_GAME;
 	}
 	
+	public int getItemsDelivered() {
+		return itemsDelivered;
+	}
+
+
+	public void setItemsDelivered(int itemsDelivered) {
+		this.itemsDelivered = itemsDelivered;
+	}
+
+
 	public CharacterController getCharacterController() {
 		return characterController;
 	}
