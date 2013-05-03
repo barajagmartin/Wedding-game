@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="25" height="14" tilewidth="50" tileheight="50">
  <tileset firstgid="1" name="invisibles" tilewidth="50" tileheight="50">
-  <image source="pics/invisibles.png" width="200" height="50"/>
+  <image source="invisibles.png" width="200" height="50"/>
   <tile id="0">
    <properties>
     <property name="property" value="spikes"/>
@@ -24,7 +24,7 @@
   </tile>
  </tileset>
  <tileset firstgid="5" name="pinkstar" tilewidth="50" tileheight="50">
-  <image source="pics/pinkstar.png" width="50" height="50"/>
+  <image source="pinkstar.png" width="50" height="50"/>
   <tile id="0">
    <properties>
     <property name="property" value="solidGround"/>
