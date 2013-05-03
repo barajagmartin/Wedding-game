@@ -51,7 +51,8 @@ public class InGameView {
 			g.setColor(worldView.getItemViewList().get(j).getColor());
 			g.fill(worldView.getItemViewList().get(j).getShape());
 		}
-		
+		//draw a temporary timer
+		g.drawString("Time : " + this.inGame.getTime(), 10, 25);
 	}
 
 	

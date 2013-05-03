@@ -81,6 +81,8 @@ public class InGameController extends BasicGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
+		this.inGame.setTime(this.inGame.getTime()-(delta/1000f));
+		
 		//check if the game is over
 		checkGameOverConditions();
 		//check key presses
