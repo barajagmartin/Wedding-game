@@ -94,6 +94,10 @@ public class InGameController extends BasicGameState {
 		characterController.getCharacter().setX((int)characterController.getCharacterView().getSlickShape().getX());
 		characterController.getCharacter().setY((int)characterController.getCharacterView().getSlickShape().getY());
 		
+		if(spikeController.get(0).getSpikesView().getShape().intersects(characterController.getCharacterView().getSlickShape())) {
+			characterController.getCharacter().loseOneLife();
+			System.out.println(characterController.getCharacter().getLife());
+		}
 	}
 
 	@Override

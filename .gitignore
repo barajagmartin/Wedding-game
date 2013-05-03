@@ -1,5 +1,10 @@
 *.class
+*.classpath
+.classpath
 /.classpath
+/*.classpath
+!/*.classpath
+
 *.md
 */bin
 # Package Files #
