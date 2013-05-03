@@ -35,7 +35,7 @@ public class InGameController extends BasicGameState {
 	private ArrayList <ItemController> itemController;
 	private ArrayList <SpikesController> spikeController;
 	private Item lastHeldItem;
-	private int itemsDelivered = 0;
+	private int itemsDelivered;
 	
 	//should be based on the frame update (delta or something like that)
 	private float timeStep = 1.0f / 60.0f;
@@ -68,6 +68,7 @@ public class InGameController extends BasicGameState {
 		 this.characterController = new CharacterController(this);
 		 this.inGame = new InGame(characterController.getCharacter());
 		 this.inGameView = new InGameView(inGame, worldController.getWorldView(), characterController.getCharacterView());
+		 itemsDelivered = 0;
 
 	}
 
@@ -122,7 +123,7 @@ public class InGameController extends BasicGameState {
 	 * 
 	 */
 	public void checkGameOverConditions() {
-		if (this.itemController.isEmpty()) {
+		if (this.itemController.size() == itemsDelivered) {
 			System.out.println("No more items to pick up, level cleared!");
 		} else if (this.characterController.getCharacter().getLife() == 0) {
 			System.out.println("No more lives, you are dead!");

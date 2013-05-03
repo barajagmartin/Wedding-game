@@ -25,12 +25,15 @@ public class CharacterView {
 	private BodyDef bodyDef;
 	private FixtureDef fixtureDef;
 	private Color color;
-	private CircleShape feetShape;
-	private BodyDef antiFrictionBodyDef;
+	private CircleShape antiFrictionShape;
+	private BodyDef leftAntiFrictionBodyDef;
+	private BodyDef rightAntiFrictionBodyDef;
 	private FixtureDef antiFrictionFixtureDef;
 	private Body characterBody;
-	private Body antiFrictionBody;
-	private WeldJointDef weldJointDef;
+	private Body leftAntiFrictionBody;
+	private Body rightAntiFrictionBody;
+	private WeldJointDef leftWeldJointDef;
+	private WeldJointDef rightWeldJointDef;
 
 	
 	public CharacterView(Character character, WorldView worldView) {
@@ -38,13 +41,12 @@ public class CharacterView {
 		this.worldView = worldView;
 		//this.slickShape= new Rectangle(character.getX() - character.WIDTH/2, character.getY() - character.HEIGHT/2,
 			//	character.WIDTH, character.HEIGHT); //start position of character on the screen
-		this.slickShape = new Circle(this.character.getX()-(Character.RADIUS/2), 
-				this.character.getY()-(Character.RADIUS/2), Character.RADIUS);
+		this.slickShape = new Circle((float)(this.character.getX()-(Character.RADIUS/2f)), 
+				(float)(this.character.getY()-(Character.RADIUS/2f)), Character.RADIUS);
 		this.color = Color.blue;
 		
 		jBox2DCircle = new CircleShape();
 		jBox2DCircle.m_radius = WorldUtils.pixel2Meter(Character.RADIUS);
-		//jBox2DRectangle.setAsBox(WorldUtils.pixel2Meter(character.WIDTH)/2, WorldUtils.pixel2Meter(character.HEIGHT)/2);
 		
 		//ska inställningarna vara i controllern? vi tror det! :)
 		bodyDef = new BodyDef();
@@ -58,36 +60,50 @@ public class CharacterView {
 		fixtureDef.friction = 0.4f;
 		fixtureDef.restitution = 0f;
 		
-		feetShape = new CircleShape();
-		feetShape.m_radius = WorldUtils.pixel2Meter(Character.RADIUS+20);
-		
-		antiFrictionBodyDef = new BodyDef();
-		antiFrictionBodyDef.position.set(WorldUtils.pixel2Meter(character.getX()), WorldUtils.pixel2Meter(character.getY()-1));
-		antiFrictionBodyDef.type = BodyType.DYNAMIC;
-		
-		antiFrictionFixtureDef = new FixtureDef();
-		antiFrictionFixtureDef.shape = feetShape;
-		antiFrictionFixtureDef.density = 0.1f;
-		antiFrictionFixtureDef.friction = 0f;
-		antiFrictionFixtureDef.restitution = 0f;
-		
 		characterBody = worldView.getjBox2DWorld().createBody(bodyDef);
 		characterBody.createFixture(fixtureDef);
 		characterBody.m_mass = 35f;
-		antiFrictionBody = worldView.getjBox2DWorld().createBody(antiFrictionBodyDef);
-		antiFrictionBody.createFixture(antiFrictionFixtureDef);
-		antiFrictionBody.m_mass = 0.00000001f;
-		antiFrictionBody.setAwake(false);
-		weldJointDef = new WeldJointDef();
 		
-		weldJointDef.collideConnected = false;
-		weldJointDef.localAnchorA.set(0,10);
-		weldJointDef.localAnchorB.set(0,-10);
-		weldJointDef.initialize(characterBody, antiFrictionBody, characterBody.getPosition());
+		antiFrictionShape = new CircleShape();
+		antiFrictionShape.m_radius = WorldUtils.pixel2Meter(Character.RADIUS);
 		
-		worldView.getjBox2DWorld().createJoint(weldJointDef);
+		leftAntiFrictionBodyDef = new BodyDef();
+		leftAntiFrictionBodyDef.position.set(WorldUtils.pixel2Meter(character.getX()-1), WorldUtils.pixel2Meter(character.getY()-1));
+		leftAntiFrictionBodyDef.type = BodyType.DYNAMIC;
 		
+		rightAntiFrictionBodyDef = new BodyDef();
+		rightAntiFrictionBodyDef.position.set(WorldUtils.pixel2Meter(character.getX()+1), WorldUtils.pixel2Meter(character.getY()-1));
+		rightAntiFrictionBodyDef.type = BodyType.DYNAMIC;
 		
+		antiFrictionFixtureDef = new FixtureDef();
+		antiFrictionFixtureDef.shape = antiFrictionShape;
+		antiFrictionFixtureDef.density = 1f;
+		antiFrictionFixtureDef.friction = 0.1f;
+		antiFrictionFixtureDef.restitution = 0f;
+		
+		leftAntiFrictionBody = worldView.getjBox2DWorld().createBody(leftAntiFrictionBodyDef);
+		leftAntiFrictionBody.createFixture(antiFrictionFixtureDef);
+		leftAntiFrictionBody.m_mass = 1f;
+		leftAntiFrictionBody.setAwake(false);
+		
+		leftWeldJointDef = new WeldJointDef();
+		leftWeldJointDef.collideConnected = false;
+		leftWeldJointDef.localAnchorA.set(0,0);
+		leftWeldJointDef.localAnchorB.set(0,0);
+		leftWeldJointDef.initialize(leftAntiFrictionBody, characterBody, characterBody.getWorldCenter());
+		worldView.getjBox2DWorld().createJoint(leftWeldJointDef);
+		
+		rightAntiFrictionBody = worldView.getjBox2DWorld().createBody(rightAntiFrictionBodyDef);
+		rightAntiFrictionBody.createFixture(antiFrictionFixtureDef);
+		rightAntiFrictionBody.m_mass = 1f;
+		rightAntiFrictionBody.setAwake(false);
+		
+		rightWeldJointDef = new WeldJointDef();
+		rightWeldJointDef.collideConnected = false;
+		rightWeldJointDef.localAnchorA.set(0, 0);
+		rightWeldJointDef.localAnchorB.set(0, 0);
+		rightWeldJointDef.initialize(rightAntiFrictionBody, characterBody, characterBody.getWorldCenter());
+		worldView.getjBox2DWorld().createJoint(rightWeldJointDef);
 	}
 	
 	public org.newdawn.slick.geom.Shape getSlickShape() {
@@ -96,6 +112,10 @@ public class CharacterView {
 	
 	public Body getCharacterBody() {
 		return characterBody;
+	}
+
+	public Body getAntiFrictionBody() {
+		return leftAntiFrictionBody;
 	}
 
 	public org.jbox2d.collision.shapes.CircleShape getjBox2DCircle() {
@@ -125,13 +145,5 @@ public class CharacterView {
 
 	public WorldView getWorldView() {
 		return worldView;
-	}
-
-	public BodyDef getFeetBodyDef() {
-		return antiFrictionBodyDef;
-	}
-
-	public FixtureDef getFeetFixtureDef() {
-		return antiFrictionFixtureDef;
 	}
 }

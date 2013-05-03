@@ -2,12 +2,10 @@ package model;
 
 
 public class InGame {
-	private World world;
 	private Player player;
 	private StatusBar statusBar;
 		
-	public InGame(Character character) {
-		this.world = world; 
+	public InGame(Character character) { 
 		player = new Player(character);
 		statusBar = new StatusBar();
 	}
@@ -16,9 +14,6 @@ public class InGame {
 		return player;
 	}
 
-	public World getWorld() {
-		return world;
-	}
 
 	public StatusBar getStatusBar() {
 		return statusBar;
