@@ -6,7 +6,7 @@ public class Item {
 	private int x;
 	private int y;
 	private boolean isPickedUp;
-	public boolean isDlivered;
+	public boolean isDelivered;
 	public static final int WIDTH = 10;
 	public static final int HEIGHT = 15;
 	public final int CANDY_NUMBER;
@@ -15,7 +15,7 @@ public class Item {
 		this.x = x;
 		this.y = y;
 		this.isPickedUp = false;
-		this.isDlivered = false;
+		this.isDelivered = false;
 		this.CANDY_NUMBER = candyNumber;
 	}
 
@@ -43,12 +43,12 @@ public class Item {
 		this.isPickedUp = isPickedUp;
 	}
 	
-	public boolean isDlivered() {
-		return isDlivered;
+	public boolean isDelivered() {
+		return isDelivered;
 	}
 
-	public void setDlivered(boolean isDlivered) {
-		this.isDlivered = isDlivered;
+	public void setDelivered(boolean isDelivered) {
+		this.isDelivered = isDelivered;
 	}
 	
 }

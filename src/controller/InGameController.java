@@ -30,12 +30,14 @@ public class InGameController extends BasicGameState {
 	private InGameView inGameView;
 	private CharacterController characterController;
 	private WorldController worldController;
+	private StatusBarController statusBarController;
 	private BlockMapController blockMapController;
 	private ArrayList <CandyMonsterController> candyMonsterController;
 	private ArrayList <ItemController> itemController;
 	private ArrayList <SpikesController> spikeController;
 	private Item lastHeldItem;
 	private int itemsDelivered;
+	private StateBasedGame sbg;
 	
 	//should be based on the frame update (delta or something like that)
 	private float timeStep = 1.0f / 60.0f;
@@ -50,6 +52,7 @@ public class InGameController extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
+		this.sbg = sbg;
 		this.candyMonsterController = new ArrayList<CandyMonsterController>();
 		this.itemController = new ArrayList<ItemController>();
 		this.spikeController = new ArrayList<SpikesController>();
@@ -65,9 +68,11 @@ public class InGameController extends BasicGameState {
 			 this.spikeController.add(new SpikesController(this, i));
 		 }
 		 this.worldController = new WorldController(this);
+		 this.statusBarController = new StatusBarController(this);
 		 this.characterController = new CharacterController(this);
-		 this.inGame = new InGame(characterController.getCharacter());
-		 this.inGameView = new InGameView(inGame, worldController.getWorldView(), characterController.getCharacterView());
+		 this.inGame = new InGame();
+		 this.inGameView = new InGameView(inGame, worldController.getWorldView(), statusBarController.getStatusBarView(), 
+				 characterController.getCharacterView());
 		 itemsDelivered = 0;
 
 	}
@@ -81,6 +86,10 @@ public class InGameController extends BasicGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
+		//change the time for the game and the character
+		this.inGame.setTime(this.inGame.getTime()-(delta/1000f));
+		this.characterController.getCharacter().setTimeSinceHit(this.characterController.getCharacter().getTimeSinceHit() + delta/1000f);
+		
 		//check if the game is over
 		checkGameOverConditions();
 		//check key presses
@@ -95,8 +104,10 @@ public class InGameController extends BasicGameState {
 		characterController.getCharacter().setX((int)characterController.getCharacterView().getSlickShape().getX());
 		characterController.getCharacter().setY((int)characterController.getCharacterView().getSlickShape().getY());
 		
-		if(spikeController.get(0).getSpikesView().getShape().intersects(characterController.getCharacterView().getSlickShape())) {
+		if(spikeController.get(0).getSpikesView().getShape().intersects(characterController.getCharacterView().getSlickShape()) 
+				&& this.characterController.getCharacter().getTimeSinceHit() > 1) {
 			characterController.getCharacter().loseOneLife();
+			this.characterController.getCharacter().setTimeSinceHit(0);
 			System.out.println(characterController.getCharacter().getLife());
 		}
 	}
@@ -114,6 +125,9 @@ public class InGameController extends BasicGameState {
 				this.itemController.get(lastHeldItem.CANDY_NUMBER).uppdateItemShape();
 				candyMonsterController.get(lastHeldItem.CANDY_NUMBER).isDroppedOnMonster(lastHeldItem);
 			}
+		}
+		if (key == Input.KEY_ESCAPE){
+			sbg.enterState(Game.PAUSE_MENU);
 		}
 	}
 	
