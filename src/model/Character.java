@@ -5,12 +5,14 @@ public class Character {
 	private int x, y;
 	private int life;
 	private Item heldItem;
+	private float timeSinceHit; //in seconds
 
 	public Character(final int x, final int y) {
 		this.x = x;
 		this.y = y;
 		this.life = 3;
 		this.heldItem = null;
+		this.timeSinceHit = 0;
 	}
 	
 	public int getX() {
@@ -29,6 +31,14 @@ public class Character {
 		this.y = y;
 	}
 	
+	public float getTimeSinceHit() {
+		return timeSinceHit;
+	}
+
+	public void setTimeSinceHit(float timeSinceHit) {
+		this.timeSinceHit = timeSinceHit;
+	}
+
 	public int getLife() {
 		return this.life;
 	}
