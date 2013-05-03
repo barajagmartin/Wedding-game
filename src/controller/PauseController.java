@@ -25,11 +25,12 @@ public class PauseController extends BasicGameState{
 		this.gc = gc;
 		
 	}
-
+	//vill först skapa en bild av spelet. Över detta menyn
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		if(gc.isPaused()){
+			/*Create image of game*/
 			Rectangle rect = new Rectangle(0, 0, gameController.getInGameController().getWorldController().getWorld().getWorldWidthPx(), 
 												gameController.getInGameController().getWorldController().getWorld().getWorldHeightPx());
 												//x, y, width, height
