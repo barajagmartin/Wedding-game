@@ -11,7 +11,7 @@ public class StatusBarView {
 
 	private StatusBar statusBar;
 	private Image[] heart;
-	private Shape staticBar;
+	private Shape fixedBar;
 	
 	public StatusBarView(StatusBar statusBar) throws SlickException {
 		this.statusBar = statusBar;
@@ -19,14 +19,14 @@ public class StatusBarView {
 		heart[0] = new Image("pics/heart.png");
 		heart[1] = heart[0].copy();
 		heart[2] = heart[0].copy();
-		staticBar = new Rectangle(StatusBar.FIXED_BAR_POSX, StatusBar.HEART_POSY, StatusBar.FIXED_BAR_WIDTH, StatusBar.FIXED_BAR_HEIGHT);
+		fixedBar = new Rectangle(StatusBar.FIXED_BAR_POSX, StatusBar.HEART_POSY, StatusBar.FIXED_BAR_WIDTH, StatusBar.FIXED_BAR_HEIGHT);
 	}
 
 	public Image[] getHeart() {
 		return heart;
 	}
 
-	public Shape getStaticBar() {
-		return staticBar;
+	public Shape getFixedBar() {
+		return fixedBar;
 	}
 }

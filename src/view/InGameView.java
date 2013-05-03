@@ -63,7 +63,7 @@ public class InGameView {
 			statusBarView.getHeart()[k].draw(StatusBar.HEART_POSX[k], StatusBar.HEART_POSY);
 		}
 		
-		g.fill(statusBarView.getStaticBar());
+		g.fill(statusBarView.getFixedBar());
 	}
 
 	
