@@ -30,7 +30,7 @@ public class PauseController extends BasicGameState{
 		this.gc = gc;
 		this.sbg = sbg;
 		this.pauseView = new PauseView(gameController.getInGameController().getWorldController().getWorld().getWorldWidthPx(), 
-									gameController.getInGameController().getWorldController().getWorld().getWorldWidthPx());
+									gameController.getInGameController().getWorldController().getWorld().getWorldHeightPx());
 		
 	}
 	/*Render in view*/

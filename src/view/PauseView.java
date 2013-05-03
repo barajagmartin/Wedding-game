@@ -19,7 +19,7 @@ public class PauseView {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		//if(gc.isPaused()){
-			/*Create image of game*/
+			/*Create image of game TODO*/
 			//draw(sbg.getState(Game.IN_GAME));
 			//gather contents from the play screen and make a new Image
 			//get graphics and render your scene in the new Image
@@ -31,7 +31,7 @@ public class PauseView {
 			 * doing noting, the state is paused (not rendered or updated) until you go back to that state*/
 
 			/*Create pause menu*/
-			Rectangle pauseMenu = new Rectangle(worldWidth/4, worldHeight/4, worldWidth/2, worldHeight/4); //x, y, width, height
+			Rectangle pauseMenu = new Rectangle(worldWidth/4, worldHeight/4, worldWidth/2, worldHeight/2); //x, y, width, height
 			g.draw(pauseMenu);
 			g.setColor(Color.green);
 			/*Create "buttons" in menu*/
