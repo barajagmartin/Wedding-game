@@ -18,7 +18,6 @@ public class PauseController extends BasicGameState{
 	private StateBasedGame sbg;
 	private GameController gameController;
 	private PauseView pauseView;
-	ArrayList<Rectangle> buttonList;
 	
 	public PauseController(GameController gameController){
 		this.gameController = gameController;
