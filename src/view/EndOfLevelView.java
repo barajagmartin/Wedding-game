@@ -30,4 +30,10 @@ public class EndOfLevelView {
 		g.drawString("Score: " + this.Score, Game.WINDOW_WIDTH/2 - 30, Game.WINDOW_HEIGHT/2 + 90);
 	}
 
+	public void setScore(int score) {
+		Score = score;
+	}
+	
+
+
 }

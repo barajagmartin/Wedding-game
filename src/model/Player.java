@@ -31,7 +31,7 @@ public class Player {
 	/**
 	 * set the score at the end of every level.
 	 * @param time , the time left on the level when cleared.
-	 * @param candy , the number of lives the character has left when the game ends.
+	 * @param candy , the number of items delivered.
 	 */
 	public void setScore(int time, int candy) {
 		this.score =+ time*candy;
