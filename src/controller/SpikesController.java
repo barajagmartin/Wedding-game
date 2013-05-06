@@ -32,6 +32,7 @@ public class SpikesController implements ContactListener {
 
 	@Override
 	public void beginContact(Contact contact) {
+		System.out.println("contact");
 		if(inGameController.getCharacterController().getCharacter().getTimeSinceHit() > 1) {
 			inGameController.getCharacterController().getCharacter().loseOneLife();
 			this.inGameController.getCharacterController().getCharacter().setTimeSinceHit(0);

@@ -41,13 +41,15 @@ public class InGameController extends BasicGameState {
 	private Item lastHeldItem;
 	private int itemsDelivered;
 	private StateBasedGame sbg;
+	private GameController gameController;
 	
 	//should be based on the frame update (delta or something like that)
 	private float timeStep = 1.0f / 60.0f;
 	private int velocityIterations = 6;
 	private int positionIterations = 2;
 	
-	public InGameController() {
+	public InGameController(GameController gameController) {
+		this.gameController = gameController;
 		
 	}
 
@@ -116,14 +118,6 @@ public class InGameController extends BasicGameState {
 		worldController.updateItemShape(worldController.getItemViewList(), characterController.getCharacterView());
 		characterController.getCharacter().setX((int)characterController.getCharacterView().getSlickShape().getX());
 		characterController.getCharacter().setY((int)characterController.getCharacterView().getSlickShape().getY());
-		
-		//spikes collision detection
-			if(this.characterController.getCharacter().getTimeSinceHit() > 1) {
-				//blink
-				characterController.getCharacter().loseOneLife();
-				this.characterController.getCharacter().setTimeSinceHit(0);
-
-			}
 		
 	}
 

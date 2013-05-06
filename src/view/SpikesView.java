@@ -14,6 +14,7 @@ import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Circle;
 
 import utils.WorldUtils;
@@ -25,6 +26,7 @@ public class SpikesView {
 	private Spikes spikes;
 	private Color color;
 	private Shape shape;
+	private FixtureDef fixtureDef;
 
 	public SpikesView(Spikes spikes, WorldView worldView){
 		this.spikes = spikes;
@@ -37,11 +39,18 @@ public class SpikesView {
 		bodyDef.type = BodyType.STATIC;
 		bodyDef.fixedRotation = true;
 		
-		FixtureDef fixtureDef = new FixtureDef();
+		fixtureDef = new FixtureDef();
 		fixtureDef.isSensor = true;
+		fixtureDef.shape = shape;
 				
 		Body spikesBody = worldView.getjBox2DWorld().createBody(bodyDef);
-		spikesBody.createFixture(fixtureDef);				
+		spikesBody.createFixture(fixtureDef);
+		try {
+			image = new Image("pics/spikes2.png");
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public Spikes getSpikes() {
@@ -54,5 +63,13 @@ public class SpikesView {
 	
 	public Color getColor() {
 		return color;
+	}
+
+	public Image getImage() {
+		return image;
+	}
+
+	public FixtureDef getFixtureDef() {
+		return fixtureDef;
 	}	
 }

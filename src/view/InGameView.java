@@ -52,16 +52,12 @@ public class InGameView {
 		}	
 		//draw spikes
 				for (int j = 0; j < spikesViewList.size(); j++) {
-					this.g.setColor(spikesViewList.get(j).getColor());
-					this.g.fill(spikesViewList.get(j).getShape());
-
 					//set the color when "debugging"
-					//g.setColor(worldView.getSpikesViewList().get(j).getColor());
 					g.setColor(Color.transparent); //so it does not show the circle
 					g.fill(spikesViewList.get(j).getShape());
-//					g.drawImage(spikesViewList.get(j).getImage(), 
-//							spikesViewList.get(j).getSpikes().getX()- Spikes.RADIUS - 3, 
-//							spikesViewList.get(j).getSpikes().getY() - Spikes.RADIUS - 3);
+					g.drawImage(spikesViewList.get(j).getImage(), 
+							spikesViewList.get(j).getSpikes().getX()- Spikes.RADIUS - 3, 
+							spikesViewList.get(j).getSpikes().getY() - Spikes.RADIUS - 3);
 				}
 		
 //		Image player = new Image("pics/GulNelson.png");		
