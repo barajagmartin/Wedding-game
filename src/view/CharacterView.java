@@ -23,12 +23,9 @@ public class CharacterView {
 	private CircleShape jBox2DCircle;
 	private Color color;
 	private Body characterBody;
-	private Body leftAntiFrictionBody;
 	
 	public CharacterView(Character character, WorldView worldView) {
 		this.character = character;
-		//this.slickShape= new Rectangle(character.getX() - character.WIDTH/2, character.getY() - character.HEIGHT/2,
-			//	character.WIDTH, character.HEIGHT); //start position of character on the screen
 		this.slickShape = new Circle((float)(this.character.getX()-(Character.RADIUS/2f)), 
 				(float)(this.character.getY()-(Character.RADIUS/2f)), Character.RADIUS);
 		this.color = Color.blue;
@@ -48,7 +45,7 @@ public class CharacterView {
 		fixtureDef.friction = 0.8f;
 		fixtureDef.restitution = 0f;
 		
-		Body characterBody = worldView.getjBox2DWorld().createBody(bodyDef);
+		characterBody = worldView.getjBox2DWorld().createBody(bodyDef);
 		characterBody.createFixture(fixtureDef);
 		characterBody.m_mass = 35f;
 		
@@ -100,14 +97,6 @@ public class CharacterView {
 	
 	public Body getCharacterBody() {
 		return characterBody;
-	}
-
-	public Body getAntiFrictionBody() {
-		return leftAntiFrictionBody;
-	}
-
-	public org.jbox2d.collision.shapes.CircleShape getjBox2DCircle() {
-		return this.jBox2DCircle;
 	}
 	
 	public Color getColor() {
