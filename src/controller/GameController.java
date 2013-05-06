@@ -17,15 +17,16 @@ public class GameController extends StateBasedGame {
 		this.inGameController = new InGameController();
 		this.pauseController = new PauseController(this);
 		this.endOfLevelController = new EndOfLevelController(this);
-		//this.addState(startMenuController);
+		this.startMenuController = new StartMenuController();
 		this.addState(inGameController);
 		this.addState(pauseController);
 		this.addState(endOfLevelController);
+		this.addState(startMenuController);
 	}
 	
 	@Override
 	public void initStatesList(GameContainer container) throws SlickException {
-		this.enterState(inGameController.getID());
+		this.enterState(startMenuController.getID());
 	}
 	
 	public StartMenuController getStartMenuController(){
