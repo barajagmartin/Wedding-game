@@ -13,6 +13,8 @@ import org.newdawn.slick.tiled.TiledMap;
 
 public class BlockMapView {
 	private BlockMap solidGroundMap;
+	private BlockMap iceMap;
+	private BlockMap springMap;
 	private BlockMap candyMonsterMap;
 	private BlockMap spikesMap;
 	private BlockMap itemMap;
@@ -35,6 +37,12 @@ public class BlockMapView {
 				if (tileProperty.equals("solidGround")) { //if the tile is solid ground, then add its properties to a Block-list
 					solidGroundMap.getBlockList().add(new Block(x * tiledMap.getTileWidth(),
 							y * tiledMap.getTileHeight()));
+				} else if (tileProperty.equals("ice")) {
+					iceMap.getBlockList().add(new Block(x * tiledMap.getTileWidth()+(tiledMap.getTileWidth()/2 - CandyMonster.WIDTH/2),
+							y * tiledMap.getTileHeight()+(tiledMap.getTileHeight() - CandyMonster.HEIGHT)));
+				} else if (tileProperty.equals("spring")) {
+					springMap.getBlockList().add(new Block(x * tiledMap.getTileWidth()+(tiledMap.getTileWidth()/2 - CandyMonster.WIDTH/2),
+							y * tiledMap.getTileHeight()+(tiledMap.getTileHeight() - CandyMonster.HEIGHT)));
 				} else if (tileProperty.equals("candyMonster")) {
 					candyMonsterMap.getBlockList().add(new Block(x * tiledMap.getTileWidth()+(tiledMap.getTileWidth()/2 - CandyMonster.WIDTH/2),
 							y * tiledMap.getTileHeight()+(tiledMap.getTileHeight() - CandyMonster.HEIGHT)));
@@ -55,6 +63,14 @@ public class BlockMapView {
 
 	public BlockMap getSolidGroundMap() {
 		return solidGroundMap;
+	}
+
+	public BlockMap getIceMap() {
+		return iceMap;
+	}
+
+	public BlockMap getSpringMap() {
+		return springMap;
 	}
 
 	public BlockMap getCandyMonsterMap() {
