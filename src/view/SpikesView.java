@@ -10,6 +10,7 @@ import org.jbox2d.collision.shapes.Shape;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
+import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.Color;
@@ -27,6 +28,7 @@ public class SpikesView {
 	private Color color;
 	private Shape shape;
 	private FixtureDef fixtureDef;
+	private Fixture fixture;
 
 	public SpikesView(Spikes spikes, WorldView worldView){
 		this.spikes = spikes;
@@ -44,7 +46,7 @@ public class SpikesView {
 		fixtureDef.shape = shape;
 				
 		Body spikesBody = worldView.getjBox2DWorld().createBody(bodyDef);
-		spikesBody.createFixture(fixtureDef);
+		fixture = spikesBody.createFixture(fixtureDef);
 		try {
 			image = new Image("pics/spikes2.png");
 		} catch (SlickException e) {
@@ -71,5 +73,9 @@ public class SpikesView {
 
 	public FixtureDef getFixtureDef() {
 		return fixtureDef;
-	}	
+	}
+	
+	public Fixture getFixture() {
+		return fixture;
+	}
 }

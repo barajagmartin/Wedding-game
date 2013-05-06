@@ -20,6 +20,7 @@ public class SpikesController implements ContactListener {
 		this.spikes = new Spikes(inGameController.getBlockMapController().getSpikesMap().getBlockList().get(index).getPosX(), 
 								inGameController.getBlockMapController().getSpikesMap().getBlockList().get(index).getPosY());
 		this.spikesView = new SpikesView(this.spikes, inGameController.getWorldController().getWorldView());
+		inGameController.getWorldController().getWorldView().getjBox2DWorld().setContactListener(this);
 	}
 
 	public Spikes getSpikes() {
@@ -33,29 +34,22 @@ public class SpikesController implements ContactListener {
 	@Override
 	public void beginContact(Contact contact) {
 		System.out.println("contact");
-		if(inGameController.getCharacterController().getCharacter().getTimeSinceHit() > 1) {
-			inGameController.getCharacterController().getCharacter().loseOneLife();
-			this.inGameController.getCharacterController().getCharacter().setTimeSinceHit(0);
+		if (contact.m_fixtureA.equals(spikesView.getFixture())) {
+			if(inGameController.getCharacterController().getCharacter().getTimeSinceHit() > 1) {
+				inGameController.getCharacterController().getCharacter().loseOneLife();
+				this.inGameController.getCharacterController().getCharacter().setTimeSinceHit(0);
+			}
 		}
 		
 	}
 
 	@Override
-	public void endContact(Contact contact) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void endContact(Contact contact) {}
 
 	@Override
-	public void postSolve(Contact contact, ContactImpulse impulse) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void postSolve(Contact contact, ContactImpulse impulse) {}
 
 	@Override
-	public void preSolve(Contact contact, Manifold oldManifold) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void preSolve(Contact contact, Manifold oldManifold) {}
 	
 }
