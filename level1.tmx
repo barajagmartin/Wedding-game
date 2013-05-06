@@ -49,7 +49,7 @@
  </tileset>
  <layer name="layer" width="32" height="24">
   <data encoding="base64" compression="zlib">
-   eJxjZBg4wAjFo/aP2k9PIDeA9jMh4eEe/sh+HQj7CQFq2k/Ir7S2nxyAzX55IvSR41di7acnIMZ+avmVXPsJATYiMSsUI4uh209Lv2IDgzH+ZQnoUaCiGMx+pgHCILuZR/GIxgDyHAM7
+   eJxjZBg4wAjFo/aP2k9PIDeA9jMh4eEe/sh+HQj7CQFq2k/Ir7S2nxyAzX55IvSR41di7acnIMZ+avmVXPtJAWwEMCsUw/jo9tPSr9jAYIx/WQJ6FKgoBrOfiULMSqY+kN3Mo3hEYwCsoAMs
   </data>
  </layer>
 </map>

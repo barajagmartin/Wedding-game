@@ -22,8 +22,11 @@ public class BlockMapView {
 	private Block startingPos;
 	private float levelTime;
 	
-	public BlockMapView(BlockMap solidGroundMap, BlockMap candyMonsterMap, BlockMap spikesMap, BlockMap itemMap, TiledMap tiledMap) {
+	public BlockMapView(BlockMap solidGroundMap, BlockMap iceMap, BlockMap springMap, BlockMap candyMonsterMap,
+			BlockMap spikesMap, BlockMap itemMap, TiledMap tiledMap) {
 		this.solidGroundMap = solidGroundMap;
+		this.iceMap = iceMap;
+		this.springMap = springMap;
 		this.candyMonsterMap = candyMonsterMap;
 		this.spikesMap = spikesMap;
 		this.itemMap = itemMap;
