@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
 import org.newdawn.slick.SlickException;
@@ -105,9 +106,9 @@ public class InGameController extends BasicGameState {
 		characterController.getCharacter().setX((int)characterController.getCharacterView().getSlickShape().getX());
 		characterController.getCharacter().setY((int)characterController.getCharacterView().getSlickShape().getY());
 		
+		//spikes collision detection
 		for(SpikesController spikesController : spikeController) {
-			if(spikesController.getSpikesView().getShape().intersects(characterController.getCharacterView().getSlickShape()) 
-					&& this.characterController.getCharacter().getTimeSinceHit() > 1) {
+			if(spikesController.isWalkingOnSpikes() && this.characterController.getCharacter().getTimeSinceHit() > 1) {				
 				characterController.getCharacter().loseOneLife();
 				this.characterController.getCharacter().setTimeSinceHit(0);
 				System.out.println(characterController.getCharacter().getLife());
