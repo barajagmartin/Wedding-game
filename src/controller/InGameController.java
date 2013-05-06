@@ -139,6 +139,7 @@ public class InGameController extends BasicGameState {
 		}
 		if (key == Input.KEY_ESCAPE){
 			try {
+				//want to produce an image to create an illusion of a paused screen
 				inGameView.createPauseImage();
 				this.gameController.getPauseController().init(gc, sbg);
 				
