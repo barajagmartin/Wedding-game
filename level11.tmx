@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="30" height="18" tilewidth="40" tileheight="40">
+ <tileset firstgid="1" name="groundTiles" tilewidth="40" tileheight="40">
+  <image source="groundTiles.png" width="500" height="50"/>
+  <tile id="0">
+   <properties>
+    <property name="property" value="solidGround"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="property" value="spikes"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="property" value="candyMonster"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="property" value="item"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="layer" width="30" height="18">
+  <data encoding="base64" compression="zlib">
+   eJztk9sKgDAMQw3q//+yT4KMtM1G1icDZaO7nGYXHPsFMfdz/dwOOf2CRDXXwZ1VF/ec5LLzc9TW5Vfxt0sI+i4uhvabz8ZWdRXcqiZV0XvLuOM6xr0FhlILY2Q5579hvOz+V/aOWCq3I149VIsAhQ==
+  </data>
+ </layer>
+</map>

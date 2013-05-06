@@ -13,6 +13,7 @@ import view.WorldView;
 
 import model.CandyMonster;
 import model.Character;
+import model.Game;
 import model.Item;
 import model.World;
 
@@ -41,7 +42,7 @@ public class WorldController {
 		}
 		
 		
-		this.world = new World(1250, 700);
+		this.world = new World(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
 		this.worldView = new WorldView(world, inGameController.getBlockMapController().getBlockMapView(),
 				itemViewList,
 				candyMonsterViewList,
