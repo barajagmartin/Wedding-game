@@ -10,9 +10,11 @@ import java.util.ArrayList;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.imageout.ImageOut;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
@@ -35,17 +37,19 @@ public class InGameController extends BasicGameState {
 	private ArrayList <CandyMonsterController> candyMonsterController;
 	private ArrayList <ItemController> itemController;
 	private ArrayList <SpikesController> spikeController;
+	private GameController gameController;
 	private Item lastHeldItem;
 	private int itemsDelivered;
 	private StateBasedGame sbg;
+	private GameContainer gc;
 	
 	//should be based on the frame update (delta or something like that)
 	private float timeStep = 1.0f / 60.0f;
 	private int velocityIterations = 6;
 	private int positionIterations = 2;
 	
-	public InGameController() {
-		
+	public InGameController(GameController gameController) {
+		this.gameController = gameController;
 	}
 
 	
@@ -53,6 +57,7 @@ public class InGameController extends BasicGameState {
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		this.sbg = sbg;
+		this.gc = gc;
 		this.candyMonsterController = new ArrayList<CandyMonsterController>();
 		this.itemController = new ArrayList<ItemController>();
 		this.spikeController = new ArrayList<SpikesController>();
@@ -133,6 +138,15 @@ public class InGameController extends BasicGameState {
 			characterController.tryToJumpCharacter();
 		}
 		if (key == Input.KEY_ESCAPE){
+			try {
+				//want to produce an image to create an illusion of a paused screen
+				inGameView.createPauseImage();
+				this.gameController.getPauseController().init(gc, sbg);
+				
+			} catch (SlickException e) {
+				System.out.println("No image to create");
+				e.printStackTrace();
+			}
 			sbg.enterState(Game.PAUSE_MENU);
 		}
 	}
