@@ -11,10 +11,8 @@ import view.ItemView;
 import view.SpikesView;
 import view.WorldView;
 
-import model.CandyMonster;
 import model.Character;
 import model.Game;
-import model.Item;
 import model.World;
 
 public class WorldController {
@@ -87,10 +85,10 @@ public class WorldController {
 	public void updateSlickShape() {
 		inGameController.getCharacterController().getCharacterView().getSlickShape().setX(WorldUtils.meter2Pixel(
 				inGameController.getCharacterController().getCharacterView().getCharacterBody().getPosition().x) -
-				inGameController.getCharacterController().getCharacter().RADIUS);
+				Character.RADIUS);
 		inGameController.getCharacterController().getCharacterView().getSlickShape().setY(WorldUtils.meter2Pixel(
 				inGameController.getCharacterController().getCharacterView().getCharacterBody().getPosition().y) -
-				inGameController.getCharacterController().getCharacter().RADIUS);
+				Character.RADIUS);
 	}
 	
 	public void updateItemShape(ArrayList<ItemView> itemList, CharacterView characterView){
