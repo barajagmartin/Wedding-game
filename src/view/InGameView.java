@@ -1,5 +1,6 @@
 package view;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -18,6 +19,7 @@ public class InGameView {
 	private WorldView worldView;
 	private StatusBarView statusBarView;
 	private CharacterView characterView;
+	private Animation nelson, blink;
 	
 	public InGameView(InGame inGame, WorldView worldView, StatusBarView statusBarView, CharacterView characterView) {
 		this.inGame = inGame;
@@ -46,9 +48,16 @@ public class InGameView {
 					g.fill(worldView.getSpikesViewList().get(j).getShape());
 				}
 		
-		Image player = new Image("pics/GulNelson.png");
+//		Image player = new Image("pics/GulNelson.png");		
+//		player.draw(characterView.getSlickShape().getX(), characterView.getSlickShape().getY());
 		
-		player.draw(characterView.getSlickShape().getX(), characterView.getSlickShape().getY());
+		//blinking animation
+		Image[] blinking = {new Image("pics/Nelson.png"), new Image("pics/GulNelson.png")};
+		int duration[] = {300, 300};
+		blink = new Animation(blinking, duration, true);
+		nelson = blink;
+		nelson.draw(characterView.getSlickShape().getX(), characterView.getSlickShape().getY());
+		
 		//draw items
 		for (int j = 0; j < worldView.getItemViewList().size(); j++) {
 			g.setColor(worldView.getItemViewList().get(j).getColor());
