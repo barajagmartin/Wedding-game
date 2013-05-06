@@ -41,13 +41,15 @@ public class InGameController extends BasicGameState {
 	private Item lastHeldItem;
 	private int itemsDelivered;
 	private StateBasedGame sbg;
+	private GameController gameController;
 	
 	//should be based on the frame update (delta or something like that)
 	private float timeStep = 1.0f / 60.0f;
 	private int velocityIterations = 6;
 	private int positionIterations = 2;
 	
-	public InGameController() {
+	public InGameController(GameController gameController) {
+		this.gameController = gameController;
 		
 	}
 
