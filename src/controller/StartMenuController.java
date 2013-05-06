@@ -14,9 +14,10 @@ import view.StartMenuView;
 public class StartMenuController extends BasicGameState {
 	private StartMenuView startMenuView;
 	private StateBasedGame sbg;
+	private GameController gameController;
 	
-	public StartMenuController() {
-		
+	public StartMenuController(GameController gameController) {
+		this.gameController = gameController;
 	}
 	
 	@Override

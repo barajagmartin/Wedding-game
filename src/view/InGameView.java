@@ -5,8 +5,10 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.imageout.ImageOut;
 import org.newdawn.slick.state.StateBasedGame;
 
+import model.Game;
 import model.InGame;
 import model.Spikes;
 import model.StatusBar;
@@ -19,6 +21,7 @@ public class InGameView {
 	private WorldView worldView;
 	private StatusBarView statusBarView;
 	private CharacterView characterView;
+	private Graphics g;
 	
 	public InGameView(InGame inGame, WorldView worldView, StatusBarView statusBarView, CharacterView characterView) {
 		this.inGame = inGame;
@@ -29,12 +32,12 @@ public class InGameView {
 	
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-		
+		this.g = g;
 		//draw character
 		g.setColor(characterView.getColor());
 		g.fill(characterView.getSlickShape());
-		Image i = new Image("pics/rainbow.jpg"); //Will be get from the Multimedia class later
-		i.draw();
+		Image background = new Image("pics/rainbow.jpg"); //Will be get from the Multimedia class later
+		background.draw();
 		worldView.getBlockMapView().getTiledMap().render(0, 0);
 		//draw candyMonsters
 		for (int j = 0; j < worldView.getCandyMonsterViewList().size(); j++) {
@@ -74,6 +77,15 @@ public class InGameView {
 		g.fill(statusBarView.getFixedBar());
 		g.setColor(Color.green);
 		g.fill(statusBarView.getTimeBar());
+
+	}
+	
+	public void createPauseImage() throws SlickException{
+		//Save all contents in an Image for the pause state
+		Image pauseImage = new Image(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
+		g.copyArea(pauseImage, 0, 0);
+		ImageOut.write(pauseImage.copy(), "pics/pauseBackground.png", false);
+		pauseImage.destroy();
 	}
 
 	
