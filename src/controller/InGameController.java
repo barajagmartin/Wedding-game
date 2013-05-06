@@ -108,7 +108,8 @@ public class InGameController extends BasicGameState {
 		
 		//spikes collision detection
 		for(SpikesController spikesController : spikeController) {
-			if(spikesController.isWalkingOnSpikes() && this.characterController.getCharacter().getTimeSinceHit() > 1) {				
+			if(characterController.isWalkingOnSpikes(spikesController) && this.characterController.getCharacter().getTimeSinceHit() > 1) {
+				
 				characterController.getCharacter().loseOneLife();
 				this.characterController.getCharacter().setTimeSinceHit(0);
 				System.out.println(characterController.getCharacter().getLife());

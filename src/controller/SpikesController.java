@@ -25,7 +25,4 @@ public class SpikesController {
 		return spikesView;
 	}
 	
-	public boolean isWalkingOnSpikes() {
-		return spikesView.getShape().intersects(inGameController.getCharacterController().getCharacterView().getSlickShape());
-	}
 }
