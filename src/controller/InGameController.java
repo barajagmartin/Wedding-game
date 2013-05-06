@@ -91,7 +91,7 @@ public class InGameController extends BasicGameState {
 		this.inGame.setTime(this.inGame.getTime()-(delta/1000f));
 		this.characterController.getCharacter().setTimeSinceHit(this.characterController.getCharacter().getTimeSinceHit() + delta/1000f);
 		//update the timeBar
-		this.statusBarController.getStatusBarView().updateTimeBar(120, this.inGame.getTime());
+		this.statusBarController.getStatusBarView().updateTimeBar(this.inGame.getLevelTime(), this.inGame.getTime());
 		//check if the game is over
 		checkGameOverConditions();
 		//check key presses
@@ -144,7 +144,7 @@ public class InGameController extends BasicGameState {
 		if (this.itemController.size() == itemsDelivered) {
 			System.out.println("No more items to pick up, level cleared!");
 			sbg.enterState(Game.END_OF_LEVEL);
-		} else if (this.characterController.getCharacter().getLife() == 0) {
+		} else if (this.characterController.getCharacter().getLife() == 0 || this.inGame.getTime() <= 0) {
 			System.out.println("No more lives, you are dead!");
 			sbg.enterState(Game.END_OF_LEVEL);
 		}

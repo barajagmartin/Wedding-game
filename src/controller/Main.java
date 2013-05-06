@@ -3,6 +3,8 @@ package controller;
 
 import java.io.FileNotFoundException;
 
+import model.Game;
+
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.SlickException;
 
@@ -18,7 +20,7 @@ public class Main {
 		AppGameContainer app;
 		try {
 			app = new AppGameContainer(new GameController(GAME_NAME));
-			app.setDisplayMode(1250, 700, false);
+			app.setDisplayMode(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT, true);
 			app.start();
 		} catch (SlickException e) {
 			e.printStackTrace();
