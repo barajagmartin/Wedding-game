@@ -14,7 +14,6 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.imageout.ImageOut;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
@@ -22,6 +21,7 @@ import org.newdawn.slick.tiled.TiledMap;
 import utils.BlockMapUtils;
 import view.BlockMapView;
 import view.InGameView;
+import view.SpikesView;
 import model.BlockMap;
 import model.Game;
 import model.InGame;
@@ -38,19 +38,17 @@ public class InGameController extends BasicGameState {
 	private ArrayList <CandyMonsterController> candyMonsterController;
 	private ArrayList <ItemController> itemController;
 	private ArrayList <SpikesController> spikeController;
-	private GameController gameController;
 	private Item lastHeldItem;
 	private int itemsDelivered;
 	private StateBasedGame sbg;
-	private GameContainer gc;
 	
 	//should be based on the frame update (delta or something like that)
 	private float timeStep = 1.0f / 60.0f;
 	private int velocityIterations = 6;
 	private int positionIterations = 2;
 	
-	public InGameController(GameController gameController) {
-		this.gameController = gameController;
+	public InGameController() {
+		
 	}
 
 	
@@ -58,7 +56,6 @@ public class InGameController extends BasicGameState {
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		this.sbg = sbg;
-		this.gc = gc;
 		this.candyMonsterController = new ArrayList<CandyMonsterController>();
 		this.itemController = new ArrayList<ItemController>();
 		this.spikeController = new ArrayList<SpikesController>();
@@ -69,17 +66,25 @@ public class InGameController extends BasicGameState {
 			 this.candyMonsterController.add(new CandyMonsterController(this, i)); 
 			 this.itemController.add(new ItemController(this, i));
 		 }
+		 
+		 this.worldController = new WorldController(this);
 		 /*Create spikes*/
 		 for(int i = 0; i < blockMapController.getSpikesMap().getBlockList().size(); i++){
 			 this.spikeController.add(new SpikesController(this, i));
 		 }
-		 this.worldController = new WorldController(this);
 		 this.statusBarController = new StatusBarController(this);
 		 this.characterController = new CharacterController(this);
 		 this.playerController = new PlayerController(characterController, this);
 		 this.inGame = new InGame();
+		 
+		 //temporarily store the SpikesViews in a list
+		 ArrayList<SpikesView> tmpSpikesViewList = new ArrayList();
+		 for(SpikesController spikesController : spikeController) {
+			 tmpSpikesViewList.add(spikesController.getSpikesView());
+		 }
+		 
 		 this.inGameView = new InGameView(inGame, worldController.getWorldView(), statusBarController.getStatusBarView(), 
-				 characterController.getCharacterView());
+				 characterController.getCharacterView(), tmpSpikesViewList);
 		 itemsDelivered = 0;
 
 	}
@@ -112,14 +117,14 @@ public class InGameController extends BasicGameState {
 		characterController.getCharacter().setX((int)characterController.getCharacterView().getSlickShape().getX());
 		characterController.getCharacter().setY((int)characterController.getCharacterView().getSlickShape().getY());
 		
-		for(SpikesController spikesController : spikeController) {
-			if(spikesController.getSpikesView().getShape().intersects(characterController.getCharacterView().getSlickShape()) 
-					&& this.characterController.getCharacter().getTimeSinceHit() > 1) {
+		//spikes collision detection
+			if(this.characterController.getCharacter().getTimeSinceHit() > 1) {
+				//blink
 				characterController.getCharacter().loseOneLife();
 				this.characterController.getCharacter().setTimeSinceHit(0);
-				System.out.println(characterController.getCharacter().getLife());
+
 			}
-		}
+		
 	}
 
 	@Override
@@ -136,19 +141,7 @@ public class InGameController extends BasicGameState {
 				candyMonsterController.get(lastHeldItem.CANDY_NUMBER).isDroppedOnMonster(lastHeldItem);
 			}
 		}
-		if (key == Input.KEY_UP) {
-			characterController.tryToJumpCharacter();
-		}
 		if (key == Input.KEY_ESCAPE){
-			try {
-				//want to produce an image to create an illusion of a paused screen
-				inGameView.createPauseImage();
-				this.gameController.getPauseController().init(gc, sbg);
-				
-			} catch (SlickException e) {
-				System.out.println("No image to create");
-				e.printStackTrace();
-			}
 			sbg.enterState(Game.PAUSE_MENU);
 		}
 	}
