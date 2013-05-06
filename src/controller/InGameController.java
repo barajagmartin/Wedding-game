@@ -116,9 +116,9 @@ public class InGameController extends BasicGameState {
 	@Override
 	public void keyPressed (int key, char c) {
 		if (key == Input.KEY_DOWN) {
-			if (characterController.FindItemToPickUp()!= null && !characterController.isHoldingItem()) {
+			if (characterController.findItemToPickUp()!= null && !characterController.isHoldingItem()) {
 				characterController.getCharacterView().setColor(Color.pink);
-				characterController.getCharacter().pickUpItem(characterController.FindItemToPickUp());
+				characterController.getCharacter().pickUpItem(characterController.findItemToPickUp());
 			} else if (characterController.isHoldingItem() && 
 					characterController.getCharacterView().getCharacterBody().getLinearVelocity().y == 0) {
 				lastHeldItem = characterController.getCharacter().getHeldItem();	
