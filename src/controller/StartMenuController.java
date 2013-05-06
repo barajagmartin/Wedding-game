@@ -4,6 +4,7 @@ import model.Game;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -12,6 +13,7 @@ import view.StartMenuView;
 
 public class StartMenuController extends BasicGameState {
 	private StartMenuView startMenuView;
+	private StateBasedGame sbg;
 	
 	public StartMenuController() {
 		
@@ -20,6 +22,7 @@ public class StartMenuController extends BasicGameState {
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
+		this.sbg = game;
 		this.startMenuView = new StartMenuView();
 		
 	}
@@ -36,6 +39,12 @@ public class StartMenuController extends BasicGameState {
 			throws SlickException {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void keyPressed (int key, char c) {
+		if (key == Input.KEY_ENTER) {
+			this.sbg.enterState(Game.IN_GAME);
+		}
 	}
 
 	@Override
