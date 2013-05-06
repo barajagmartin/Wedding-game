@@ -21,7 +21,7 @@ public class WorldController {
 	private InGameController inGameController;
 	private ArrayList<ItemView> itemViewList;
 	private ArrayList<CandyMonsterView> candyMonsterViewList;
-	private ArrayList<SpikesView> spikesViewList;
+//	private ArrayList<SpikesView> spikesViewList;
 	private model.World world;
 	private WorldView worldView;
 	
@@ -29,7 +29,6 @@ public class WorldController {
 		this.inGameController = inGameController;
 		itemViewList = new ArrayList<ItemView>();
 		candyMonsterViewList = new ArrayList<CandyMonsterView>();
-		spikesViewList = new ArrayList<SpikesView>();
 		
 		for (ItemController itemController : inGameController.getItemController()) {
 			itemViewList.add(itemController.getItemView());
@@ -37,16 +36,16 @@ public class WorldController {
 		for (CandyMonsterController candyMonsterController : inGameController.getCandyMonsterController()) {
 			candyMonsterViewList.add(candyMonsterController.getCandyMonsterView());
 		}
-		for (SpikesController spikesController : inGameController.getSpikesController()) {
-			spikesViewList.add(spikesController.getSpikesView());
-		}
+		
+//		for (SpikesController spikesController : inGameController.getSpikesController()) {
+//			spikesViewList.add(spikesController.getSpikesView());
+//		}
 		
 		
 		this.world = new World(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
 		this.worldView = new WorldView(world, inGameController.getBlockMapController().getBlockMapView(),
 				itemViewList,
-				candyMonsterViewList,
-				spikesViewList);
+				candyMonsterViewList);
 	}
 	
 	public model.World getWorld() {

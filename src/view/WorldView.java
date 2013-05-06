@@ -32,22 +32,20 @@ public class WorldView {
 	private BlockMapView blockMapView;
 	private ArrayList<ItemView> itemViewList;
 	private ArrayList<CandyMonsterView> candyMonsterViewList;
-	private ArrayList<SpikesView> spikesViewList;
+
 	
 	private float worldWidthMeter;
 	private float worldHeightMeter;
 	
 	public WorldView(model.World world, BlockMapView blockMapView, 
 			ArrayList<ItemView> itemViewList, 
-			ArrayList<CandyMonsterView> candyMonsterViewList, 
-			ArrayList<SpikesView> spikesViewList) {
+			ArrayList<CandyMonsterView> candyMonsterViewList) {
 		this.world = world;
 		worldWidthMeter = WorldUtils.pixel2Meter(world.getWorldWidthPx());
 		worldHeightMeter = WorldUtils.pixel2Meter(world.getWorldHeightPx());
 		this.blockMapView = blockMapView;
 		this.itemViewList = itemViewList;
 		this.candyMonsterViewList = candyMonsterViewList;
-		this.spikesViewList = spikesViewList;
 		gravity = new Vec2(0.0f, 9.82f);
 		doSleep = true;
 		jBox2DWorld = new World(gravity, doSleep);
@@ -88,9 +86,6 @@ public class WorldView {
 		return candyMonsterViewList;
 	}
 
-	public ArrayList<SpikesView> getSpikesViewList() {
-		return spikesViewList;
-	}
 
 	public Body getGroundBody() {
 		return groundBody;
