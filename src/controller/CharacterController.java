@@ -113,9 +113,11 @@ public class CharacterController {
 		}
 	}
 	
-	
+	/**
+	 * If on ground, then jump.
+	 */
 	public void tryToJumpCharacter() {
-		if(characterView.getCharacterBody().getLinearVelocity().y == 0){
+		if(characterView.getCharacterBody().getLinearVelocity().y <= 0.0001 && characterView.getCharacterBody().getLinearVelocity().y >= -0.0001){
 			characterView.setColor(Color.red);
 			inGameController.getWorldController().jumpBody();
 		}
