@@ -52,11 +52,7 @@ public class InGameView {
 		}	
 		//draw spikes
 				for (int j = 0; j < spikesViewList.size(); j++) {
-					this.g.setColor(spikesViewList.get(j).getColor());
-					this.g.fill(spikesViewList.get(j).getShape());
-
 					//set the color when "debugging"
-					//g.setColor(worldView.getSpikesViewList().get(j).getColor());
 					g.setColor(Color.transparent); //so it does not show the circle
 					g.fill(spikesViewList.get(j).getShape());
 					g.drawImage(spikesViewList.get(j).getImage(), 

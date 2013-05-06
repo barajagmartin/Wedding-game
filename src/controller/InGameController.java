@@ -119,14 +119,6 @@ public class InGameController extends BasicGameState {
 		characterController.getCharacter().setX((int)characterController.getCharacterView().getSlickShape().getX());
 		characterController.getCharacter().setY((int)characterController.getCharacterView().getSlickShape().getY());
 		
-		//spikes collision detection
-			if(this.characterController.getCharacter().getTimeSinceHit() > 1) {
-				//blink
-				characterController.getCharacter().loseOneLife();
-				this.characterController.getCharacter().setTimeSinceHit(0);
-
-			}
-		
 	}
 
 	@Override
