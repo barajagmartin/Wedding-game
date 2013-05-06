@@ -124,7 +124,7 @@ public class CharacterController {
 	 * checks if the character is close enough to an item to pick it up.
 	 * @return the item that the character is standing at.
 	 */
-	public Item FindItemToPickUp() {
+	public Item findItemToPickUp() {
 		for (int i = 0; i < inGameController.getWorldController().getItemViewList().size(); i++) {
 			if ((characterView.getSlickShape().intersects(inGameController.getWorldController().getItemViewList().get(i).getShape()) ||
 					characterView.getSlickShape().contains(inGameController.getWorldController().getItemViewList().get(i).getShape()))

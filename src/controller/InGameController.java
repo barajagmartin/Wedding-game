@@ -90,7 +90,7 @@ public class InGameController extends BasicGameState {
 		this.inGame.setTime(this.inGame.getTime()-(delta/1000f));
 		this.characterController.getCharacter().setTimeSinceHit(this.characterController.getCharacter().getTimeSinceHit() + delta/1000f);
 		//update the timeBar
-		this.statusBarController.getStatusBarView().updateTimeBar(120, this.inGame.getTime());
+		this.statusBarController.getStatusBarView().updateTimeBar(this.inGame.getLevelTime(), this.inGame.getTime());
 		//check if the game is over
 		checkGameOverConditions();
 		//check key presses
@@ -105,20 +105,22 @@ public class InGameController extends BasicGameState {
 		characterController.getCharacter().setX((int)characterController.getCharacterView().getSlickShape().getX());
 		characterController.getCharacter().setY((int)characterController.getCharacterView().getSlickShape().getY());
 		
-		if(spikeController.get(0).getSpikesView().getShape().intersects(characterController.getCharacterView().getSlickShape()) 
-				&& this.characterController.getCharacter().getTimeSinceHit() > 1) {
-			characterController.getCharacter().loseOneLife();
-			this.characterController.getCharacter().setTimeSinceHit(0);
-			System.out.println(characterController.getCharacter().getLife());
+		for(SpikesController spikesController : spikeController) {
+			if(spikesController.getSpikesView().getShape().intersects(characterController.getCharacterView().getSlickShape()) 
+					&& this.characterController.getCharacter().getTimeSinceHit() > 1) {
+				characterController.getCharacter().loseOneLife();
+				this.characterController.getCharacter().setTimeSinceHit(0);
+				System.out.println(characterController.getCharacter().getLife());
+			}
 		}
 	}
 
 	@Override
 	public void keyPressed (int key, char c) {
 		if (key == Input.KEY_DOWN) {
-			if (characterController.FindItemToPickUp()!= null && !characterController.isHoldingItem()) {
+			if (characterController.findItemToPickUp()!= null && !characterController.isHoldingItem()) {
 				characterController.getCharacterView().setColor(Color.pink);
-				characterController.getCharacter().pickUpItem(characterController.FindItemToPickUp());
+				characterController.getCharacter().pickUpItem(characterController.findItemToPickUp());
 			} else if (characterController.isHoldingItem() && 
 					characterController.getCharacterView().getCharacterBody().getLinearVelocity().y == 0) {
 				lastHeldItem = characterController.getCharacter().getHeldItem();	
@@ -141,7 +143,7 @@ public class InGameController extends BasicGameState {
 		if (this.itemController.size() == itemsDelivered) {
 			System.out.println("No more items to pick up, level cleared!");
 			sbg.enterState(Game.END_OF_LEVEL);
-		} else if (this.characterController.getCharacter().getLife() == 0) {
+		} else if (this.characterController.getCharacter().getLife() == 0 || this.inGame.getTime() <= 0) {
 			System.out.println("No more lives, you are dead!");
 			sbg.enterState(Game.END_OF_LEVEL);
 		}
