@@ -89,9 +89,7 @@ public class WorldView {
 
 	public Body getGroundBody() {
 		return groundBody;
-	}
-
-	
+	}	
 	
 	/**
 	 * Add solid ground to prevent the character from moving outside of the window.

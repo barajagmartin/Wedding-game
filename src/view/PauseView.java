@@ -2,9 +2,12 @@ package view;
 
 import java.util.ArrayList;
 
+import model.Game;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
@@ -25,35 +28,30 @@ public class PauseView {
 		this.isMarked = 0;
 		buttonList = new ArrayList<Rectangle>();
 	}
+	
+	//Make method that keeps track on which state to go back to TODO (mulitple levels)
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
+		g.drawImage(new Image("pics/pauseBackground.png"), 0, 0);
 			/*Create image of game TODO*/
-				//draw(sbg.getState(Game.IN_GAME));
 				//gather contents from the play screen and make a new Image
 				//get graphics and render your scene in the new Image
 				//set Image as background
 				//create a fill rect for opacity and color if needed
 
-				/*if you pause, you keep the last state id in memory and you do a transition to your paused state
-				 * if you resume you get the last state back by id and everything "resumes" automatically without 
-				 * doing noting, the state is paused (not rendered or updated) until you go back to that state*/
-
-			/*Create pause menu*/
-			Rectangle pauseMenu = new Rectangle(worldWidth/4, worldHeight/5, worldWidth/2, (2*worldHeight)/3); //x, y, width, height
-			g.draw(pauseMenu);
-			g.setColor(Color.green);
-			
-			/*Create "buttons" in menu*/
-			//Start coordinates same as pause menu
+			/*Create pause menu with "buttons"*/
+			//Start coordinates positioned so the menu is displayed in the middle and takes up 3/4 of the screen (height)
 			int buttonX = worldWidth/4;
 			int buttonY = worldHeight/5;
 			for(int i = 0; i < 5; i++){
 				this.buttonList.add(new Rectangle(buttonX, buttonY, buttonWidth, buttonHeight));
 				
 				if(buttonList.indexOf(buttonList.get(i)) == isMarked) {
+					g.setColor(new Color(0.5f, 0.5f, 0.5f, 0.5f));
 					g.fill(buttonList.get(i));
 				} else {
+					g.setColor(new Color(0f, 0f, 0f, 0f));
 					g.draw(buttonList.get(i));
 				}
 				//increase Y with buttonHeight to place the buttons underneath each other

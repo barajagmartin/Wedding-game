@@ -21,6 +21,7 @@ import org.newdawn.slick.tiled.TiledMap;
 import utils.BlockMapUtils;
 import view.BlockMapView;
 import view.InGameView;
+import view.SpikesView;
 import model.BlockMap;
 import model.Game;
 import model.InGame;
@@ -64,16 +65,24 @@ public class InGameController extends BasicGameState {
 			 this.candyMonsterController.add(new CandyMonsterController(this, i)); 
 			 this.itemController.add(new ItemController(this, i));
 		 }
+		 
+		 this.worldController = new WorldController(this);
 		 /*Create spikes*/
 		 for(int i = 0; i < blockMapController.getSpikesMap().getBlockList().size(); i++){
 			 this.spikeController.add(new SpikesController(this, i));
 		 }
-		 this.worldController = new WorldController(this);
 		 this.statusBarController = new StatusBarController(this);
 		 this.characterController = new CharacterController(this);
 		 this.inGame = new InGame();
+		 
+		 //temporarily store the SpikesViews in a list
+		 ArrayList<SpikesView> tmpSpikesViewList = new ArrayList();
+		 for(SpikesController spikesController : spikeController) {
+			 tmpSpikesViewList.add(spikesController.getSpikesView());
+		 }
+		 
 		 this.inGameView = new InGameView(inGame, worldController.getWorldView(), statusBarController.getStatusBarView(), 
-				 characterController.getCharacterView());
+				 characterController.getCharacterView(), tmpSpikesViewList);
 		 itemsDelivered = 0;
 
 	}
@@ -107,14 +116,13 @@ public class InGameController extends BasicGameState {
 		characterController.getCharacter().setY((int)characterController.getCharacterView().getSlickShape().getY());
 		
 		//spikes collision detection
-		for(SpikesController spikesController : spikeController) {
-			if(characterController.isWalkingOnSpikes(spikesController) && this.characterController.getCharacter().getTimeSinceHit() > 1) {
-				
+			if(this.characterController.getCharacter().getTimeSinceHit() > 1) {
+				//blink
 				characterController.getCharacter().loseOneLife();
 				this.characterController.getCharacter().setTimeSinceHit(0);
-				System.out.println(characterController.getCharacter().getLife());
+
 			}
-		}
+		
 	}
 
 	@Override
