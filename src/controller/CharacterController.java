@@ -108,9 +108,6 @@ public class CharacterController {
 			characterView.setColor(Color.green);
 			inGameController.getWorldController().moveBodyLeft();
 		}
-		if(input.isKeyDown(Input.KEY_UP)) {
-			tryToJumpCharacter();
-		}
 	}
 	
 	/**

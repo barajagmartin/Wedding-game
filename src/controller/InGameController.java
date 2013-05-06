@@ -129,6 +129,9 @@ public class InGameController extends BasicGameState {
 				candyMonsterController.get(lastHeldItem.CANDY_NUMBER).isDroppedOnMonster(lastHeldItem);
 			}
 		}
+		if (key == Input.KEY_UP) {
+			characterController.tryToJumpCharacter();
+		}
 		if (key == Input.KEY_ESCAPE){
 			sbg.enterState(Game.PAUSE_MENU);
 		}
