@@ -2,12 +2,16 @@ package view;
 
 import model.Spikes;
 
+import org.jbox2d.callbacks.ContactImpulse;
+import org.jbox2d.callbacks.ContactListener;
+import org.jbox2d.collision.Manifold;
 import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.collision.shapes.Shape;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
+import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Circle;
@@ -29,30 +33,26 @@ public class SpikesView {
 		this.shape = new CircleShape();
 		this.shape.m_radius = WorldUtils.pixel2Meter(Spikes.RADIUS);
 		BodyDef bodyDef = new BodyDef();
-		bodyDef.position.set(WorldUtils.pixel2Meter(spikes.getX()), WorldUtils.pixel2Meter(spikes.getY()));
+		bodyDef.position.set(WorldUtils.pixel2Meter(spikes.getX()), WorldUtils.pixel2Meter(spikes.getY())); //FIXME jbox sensor should be in the center
 		bodyDef.type = BodyType.STATIC;
 		bodyDef.fixedRotation = true;
 		
 		FixtureDef fixtureDef = new FixtureDef();
 		fixtureDef.isSensor = true;
-		
+				
 		Body spikesBody = worldView.getjBox2DWorld().createBody(bodyDef);
-		spikesBody.createFixture(fixtureDef);
+		spikesBody.createFixture(fixtureDef);				
 	}
 
 	public Spikes getSpikes() {
 		return spikes;
 	}
 	
-	public Shape getShape() {
-		return shape;
+	public Circle getShape() {
+		return circle;
 	}
 	
 	public Color getColor() {
 		return color;
-	}
-
-	
-	
-	
+	}	
 }
