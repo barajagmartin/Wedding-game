@@ -19,14 +19,18 @@ public class EndOfLevelController extends BasicGameState{
 	
 	public EndOfLevelController (GameController gameController) {
 		this.gameController = gameController;
+		
+
 	}
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		this.endOflevelView = new EndOfLevelView();
+		
 		this.sgb = sgb;
 		this.gc = gc;
+		
+		this.endOflevelView = new EndOfLevelView(this.gameController.getInGameController().getPlayerController().getPlayer().getScore());
 	}
 
 	@Override
@@ -36,9 +40,9 @@ public class EndOfLevelController extends BasicGameState{
 	}
 
 	@Override
-	public void update(GameContainer arg0, StateBasedGame arg1, int arg2)
+	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
-		// TODO Auto-generated method stub
+		this.endOflevelView.setScore(this.gameController.getInGameController().getPlayerController().getPlayer().getScore());
 		
 	}
 	

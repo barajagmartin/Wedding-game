@@ -12,8 +12,11 @@ import org.newdawn.slick.state.StateBasedGame;
 import controller.GameController;
 
 public class EndOfLevelView {
+	private int Score;
 	
-	public EndOfLevelView () {
+	
+	public EndOfLevelView (int Score) {
+		this.Score = Score;
 		
 	}
 	
@@ -24,6 +27,13 @@ public class EndOfLevelView {
 		g.setColor(Color.black);
 		g.drawString("ENTER - start new level", Game.WINDOW_WIDTH/2 - 30, Game.WINDOW_HEIGHT/2 + 40);
 		g.drawString("ESC - quit the game", Game.WINDOW_WIDTH/2 - 30, Game.WINDOW_HEIGHT/2 + 60);
+		g.drawString("Score: " + this.Score, Game.WINDOW_WIDTH/2 - 30, Game.WINDOW_HEIGHT/2 + 90);
 	}
+
+	public void setScore(int score) {
+		Score = score;
+	}
+	
+
 
 }

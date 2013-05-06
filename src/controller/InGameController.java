@@ -31,6 +31,7 @@ public class InGameController extends BasicGameState {
 	private InGame inGame;
 	private InGameView inGameView;
 	private CharacterController characterController;
+	private PlayerController playerController;
 	private WorldController worldController;
 	private StatusBarController statusBarController;
 	private BlockMapController blockMapController;
@@ -73,6 +74,7 @@ public class InGameController extends BasicGameState {
 		 }
 		 this.statusBarController = new StatusBarController(this);
 		 this.characterController = new CharacterController(this);
+		 this.playerController = new PlayerController(characterController, this);
 		 this.inGame = new InGame();
 		 
 		 //temporarily store the SpikesViews in a list
@@ -152,6 +154,7 @@ public class InGameController extends BasicGameState {
 	public void checkGameOverConditions() {
 		if (this.itemController.size() == itemsDelivered) {
 			System.out.println("No more items to pick up, level cleared!");
+			this.playerController.getPlayer().setScore((int)this.inGame.getTime(), this.itemsDelivered);
 			sbg.enterState(Game.END_OF_LEVEL);
 		} else if (this.characterController.getCharacter().getLife() == 0 || this.inGame.getTime() <= 0) {
 			System.out.println("No more lives, you are dead!");
@@ -199,6 +202,11 @@ public class InGameController extends BasicGameState {
 
 	public ArrayList<SpikesController> getSpikesController() {
 		return spikeController;
+	}
+
+
+	public PlayerController getPlayerController() {
+		return playerController;
 	}
 
 }
