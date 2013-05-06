@@ -105,11 +105,13 @@ public class InGameController extends BasicGameState {
 		characterController.getCharacter().setX((int)characterController.getCharacterView().getSlickShape().getX());
 		characterController.getCharacter().setY((int)characterController.getCharacterView().getSlickShape().getY());
 		
-		if(spikeController.get(0).getSpikesView().getShape().intersects(characterController.getCharacterView().getSlickShape()) 
-				&& this.characterController.getCharacter().getTimeSinceHit() > 1) {
-			characterController.getCharacter().loseOneLife();
-			this.characterController.getCharacter().setTimeSinceHit(0);
-			System.out.println(characterController.getCharacter().getLife());
+		for(SpikesController spikesController : spikeController) {
+			if(spikesController.getSpikesView().getShape().intersects(characterController.getCharacterView().getSlickShape()) 
+					&& this.characterController.getCharacter().getTimeSinceHit() > 1) {
+				characterController.getCharacter().loseOneLife();
+				this.characterController.getCharacter().setTimeSinceHit(0);
+				System.out.println(characterController.getCharacter().getLife());
+			}
 		}
 	}
 
