@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="30" height="18" tilewidth="40" tileheight="40">
- <tileset firstgid="1" name="groundTiles" tilewidth="40" tileheight="40">
+<map version="1.0" orientation="orthogonal" width="32" height="24" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="groundTiles" tilewidth="32" tileheight="32">
   <image source="groundTiles.png" width="500" height="50"/>
   <tile id="0">
    <properties>
     <property name="property" value="solidGround"/>
    </properties>
   </tile>
-  <tile id="2">
-   <properties>
-    <property name="property" value="spikes"/>
-   </properties>
-  </tile>
   <tile id="3">
    <properties>
-    <property name="property" value="candyMonster"/>
+    <property name="property" value="spikes"/>
    </properties>
   </tile>
   <tile id="4">
@@ -22,10 +17,20 @@
     <property name="property" value="item"/>
    </properties>
   </tile>
+  <tile id="5">
+   <properties>
+    <property name="property" value="candyMonster"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="property" value="player"/>
+   </properties>
+  </tile>
  </tileset>
- <layer name="layer" width="30" height="18">
+ <layer name="layer" width="32" height="24">
   <data encoding="base64" compression="zlib">
-   eJztk9sKgDAMQw3q//+yT4KMtM1G1icDZaO7nGYXHPsFMfdz/dwOOf2CRDXXwZ1VF/ec5LLzc9TW5Vfxt0sI+i4uhvabz8ZWdRXcqiZV0XvLuOM6xr0FhlILY2Q5579hvOz+V/aOWCq3I149VIsAhQ==
+   eJxjZBg4wAjFo/YPX/sZ0TC97ccHhqP9bDSyn50E84g1l5r+J8ccUt1JrntZKbSfEoDudkYccgMBBlv+IzYt4GNjM4OFgP2kYlLsJ8U8YgE5bsVnzkCBUftH7R8M9g8kBgD6ugCe
   </data>
  </layer>
 </map>
