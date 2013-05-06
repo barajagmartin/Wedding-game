@@ -61,11 +61,12 @@ public class InGameView {
 		g.drawString("Time : " + this.inGame.getTime(), 10, 25);
 		
 		//draw status bar
-		g.drawString("LIFE", 35, 570);
 		for(int k = 0; k < characterView.getCharacter().getLife(); k++) {
 			statusBarView.getHeart()[k].draw(StatusBar.HEART_POSX[k], StatusBar.HEART_POSY);
 		}
-		g.drawString("TIME", 630, 570);
+		g.setColor(Color.white);
+		g.drawString("LIFE", StatusBar.HEART_POSX[0] - 15, StatusBar.HEART_POSY - 20);
+		g.drawString("TIME", StatusBar.FIXED_BAR_POSX - 15, StatusBar.HEART_POSY - 20);
 		g.setColor(Color.darkGray);
 		g.fill(statusBarView.getFixedBar());
 		g.setColor(Color.green);

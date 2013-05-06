@@ -18,11 +18,11 @@ public class ItemView {
 		
 		/*Set a color of a candy monster depending on its ID*/
 		switch(candyNumber){
-			case 0: color = Color.orange;
+			case 0: color = Color.cyan;
 					break;
 			case 1: color = Color.magenta;
 					break;
-			case 2: color = Color.yellow;
+			case 2: color = Color.pink;
 					break;
 		}
 	}
