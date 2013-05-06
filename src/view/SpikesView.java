@@ -4,6 +4,7 @@ import model.Spikes;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Circle;
 import org.newdawn.slick.geom.Shape;
 
@@ -17,6 +18,12 @@ public class SpikesView {
 		this.spikes = spikes;
 		this.color = color.gray;
 		this.shape = new Circle(spikes.getX(), spikes.getY(), Spikes.RADIUS);
+		try {
+			this.image = new Image("pics/spikes2.png");
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
@@ -32,7 +39,8 @@ public class SpikesView {
 		return color;
 	}
 
-	
-	
+	public Image getImage() {
+		return image;
+	}	
 	
 }

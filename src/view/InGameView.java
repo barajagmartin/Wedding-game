@@ -10,6 +10,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import model.Game;
 import model.InGame;
+import model.Spikes;
 import model.StatusBar;
 
 /**
@@ -45,8 +46,18 @@ public class InGameView {
 		}	
 		//draw spikes
 				for (int j = 0; j < worldView.getSpikesViewList().size(); j++) {
+<<<<<<< HEAD
 					this.g.setColor(worldView.getSpikesViewList().get(j).getColor());
 					this.g.fill(worldView.getSpikesViewList().get(j).getShape());
+=======
+					//set the color when "debugging"
+					//g.setColor(worldView.getSpikesViewList().get(j).getColor());
+					g.setColor(Color.transparent); //so it does not show the circle
+					g.fill(worldView.getSpikesViewList().get(j).getShape());
+					g.drawImage(this.worldView.getSpikesViewList().get(j).getImage(), 
+							this.worldView.getSpikesViewList().get(j).getSpikes().getX()- Spikes.RADIUS - 3, 
+							this.worldView.getSpikesViewList().get(j).getSpikes().getY() - Spikes.RADIUS - 3);
+>>>>>>> 63f2b2c28094510114fc5041021b4cc16f8069bb
 				}
 		
 		Image player = new Image("pics/GulNelson.png");
