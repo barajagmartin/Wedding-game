@@ -14,10 +14,10 @@ public class GameController extends StateBasedGame {
 	
 	public GameController(String name) {
 		super(name);
+		this.startMenuController = new StartMenuController(this);
 		this.inGameController = new InGameController(this);
 		this.pauseController = new PauseController(this);
 		this.endOfLevelController = new EndOfLevelController(this);
-		this.startMenuController = new StartMenuController(this);
 		this.addState(inGameController);
 		this.addState(pauseController);
 		this.addState(endOfLevelController);

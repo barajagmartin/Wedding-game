@@ -19,12 +19,14 @@ public class EndOfLevelController extends BasicGameState{
 	
 	public EndOfLevelController (GameController gameController) {
 		this.gameController = gameController;
+		
+		this.endOflevelView = new EndOfLevelView(this.gameController.getInGameController().getPlayerController().getPlayer().getScore());
 	}
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		this.endOflevelView = new EndOfLevelView();
+		
 		this.sgb = sgb;
 		this.gc = gc;
 	}
