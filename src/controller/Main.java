@@ -20,7 +20,7 @@ public class Main {
 		AppGameContainer app;
 		try {
 			app = new AppGameContainer(new GameController(GAME_NAME));
-			app.setDisplayMode(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT, true);
+			app.setDisplayMode(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT, false);
 			app.start();
 		} catch (SlickException e) {
 			e.printStackTrace();
