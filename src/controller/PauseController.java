@@ -25,16 +25,14 @@ public class PauseController extends BasicGameState{
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		this.sbg = sbg;
-		this.pauseView = new PauseView(gameController.getInGameController().getWorldController().getWorld().getWorldWidthPx(), 
-									gameController.getInGameController().getWorldController().getWorld().getWorldHeightPx());
-									//width, height
+		this.pauseView = new PauseView();
 	}
+	
 	/*Render in view*/
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		this.pauseView.render(gc, sbg, g);
-		
 	}
 
 	@Override

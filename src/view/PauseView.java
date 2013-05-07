@@ -13,42 +13,32 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class PauseView {
-	private int worldWidth;
-	private int worldHeight;
 	private int buttonHeight;
 	private int buttonWidth;
 	private int isMarked;
 	private ArrayList<Rectangle> buttonList;
 	
-	public PauseView(int worldWidth, int worldHeight) {
-		this.worldWidth = worldWidth;
-		this.worldHeight = worldHeight;
-		this.buttonWidth = worldWidth/2;
-		this.buttonHeight = (2*worldHeight)/15;
+	public PauseView() {
+		this.buttonWidth = Game.WINDOW_WIDTH/2;
+		this.buttonHeight = (2*Game.WINDOW_HEIGHT)/15;
 		this.isMarked = 0;
 		buttonList = new ArrayList<Rectangle>();
 	}
-	
-	//Make method that keeps track on which state to go back to TODO (multiple levels)
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		/*Draw illusion image of the game*/
-		Image pauseBackground = new Image("pics/pauseBackground.png");
-		g.drawImage(pauseBackground, 0, 0);
+		//Image pauseBackground = new Image("pics/pauseBackground.png");
+		//g.drawImage(pauseBackground, 0, 0);
 		
+		/*Make background darker to highlight pause menu*/
 		g.setColor(new Color(0f, 0f, 0f, 0.2f));
-		g.fillRect(0, 0, worldWidth, worldHeight);
-	
-		
-		/*Create a pause menu "box"*/
-		//g.setColor(new Color(new Color(0f, 0f, 0f, 0.8f)));
-		//g.fillRect(worldWidth/4, worldHeight/5, worldWidth/2, (2*worldHeight)/3);
+		g.fillRect(0, 0, Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
 		
 		/*Create pause menu "buttons"*/
 		//Start coordinates positioned so the menu is displayed in the middle and takes up 3/4 of the screen (height)
-		int buttonX = worldWidth/4;
-		int buttonY = worldHeight/5;
+		int buttonX = Game.WINDOW_WIDTH;
+		int buttonY = Game.WINDOW_HEIGHT/5;
 		for(int i = 0; i < 5; i++){
 			this.buttonList.add(new Rectangle(buttonX, buttonY, buttonWidth, buttonHeight));
 
@@ -59,11 +49,24 @@ public class PauseView {
 				g.setColor(new Color(0f, 0f, 0f, 0f));
 				g.draw(buttonList.get(i));
 			}
+			
+			/*Add labels to buttons*/
+			switch(i) {
+				case 0: g.drawImage(new Image("pics/start_game.png"), buttonX, buttonY);
+						break;
+				case 1: g.drawImage(new Image("pics/sound_on.png"), buttonX, buttonY);
+						break;
+				case 2: g.drawImage(new Image("pics/music_on.png"), buttonX, buttonY);
+						break;
+				case 3: g.drawImage(new Image("pics/controls.png"), buttonX, buttonY);
+						break;	
+				case 4: g.drawImage(new Image("pics/exit_to_menu.png"), buttonX, buttonY);
+						break;
+			}
+			
 			//increase Y with buttonHeight to place the buttons underneath each other
 			buttonY = buttonY + buttonHeight;
 		}
-		/*Create text for each "button" TODO*/
-		
 	}
 	
 	/*Move marker if key is pressed down*/

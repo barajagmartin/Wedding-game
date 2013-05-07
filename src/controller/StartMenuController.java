@@ -9,11 +9,13 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import utils.MenuUtils;
 import view.StartMenuView;
 
 public class StartMenuController extends BasicGameState {
 	private StartMenuView startMenuView;
 	private StateBasedGame sbg;
+	private Graphics g;
 	private GameController gameController;
 	
 	public StartMenuController(GameController gameController) {
@@ -24,12 +26,13 @@ public class StartMenuController extends BasicGameState {
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		this.sbg = game;
-		this.startMenuView = new StartMenuView(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
+		this.startMenuView = new StartMenuView();
 	}
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
+		this.g = g;
 		this.startMenuView.render(container, game, g);
 		
 	}
@@ -53,6 +56,7 @@ public class StartMenuController extends BasicGameState {
 				case 0: sbg.enterState(Game.IN_GAME);
 						break;
 				case 1: //Sound: On/Off
+						//g.drawImage(new Image("pics/sound_off"), , y);
 						break;
 				case 2: //Music: On/Off
 						break;
