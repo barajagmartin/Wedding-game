@@ -44,6 +44,7 @@ public class SpikesView {
 		fixtureDef = new FixtureDef();
 		fixtureDef.isSensor = true;
 		fixtureDef.shape = shape;
+		fixtureDef.userData = "spikes";
 				
 		Body spikesBody = worldView.getjBox2DWorld().createBody(bodyDef);
 		fixture = spikesBody.createFixture(fixtureDef);

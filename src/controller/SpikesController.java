@@ -3,6 +3,7 @@ package controller;
 import org.jbox2d.callbacks.ContactImpulse;
 import org.jbox2d.callbacks.ContactListener;
 import org.jbox2d.collision.Manifold;
+import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.contacts.Contact;
 
 import model.Spikes;
@@ -33,18 +34,23 @@ public class SpikesController implements ContactListener {
 
 	@Override
 	public void beginContact(Contact contact) {
-		System.out.println("contact");
-		if (contact.m_fixtureA.equals(spikesView.getFixture())) {
-			if(inGameController.getCharacterController().getCharacter().getTimeSinceHit() > 1) {
-				inGameController.getCharacterController().getCharacter().loseOneLife();
-				this.inGameController.getCharacterController().getCharacter().setTimeSinceHit(0);
+		Fixture fixtA = contact.getFixtureA();
+		Fixture fixtB = contact.getFixtureB();
+		
+		if(fixtA.getUserData() != null && fixtB.getUserData() != null) {
+			if(fixtA.getUserData().equals("spikes") && fixtB.getUserData().equals("player")) {
+				if(inGameController.getCharacterController().getCharacter().getTimeSinceHit() > 1) {
+					inGameController.getCharacterController().getCharacter().loseOneLife();
+					this.inGameController.getCharacterController().getCharacter().setTimeSinceHit(0);
+				}
 			}
 		}
-		
 	}
 
 	@Override
-	public void endContact(Contact contact) {}
+	public void endContact(Contact contact) {
+		System.out.println("no contact");
+	}
 
 	@Override
 	public void postSolve(Contact contact, ContactImpulse impulse) {}

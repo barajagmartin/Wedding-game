@@ -44,6 +44,7 @@ public class CharacterView {
 		fixtureDef.density = 1f; //gör till konstanter TODO
 		fixtureDef.friction = 0.8f;
 		fixtureDef.restitution = 0f;
+		fixtureDef.userData = "player";
 		
 		characterBody = worldView.getjBox2DWorld().createBody(bodyDef);
 		characterBody.createFixture(fixtureDef);
