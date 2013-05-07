@@ -49,7 +49,7 @@ public class PauseController extends BasicGameState{
 			if(PauseController.previousState >= 0){
 				sbg.enterState(PauseController.previousState); 
 			} else {
-				System.out.println("ERROR: previousState has not been initialized");  //FIXME
+				System.out.println("ERROR: previousState has not been initialized");  //FIXME better
 			}
 		}
 		if(key == Input.KEY_DOWN) {
@@ -72,6 +72,10 @@ public class PauseController extends BasicGameState{
 						break;
 			}
 		}
+	}
+	
+	public PauseView getPauseView(){
+		return pauseView;
 	}
 
 	public static int getPreviousState() {

@@ -32,18 +32,18 @@ public class PauseView {
 		g.drawImage(pauseBackground, 0, 0);
 
 		/*Make background darker to highlight pause menu*/
-		g.setColor(new Color(0f, 0f, 0f, 0.3f));
+		g.setColor(new Color(0f, 0f, 0f, 0.5f));
 		g.fillRect(0, 0, Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
 
 		/*Create pause menu "buttons"*/
 		//start position
 		int buttonX = 0;
-		int buttonY = Game.WINDOW_HEIGHT/5;
+		int buttonY = Game.WINDOW_HEIGHT/7;
 		for(int i = 0; i < 5; i++){
 			this.buttonList.add(new Rectangle(buttonX, buttonY, buttonWidth, buttonHeight));
 
 			if(buttonList.indexOf(buttonList.get(i)) == isMarked) {
-				g.setColor(new Color(0f, 0f, 0f, 0.4f));
+				g.setColor(new Color(0f, 0f, 0f, 0.8f));
 				g.fill(buttonList.get(i));
 			} else {
 				g.setColor(new Color(0f, 0f, 0f, 0f));

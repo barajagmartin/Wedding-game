@@ -35,12 +35,12 @@ public class StartMenuView {
 
 		//start position
 		int buttonX = 0;
-		int buttonY = Game.WINDOW_HEIGHT/5;
-		for(int i = 0; i < 5; i++){
+		int buttonY = Game.WINDOW_HEIGHT/7;
+		for(int i = 0; i < 6; i++){
 			this.buttonList.add(new Rectangle(buttonX, buttonY, buttonWidth, buttonHeight));
 
 			if(buttonList.indexOf(buttonList.get(i)) == isMarked) {
-				g.setColor(new Color(0f, 0f, 0f, 0.4f));
+				g.setColor(new Color(0f, 0f, 0f, 0.5f));
 				g.fill(buttonList.get(i));
 			} else {
 				g.setColor(new Color(0f, 0f, 0f, 0f));
@@ -50,13 +50,15 @@ public class StartMenuView {
 			switch(i) {
 				case 0: g.drawImage(new Image("pics/start_game.png"), buttonX, buttonY);
 						break;
-				case 1: g.drawImage(new Image("pics/sound_on.png"), buttonX, buttonY);
+				case 1: g.drawImage(new Image("pics/highscore.png"), buttonX, buttonY);
 						break;
-				case 2: g.drawImage(new Image("pics/music_on.png"), buttonX, buttonY);
+				case 2: g.drawImage(new Image("pics/sound_on.png"), buttonX, buttonY);
 						break;
-				case 3: g.drawImage(new Image("pics/controls.png"), buttonX, buttonY);
+				case 3: g.drawImage(new Image("pics/music_on.png"), buttonX, buttonY);
 						break;	
-				case 4: g.drawImage(new Image("pics/exit_game.png"), buttonX, buttonY);
+				case 4: g.drawImage(new Image("pics/controls.png"), buttonX, buttonY);
+						break;
+				case 5: g.drawImage(new Image("pics/exit_game.png"), buttonX, buttonY);
 						break;
 			}
 			//increase Y with buttonHeight to place the buttons underneath each other
@@ -67,12 +69,12 @@ public class StartMenuView {
 	
 	/*Move marker if key is pressed down*/
 	public void markButtonDown() {
-		isMarked = ++isMarked % 5;
+		isMarked = ++isMarked % 6;
 	}
 
 	/*Move marker if key is pressed up*/
 	public void markButtonUp() {
-		isMarked = (isMarked + 4) %5; //add 4 to make positive (--isMarked + 5)
+		isMarked = (isMarked + 5) %6; //add 4 to make positive (--isMarked + 5)
 	}
 
 	public int getIsMarked() {

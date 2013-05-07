@@ -146,6 +146,7 @@ public class InGameController extends BasicGameState {
 				System.out.println("ERROR: No image could be created");
 				e.printStackTrace();
 			}
+			//get init so pauseView restarts each time (lost code) FIXME
 			//Set previous state to the state you where in before entering pause menu
 			PauseController.setPreviousState(Game.IN_GAME); 
 			sbg.enterState(Game.PAUSE_MENU);
