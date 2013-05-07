@@ -62,16 +62,13 @@ public class InGameView {
 		
 		Image player = new Image("pics/GulNelson.png");
 		player.draw(characterView.getSlickShape().getX(), characterView.getSlickShape().getY());
-
-//		Image player = new Image("pics/GulNelson.png");		
-//		player.draw(characterView.getSlickShape().getX(), characterView.getSlickShape().getY());
 		
-		//blinking animation
+		/* blinking animation - not yet working 
 		Image[] blinking = {new Image("pics/Nelson.png"), new Image("pics/GulNelson.png")};
 		int duration[] = {300, 300};
 		blink = new Animation(blinking, duration, true);
 		nelson = blink;
-		nelson.draw(characterView.getSlickShape().getX(), characterView.getSlickShape().getY());
+		nelson.draw(characterView.getSlickShape().getX(), characterView.getSlickShape().getY());*/
 
 		
 		//draw items
