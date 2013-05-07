@@ -85,6 +85,7 @@ public class InGameController extends BasicGameState {
 			 tmpSpikesViewList.add(spikesController.getSpikesView());
 		 }
 		 
+		 
 		 this.inGameView = new InGameView(inGame, worldController.getWorldView(), statusBarController.getStatusBarView(), 
 				 characterController.getCharacterView(), tmpSpikesViewList);
 		 itemsDelivered = 0;

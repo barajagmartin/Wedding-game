@@ -24,8 +24,7 @@ public class StartMenuController extends BasicGameState {
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		this.sbg = game;
-		this.startMenuView = new StartMenuView();
-		
+		this.startMenuView = new StartMenuView(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
 	}
 
 	@Override
@@ -43,8 +42,25 @@ public class StartMenuController extends BasicGameState {
 	}
 	
 	public void keyPressed (int key, char c) {
-		if (key == Input.KEY_ENTER) {
-			this.sbg.enterState(Game.IN_GAME);
+		if(key == Input.KEY_DOWN) {
+			startMenuView.markButtonDown();
+		}
+		if(key == Input.KEY_UP) {
+			startMenuView.markButtonUp();
+		}
+		if(key == Input.KEY_ENTER) {
+			switch(startMenuView.getIsMarked()){
+				case 0: sbg.enterState(Game.IN_GAME);
+						break;
+				case 1: //Sound: On/Off
+						break;
+				case 2: //Music: On/Off
+						break;
+				case 3: //Enter state "Controls"
+						break;
+				case 4: System.exit(0);
+						break;
+			}
 		}
 	}
 
