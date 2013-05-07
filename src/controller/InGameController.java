@@ -136,6 +136,8 @@ public class InGameController extends BasicGameState {
 			}
 		}
 		if (key == Input.KEY_ESCAPE){
+			//Set previous state to the state you where in before pressing ESC
+			PauseController.setPreviousState(Game.IN_GAME); 
 			sbg.enterState(Game.PAUSE_MENU);
 		}
 	}

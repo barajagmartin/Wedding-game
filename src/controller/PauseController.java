@@ -14,9 +14,11 @@ public class PauseController extends BasicGameState{
 	private StateBasedGame sbg;
 	private GameController gameController;
 	private PauseView pauseView;
+	private static int previousState;
 	
 	public PauseController(GameController gameController) {
 		this.gameController = gameController;
+		PauseController.setPreviousState(-1);
 	}
 
 	@Override
@@ -45,7 +47,12 @@ public class PauseController extends BasicGameState{
 	@Override
 	public void keyPressed (int key, char c) {
 		if(key == Input.KEY_ESCAPE) {
-			sbg.enterState(Game.IN_GAME); //this way or getID? FIXME
+			//check if we have a valid previous state
+			if(PauseController.previousState >= 0){
+				sbg.enterState(PauseController.previousState); 
+			} else {
+				System.out.println("ERROR: previousState has not been initialized");
+			}
 		}
 		if(key == Input.KEY_DOWN) {
 			pauseView.markButtonDown();
@@ -69,11 +76,18 @@ public class PauseController extends BasicGameState{
 		}
 	}
 
+	public static int getPreviousState() {
+		return previousState;
+	}
+
+	public static void setPreviousState(int previousState) {
+		PauseController.previousState = previousState;
+	}
+	
 	@Override
 	public int getID() {
 		return Game.PAUSE_MENU;
 	}
-	
 	
 
 }

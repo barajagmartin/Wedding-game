@@ -60,10 +60,9 @@ public class InGameView {
 							spikesViewList.get(j).getSpikes().getY() - Spikes.RADIUS - 3);
 				}
 		
-<<<<<<< HEAD
 		Image player = new Image("pics/GulNelson.png");
 		player.draw(characterView.getSlickShape().getX(), characterView.getSlickShape().getY());
-=======
+
 //		Image player = new Image("pics/GulNelson.png");		
 //		player.draw(characterView.getSlickShape().getX(), characterView.getSlickShape().getY());
 		
@@ -73,7 +72,7 @@ public class InGameView {
 		blink = new Animation(blinking, duration, true);
 		nelson = blink;
 		nelson.draw(characterView.getSlickShape().getX(), characterView.getSlickShape().getY());
->>>>>>> 6290d1210d61b003633309d72ec22fc561bb4ea7
+
 		
 		//draw items
 		for (int j = 0; j < worldView.getItemViewList().size(); j++) {

@@ -77,4 +77,5 @@ public class PauseView {
 	public int getIsMarked() {
 		return isMarked;
 	}
+
 }
