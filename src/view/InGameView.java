@@ -1,5 +1,8 @@
 package view;
 
+import java.util.ArrayList;
+
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -21,13 +24,16 @@ public class InGameView {
 	private WorldView worldView;
 	private StatusBarView statusBarView;
 	private CharacterView characterView;
+	private Animation nelson, blink;
 	private Graphics g;
+	private ArrayList<SpikesView> spikesViewList;
 	
-	public InGameView(InGame inGame, WorldView worldView, StatusBarView statusBarView, CharacterView characterView) {
+	public InGameView(InGame inGame, WorldView worldView, StatusBarView statusBarView, CharacterView characterView, ArrayList<SpikesView> spikesViewList) {
 		this.inGame = inGame;
 		this.worldView = worldView;
 		this.statusBarView = statusBarView;
 		this.characterView = characterView;
+		this.spikesViewList = spikesViewList;
 	}
 	
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
@@ -45,21 +51,29 @@ public class InGameView {
 			this.g.fill(worldView.getCandyMonsterViewList().get(j).getShape());
 		}	
 		//draw spikes
-				for (int j = 0; j < worldView.getSpikesViewList().size(); j++) {
-					this.g.setColor(worldView.getSpikesViewList().get(j).getColor());
-					this.g.fill(worldView.getSpikesViewList().get(j).getShape());
-
+				for (int j = 0; j < spikesViewList.size(); j++) {
 					//set the color when "debugging"
-					//g.setColor(worldView.getSpikesViewList().get(j).getColor());
 					g.setColor(Color.transparent); //so it does not show the circle
-					g.fill(worldView.getSpikesViewList().get(j).getShape());
-					g.drawImage(this.worldView.getSpikesViewList().get(j).getImage(), 
-							this.worldView.getSpikesViewList().get(j).getSpikes().getX()- Spikes.RADIUS - 3, 
-							this.worldView.getSpikesViewList().get(j).getSpikes().getY() - Spikes.RADIUS - 3);
+					g.fill(spikesViewList.get(j).getShape());
+					g.drawImage(spikesViewList.get(j).getImage(), 
+							spikesViewList.get(j).getSpikes().getX()- Spikes.RADIUS - 3, 
+							spikesViewList.get(j).getSpikes().getY() - Spikes.RADIUS - 3);
 				}
 		
+<<<<<<< HEAD
 		Image player = new Image("pics/GulNelson.png");
 		player.draw(characterView.getSlickShape().getX(), characterView.getSlickShape().getY());
+=======
+//		Image player = new Image("pics/GulNelson.png");		
+//		player.draw(characterView.getSlickShape().getX(), characterView.getSlickShape().getY());
+		
+		//blinking animation
+		Image[] blinking = {new Image("pics/Nelson.png"), new Image("pics/GulNelson.png")};
+		int duration[] = {300, 300};
+		blink = new Animation(blinking, duration, true);
+		nelson = blink;
+		nelson.draw(characterView.getSlickShape().getX(), characterView.getSlickShape().getY());
+>>>>>>> 6290d1210d61b003633309d72ec22fc561bb4ea7
 		
 		//draw items
 		for (int j = 0; j < worldView.getItemViewList().size(); j++) {

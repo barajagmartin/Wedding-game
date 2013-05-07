@@ -1,10 +1,15 @@
 package controller;
 
+import org.jbox2d.callbacks.ContactImpulse;
+import org.jbox2d.callbacks.ContactListener;
+import org.jbox2d.collision.Manifold;
+import org.jbox2d.dynamics.contacts.Contact;
+
 import model.Spikes;
 import view.CharacterView;
 import view.SpikesView;
 
-public class SpikesController {
+public class SpikesController implements ContactListener {
 	
 	private Spikes spikes;
 	private SpikesView spikesView;
@@ -14,7 +19,8 @@ public class SpikesController {
 		this.inGameController = inGameController;
 		this.spikes = new Spikes(inGameController.getBlockMapController().getSpikesMap().getBlockList().get(index).getPosX(), 
 								inGameController.getBlockMapController().getSpikesMap().getBlockList().get(index).getPosY());
-		this.spikesView = new SpikesView(this.spikes);
+		this.spikesView = new SpikesView(this.spikes, inGameController.getWorldController().getWorldView());
+		inGameController.getWorldController().getWorldView().getjBox2DWorld().setContactListener(this);
 	}
 
 	public Spikes getSpikes() {
@@ -24,4 +30,26 @@ public class SpikesController {
 	public SpikesView getSpikesView() {
 		return spikesView;
 	}
+
+	@Override
+	public void beginContact(Contact contact) {
+		System.out.println("contact");
+		if (contact.m_fixtureA.equals(spikesView.getFixture())) {
+			if(inGameController.getCharacterController().getCharacter().getTimeSinceHit() > 1) {
+				inGameController.getCharacterController().getCharacter().loseOneLife();
+				this.inGameController.getCharacterController().getCharacter().setTimeSinceHit(0);
+			}
+		}
+		
+	}
+
+	@Override
+	public void endContact(Contact contact) {}
+
+	@Override
+	public void postSolve(Contact contact, ContactImpulse impulse) {}
+
+	@Override
+	public void preSolve(Contact contact, Manifold oldManifold) {}
+	
 }

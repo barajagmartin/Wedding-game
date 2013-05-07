@@ -18,12 +18,16 @@
   </tile>
   <tile id="4">
    <properties>
-    <property name="property" value="spring"/>
+    <property name="friction" value="0.7"/>
+    <property name="property" value="solidGround"/>
+    <property name="restitution" value="1"/>
    </properties>
   </tile>
   <tile id="5">
    <properties>
-    <property name="property" value="ice"/>
+    <property name="friction" value="0"/>
+    <property name="property" value="solidGround"/>
+    <property name="restitution" value="0"/>
    </properties>
   </tile>
   <tile id="28">
@@ -49,7 +53,7 @@
  </tileset>
  <layer name="layer" width="32" height="24">
   <data encoding="base64" compression="zlib">
-   eJxjZBg4wAjFo/aP2k9PIDeA9jMh4eEe/sh+HQj7CQFq2k/Ir7S2nxyAzX55IvSR41di7acnIMZ+avmVXPtJAWwEMCsUw/jo9tPSr9jAYIx/WQJ6FKgoBrOfiULMSqY+kN3Mo3hEYwCsoAMs
+   eJztwwEJAAAAAqCg/58bkoIJAABP6vUBjw8BgQ==
   </data>
  </layer>
 </map>

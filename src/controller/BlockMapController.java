@@ -12,6 +12,8 @@ import model.BlockMap;
 public class BlockMapController {
 
 	private BlockMap solidGroundMap;
+	private BlockMap iceMap;
+	private BlockMap springMap;
 	private BlockMap candyMonsterMap;
 	private BlockMap spikesMap;
 	private BlockMap itemMap;
@@ -19,10 +21,12 @@ public class BlockMapController {
 	
 	public BlockMapController(TiledMap tiledMap) {
 		solidGroundMap = new BlockMap();
+		iceMap = new BlockMap();
+		springMap = new BlockMap();
 		candyMonsterMap = new BlockMap();
 		spikesMap = new BlockMap();
 		itemMap = new BlockMap();
-		blockMapView = new BlockMapView(solidGroundMap, candyMonsterMap, spikesMap, itemMap, tiledMap);
+		blockMapView = new BlockMapView(solidGroundMap, iceMap, springMap, candyMonsterMap, spikesMap, itemMap, tiledMap);
 	}
 	
 	public BlockMapView getBlockMapView() {
