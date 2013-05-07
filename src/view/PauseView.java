@@ -37,9 +37,13 @@ public class PauseView {
 		Image pauseBackground = new Image("pics/pauseBackground.png");
 		g.drawImage(pauseBackground, 0, 0);
 		
+		g.setColor(new Color(0f, 0f, 0f, 0.2f));
+		g.fillRect(0, 0, worldWidth, worldHeight);
+	
+		
 		/*Create a pause menu "box"*/
-		g.setColor(new Color(new Color(0f, 0f, 0f, 0.8f)));
-		g.fillRect(worldWidth/4, worldHeight/5, worldWidth/2, (2*worldHeight)/3);
+		//g.setColor(new Color(new Color(0f, 0f, 0f, 0.8f)));
+		//g.fillRect(worldWidth/4, worldHeight/5, worldWidth/2, (2*worldHeight)/3);
 		
 		/*Create pause menu "buttons"*/
 		//Start coordinates positioned so the menu is displayed in the middle and takes up 3/4 of the screen (height)
