@@ -147,8 +147,8 @@ public class CharacterController {
 		return false; //måste vara här annars gnälls det.
 	}
 
-//	public boolean isWalkingOnSpikes(SpikesController spikesController) {
-//		return spikesController.getSpikesView().getShape().intersects(this.getCharacterView().getSlickShape());
-//	}
+	public boolean isWalkingOnSpikes(SpikesController spikesController) {
+		return spikesController.getSpikesView().getShape().intersects(this.getCharacterView().getSlickShape());
+	}
 	
 }

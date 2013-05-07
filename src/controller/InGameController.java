@@ -136,6 +136,9 @@ public class InGameController extends BasicGameState {
 				candyMonsterController.get(lastHeldItem.CANDY_NUMBER).isDroppedOnMonster(lastHeldItem);
 			}
 		}
+		if (key == Input.KEY_UP) {
+			characterController.tryToJumpCharacter();
+		}
 		if (key == Input.KEY_ESCAPE){
 			//Set previous state to the state you where in before pressing ESC
 			PauseController.setPreviousState(Game.IN_GAME); 
