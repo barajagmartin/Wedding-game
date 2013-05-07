@@ -38,7 +38,7 @@ public class PauseView {
 		g.drawImage(pauseBackground, 0, 0);
 		
 		/*Create a pause menu "box"*/
-		g.setColor(new Color(new Color(1f, 1f, 1f, 1.5f)));
+		g.setColor(new Color(new Color(0f, 0f, 0f, 0.8f)));
 		g.fillRect(worldWidth/4, worldHeight/5, worldWidth/2, (2*worldHeight)/3);
 		
 		/*Create pause menu "buttons"*/
@@ -49,7 +49,7 @@ public class PauseView {
 			this.buttonList.add(new Rectangle(buttonX, buttonY, buttonWidth, buttonHeight));
 
 			if(buttonList.indexOf(buttonList.get(i)) == isMarked) {
-				g.setColor(new Color(0.5f, 0.5f, 0.5f, 0.5f));
+				g.setColor(new Color(1f, 1f, 1f, 0.4f));
 				g.fill(buttonList.get(i));
 			} else {
 				g.setColor(new Color(0f, 0f, 0f, 0f));
@@ -58,10 +58,8 @@ public class PauseView {
 			//increase Y with buttonHeight to place the buttons underneath each other
 			buttonY = buttonY + buttonHeight;
 		}
-		/*Create text for each "button"*/
-		//g.drawString("Resume", worldWidth/4, worldHeight/5);
-		//g.drawString("Sound On/Off", x, y);
-		//g.drawString("Music On/Off", x, y);
+		/*Create text for each "button" TODO*/
+		
 	}
 	
 	/*Move marker if key is pressed down*/
