@@ -59,8 +59,8 @@ public class InGameView {
 				}
 		
 		Image player = new Image("pics/GulNelson.png");
-		
 		player.draw(characterView.getSlickShape().getX(), characterView.getSlickShape().getY());
+		
 		//draw items
 		for (int j = 0; j < worldView.getItemViewList().size(); j++) {
 			this.g.setColor(worldView.getItemViewList().get(j).getColor());
@@ -82,9 +82,8 @@ public class InGameView {
 		this.g.fill(statusBarView.getTimeBar());
 
 	}
-	
-	public void createPauseImage() throws SlickException{
-		//Save all graphics in an Image to create an illusion of a paused screen in PauseView
+	/**Save all graphics in an Image to create an illusion of a paused screen in PauseView*/
+	public void createPauseImage() throws SlickException {
 		Image pauseImage = new Image(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
 		this.g.copyArea(pauseImage, 0, 0);
 		ImageOut.write(pauseImage.copy(), "pics/pauseBackground.png", false);
