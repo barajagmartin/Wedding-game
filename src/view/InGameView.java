@@ -92,7 +92,8 @@ public class InGameView {
 		this.g.fill(statusBarView.getTimeBar());
 
 	}
-	/**Save all graphics in an Image to create an illusion of a paused screen in PauseView*/
+	/**Save all graphics in an Image to create an illusion of a paused screen in PauseView
+	 * @throws SlickException */
 	public void createPauseImage() throws SlickException {
 		Image pauseImage = new Image(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
 		this.g.copyArea(pauseImage, 0, 0);
