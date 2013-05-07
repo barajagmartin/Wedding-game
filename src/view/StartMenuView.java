@@ -31,14 +31,16 @@ public class StartMenuView {
 	
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
+		/*Add background and title*/
 		g.drawImage(new Image("pics/bluebg.png"), 0, 0);
+		g.drawImage(new Image("pics/candy_monsters_orange.png"), 0, 0);
 		
 		/*Create start menu "buttons"*/
 		int buttonX = 0;
 		int buttonY = worldHeight/5;
 		for(int i = 0; i < 5; i++){
 			this.buttonList.add(new Rectangle(buttonX, buttonY, buttonWidth, buttonHeight));
-
+			g.drawImage(new Image("pics/start_game.png"), buttonX, buttonY);
 			if(buttonList.indexOf(buttonList.get(i)) == isMarked) {
 				g.setColor(new Color(0f, 0f, 0f, 0.4f));
 				g.fill(buttonList.get(i));
