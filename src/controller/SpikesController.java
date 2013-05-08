@@ -49,7 +49,6 @@ public class SpikesController implements ContactListener {
 
 	@Override
 	public void endContact(Contact contact) {
-		System.out.println("no contact");
 	}
 
 	@Override
