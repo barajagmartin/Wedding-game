@@ -42,12 +42,11 @@ public class PauseView implements IMenu {
 
 	}
 	@Override
-	/**Create buttons for the menu*/
 	public void createButtons(Graphics g) throws SlickException{
-		/*Create pause menu "buttons"*/
 		//start position
 		int buttonX = 0;
 		int buttonY = Game.WINDOW_HEIGHT/7;
+		/*Create rectangles as buttons*/
 		for(int i = 0; i < 5; i++){
 			this.buttonList.add(new Rectangle(buttonX, buttonY, buttonWidth, buttonHeight));
 

@@ -42,6 +42,7 @@ public class StartMenuView implements IMenu {
 		//start position
 		int buttonX = 0;
 		int buttonY = Game.WINDOW_HEIGHT/7;
+		/*Add rectangles as buttons*/
 		for(int i = 0; i < 6; i++){
 			this.buttonList.add(new Rectangle(buttonX, buttonY, buttonWidth, buttonHeight));
 
