@@ -12,9 +12,11 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 
+import controller.IMenu;
+
 import utils.MenuUtils;
 
-public class StartMenuView {
+public class StartMenuView implements IMenu {
 	private int buttonWidth;
 	private int buttonHeight;
 	private int isMarked;
@@ -32,7 +34,11 @@ public class StartMenuView {
 		/*Add background and title*/
 		g.drawImage(new Image("pics/bluebg.png"), 0, 0);
 		g.drawImage(new Image("pics/candy_monsters_orange.png"), 0, 0);
-
+		createButtons(g);
+	}
+	
+	@Override
+	public void createButtons(Graphics g) throws SlickException{
 		//start position
 		int buttonX = 0;
 		int buttonY = Game.WINDOW_HEIGHT/7;
@@ -66,12 +72,13 @@ public class StartMenuView {
 		}
 	}
 
-	
+	@Override
 	/*Move marker if key is pressed down*/
 	public void markButtonDown() {
 		isMarked = ++isMarked % 6;
 	}
-
+	
+	@Override
 	/*Move marker if key is pressed up*/
 	public void markButtonUp() {
 		isMarked = (isMarked + 5) %6; //add 4 to make positive (--isMarked + 5)
