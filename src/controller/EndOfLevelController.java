@@ -29,7 +29,6 @@ public class EndOfLevelController extends BasicGameState{
 		
 		this.sgb = sgb;
 		this.gc = gc;
-		
 		this.endOflevelView = new EndOfLevelView(this.gameController.getInGameController().getPlayerController().getPlayer().getScore());
 	}
 
