@@ -3,9 +3,6 @@ package model;
 public class Block {
 	private int posX;
 	private int posY;
-	private int width;
-	private int height;
-
 	
 	public Block(final int posX, final int posY) {
 		this.posX = posX;
