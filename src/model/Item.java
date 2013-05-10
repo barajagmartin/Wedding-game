@@ -12,6 +12,7 @@ public class Item {
 		this(new Position(x,y), candyNumber);
 	}
 	public Item(final Position pos, final int candyNumber) {
+		this.pos = pos;
 		this.isPickedUp = false;
 		this.isDelivered = false;
 		this.CANDY_NUMBER = candyNumber;

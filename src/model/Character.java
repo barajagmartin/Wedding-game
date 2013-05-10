@@ -25,6 +25,10 @@ public class Character {
 	public int getY() {
 		return this.pos.getY();
 	}
+
+	public Position getPos() {
+		return pos;
+	}
 	
 	public void setX(final int x) {
 		this.pos.setX(x);
