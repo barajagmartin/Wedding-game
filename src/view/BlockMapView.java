@@ -2,7 +2,7 @@ package view;
 
 import java.io.InputStream;
 
-import model.Block;
+import model.FixedPosition;
 import model.BlockMap;
 import model.CandyMonster;
 import model.Item;
@@ -19,7 +19,7 @@ public class BlockMapView {
 	private BlockMap spikesMap;
 	private BlockMap itemMap;
 	private TiledMap tiledMap;
-	private Block startingPos;
+	private FixedPosition startingPos;
 	private float levelTime;
 	
 	public BlockMapView(BlockMap solidGroundMap, BlockMap iceMap, BlockMap springMap, BlockMap candyMonsterMap,
@@ -38,25 +38,25 @@ public class BlockMapView {
 			int firstgid = tiledMap.getTileId(x, y, tiledMap.getLayerIndex("layer"));
 				String tileProperty = tiledMap.getTileProperty(firstgid, "property", "nothing"); //If there were no value it would return false
 				if (tileProperty.equals("solidGround")) { //if the tile is solid ground, then add its properties to a Block-list
-					solidGroundMap.getBlockList().add(new Block(x * tiledMap.getTileWidth(),
+					solidGroundMap.getBlockList().add(new FixedPosition(x * tiledMap.getTileWidth(),
 							y * tiledMap.getTileHeight()));
 				} else if (tileProperty.equals("ice")) {
-					iceMap.getBlockList().add(new Block(x * tiledMap.getTileWidth()+(tiledMap.getTileWidth()/2 - CandyMonster.WIDTH/2),
+					iceMap.getBlockList().add(new FixedPosition(x * tiledMap.getTileWidth()+(tiledMap.getTileWidth()/2 - CandyMonster.WIDTH/2),
 							y * tiledMap.getTileHeight()+(tiledMap.getTileHeight() - CandyMonster.HEIGHT)));
 				} else if (tileProperty.equals("spring")) {
-					springMap.getBlockList().add(new Block(x * tiledMap.getTileWidth()+(tiledMap.getTileWidth()/2 - CandyMonster.WIDTH/2),
+					springMap.getBlockList().add(new FixedPosition(x * tiledMap.getTileWidth()+(tiledMap.getTileWidth()/2 - CandyMonster.WIDTH/2),
 							y * tiledMap.getTileHeight()+(tiledMap.getTileHeight() - CandyMonster.HEIGHT)));
 				} else if (tileProperty.equals("candyMonster")) {
-					candyMonsterMap.getBlockList().add(new Block(x * tiledMap.getTileWidth()+(tiledMap.getTileWidth()/2 - CandyMonster.WIDTH/2),
+					candyMonsterMap.getBlockList().add(new FixedPosition(x * tiledMap.getTileWidth()+(tiledMap.getTileWidth()/2 - CandyMonster.WIDTH/2),
 							y * tiledMap.getTileHeight()+(tiledMap.getTileHeight() - CandyMonster.HEIGHT)));
 				} else if (tileProperty.equals("spikes")) {
-					spikesMap.getBlockList().add(new Block(x * tiledMap.getTileWidth() + (tiledMap.getTileWidth()/2),
+					spikesMap.getBlockList().add(new FixedPosition(x * tiledMap.getTileWidth() + (tiledMap.getTileWidth()/2),
 							y * tiledMap.getTileHeight() + (tiledMap.getTileHeight()/2)));
 				} else if (tileProperty.equals("item")) {
-					itemMap.getBlockList().add(new Block(x * tiledMap.getTileWidth() + (tiledMap.getTileWidth()/2 - Item.WIDTH/2),
+					itemMap.getBlockList().add(new FixedPosition(x * tiledMap.getTileWidth() + (tiledMap.getTileWidth()/2 - Item.WIDTH/2),
 							y * tiledMap.getTileHeight() + (tiledMap.getTileHeight() - Item.HEIGHT)));
 				}else if (tileProperty.equals("player")) {
-					this.startingPos = new Block(x * tiledMap.getTileWidth(),
+					this.startingPos = new FixedPosition(x * tiledMap.getTileWidth(),
 							y * tiledMap.getTileHeight());
 				}
 				
@@ -92,7 +92,7 @@ public class BlockMapView {
 		return tiledMap;
 	}
 
-	public Block getStartingPos() {
+	public FixedPosition getStartingPos() {
 		return startingPos;
 	}
 

@@ -2,33 +2,36 @@ package model;
 
 public class Character {
 	public static final int RADIUS = 25;
-	private int x, y;
+	private Position pos;
 	private int life;
 	private Item heldItem;
 	private float timeSinceHit; //in seconds
 
 	public Character(final int x, final int y) {
-		this.x = x;
-		this.y = y;
+		this(new Position(x,y));
+	}
+	
+	public Character(final Position pos) {
+		this.pos = pos;
 		this.life = 3;
 		this.heldItem = null;
 		this.timeSinceHit = 0;
 	}
 	
 	public int getX() {
-		return this.x;
+		return this.pos.getX();
 	}
 	
 	public int getY() {
-		return this.y;
+		return this.pos.getY();
 	}
 	
 	public void setX(final int x) {
-		this.x = x;
+		this.pos.setX(x);
 	}
 	
 	public void setY(final int y) {
-		this.y = y;
+		this.pos.setY(y);
 	}
 	
 	public float getTimeSinceHit() {
@@ -52,16 +55,16 @@ public class Character {
 	}	
 	
 	public void pickUpItem(Item item){
-		item.setX(this.x);
-		item.setY(this.y);
+		item.setX(this.pos.getX());
+		item.setY(this.pos.getY());
 		item.setPickedUp(true);
 		this.heldItem = item;
 	}
 	
 	public void dropDownItem(Item item){
 		item.setPickedUp(false);
-		item.setY((this.y+RADIUS*2-item.HEIGHT));
-		item.setX(this.x+RADIUS);
+		item.setX(this.pos.getX()+RADIUS);
+		item.setY((this.pos.getY()+RADIUS*2-Item.HEIGHT));
 		this.heldItem = null;
 	}
 }

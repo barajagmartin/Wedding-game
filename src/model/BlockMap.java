@@ -3,13 +3,13 @@ package model;
 import java.util.ArrayList;
 
 public class BlockMap {	
-	private ArrayList<Block> blockList;
+	private ArrayList<FixedPosition> blockList;
 	
 	public BlockMap() {
-		blockList = new ArrayList<Block>();		
+		blockList = new ArrayList<FixedPosition>();		
 	}
 
-	public ArrayList<Block> getBlockList() {
+	public ArrayList<FixedPosition> getBlockList() {
 		return blockList;
 	}
 }

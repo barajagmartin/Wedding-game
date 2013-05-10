@@ -1,7 +1,6 @@
 package view;
 
 import org.jbox2d.collision.shapes.CircleShape;
-import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
@@ -9,25 +8,21 @@ import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.joints.WeldJointDef;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.geom.Circle;
-import org.newdawn.slick.geom.Rectangle;
-import org.newdawn.slick.geom.Shape;
-
 
 import utils.WorldUtils;
-
 import model.Character;
 
 public class CharacterView {
 	private Character character;
-	private Shape slickShape;
-	private CircleShape jBox2DCircle;
+	private org.newdawn.slick.geom.Shape slickShape;
+	private org.jbox2d.collision.shapes.Shape jBox2DCircle;
 	private Color color;
 	private Body characterBody;
 	
 	public CharacterView(Character character, WorldView worldView) {
 		this.character = character;
-		this.slickShape = new Circle((float)(this.character.getX()-(Character.RADIUS/2f)), 
-				(float)(this.character.getY()-(Character.RADIUS/2f)), Character.RADIUS);
+		this.slickShape = new Circle(this.character.getX()-(Character.RADIUS/2f), 
+				this.character.getY()-(Character.RADIUS/2f), Character.RADIUS);
 		this.color = Color.blue;
 		
 		jBox2DCircle = new CircleShape();
