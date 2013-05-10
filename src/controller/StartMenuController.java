@@ -55,7 +55,7 @@ public class StartMenuController extends BasicGameState {
 			switch(startMenuView.getIsMarked()){
 				case 0: sbg.enterState(Game.IN_GAME);
 						break;
-				case 1: //Enter state Highscore
+				case 1: sbg.enterState(Game.HIGHSCORE);//Enter state Highscore
 						break;
 				case 2: //Sound: On/Off
 						//g.drawImage(new Image("pics/sound_off"), x, y);

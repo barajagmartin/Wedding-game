@@ -22,6 +22,7 @@ public class GameController extends StateBasedGame {
 	private InGameController inGameController;
 	private PauseController pauseController;
 	private EndOfLevelController endOfLevelController;
+	private HighScoreStateController highScoreStateController;
 	private  int[] scoreList;
 	File file;
 	Scanner scanner;
@@ -38,10 +39,12 @@ public class GameController extends StateBasedGame {
 			e.printStackTrace();
 		}
 		this.startMenuController = new StartMenuController(this);
+		this.highScoreStateController = new HighScoreStateController(this);
 		this.inGameController = new InGameController(this);
 		this.pauseController = new PauseController(this);
 		this.endOfLevelController = new EndOfLevelController(this);
 		this.addState(inGameController);
+		this.addState(highScoreStateController);
 		this.addState(pauseController);
 		this.addState(endOfLevelController);
 		this.addState(startMenuController);
@@ -62,6 +65,14 @@ public class GameController extends StateBasedGame {
 	
 	public PauseController getPauseController(){
 		return pauseController;
+	}
+
+	public HighScoreStateController getHighScoreStateController() {
+		return highScoreStateController;
+	}
+
+	public int[] getScoreList() {
+		return scoreList;
 	}
 
 	public void readScoreList () throws IOException {
