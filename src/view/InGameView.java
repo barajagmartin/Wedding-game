@@ -47,7 +47,7 @@ public class InGameView {
 		this.g.fill(characterView.getSlickShape());
 		Image background = new Image("pics/rainbow.jpg"); //Will be get from the Multimedia class later
 		background.draw();
-		worldView.getBlockMapView().getTiledMap().render(0, 0);
+		worldView.getBlockMapView().getTiledMap().render(0, 0, worldView.getBlockMapView().getTiledMap().getLayerIndex("solids"));
 		//draw candyMonsters
 		for (int j = 0; j < worldView.getCandyMonsterViewList().size(); j++) {
 			this.g.setColor(worldView.getCandyMonsterViewList().get(j).getColor());

@@ -56,6 +56,7 @@ public class InGameController extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
+		this.inGame = new InGame();
 		this.sbg = sbg;
 		this.candyMonsterControllers = new ArrayList<CandyMonsterController>();
 		this.itemControllers = new ArrayList<ItemController>();
@@ -72,7 +73,7 @@ public class InGameController extends BasicGameState {
 		File folder = new File(".");
 		int nbrOfVersions = folder.listFiles(filenameFilter).length;
 		//Get a new level, randomize between different level versions (i.e. there are many level 1 to randomize from)
-		this.blockMapController = new BlockMapController(new TiledMap(BlockMapUtils.getTmxFile(level, new Random().nextInt(nbrOfVersions) + 1)));
+		this.blockMapController = new BlockMapController(this, new TiledMap(BlockMapUtils.getTmxFile(level, /*new Random().nextInt(nbrOfVersions) + 1*/4)));
 		/*Create candy monster and its items*/
 		for (int i = 0; i < blockMapController.getCandyMonsterMap().getBlockList().size(); i++){
 			this.candyMonsterControllers.add(new CandyMonsterController(this, i)); 
@@ -90,7 +91,6 @@ public class InGameController extends BasicGameState {
 			this.moveableBoxControllers.add(new MoveableBoxController(this, pos));
 		}
 		this.playerController = new PlayerController(characterController, this);
-		this.inGame = new InGame();
 
 		//temporarily store the SpikesViews in a list
 		ArrayList<SpikesView> tmpSpikesViewList = new ArrayList<SpikesView>();
@@ -205,6 +205,16 @@ public class InGameController extends BasicGameState {
 	public int getID() {
 		return Game.IN_GAME;
 	}
+
+	public InGame getInGame() {
+		return inGame;
+	}
+
+
+	public InGameView getInGameView() {
+		return inGameView;
+	}
+
 
 	public int getItemsDelivered() {
 		return itemsDelivered;

@@ -9,10 +9,7 @@ public class InGame {
 	//the changable time
 	private float time;
 		
-	public InGame() { 
-		this.levelTime = 1*60; //set specific to level (in this case it is 2 min)
-		this.time = this.levelTime;
-		
+	public InGame() {
 		statusBar = new StatusBar();
 	}
 
@@ -36,5 +33,4 @@ public class InGame {
 	public float getLevelTime() {
 		return levelTime;
 	}
-
 }
