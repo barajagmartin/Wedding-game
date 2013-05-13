@@ -40,14 +40,25 @@ public class SpikesController implements ContactListener {
 		if(fixtA.getUserData() != null && fixtB.getUserData() != null) {
 			if(fixtA.getUserData().equals("spikes") && fixtB.getUserData().equals("player") && 
 					inGameController.getCharacterController().getCharacter().getTimeSinceHit() > 1) {
+				inGameController.getCharacterController().getCharacterView().animateBlinking();
 				inGameController.getCharacterController().getCharacter().loseOneLife();
 				this.inGameController.getCharacterController().getCharacter().setTimeSinceHit(0);
+				
+				
 			}
 		}
 	}
 
 	@Override
 	public void endContact(Contact contact) {
+		Fixture fixtA = contact.getFixtureA();
+		Fixture fixtB = contact.getFixtureB();
+		
+		if(fixtA.getUserData() != null && fixtB.getUserData() != null) {
+			if(fixtA.getUserData().equals("spikes") && fixtB.getUserData().equals("player")) {
+				inGameController.getCharacterController().getCharacterView().animateWalking();	
+			}
+		}
 	}
 
 	@Override

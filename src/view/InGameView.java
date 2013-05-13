@@ -61,20 +61,14 @@ public class InGameView {
 					spikesViewList.get(j).getSpikes().getX()- Spikes.RADIUS - 3, 
 					spikesViewList.get(j).getSpikes().getY() - Spikes.RADIUS - 3);
 		}
-		characterView.getImage().draw(characterView.getSlickShape().getX(), characterView.getSlickShape().getY());
+		
+		//draw Nelson
+		characterView.getAnimation().draw(characterView.getCharacter().getX(), characterView.getCharacter().getY());
+		
 		for (MoveableBoxView moveableBoxView : moveableBoxViewList) {
 			g.drawImage(moveableBoxView.getImage(), moveableBoxView.getMoveableBox().getPos().getX(),
 					moveableBoxView.getMoveableBox().getPos().getY());
 		}
-		
-
-		/* blinking animation - not yet working 
-		Image[] blinking = {new Image("pics/Nelson.png"), new Image("pics/GulNelson.png")};
-		int duration[] = {300, 300};
-		blink = new Animation(blinking, duration, true);
-		nelson = blink;
-		nelson.draw(characterView.getSlickShape().getX(), characterView.getSlickShape().getY());*/
-
 
 		//draw items
 		for (int j = 0; j < worldView.getItemViewList().size(); j++) {
