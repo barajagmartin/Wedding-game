@@ -1,14 +1,5 @@
 package controller;
 
-
-<<<<<<< HEAD
-=======
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
->>>>>>> 172ed252bcd9549c51427064cb5f95e0dcc8891e
 import java.util.ArrayList;
 
 import org.newdawn.slick.Color;
