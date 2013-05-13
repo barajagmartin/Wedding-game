@@ -24,18 +24,25 @@ public class GameController extends StateBasedGame {
 	private EndOfLevelController endOfLevelController;
 	private HighScoreStateController highScoreStateController;
 	private  int[] scoreList;
-	File file;
-	Scanner scanner;
+	private String[] nameList;
+	private File scoreFile;
+	private File nameFile;
+	private Scanner scoreScanner;
+	private Scanner nameScanner;
 	
 	public GameController(String name) {
 		super(name);
 		this.scoreList = new int[10];
-		this.file = new File("scoreList.txt");
+		this.nameList = new String[10];
+		this.scoreFile = new File("scoreList.txt");
+		this.nameFile = new File("nameList.txt");
 		try {
-			this.scanner = new Scanner(file);
+			this.scoreScanner = new Scanner(scoreFile);
+			this.nameScanner = new Scanner(nameFile);
 			readScoreList();
+			readNameList();
 		} catch (IOException e) {
-			System.out.println("something went wrong with reading the scoreList");
+			System.out.println("something went wrong with reading the Lists");
 			e.printStackTrace();
 		}
 		this.startMenuController = new StartMenuController(this);
@@ -75,12 +82,24 @@ public class GameController extends StateBasedGame {
 		return scoreList;
 	}
 
+	public String[] getNameList() {
+		return nameList;
+	}
+
 	public void readScoreList () throws IOException {
 		for (int i = 0; i < this.scoreList.length; i++) {
-			scoreList[i] = scanner.nextInt();
+			scoreList[i] = scoreScanner.nextInt();
 		}
 		System.out.println("ScoreList: " + Arrays.toString(scoreList));
 	}
+	
+	public void readNameList () throws IOException {
+		for (int i = 0; i < this.nameList.length; i++) {
+			nameList[i] = nameScanner.nextLine();
+		}
+		System.out.println("NameList: " + Arrays.toString(nameList));
+	}
+
 	
 	/**
 	 * saves your score to the file if it is high enough
@@ -98,8 +117,8 @@ public class GameController extends StateBasedGame {
 					}
 				}
 			}
-			this.file.delete();
-			this.file = new File("scoreList.txt");
+			this.scoreFile.delete();
+			this.scoreFile = new File("scoreList.txt");
 			BufferedWriter outputWriter = null;
 			try {
 				outputWriter = new BufferedWriter(new FileWriter("scoreList.txt"));
