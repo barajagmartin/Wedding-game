@@ -37,7 +37,7 @@
   </tile>
   <tile id="27">
    <properties>
-    <property name="time" value="60"/>
+    <property name="time" value="90"/>
    </properties>
   </tile>
   <tile id="28">

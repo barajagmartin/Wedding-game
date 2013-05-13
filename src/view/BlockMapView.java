@@ -71,6 +71,7 @@ public class BlockMapView {
 		}
 		int dataID = tiledMap.getTileId(0, 0, tiledMap.getLayerIndex("data"));
 		String timeTileProperty = tiledMap.getTileProperty(dataID, "time", "60");
+		inGame.setLevelTime(Float.valueOf(timeTileProperty));
 		inGame.setTime(Float.valueOf(timeTileProperty));
 	}
 

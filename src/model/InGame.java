@@ -33,4 +33,8 @@ public class InGame {
 	public float getLevelTime() {
 		return levelTime;
 	}
+
+	public void setLevelTime(float levelTime) {
+		this.levelTime = levelTime;
+	}
 }
