@@ -5,6 +5,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Circle;
+import org.newdawn.slick.geom.Shape;
 
 import utils.WorldBodyFactory;
 import utils.WorldObjects;
@@ -12,7 +13,7 @@ import model.Character;
 
 public class CharacterView {
 	private Character character;
-	private org.newdawn.slick.geom.Shape slickShape;
+	private Shape slickShape;
 	private Color color;
 	private Body characterBody;
 	private Image image;
