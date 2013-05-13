@@ -4,7 +4,7 @@ public class Item {
 	private Position pos;
 	private boolean isPickedUp;
 	public boolean isDelivered;
-	public static final int WIDTH = 10;
+	public static final int WIDTH = 15;
 	public static final int HEIGHT = 15;
 	public final int CANDY_NUMBER;
 	

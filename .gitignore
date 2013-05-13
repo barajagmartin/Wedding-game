@@ -1,5 +1,6 @@
 *.class
 .classpath
+pics/pauseBackground.png
 
 *.md
 */bin

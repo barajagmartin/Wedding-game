@@ -9,11 +9,11 @@ import model.Item;
 public class CandyMonsterView {
 	private CandyMonster candyMonster;
 	private Shape shape;
-	private Color color;
+	private Color color; 
 	
 	public CandyMonsterView(CandyMonster candyMonster, int candyNumber) {
 		this.candyMonster = candyMonster;
-		this.shape = new Rectangle(candyMonster.getX(), candyMonster.getY(), candyMonster.WIDTH, candyMonster.HEIGHT);
+		this.shape = new Rectangle(candyMonster.getX(), candyMonster.getY(), CandyMonster.WIDTH, CandyMonster.HEIGHT);
 		
 		/*Set the color of a candy monster depending on its ID*/
 		switch(candyNumber){

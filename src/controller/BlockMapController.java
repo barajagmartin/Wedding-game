@@ -10,7 +10,7 @@ import view.BlockMapView;
 import model.BlockMap;
 
 public class BlockMapController {
-
+	private InGameController inGameController;
 	private BlockMap solidGroundMap;
 	private BlockMap iceMap;
 	private BlockMap springMap;
@@ -20,7 +20,8 @@ public class BlockMapController {
 	private BlockMap moveableBoxMap;
 	private BlockMapView blockMapView;
 	
-	public BlockMapController(TiledMap tiledMap) {
+	public BlockMapController(InGameController inGameController, TiledMap tiledMap) {
+		this.inGameController = inGameController;
 		solidGroundMap = new BlockMap();
 		iceMap = new BlockMap();
 		springMap = new BlockMap();
@@ -29,7 +30,7 @@ public class BlockMapController {
 		itemMap = new BlockMap();
 		moveableBoxMap = new BlockMap();
 		blockMapView = new BlockMapView(solidGroundMap, iceMap, springMap, candyMonsterMap,
-				spikesMap, itemMap, moveableBoxMap, tiledMap);
+				spikesMap, itemMap, moveableBoxMap, tiledMap, inGameController.getInGame());
 	}
 	
 	public BlockMapView getBlockMapView() {

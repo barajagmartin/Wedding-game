@@ -19,7 +19,6 @@ public class WorldBodyFactory {
 		Shape shape;
 		FixtureDef fixtureDef = new FixtureDef();
 		BodyDef bodyDef = new BodyDef();
-		bodyDef.position.set(WorldUtils.pixel2Meter(pos.getX()),WorldUtils.pixel2Meter(pos.getY()));
 		Body body = null; //TODO is it needed to check if it is null at the end?
 
 		if (worldObject.equals(WorldObjects.CHARACTER)) {
@@ -34,6 +33,7 @@ public class WorldBodyFactory {
 
 			bodyDef.type = BodyType.DYNAMIC;
 			bodyDef.fixedRotation = true;
+			bodyDef.position.set(WorldUtils.pixel2Meter(pos.getX()),WorldUtils.pixel2Meter(pos.getY()));
 
 			body = jBox2DWorld.createBody(bodyDef);
 			body.createFixture(fixtureDef);
@@ -82,16 +82,18 @@ public class WorldBodyFactory {
 			
 		} else if (worldObject.equals(WorldObjects.MOVEABLE_BOX)) {
 			shape = new PolygonShape();
-			((PolygonShape) shape).setAsBox(WorldUtils.pixel2Meter(MoveableBox.WIDTH), WorldUtils.pixel2Meter(MoveableBox.HEIGHT));
+			((PolygonShape) shape).setAsBox(WorldUtils.pixel2Meter(MoveableBox.HALF_WIDTH), WorldUtils.pixel2Meter(MoveableBox.HALF_HEIGHT));
 			
 			fixtureDef.shape = shape;
 			fixtureDef.density = 1f;
-			fixtureDef.friction = 0.2f;
+			fixtureDef.friction = 0.7f;
 			fixtureDef.restitution = 0f;
 			fixtureDef.userData = "moveableBox";
 			
 			bodyDef.type = BodyType.DYNAMIC;
 			bodyDef.fixedRotation = true;
+			bodyDef.position.set(WorldUtils.pixel2Meter(pos.getX()+MoveableBox.HALF_WIDTH-3), // -3 is for correcting starting position with pixel precision
+					WorldUtils.pixel2Meter(pos.getY()+MoveableBox.HALF_HEIGHT));				 // to make it look good
 			
 			body = jBox2DWorld.createBody(bodyDef);
 			body.createFixture(fixtureDef);
