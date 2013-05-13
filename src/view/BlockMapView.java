@@ -16,6 +16,7 @@ public class BlockMapView {
 	private BlockMap solidGroundMap;
 	private BlockMap iceMap;
 	private BlockMap springMap;
+	private BlockMap iceSpringMap;
 	private BlockMap candyMonsterMap;
 	private BlockMap spikesMap;
 	private BlockMap itemMap;
@@ -23,11 +24,12 @@ public class BlockMapView {
 	private TiledMap tiledMap;
 	private FixedPosition startingPos;
 	
-	public BlockMapView(BlockMap solidGroundMap, BlockMap iceMap, BlockMap springMap, BlockMap candyMonsterMap,
+	public BlockMapView(BlockMap solidGroundMap, BlockMap iceMap, BlockMap springMap, BlockMap iceSpringMap, BlockMap candyMonsterMap,
 			BlockMap spikesMap, BlockMap itemMap, BlockMap moveableBoxMap, TiledMap tiledMap, InGame inGame) {
 		this.solidGroundMap = solidGroundMap;
 		this.iceMap = iceMap;
 		this.springMap = springMap;
+		this.iceSpringMap = iceSpringMap;
 		this.candyMonsterMap = candyMonsterMap;
 		this.spikesMap = spikesMap;
 		this.itemMap = itemMap;
@@ -46,11 +48,14 @@ public class BlockMapView {
 					solidGroundMap.getBlockList().add(new FixedPosition(x * tiledMap.getTileWidth(),
 							y * tiledMap.getTileHeight()));
 				} else if (layerTileProperty.equals("ice")) {
-					iceMap.getBlockList().add(new FixedPosition(x * tiledMap.getTileWidth()+(tiledMap.getTileWidth()/2 - CandyMonster.WIDTH/2),
-							y * tiledMap.getTileHeight()+(tiledMap.getTileHeight() - CandyMonster.HEIGHT)));
+					iceMap.getBlockList().add(new FixedPosition(x * tiledMap.getTileWidth(),
+							y * tiledMap.getTileHeight()));
 				} else if (layerTileProperty.equals("spring")) {
-					springMap.getBlockList().add(new FixedPosition(x * tiledMap.getTileWidth()+(tiledMap.getTileWidth()/2 - CandyMonster.WIDTH/2),
-							y * tiledMap.getTileHeight()+(tiledMap.getTileHeight() - CandyMonster.HEIGHT)));
+					springMap.getBlockList().add(new FixedPosition(x * tiledMap.getTileWidth(),
+							y * tiledMap.getTileHeight()));
+				} else if (layerTileProperty.equals("iceSpring")) {
+					iceSpringMap.getBlockList().add(new FixedPosition(x * tiledMap.getTileWidth(),
+							y * tiledMap.getTileHeight()));	
 				} else if (positionTileProperty.equals("candyMonster")) {
 					candyMonsterMap.getBlockList().add(new FixedPosition(x * tiledMap.getTileWidth()+(tiledMap.getTileWidth()/2 - CandyMonster.WIDTH/2),
 							y * tiledMap.getTileHeight()+(tiledMap.getTileHeight() - CandyMonster.HEIGHT)));
@@ -85,6 +90,10 @@ public class BlockMapView {
 
 	public BlockMap getSpringMap() {
 		return springMap;
+	}
+
+	public BlockMap getIceSpringMap() {
+		return iceSpringMap;
 	}
 
 	public BlockMap getCandyMonsterMap() {
