@@ -124,9 +124,9 @@ public class InGameController extends BasicGameState {
 		characterController.getCharacter().setY((int)characterController.getCharacterView().getSlickShape().getY());
 		for (int i = 0; i < moveableBoxControllers.size(); i++) {
 			moveableBoxControllers.get(i).getMoveableBox().setX(WorldUtils.meter2Pixel(
-					(int)moveableBoxControllers.get(i).getMoveableBoxView().getBoxBody().getPosition().x));
+					moveableBoxControllers.get(i).getMoveableBoxView().getBoxBody().getPosition().x));
 			moveableBoxControllers.get(i).getMoveableBox().setY(WorldUtils.meter2Pixel(
-					(int)moveableBoxControllers.get(i).getMoveableBoxView().getBoxBody().getPosition().y));
+					moveableBoxControllers.get(i).getMoveableBoxView().getBoxBody().getPosition().y));
 			
 		
 		}

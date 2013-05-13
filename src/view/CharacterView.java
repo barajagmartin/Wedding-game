@@ -31,7 +31,7 @@ public class CharacterView {
 		return this.character;
 	}
 	
-	public org.newdawn.slick.geom.Shape getSlickShape() {
+	public Shape getSlickShape() {
 		return this.slickShape;
 	}
 	

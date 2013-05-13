@@ -86,12 +86,12 @@ public class WorldBodyFactory {
 			
 			fixtureDef.shape = shape;
 			fixtureDef.density = 1f;
-			fixtureDef.friction = 0.6f;
-			fixtureDef.restitution = 0.1f;
+			fixtureDef.friction = 0.2f;
+			fixtureDef.restitution = 0f;
 			fixtureDef.userData = "moveableBox";
 			
 			bodyDef.type = BodyType.DYNAMIC;
-			bodyDef.fixedRotation = false;
+			bodyDef.fixedRotation = true;
 			
 			body = jBox2DWorld.createBody(bodyDef);
 			body.createFixture(fixtureDef);
