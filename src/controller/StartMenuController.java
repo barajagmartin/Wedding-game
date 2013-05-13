@@ -4,6 +4,7 @@ import model.Game;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
@@ -55,14 +56,13 @@ public class StartMenuController extends BasicGameState {
 			switch(startMenuView.getIsMarked()){
 				case 0: sbg.enterState(Game.IN_GAME);
 						break;
-				case 1: sbg.enterState(Game.HIGHSCORE);//Enter state Highscore
+				case 1: sbg.enterState(Game.HIGHSCORE);
 						break;
 				case 2: //Sound: On/Off
-						//g.drawImage(new Image("pics/sound_off"), x, y);
 						break;
-				case 3: //Music: On/Off
+				case 3: //Music: On/Off			
 						break;
-				case 4: //Enter state Controls
+				case 4: //sbg.enterState(Game.CONTROLS);
 						break;
 				case 5: System.exit(0);
 			}

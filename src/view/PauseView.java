@@ -37,12 +37,12 @@ public class PauseView implements IMenu {
 		g.setColor(new Color(0f, 0f, 0f, 0.5f));
 		g.fillRect(0, 0, Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
 		
-		createButtons(g);
+		createButtons(gc, g);
 
 
 	}
 	@Override
-	public void createButtons(Graphics g) throws SlickException{
+	public void createButtons(GameContainer gc, Graphics g) throws SlickException{
 		//start position
 		int buttonX = 0;
 		int buttonY = Game.WINDOW_HEIGHT/7;

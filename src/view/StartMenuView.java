@@ -8,6 +8,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
@@ -29,16 +30,16 @@ public class StartMenuView implements IMenu {
 		buttonList = new ArrayList<Rectangle>();
 	}
 	
-	public void render(GameContainer container, StateBasedGame game, Graphics g)
+	public void render(GameContainer gc, StateBasedGame game, Graphics g)
 			throws SlickException {
-		/*Add background and title*/
+		/*Add background and title, create buttons*/
 		g.drawImage(new Image("pics/bluebg.png"), 0, 0);
 		g.drawImage(new Image("pics/candy_monsters_orange.png"), 0, 0);
-		createButtons(g);
+		createButtons(gc, g);
 	}
 	
 	@Override
-	public void createButtons(Graphics g) throws SlickException{
+	public void createButtons(GameContainer gc, Graphics g) throws SlickException{
 		//start position
 		int buttonX = 0;
 		int buttonY = Game.WINDOW_HEIGHT/7;
@@ -54,12 +55,17 @@ public class StartMenuView implements IMenu {
 				g.draw(buttonList.get(i));
 			}
 			/*Add labels to buttons*/
+			Input input = gc.getInput();
 			switch(i) {
 				case 0: g.drawImage(new Image("pics/start_game.png"), buttonX, buttonY);
 						break;
 				case 1: g.drawImage(new Image("pics/highscore.png"), buttonX, buttonY);
 						break;
-				case 2: g.drawImage(new Image("pics/sound_on.png"), buttonX, buttonY);
+				case 2: if(input.isKeyPressed(Input.KEY_ENTER)){
+							g.drawImage(new Image("pics/sound_off.png"), buttonX, buttonY);
+						} else {
+							g.drawImage(new Image("pics/sound_on.png"), buttonX, buttonY);
+						}
 						break;
 				case 3: g.drawImage(new Image("pics/music_on.png"), buttonX, buttonY);
 						break;	
