@@ -13,6 +13,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import model.Game;
 import model.InGame;
+import model.MoveableBox;
 import model.Spikes;
 import model.StatusBar;
 
@@ -63,8 +64,9 @@ public class InGameView {
 		}
 		characterView.getImage().draw(characterView.getSlickShape().getX(), characterView.getSlickShape().getY());
 		for (MoveableBoxView moveableBoxView : moveableBoxViewList) {
-			g.drawImage(moveableBoxView.getImage(), moveableBoxView.getMoveableBox().getPos().getX(),
-					moveableBoxView.getMoveableBox().getPos().getY());
+			g.drawImage(moveableBoxView.getImage(), moveableBoxView.getMoveableBox().getPos().getX()-MoveableBox.HALF_WIDTH,
+					moveableBoxView.getMoveableBox().getPos().getY()-MoveableBox.HALF_HEIGHT+1); // +1 is to correct position which
+																							// probably is rounded incorrectly
 		}
 		
 

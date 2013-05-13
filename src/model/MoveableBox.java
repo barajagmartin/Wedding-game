@@ -1,8 +1,8 @@
 package model;
 
 public class MoveableBox {
-	public static final int WIDTH = 16;
-	public static final int HEIGHT = 16;
+	public static final int HALF_WIDTH = 16;
+	public static final int HALF_HEIGHT = 16;
 	private Position pos;
 	
 	public MoveableBox(final int x, final int y) {

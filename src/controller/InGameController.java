@@ -130,14 +130,6 @@ public class InGameController extends BasicGameState {
 			
 		
 		}
-		System.out.println(moveableBoxControllers.get(0).getMoveableBox().getPos().getX());
-		System.out.println(moveableBoxControllers.get(0).getMoveableBox().getPos().getY());
-		System.out.println(characterController.getCharacter().getX());
-		System.out.println(characterController.getCharacter().getY());
-		System.out.println();
-		System.out.println();
-		
-
 	}
 
 	@Override
