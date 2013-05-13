@@ -1,6 +1,14 @@
 package controller;
 
 
+<<<<<<< HEAD
+=======
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+>>>>>>> 172ed252bcd9549c51427064cb5f95e0dcc8891e
 import java.util.ArrayList;
 
 import org.newdawn.slick.Color;
@@ -181,6 +189,7 @@ public class InGameController extends BasicGameState {
 		if (this.itemControllers.size() == itemsDelivered) {
 			System.out.println("No more items to pick up, level cleared!");
 			this.playerController.getPlayer().setScore((int)this.inGame.getTime(), this.itemsDelivered);
+			this.gameController.tryToSaveScore(this.playerController.getPlayer().getScore()); //obs! skall bara göras vid sista leveln eller game over!!
 			sbg.enterState(Game.END_OF_LEVEL);
 		} else if (this.characterController.getCharacter().getLife() == 0 || this.inGame.getTime() <= 0) {
 			System.out.println("No more lives, you are dead!");
