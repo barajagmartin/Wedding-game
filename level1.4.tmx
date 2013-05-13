@@ -16,6 +16,11 @@
     <property name="restitution" value="0"/>
    </properties>
   </tile>
+  <tile id="3">
+   <properties>
+    <property name="property" value="solidGround"/>
+   </properties>
+  </tile>
   <tile id="4">
    <properties>
     <property name="friction" value="0.7"/>
@@ -35,9 +40,14 @@
     <property name="property" value="moveableBox"/>
    </properties>
   </tile>
+  <tile id="8">
+   <properties>
+    <property name="property" value="iceSpring"/>
+   </properties>
+  </tile>
   <tile id="27">
    <properties>
-    <property name="time" value="60"/>
+    <property name="time" value="90"/>
    </properties>
   </tile>
   <tile id="28">

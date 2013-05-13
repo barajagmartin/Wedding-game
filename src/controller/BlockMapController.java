@@ -14,6 +14,7 @@ public class BlockMapController {
 	private BlockMap solidGroundMap;
 	private BlockMap iceMap;
 	private BlockMap springMap;
+	private BlockMap iceSpringMap;
 	private BlockMap candyMonsterMap;
 	private BlockMap spikesMap;
 	private BlockMap itemMap;
@@ -25,11 +26,12 @@ public class BlockMapController {
 		solidGroundMap = new BlockMap();
 		iceMap = new BlockMap();
 		springMap = new BlockMap();
+		iceSpringMap = new BlockMap();
 		candyMonsterMap = new BlockMap();
 		spikesMap = new BlockMap();
 		itemMap = new BlockMap();
 		moveableBoxMap = new BlockMap();
-		blockMapView = new BlockMapView(solidGroundMap, iceMap, springMap, candyMonsterMap,
+		blockMapView = new BlockMapView(solidGroundMap, iceMap, springMap, iceSpringMap, candyMonsterMap,
 				spikesMap, itemMap, moveableBoxMap, tiledMap, inGameController.getInGame());
 	}
 	

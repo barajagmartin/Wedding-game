@@ -22,9 +22,11 @@ import utils.WorldUtils;
 
 public class WorldView {
 	public static final float NORMAL_FRICTION = 0.7f;
-	public static final float ICE_FRICTION = 0;
-	public static final float NO_BOUNCE_RESTITUTION = 0;
+	public static final float ICE_FRICTION = 0f;
+	public static final float NO_BOUNCE_RESTITUTION = 0f;
 	public static final float BOUNCE_RESTITUTION = 1f;
+	
+	
 	private model.World world;
 	private Vec2 gravity;
 	boolean doSleep;
@@ -56,37 +58,29 @@ public class WorldView {
 		
 
 		//ground
-		addSolidGround(new Vec2(0, worldHeightMeter), new Vec2(worldWidthMeter, WorldUtils.pixel2Meter(2)), NORMAL_FRICTION, NO_BOUNCE_RESTITUTION); //(x, y, width, height)
+		addSolidGround(new Vec2(0, worldHeightMeter), new Vec2(worldWidthMeter, WorldUtils.pixel2Meter(2)),
+				NORMAL_FRICTION, NO_BOUNCE_RESTITUTION); //(x, y, width, height)
 		//left wall
-		addSolidGround(new Vec2(0, 0), new Vec2(WorldUtils.pixel2Meter(2), worldHeightMeter), NORMAL_FRICTION, NO_BOUNCE_RESTITUTION);
+		addSolidGround(new Vec2(0, 0), new Vec2(WorldUtils.pixel2Meter(2), worldHeightMeter),
+				NORMAL_FRICTION, NO_BOUNCE_RESTITUTION);
 		//right wall
-		addSolidGround(new Vec2(worldWidthMeter, 0), new Vec2(WorldUtils.pixel2Meter(2), worldHeightMeter), NORMAL_FRICTION, NO_BOUNCE_RESTITUTION);
+		addSolidGround(new Vec2(worldWidthMeter, 0), new Vec2(WorldUtils.pixel2Meter(2), worldHeightMeter),
+				NORMAL_FRICTION, NO_BOUNCE_RESTITUTION);
 		//roof
-		addSolidGround(new Vec2(0, 0), new Vec2(worldWidthMeter, WorldUtils.pixel2Meter(2)), NORMAL_FRICTION, NO_BOUNCE_RESTITUTION);
+		addSolidGround(new Vec2(0, 0), new Vec2(worldWidthMeter, WorldUtils.pixel2Meter(2)),
+				NORMAL_FRICTION, NO_BOUNCE_RESTITUTION);
 
 		//Create normal ground
-		for (FixedPosition block : this.blockMapView.getSolidGroundMap().getBlockList()) {
-			addSolidGround(new Vec2(WorldUtils.pixel2Meter(block.getPosX() + this.blockMapView.getTiledMap().getTileWidth()/2),
-					WorldUtils.pixel2Meter(block.getPosY() + this.blockMapView.getTiledMap().getTileWidth()/2)),
-					new Vec2(WorldUtils.pixel2Meter(this.blockMapView.getTiledMap().getTileWidth()/2),
-							WorldUtils.pixel2Meter(this.blockMapView.getTiledMap().getTileHeight()/2)), NORMAL_FRICTION, NO_BOUNCE_RESTITUTION);
-		}
+		addIterativeSolids(this.blockMapView.getSolidGroundMap().getBlockList(), NORMAL_FRICTION, NO_BOUNCE_RESTITUTION);		
 		
 		//Create ice
-		for (FixedPosition block : this.blockMapView.getIceMap().getBlockList()) {
-			addSolidGround(new Vec2(WorldUtils.pixel2Meter(block.getPosX() + this.blockMapView.getTiledMap().getTileWidth()/2),
-					WorldUtils.pixel2Meter(block.getPosY() + this.blockMapView.getTiledMap().getTileWidth()/2)),
-					new Vec2(WorldUtils.pixel2Meter(this.blockMapView.getTiledMap().getTileWidth()/2),
-							WorldUtils.pixel2Meter(this.blockMapView.getTiledMap().getTileHeight()/2)), ICE_FRICTION, NO_BOUNCE_RESTITUTION);
-		}
+		addIterativeSolids(this.blockMapView.getIceMap().getBlockList(), ICE_FRICTION, NO_BOUNCE_RESTITUTION);		
 		
 		//Create springs
-		for (FixedPosition block : this.blockMapView.getSpringMap().getBlockList()) {
-			addSolidGround(new Vec2(WorldUtils.pixel2Meter(block.getPosX() + this.blockMapView.getTiledMap().getTileWidth()/2),
-					WorldUtils.pixel2Meter(block.getPosY() + this.blockMapView.getTiledMap().getTileWidth()/2)),
-					new Vec2(WorldUtils.pixel2Meter(this.blockMapView.getTiledMap().getTileWidth()/2),
-							WorldUtils.pixel2Meter(this.blockMapView.getTiledMap().getTileHeight()/2)), NORMAL_FRICTION, BOUNCE_RESTITUTION);
-		}
+		addIterativeSolids(this.blockMapView.getSpringMap().getBlockList(), NORMAL_FRICTION, BOUNCE_RESTITUTION);
+		
+		//Create clouds
+		addIterativeSolids(this.blockMapView.getIceSpringMap().getBlockList(), ICE_FRICTION, BOUNCE_RESTITUTION);
 		
 	}
 	
@@ -130,5 +124,15 @@ public class WorldView {
 		
 		Body body = jBox2DWorld.createBody(bodyDef);
 		body.createFixture(fixtureDef);
-	}	
+	}
+	
+	private void addIterativeSolids(ArrayList<FixedPosition> blockList, final float friction, final float restitution) {
+		for (FixedPosition block : blockList) {
+			addSolidGround(new Vec2(WorldUtils.pixel2Meter(block.getPosX() + this.blockMapView.getTiledMap().getTileWidth()/2),
+					WorldUtils.pixel2Meter(block.getPosY() + this.blockMapView.getTiledMap().getTileWidth()/2)),
+					new Vec2(WorldUtils.pixel2Meter(this.blockMapView.getTiledMap().getTileWidth()/2),
+							WorldUtils.pixel2Meter(this.blockMapView.getTiledMap().getTileHeight()/2)),
+							friction, restitution);
+		}
+	}
 }
