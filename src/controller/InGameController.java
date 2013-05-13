@@ -1,6 +1,9 @@
 package controller;
 
+import java.io.File;
+import java.io.FilenameFilter;
 import java.util.ArrayList;
+import java.util.Random;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -37,6 +40,7 @@ public class InGameController extends BasicGameState {
 	private int itemsDelivered;
 	private StateBasedGame sbg;
 	private GameController gameController;
+	private int level;
 
 	//should be based on the frame update (delta or something like that)
 	private float timeStep = 1.0f / 60.0f;
@@ -57,7 +61,18 @@ public class InGameController extends BasicGameState {
 		this.itemControllers = new ArrayList<ItemController>();
 		this.spikesControllers = new ArrayList<SpikesController>();
 		this.moveableBoxControllers = new ArrayList<MoveableBoxController>();
-		this.blockMapController = new BlockMapController(new TiledMap(BlockMapUtils.getTmxFile(1)));
+		level = 1;
+		FilenameFilter filenameFilter = new FilenameFilter() {
+			
+			@Override
+			public boolean accept(File dir, String name) {
+				return name.matches("level" + String.valueOf(level) + ".\\d.tmx");
+			}
+		};
+		File folder = new File(".");
+		int nbrOfVersions = folder.listFiles(filenameFilter).length;
+		//Get a new level, randomize between different level versions (i.e. there are many level 1 to randomize from)
+		this.blockMapController = new BlockMapController(new TiledMap(BlockMapUtils.getTmxFile(level, new Random().nextInt(nbrOfVersions) + 1)));
 		/*Create candy monster and its items*/
 		for (int i = 0; i < blockMapController.getCandyMonsterMap().getBlockList().size(); i++){
 			this.candyMonsterControllers.add(new CandyMonsterController(this, i)); 

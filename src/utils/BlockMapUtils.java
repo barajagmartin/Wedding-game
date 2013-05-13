@@ -9,9 +9,9 @@ public class BlockMapUtils {
 	private BlockMapUtils() {
 		
 	}
-	public static InputStream getTmxFile(int level) {
+	public static InputStream getTmxFile(int level, int version) {
 		try {
-			return new FileInputStream("level1.tmx");
+			return new FileInputStream("level" + String.valueOf(level) + "." + String.valueOf(version) +".tmx");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
