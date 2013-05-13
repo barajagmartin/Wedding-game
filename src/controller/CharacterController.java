@@ -8,6 +8,8 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
+import org.newdawn.slick.SlickException;
+
 import view.CharacterView;
 import view.WorldView;
 
@@ -23,7 +25,7 @@ public class CharacterController {
 	private int keyDown = Input.KEY_DOWN;
 	private int keyUp = Input.KEY_UP;
 	
-	public CharacterController(InGameController inGameController) {
+	public CharacterController(InGameController inGameController) throws SlickException {
 		this.inGameController = inGameController;
 		if (this.inGameController.getBlockMapController().getBlockMapView().getStartingPos() == null) {
 			this.character = new Character(400, 100);

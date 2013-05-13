@@ -1,34 +1,33 @@
 package model;
 
-import org.newdawn.slick.Color;
-
 public class CandyMonster {
 	public final int CANDY_NUMBER;
-	private int x;
-	private int y;
+	private Position pos;
 	public static final int WIDTH = 25;
 	public static final int HEIGHT = 30;
 	
 	public CandyMonster(int x, int y, int candyNumber) {
-		this.x = x;
-		this.y = y;
+		this(new Position(x, y), candyNumber);
+	}
+	public CandyMonster(final Position pos, final int candyNumber) {
+		this.pos = pos;
 		this.CANDY_NUMBER = candyNumber;
+
 	}
 	
 	public int getX() {
-		return this.x;
+		return this.pos.getX();
 	}
 	
 	public int getY() {
-		return this.y;
+		return this.pos.getY();
 	}
 	
-	public void setX(int x) {
-		this.x = x;
+	public void setX(final int x) {
+		this.pos.setX(x);
 	}
 	
-	public void setY(int y) {
-		this.y = y;
+	public void setY(final int y) {
+		this.pos.setY(y);
 	}
-	
 }

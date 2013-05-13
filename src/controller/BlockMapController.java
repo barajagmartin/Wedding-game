@@ -17,6 +17,7 @@ public class BlockMapController {
 	private BlockMap candyMonsterMap;
 	private BlockMap spikesMap;
 	private BlockMap itemMap;
+	private BlockMap moveableBoxMap;
 	private BlockMapView blockMapView;
 	
 	public BlockMapController(TiledMap tiledMap) {
@@ -26,7 +27,9 @@ public class BlockMapController {
 		candyMonsterMap = new BlockMap();
 		spikesMap = new BlockMap();
 		itemMap = new BlockMap();
-		blockMapView = new BlockMapView(solidGroundMap, iceMap, springMap, candyMonsterMap, spikesMap, itemMap, tiledMap);
+		moveableBoxMap = new BlockMap();
+		blockMapView = new BlockMapView(solidGroundMap, iceMap, springMap, candyMonsterMap,
+				spikesMap, itemMap, moveableBoxMap, tiledMap);
 	}
 	
 	public BlockMapView getBlockMapView() {

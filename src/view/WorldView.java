@@ -2,7 +2,7 @@ package view;
 
 import java.util.ArrayList;
 
-import model.Block;
+import model.FixedPosition;
 
 import org.jbox2d.callbacks.ContactImpulse;
 import org.jbox2d.callbacks.ContactListener;
@@ -65,7 +65,7 @@ public class WorldView {
 		addSolidGround(new Vec2(0, 0), new Vec2(worldWidthMeter, WorldUtils.pixel2Meter(2)), NORMAL_FRICTION, NO_BOUNCE_RESTITUTION);
 
 		//Create normal ground
-		for (Block block : this.blockMapView.getSolidGroundMap().getBlockList()) {
+		for (FixedPosition block : this.blockMapView.getSolidGroundMap().getBlockList()) {
 			addSolidGround(new Vec2(WorldUtils.pixel2Meter(block.getPosX() + this.blockMapView.getTiledMap().getTileWidth()/2),
 					WorldUtils.pixel2Meter(block.getPosY() + this.blockMapView.getTiledMap().getTileWidth()/2)),
 					new Vec2(WorldUtils.pixel2Meter(this.blockMapView.getTiledMap().getTileWidth()/2),
@@ -73,7 +73,7 @@ public class WorldView {
 		}
 		
 		//Create ice
-		for (Block block : this.blockMapView.getIceMap().getBlockList()) {
+		for (FixedPosition block : this.blockMapView.getIceMap().getBlockList()) {
 			addSolidGround(new Vec2(WorldUtils.pixel2Meter(block.getPosX() + this.blockMapView.getTiledMap().getTileWidth()/2),
 					WorldUtils.pixel2Meter(block.getPosY() + this.blockMapView.getTiledMap().getTileWidth()/2)),
 					new Vec2(WorldUtils.pixel2Meter(this.blockMapView.getTiledMap().getTileWidth()/2),
@@ -81,7 +81,7 @@ public class WorldView {
 		}
 		
 		//Create springs
-		for (Block block : this.blockMapView.getSpringMap().getBlockList()) {
+		for (FixedPosition block : this.blockMapView.getSpringMap().getBlockList()) {
 			addSolidGround(new Vec2(WorldUtils.pixel2Meter(block.getPosX() + this.blockMapView.getTiledMap().getTileWidth()/2),
 					WorldUtils.pixel2Meter(block.getPosY() + this.blockMapView.getTiledMap().getTileWidth()/2)),
 					new Vec2(WorldUtils.pixel2Meter(this.blockMapView.getTiledMap().getTileWidth()/2),

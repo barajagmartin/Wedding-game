@@ -55,15 +55,16 @@ public class StartMenuController extends BasicGameState {
 			switch(startMenuView.getIsMarked()){
 				case 0: sbg.enterState(Game.IN_GAME);
 						break;
-				case 1: //Sound: On/Off
-						//g.drawImage(new Image("pics/sound_off"), , y);
+				case 1: sbg.enterState(Game.HIGHSCORE);//Enter state Highscore
 						break;
-				case 2: //Music: On/Off
+				case 2: //Sound: On/Off
+						//g.drawImage(new Image("pics/sound_off"), x, y);
 						break;
-				case 3: //Enter state "Controls"
+				case 3: //Music: On/Off
 						break;
-				case 4: System.exit(0);
+				case 4: //Enter state Controls
 						break;
+				case 5: System.exit(0);
 			}
 		}
 	}

@@ -1,20 +1,22 @@
 package model;
 
 public class Spikes {
-	private int x;
-	private int y;
+	private Position pos;
 	public static final int RADIUS = 15;
 	
-	public Spikes(int x, int y){
-		this.x = x;
-		this.y = y;
+	public Spikes(final int x, final int y){
+		this(new Position(x,y));
+	}
+	
+	public Spikes(final Position pos) {
+		this.pos = pos;
 	}
 
 	public int getX() {
-		return x;
+		return pos.getX();
 	}
 
 	public int getY() {
-		return y;
+		return pos.getY();
 	}
 }

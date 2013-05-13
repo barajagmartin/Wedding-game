@@ -26,6 +26,11 @@
     <property name="property" value="ice"/>
    </properties>
   </tile>
+  <tile id="7">
+   <properties>
+    <property name="property" value="moveableBox"/>
+   </properties>
+  </tile>
   <tile id="28">
    <properties>
     <property name="property" value="candyMonster"/>
@@ -49,7 +54,7 @@
  </tileset>
  <layer name="layer" width="32" height="24">
   <data encoding="base64" compression="zlib">
-   eJxjZBg4wAjFo/aP2k9PIDeA9jMh4eEe/sh+HQj7CQFq2k/Ir7S2nxyAzX55IvSR41di7acnIMZ+avmVXPtJAWwEMCsUw/jo9tPSr9jAYIx/WQJ6FKgoBrOfiULMSqY+kN3Mo3hEYwCsoAMs
+   eJxjZBg4wAjFo/aP2k9PIDeA9jMh4eEe/sh+HQj7CQFK7OdA4xPyK7XtpwbAZr88EfrI8Sux9tMTEGM/tfxKrv2kADYCmBWKYXx0+2npV2xgMMa/LAE9ClQUg9nPRCFmJVMfyG7mUTyiMQDi4AM0
   </data>
  </layer>
 </map>

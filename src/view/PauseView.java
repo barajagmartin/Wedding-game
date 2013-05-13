@@ -12,7 +12,9 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class PauseView {
+import controller.IMenu;
+
+public class PauseView implements IMenu {
 	private int buttonHeight;
 	private int buttonWidth;
 	private int isMarked;
@@ -34,11 +36,17 @@ public class PauseView {
 		/*Make background darker to highlight pause menu*/
 		g.setColor(new Color(0f, 0f, 0f, 0.5f));
 		g.fillRect(0, 0, Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
+		
+		createButtons(g);
 
-		/*Create pause menu "buttons"*/
+
+	}
+	@Override
+	public void createButtons(Graphics g) throws SlickException{
 		//start position
 		int buttonX = 0;
 		int buttonY = Game.WINDOW_HEIGHT/7;
+		/*Create rectangles as buttons*/
 		for(int i = 0; i < 5; i++){
 			this.buttonList.add(new Rectangle(buttonX, buttonY, buttonWidth, buttonHeight));
 
@@ -67,12 +75,14 @@ public class PauseView {
 			buttonY = buttonY + buttonHeight;
 		}
 	}
-
+	
+	@Override
 	/*Move marker if key is pressed down*/
 	public void markButtonDown() {
 		isMarked = ++isMarked % 5;
 	}
 
+	@Override
 	/*Move marker if key is pressed up*/
 	public void markButtonUp() {
 		isMarked = (isMarked + 4) %5; //add 4 to make positive (--isMarked + 5)

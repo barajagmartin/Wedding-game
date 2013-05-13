@@ -1,28 +1,22 @@
 package controller;
 
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
-import org.newdawn.slick.KeyListener;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
 import utils.BlockMapUtils;
-import view.BlockMapView;
+import utils.WorldUtils;
 import view.InGameView;
+import view.MoveableBoxView;
 import view.SpikesView;
-import model.BlockMap;
+import model.FixedPosition;
 import model.Game;
 import model.InGame;
 import model.Item;
@@ -35,60 +29,69 @@ public class InGameController extends BasicGameState {
 	private WorldController worldController;
 	private StatusBarController statusBarController;
 	private BlockMapController blockMapController;
-	private ArrayList <CandyMonsterController> candyMonsterController;
-	private ArrayList <ItemController> itemController;
-	private ArrayList <SpikesController> spikeController;
+	private ArrayList <CandyMonsterController> candyMonsterControllers;
+	private ArrayList <ItemController> itemControllers;
+	private ArrayList <SpikesController> spikesControllers;
+	private ArrayList <MoveableBoxController> moveableBoxControllers;
 	private Item lastHeldItem;
 	private int itemsDelivered;
 	private StateBasedGame sbg;
 	private GameController gameController;
-	
+
 	//should be based on the frame update (delta or something like that)
 	private float timeStep = 1.0f / 60.0f;
 	private int velocityIterations = 6;
 	private int positionIterations = 2;
-	
+
 	public InGameController(GameController gameController) {
 		this.gameController = gameController;
-		
+
 	}
 
-	
+
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		this.sbg = sbg;
-		this.candyMonsterController = new ArrayList<CandyMonsterController>();
-		this.itemController = new ArrayList<ItemController>();
-		this.spikeController = new ArrayList<SpikesController>();
-		//TODO ladda in filer
-		 this.blockMapController = new BlockMapController(new TiledMap(BlockMapUtils.getTmxFile(1)));
-		 /*Create candy monster and its items*/
-		 for(int i = 0; i < blockMapController.getCandyMonsterMap().getBlockList().size(); i++){
-			 this.candyMonsterController.add(new CandyMonsterController(this, i)); 
-			 this.itemController.add(new ItemController(this, i));
-		 }
-		 
-		 this.worldController = new WorldController(this);
-		 /*Create spikes*/
-		 for(int i = 0; i < blockMapController.getSpikesMap().getBlockList().size(); i++){
-			 this.spikeController.add(new SpikesController(this, i));
-		 }
-		 this.statusBarController = new StatusBarController(this);
-		 this.characterController = new CharacterController(this);
-		 this.playerController = new PlayerController(characterController, this);
-		 this.inGame = new InGame();
-		 
-		 //temporarily store the SpikesViews in a list
-		 ArrayList<SpikesView> tmpSpikesViewList = new ArrayList();
-		 for(SpikesController spikesController : spikeController) {
-			 tmpSpikesViewList.add(spikesController.getSpikesView());
-		 }
-		 
-		 
-		 this.inGameView = new InGameView(inGame, worldController.getWorldView(), statusBarController.getStatusBarView(), 
-				 characterController.getCharacterView(), tmpSpikesViewList);
-		 itemsDelivered = 0;
+		this.candyMonsterControllers = new ArrayList<CandyMonsterController>();
+		this.itemControllers = new ArrayList<ItemController>();
+		this.spikesControllers = new ArrayList<SpikesController>();
+		this.moveableBoxControllers = new ArrayList<MoveableBoxController>();
+		this.blockMapController = new BlockMapController(new TiledMap(BlockMapUtils.getTmxFile(1)));
+		/*Create candy monster and its items*/
+		for (int i = 0; i < blockMapController.getCandyMonsterMap().getBlockList().size(); i++){
+			this.candyMonsterControllers.add(new CandyMonsterController(this, i)); 
+			this.itemControllers.add(new ItemController(this, i));
+		}
+
+		this.worldController = new WorldController(this);
+		/*Create spikes*/
+		for (int i = 0; i < blockMapController.getSpikesMap().getBlockList().size(); i++){
+			this.spikesControllers.add(new SpikesController(this, i));
+		}
+		this.statusBarController = new StatusBarController(this);
+		this.characterController = new CharacterController(this);
+		for (FixedPosition pos : blockMapController.getBlockMapView().getMoveableBoxMap().getBlockList()) {
+			this.moveableBoxControllers.add(new MoveableBoxController(this, pos));
+		}
+		this.playerController = new PlayerController(characterController, this);
+		this.inGame = new InGame();
+
+		//temporarily store the SpikesViews in a list
+		ArrayList<SpikesView> tmpSpikesViewList = new ArrayList<SpikesView>();
+		for(SpikesController spikesController : spikesControllers) {
+			tmpSpikesViewList.add(spikesController.getSpikesView());
+		}
+		//temporarily store the MoveableBoxViews in a list
+				ArrayList<MoveableBoxView> tmpMoveableBoxViewList = new ArrayList<MoveableBoxView>();
+				for(MoveableBoxController moveableBoxController : moveableBoxControllers) {
+					tmpMoveableBoxViewList.add(moveableBoxController.getMoveableBoxView());
+				}
+
+
+		this.inGameView = new InGameView(inGame, worldController.getWorldView(), statusBarController.getStatusBarView(), 
+				characterController.getCharacterView(), tmpMoveableBoxViewList, tmpSpikesViewList);
+		itemsDelivered = 0;
 
 	}
 
@@ -97,7 +100,7 @@ public class InGameController extends BasicGameState {
 			throws SlickException {
 		this.inGameView.render(gc, sbg, g);
 	}
-	
+
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
@@ -119,7 +122,22 @@ public class InGameController extends BasicGameState {
 		worldController.updateItemShape(worldController.getItemViewList(), characterController.getCharacterView());
 		characterController.getCharacter().setX((int)characterController.getCharacterView().getSlickShape().getX());
 		characterController.getCharacter().setY((int)characterController.getCharacterView().getSlickShape().getY());
+		for (int i = 0; i < moveableBoxControllers.size(); i++) {
+			moveableBoxControllers.get(i).getMoveableBox().setX(WorldUtils.meter2Pixel(
+					moveableBoxControllers.get(i).getMoveableBoxView().getBoxBody().getPosition().x));
+			moveableBoxControllers.get(i).getMoveableBox().setY(WorldUtils.meter2Pixel(
+					moveableBoxControllers.get(i).getMoveableBoxView().getBoxBody().getPosition().y));
+			
 		
+		}
+		System.out.println(moveableBoxControllers.get(0).getMoveableBox().getPos().getX());
+		System.out.println(moveableBoxControllers.get(0).getMoveableBox().getPos().getY());
+		System.out.println(characterController.getCharacter().getX());
+		System.out.println(characterController.getCharacter().getY());
+		System.out.println();
+		System.out.println();
+		
+
 	}
 
 	@Override
@@ -132,8 +150,8 @@ public class InGameController extends BasicGameState {
 					characterController.getCharacterView().getCharacterBody().getLinearVelocity().y == 0) {
 				lastHeldItem = characterController.getCharacter().getHeldItem();	
 				characterController.getCharacter().dropDownItem(characterController.getCharacter().getHeldItem());
-				this.itemController.get(lastHeldItem.CANDY_NUMBER).uppdateItemShape();
-				candyMonsterController.get(lastHeldItem.CANDY_NUMBER).isDroppedOnMonster(lastHeldItem);
+				this.itemControllers.get(lastHeldItem.CANDY_NUMBER).uppdateItemShape();
+				candyMonsterControllers.get(lastHeldItem.CANDY_NUMBER).isDroppedOnMonster(lastHeldItem);
 			}
 		}
 		if (key == Input.KEY_UP) {
@@ -152,28 +170,29 @@ public class InGameController extends BasicGameState {
 			sbg.enterState(Game.PAUSE_MENU);
 		}
 	}
-	
+
 	/**
 	 * checks if the game is done by checking the lives on the character 
 	 * and the items left in the world.
 	 * 
 	 */
 	public void checkGameOverConditions() {
-		if (this.itemController.size() == itemsDelivered) {
+		if (this.itemControllers.size() == itemsDelivered) {
 			System.out.println("No more items to pick up, level cleared!");
 			this.playerController.getPlayer().setScore((int)this.inGame.getTime(), this.itemsDelivered);
+			this.gameController.tryToSaveScore(this.playerController.getPlayer().getScore()); //obs! skall bara göras vid sista leveln eller game over!!
 			sbg.enterState(Game.END_OF_LEVEL);
 		} else if (this.characterController.getCharacter().getLife() == 0 || this.inGame.getTime() <= 0) {
 			System.out.println("No more lives, you are dead!");
 			sbg.enterState(Game.END_OF_LEVEL);
 		}
 	}
-	
+
 	@Override
 	public int getID() {
 		return Game.IN_GAME;
 	}
-	
+
 	public int getItemsDelivered() {
 		return itemsDelivered;
 	}
@@ -191,24 +210,24 @@ public class InGameController extends BasicGameState {
 	public WorldController getWorldController() {
 		return worldController;
 	}
-	
+
 	public BlockMapController getBlockMapController() {
 		return blockMapController;
 	}
 
 
 	public ArrayList<CandyMonsterController> getCandyMonsterController() {
-		return candyMonsterController;
+		return candyMonsterControllers;
 	}
 
 
 	public ArrayList<ItemController> getItemController() {
-		return itemController;
+		return itemControllers;
 	}
 
 
 	public ArrayList<SpikesController> getSpikesController() {
-		return spikeController;
+		return spikesControllers;
 	}
 
 

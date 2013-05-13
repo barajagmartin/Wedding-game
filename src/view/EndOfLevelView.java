@@ -25,7 +25,7 @@ public class EndOfLevelView {
 		Image i = new Image("pics/rainbowattheend.jpg"); 
 		i.draw();
 		g.setColor(Color.black);
-		g.drawString("ENTER - start new level", Game.WINDOW_WIDTH/2 - 30, Game.WINDOW_HEIGHT/2 + 40);
+		g.drawString("ENTER - enter see highScore", Game.WINDOW_WIDTH/2 - 30, Game.WINDOW_HEIGHT/2 + 40);
 		g.drawString("ESC - quit the game", Game.WINDOW_WIDTH/2 - 30, Game.WINDOW_HEIGHT/2 + 60);
 		g.drawString("Score: " + this.Score, Game.WINDOW_WIDTH/2 - 30, Game.WINDOW_HEIGHT/2 + 90);
 	}
