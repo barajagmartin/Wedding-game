@@ -24,18 +24,20 @@ public class InGameView {
 	private WorldView worldView;
 	private StatusBarView statusBarView;
 	private CharacterView characterView;
+	private ArrayList<MoveableBoxView> moveableBoxViewList;
+	private ArrayList<SpikesView> spikesViewList;
 	private Animation nelson, blink;
 	private Graphics g;
-	private ArrayList<SpikesView> spikesViewList;
-	
-	public InGameView(InGame inGame, WorldView worldView, StatusBarView statusBarView, CharacterView characterView, ArrayList<SpikesView> spikesViewList) {
+
+	public InGameView(InGame inGame, WorldView worldView, StatusBarView statusBarView, CharacterView characterView, ArrayList<MoveableBoxView> tmpMoveableBoxViewList, ArrayList<SpikesView> spikesViewList) {
 		this.inGame = inGame;
 		this.worldView = worldView;
 		this.statusBarView = statusBarView;
 		this.characterView = characterView;
+		this.moveableBoxViewList = tmpMoveableBoxViewList;
 		this.spikesViewList = spikesViewList;
 	}
-	
+
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		this.g = g;
@@ -51,18 +53,21 @@ public class InGameView {
 			this.g.fill(worldView.getCandyMonsterViewList().get(j).getShape());
 		}	
 		//draw spikes
-				for (int j = 0; j < spikesViewList.size(); j++) {
-					//set the color when "debugging"
-					g.setColor(Color.transparent); //so it does not show the circle
-					g.fill(spikesViewList.get(j).getShape());
-					g.drawImage(spikesViewList.get(j).getImage(), 
-							spikesViewList.get(j).getSpikes().getX()- Spikes.RADIUS - 3, 
-							spikesViewList.get(j).getSpikes().getY() - Spikes.RADIUS - 3);
-				}
+		for (int j = 0; j < spikesViewList.size(); j++) {
+			//set the color when "debugging"
+			g.setColor(Color.transparent); //so it does not show the circle
+			g.fill(spikesViewList.get(j).getShape());
+			g.drawImage(spikesViewList.get(j).getImage(), 
+					spikesViewList.get(j).getSpikes().getX()- Spikes.RADIUS - 3, 
+					spikesViewList.get(j).getSpikes().getY() - Spikes.RADIUS - 3);
+		}
+		characterView.getImage().draw(characterView.getSlickShape().getX(), characterView.getSlickShape().getY());
+		for (MoveableBoxView moveableBoxView : moveableBoxViewList) {
+			g.drawImage(moveableBoxView.getImage(), moveableBoxView.getMoveableBox().getPos().getX(),
+					moveableBoxView.getMoveableBox().getPos().getY());
+		}
 		
-		Image player = new Image("pics/GulNelson.png");
-		player.draw(characterView.getSlickShape().getX(), characterView.getSlickShape().getY());
-		
+
 		/* blinking animation - not yet working 
 		Image[] blinking = {new Image("pics/Nelson.png"), new Image("pics/GulNelson.png")};
 		int duration[] = {300, 300};
@@ -70,7 +75,7 @@ public class InGameView {
 		nelson = blink;
 		nelson.draw(characterView.getSlickShape().getX(), characterView.getSlickShape().getY());*/
 
-		
+
 		//draw items
 		for (int j = 0; j < worldView.getItemViewList().size(); j++) {
 			this.g.setColor(worldView.getItemViewList().get(j).getColor());
@@ -78,7 +83,7 @@ public class InGameView {
 		}
 		//draw a temporary timer
 		this.g.drawString("Time : " + this.inGame.getTime(), 10, 25);
-		
+
 		//draw status bar
 		for(int k = 0; k < characterView.getCharacter().getLife(); k++) {
 			statusBarView.getHeart()[k].draw(StatusBar.HEART_POSX[k], StatusBar.HEART_POSY);
@@ -101,5 +106,5 @@ public class InGameView {
 		pauseImage.destroy();
 	}
 
-	
+
 }

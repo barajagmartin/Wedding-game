@@ -1,9 +1,11 @@
 package utils;
 
 import model.Character;
+import model.MoveableBox;
 import model.Position;
 
 import org.jbox2d.collision.shapes.CircleShape;
+import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.collision.shapes.Shape;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
@@ -12,13 +14,12 @@ import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 import org.jbox2d.dynamics.joints.WeldJointDef;
 
-
 public class WorldBodyFactory {
 	public static Body createBody(WorldObjects worldObject, World jBox2DWorld, Position pos) {
+		Shape shape;
+		FixtureDef fixtureDef = new FixtureDef();
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.position.set(WorldUtils.pixel2Meter(pos.getX()),WorldUtils.pixel2Meter(pos.getY()));
-		FixtureDef fixtureDef = new FixtureDef();
-		Shape shape;
 		Body body = null; //TODO is it needed to check if it is null at the end?
 
 		if (worldObject.equals(WorldObjects.CHARACTER)) {
@@ -80,7 +81,21 @@ public class WorldBodyFactory {
 			jBox2DWorld.createJoint(rightWeldJointDef);
 			
 		} else if (worldObject.equals(WorldObjects.MOVEABLE_BOX)) {
-			//create moveable box
+			shape = new PolygonShape();
+			((PolygonShape) shape).setAsBox(WorldUtils.pixel2Meter(MoveableBox.WIDTH), WorldUtils.pixel2Meter(MoveableBox.HEIGHT));
+			
+			fixtureDef.shape = shape;
+			fixtureDef.density = 1f;
+			fixtureDef.friction = 0.6f;
+			fixtureDef.restitution = 0.1f;
+			fixtureDef.userData = "moveableBox";
+			
+			bodyDef.type = BodyType.DYNAMIC;
+			bodyDef.fixedRotation = false;
+			
+			body = jBox2DWorld.createBody(bodyDef);
+			body.createFixture(fixtureDef);
+			body.m_mass = 2000f;
 		}
 		return body;
 	}

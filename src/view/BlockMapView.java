@@ -18,19 +18,22 @@ public class BlockMapView {
 	private BlockMap candyMonsterMap;
 	private BlockMap spikesMap;
 	private BlockMap itemMap;
+	private BlockMap moveableBoxMap;
 	private TiledMap tiledMap;
 	private FixedPosition startingPos;
 	private float levelTime;
 	
 	public BlockMapView(BlockMap solidGroundMap, BlockMap iceMap, BlockMap springMap, BlockMap candyMonsterMap,
-			BlockMap spikesMap, BlockMap itemMap, TiledMap tiledMap) {
+			BlockMap spikesMap, BlockMap itemMap, BlockMap moveableBoxMap, TiledMap tiledMap) {
 		this.solidGroundMap = solidGroundMap;
 		this.iceMap = iceMap;
 		this.springMap = springMap;
 		this.candyMonsterMap = candyMonsterMap;
 		this.spikesMap = spikesMap;
 		this.itemMap = itemMap;
+		this.moveableBoxMap = moveableBoxMap;
 		this.tiledMap = tiledMap;
+		
 
 		//loop through map and place out Blocks
 		for (int x = 0; x < tiledMap.getWidth(); x++) {
@@ -55,9 +58,12 @@ public class BlockMapView {
 				} else if (tileProperty.equals("item")) {
 					itemMap.getBlockList().add(new FixedPosition(x * tiledMap.getTileWidth() + (tiledMap.getTileWidth()/2 - Item.WIDTH/2),
 							y * tiledMap.getTileHeight() + (tiledMap.getTileHeight() - Item.HEIGHT)));
-				}else if (tileProperty.equals("player")) {
+				} else if (tileProperty.equals("player")) {
 					this.startingPos = new FixedPosition(x * tiledMap.getTileWidth(),
 							y * tiledMap.getTileHeight());
+				} else if (tileProperty.equals("moveableBox")) {
+					moveableBoxMap.getBlockList().add(new FixedPosition(x * tiledMap.getTileWidth()+(tiledMap.getTileWidth()/2 - CandyMonster.WIDTH/2),
+							y * tiledMap.getTileHeight()+(tiledMap.getTileHeight() - CandyMonster.HEIGHT)));
 				}
 				
 			}
@@ -86,6 +92,10 @@ public class BlockMapView {
 
 	public BlockMap getItemMap() {
 		return itemMap;
+	}
+
+	public BlockMap getMoveableBoxMap() {
+		return moveableBoxMap;
 	}
 
 	public TiledMap getTiledMap() {
