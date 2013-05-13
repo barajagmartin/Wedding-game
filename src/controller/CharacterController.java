@@ -6,6 +6,7 @@ import model.Item;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
 import org.newdawn.slick.SlickException;
@@ -103,11 +104,9 @@ public class CharacterController {
 		Input input = gc.getInput();		
 		
 		if(input.isKeyDown(Input.KEY_RIGHT)) {
-			characterView.setColor(Color.blue);
 			inGameController.getWorldController().moveBodyRight();
 		}
 		if(input.isKeyDown(Input.KEY_LEFT)) {
-			characterView.setColor(Color.green);
 			inGameController.getWorldController().moveBodyLeft();
 		}
 	}
