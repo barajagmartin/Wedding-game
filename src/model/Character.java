@@ -6,6 +6,7 @@ public class Character {
 	private int life;
 	private Item heldItem;
 	private float timeSinceHit; //in seconds
+	private boolean isOnSpikes;
 
 	public Character(final int x, final int y) {
 		this(new Position(x,y));
@@ -70,5 +71,13 @@ public class Character {
 		item.setX(this.pos.getX()+RADIUS);
 		item.setY((this.pos.getY()+RADIUS*2-Item.HEIGHT));
 		this.heldItem = null;
+	}
+
+	public boolean isOnSpikes() {
+		return isOnSpikes;
+	}
+
+	public void setOnSpikes(boolean isOnSpikes) {
+		this.isOnSpikes = isOnSpikes;
 	}
 }
