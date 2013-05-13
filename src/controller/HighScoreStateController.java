@@ -16,6 +16,7 @@ public class HighScoreStateController extends BasicGameState{
 	private GameController gameController;
 	private HighScoreStateView highScoreStateView;
 	private GameContainer gc;
+	private StateBasedGame sbg;
 	
 	public HighScoreStateController (GameController gameController) {
 		this.gameController = gameController;
@@ -26,6 +27,7 @@ public class HighScoreStateController extends BasicGameState{
 			throws SlickException {
 		this.highScoreStateView = new HighScoreStateView(this.gameController.getScoreList());
 		this.gc = gc;
+		this.sbg=sbg;
 		
 	}
 
@@ -48,6 +50,7 @@ public class HighScoreStateController extends BasicGameState{
 			gc.exit();
 		} else if (key == Input.KEY_ENTER) {
 			//back to start menu or somethig
+			sbg.enterState(Game.START_MENU);
 		}
 	}
 
