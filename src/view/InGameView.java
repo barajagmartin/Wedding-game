@@ -52,6 +52,16 @@ public class InGameView {
 		for (int j = 0; j < worldView.getCandyMonsterViewList().size(); j++) {
 			this.g.setColor(worldView.getCandyMonsterViewList().get(j).getColor());
 			this.g.fill(worldView.getCandyMonsterViewList().get(j).getShape());
+			
+			if (worldView.getItemViewList().get(j).getItem().isDelivered()) {
+			this.g.drawImage(worldView.getCandyMonsterViewList().get(j).getHappyImage(),
+					worldView.getCandyMonsterViewList().get(j).getCandyMonster().getX(),
+					worldView.getCandyMonsterViewList().get(j).getCandyMonster().getY());
+			} else {
+				this.g.drawImage(worldView.getCandyMonsterViewList().get(j).getSadImage(),
+						worldView.getCandyMonsterViewList().get(j).getCandyMonster().getX(),
+						worldView.getCandyMonsterViewList().get(j).getCandyMonster().getY());
+			}
 		}	
 		//draw spikes
 		for (int j = 0; j < spikesViewList.size(); j++) {
@@ -82,6 +92,9 @@ public class InGameView {
 		for (int j = 0; j < worldView.getItemViewList().size(); j++) {
 			this.g.setColor(worldView.getItemViewList().get(j).getColor());
 			this.g.fill(worldView.getItemViewList().get(j).getShape());
+			this.g.drawImage(worldView.getItemViewList().get(j).getImage(),
+					worldView.getItemViewList().get(j).getItem().getX(),
+					worldView.getItemViewList().get(j).getItem().getY());
 		}
 		//draw a temporary timer
 		this.g.drawString("Time : " + this.inGame.getTime(), 10, 25);
