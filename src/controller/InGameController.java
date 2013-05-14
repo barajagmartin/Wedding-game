@@ -117,7 +117,7 @@ public class InGameController extends BasicGameState {
 			}
 
 			this.inGameView = new InGameView(inGame, worldController.getWorldView(), statusBarController.getStatusBarView(), 
-					characterController.getCharacterView(), tmpMoveableBoxViewList, tmpSpikesViewList);
+					characterController.getCharacterView(), tmpMoveableBoxViewList, tmpSpikesViewList, this.level);
 			itemsDelivered = 0;
 
 			itemList = new ArrayList<Item>();

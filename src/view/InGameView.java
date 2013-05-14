@@ -28,14 +28,16 @@ public class InGameView {
 	private ArrayList<MoveableBoxView> moveableBoxViewList;
 	private ArrayList<SpikesView> spikesViewList;
 	private Graphics g;
+	private int level;
 
-	public InGameView(InGame inGame, WorldView worldView, StatusBarView statusBarView, CharacterView characterView, ArrayList<MoveableBoxView> tmpMoveableBoxViewList, ArrayList<SpikesView> spikesViewList) {
+	public InGameView(InGame inGame, WorldView worldView, StatusBarView statusBarView, CharacterView characterView, ArrayList<MoveableBoxView> tmpMoveableBoxViewList, ArrayList<SpikesView> spikesViewList, int level) {
 		this.inGame = inGame;
 		this.worldView = worldView;
 		this.statusBarView = statusBarView;
 		this.characterView = characterView;
 		this.moveableBoxViewList = tmpMoveableBoxViewList;
 		this.spikesViewList = spikesViewList;
+		this.level = level;
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
@@ -99,10 +101,12 @@ public class InGameView {
 		this.g.setColor(Color.white);
 		this.g.drawString("LIFE", StatusBar.HEART_POSX[0] - 15, StatusBar.HEART_POSY - 20);
 		this.g.drawString("TIME", StatusBar.FIXED_BAR_POSX - 15, StatusBar.HEART_POSY - 20);
+		this.g.drawString("Lv." + this.level, Game.WINDOW_WIDTH - 60, StatusBar.HEART_POSY - 40);
 		this.g.setColor(Color.darkGray);
 		this.g.fill(statusBarView.getFixedBar());
 		this.g.setColor(Color.green);
 		this.g.fill(statusBarView.getTimeBar());
+		
 
 	}
 	/**Save all graphics in an Image to create an illusion of a paused screen in PauseView
