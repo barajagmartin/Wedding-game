@@ -4,16 +4,12 @@
   <image source="rutor32x32.png" width="128" height="256"/>
   <tile id="0">
    <properties>
-    <property name="friction" value="0.7"/>
     <property name="property" value="solidGround"/>
-    <property name="restitution" value="0"/>
    </properties>
   </tile>
   <tile id="1">
    <properties>
-    <property name="friction" value="0.7"/>
     <property name="property" value="solidGround"/>
-    <property name="restitution" value="0"/>
    </properties>
   </tile>
   <tile id="3">
@@ -34,6 +30,11 @@
   <tile id="7">
    <properties>
     <property name="property" value="moveableBox"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="property" value="iceSpring"/>
    </properties>
   </tile>
   <tile id="27">
@@ -62,9 +63,19 @@
    </properties>
   </tile>
  </tileset>
- <layer name="layer" width="32" height="24">
+ <layer name="solids" width="32" height="24">
   <data encoding="base64" compression="zlib">
    eJztwwEJAAAAAqCg/58bkoIJAABP6vUBjw8BgQ==
+  </data>
+ </layer>
+ <layer name="data" width="32" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAAC8GDAAAAQ==
+  </data>
+ </layer>
+ <layer name="position" width="32" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAAC8GDAAAAQ==
   </data>
  </layer>
 </map>
