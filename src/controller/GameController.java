@@ -34,8 +34,8 @@ public class GameController extends StateBasedGame {
 		super(name);
 		this.scoreList = new int[10];
 		this.nameList = new String[10];
-		this.scoreFile = new File("scoreList.txt");
-		this.nameFile = new File("nameList.txt");
+		this.scoreFile = new File("savings/scoreList.txt");
+		this.nameFile = new File("savings/nameList.txt");
 		try {
 			this.scoreScanner = new Scanner(scoreFile);
 			this.nameScanner = new Scanner(nameFile);
@@ -107,8 +107,8 @@ public class GameController extends StateBasedGame {
 	 */
 	public void tryToSaveScore (int newScore) {
 		if (newScore > this.scoreList[9]) {
-			this.scoreList[9] = newScore;
-			for (int i = 8; i >= 0; i--) {
+			this.scoreList[9] = newScore; //ändra: kolla detta innan anrop, börja loopen på 9!
+			for (int i = 8; i >= 0; i--) { //alternativt läs in en spelares namn här!
 				if (newScore > this.scoreList[i]) {
 					this.scoreList[i+1] = this.scoreList[i];
 					this.scoreList[i] = newScore;
