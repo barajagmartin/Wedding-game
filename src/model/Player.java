@@ -41,4 +41,9 @@ public class Player {
 		this.score =+ time*candy;
 	}
 
+	public void reset() {
+		life = 3;
+		score = 0;
+	}
+
 }

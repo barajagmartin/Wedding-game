@@ -29,6 +29,12 @@ public class StartMenuController extends BasicGameState {
 		this.sbg = game;
 		this.startMenuView = new StartMenuView();
 	}
+	
+	@Override
+	public void enter(GameContainer container, StateBasedGame game) throws SlickException {
+		super.enter(container, game);
+		gameController.getInGameController().setNewGame(true);
+	}
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g)

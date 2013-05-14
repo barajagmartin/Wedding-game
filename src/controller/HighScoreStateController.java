@@ -49,14 +49,13 @@ public class HighScoreStateController extends BasicGameState{
 		if (key == Input.KEY_ESCAPE) {
 			gc.exit();
 		} else if (key == Input.KEY_ENTER) {
-			//back to start menu or somethig
+			//back to start menu or something
 			sbg.enterState(Game.START_MENU);
 		}
 	}
 
 	@Override
 	public int getID() {
-		// TODO Auto-generated method stub
 		return Game.HIGHSCORE;
 	}
 
