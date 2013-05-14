@@ -7,6 +7,7 @@ pics/pauseBackground.png
 *.md
 */bin
 */savings
+*/reports
 
 # Package Files #
 *.war
