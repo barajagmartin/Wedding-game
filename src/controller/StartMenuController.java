@@ -1,6 +1,7 @@
 package controller;
 
 import model.Game;
+import model.InGame;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -33,7 +34,7 @@ public class StartMenuController extends BasicGameState {
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) throws SlickException {
 		super.enter(container, game);
-		gameController.getInGameController().setNewGame(true);
+		InGame.setNewGame(true);
 	}
 
 	@Override

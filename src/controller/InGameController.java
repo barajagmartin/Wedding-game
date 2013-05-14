@@ -45,8 +45,6 @@ public class InGameController extends BasicGameState {
 	private static int level;
 	private File folder;
 	private boolean isPaused;
-	private boolean isNewGame;
-
 	//should be based on the frame update (delta or something like that)
 	private float timeStep = 1.0f / 60.0f;
 	private int velocityIterations = 6;
@@ -66,7 +64,6 @@ public class InGameController extends BasicGameState {
 		folder = new File(".");
 		this.statusBarController = new StatusBarController(this);
 		isPaused = false;
-		isNewGame = true;
 	}
 
 	@Override
@@ -74,12 +71,12 @@ public class InGameController extends BasicGameState {
 			throws SlickException {
 		super.enter(container, game);
 		if (!isPaused) {
-			if (isNewGame) {
+			if (InGame.isNewGame()) {
 				level = 1;
 				playerController.getPlayer().reset();
-				isNewGame = false;
+				InGame.setNewGame(false);
 			}else {
-				this.level++;
+				level++;
 			}
 			
 			this.inGame = new InGame(playerController.getPlayer());
@@ -281,11 +278,6 @@ public class InGameController extends BasicGameState {
 
 	public void setPaused(boolean isPaused) {
 		this.isPaused = isPaused;
-	}
-
-
-	public void setNewGame(boolean isNewGame) {
-		this.isNewGame = isNewGame;
 	}
 
 

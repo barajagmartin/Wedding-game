@@ -9,6 +9,7 @@ public class InGame {
 	private float levelTime;
 	//the changable time
 	private float time;
+	private static boolean isNewGame = true;
 		
 	public InGame(Player player) {
 		this.player = player;
@@ -36,5 +37,13 @@ public class InGame {
 	
 	public int randomizeVersion(int nbrOfVersions) {
 		return new Random().nextInt(nbrOfVersions) + 1;
+	}
+	
+	public static boolean isNewGame() {
+		return isNewGame;
+	}
+
+	public static void setNewGame(final boolean newGame) {
+		isNewGame = newGame;
 	}
 }
