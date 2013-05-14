@@ -47,9 +47,10 @@ public class EndOfLevelController extends BasicGameState{
 	
 	public void keyPressed (int key, char c) {
 		if (key == Input.KEY_ESCAPE) {
-			gc.exit();
-		} else if (key == Input.KEY_ENTER) {
 			sbg.enterState(Game.HIGHSCORE);
+		} else if (key == Input.KEY_ENTER) {
+			sbg.enterState(Game.IN_GAME);
+			
 		}
 	}
 

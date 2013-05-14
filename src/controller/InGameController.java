@@ -78,6 +78,8 @@ public class InGameController extends BasicGameState {
 				level = 1;
 				playerController.getPlayer().reset();
 				isNewGame = false;
+			}else {
+				this.level++;
 			}
 			
 			this.inGame = new InGame(playerController.getPlayer());
@@ -87,6 +89,7 @@ public class InGameController extends BasicGameState {
 			this.moveableBoxControllers = new ArrayList<MoveableBoxController>();
 
 			int nbrOfVersions = folder.listFiles(findFiles()).length;
+			System.out.println("nbr of versions: " + nbrOfVersions + "of the level: " + level);
 			//Get a new level, randomize between different level versions (i.e. there are many level 1 to randomize from)
 			this.blockMapController = new BlockMapController(this, new TiledMap(BlockMapUtils.getTmxFile(level, inGame.randomizeVersion(nbrOfVersions))));
 			/*Create candy monster and its items*/
@@ -212,7 +215,6 @@ public class InGameController extends BasicGameState {
 			System.out.println("No more items to pick up, level cleared!");
 			this.playerController.getPlayer().setScore((int)this.inGame.getTime(), this.itemsDelivered);
 			this.gameController.tryToSaveScore(this.playerController.getPlayer().getScore()); //obs! skall bara göras vid sista leveln eller game over!!
-			level++;
 			sbg.enterState(Game.END_OF_LEVEL);
 		} else if (this.playerController.getPlayer().getLife() == 0 || this.inGame.getTime() <= 0) {
 			System.out.println("No more lives, you are dead!");
