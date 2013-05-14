@@ -1,6 +1,7 @@
 package controller;
 
 import org.newdawn.slick.Color;
+import org.newdawn.slick.SlickException;
 
 import model.CandyMonster;
 import model.Item;
@@ -11,7 +12,7 @@ public class CandyMonsterController {
 	private CandyMonster candyMonster;
 	private InGameController inGameController;
 	
-	public CandyMonsterController(InGameController inGameController, int candyNumber){
+	public CandyMonsterController(InGameController inGameController, int candyNumber) throws SlickException{
 		this.inGameController = inGameController;
 		this.candyMonster = new CandyMonster(this.inGameController.getBlockMapController().getCandyMonsterMap().getBlockList().get(candyNumber).getPosX(), 
 											this.inGameController.getBlockMapController().getCandyMonsterMap().getBlockList().get(candyNumber).getPosY(), 

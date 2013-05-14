@@ -16,6 +16,7 @@ import org.newdawn.slick.tiled.TiledMap;
 
 import utils.BlockMapUtils;
 import utils.WorldUtils;
+import view.CandyMonsterView;
 import view.InGameView;
 import view.MoveableBoxView;
 import view.SpikesView;
@@ -64,7 +65,7 @@ public class InGameController extends BasicGameState {
 		this.moveableBoxControllers = new ArrayList<MoveableBoxController>();
 		level = 1;
 		FilenameFilter filenameFilter = new FilenameFilter() {
-			
+
 			@Override
 			public boolean accept(File dir, String name) {
 				return name.matches("level" + String.valueOf(level) + ".\\d.tmx");
@@ -94,16 +95,15 @@ public class InGameController extends BasicGameState {
 
 		//temporarily store the SpikesViews in a list
 		ArrayList<SpikesView> tmpSpikesViewList = new ArrayList<SpikesView>();
-		for(SpikesController spikesController : spikesControllers) {
+		for (SpikesController spikesController : spikesControllers) {
 			tmpSpikesViewList.add(spikesController.getSpikesView());
 		}
 		//temporarily store the MoveableBoxViews in a list
-				ArrayList<MoveableBoxView> tmpMoveableBoxViewList = new ArrayList<MoveableBoxView>();
-				for(MoveableBoxController moveableBoxController : moveableBoxControllers) {
-					tmpMoveableBoxViewList.add(moveableBoxController.getMoveableBoxView());
-				}
-
-
+		ArrayList<MoveableBoxView> tmpMoveableBoxViewList = new ArrayList<MoveableBoxView>();
+		for (MoveableBoxController moveableBoxController : moveableBoxControllers) {
+			tmpMoveableBoxViewList.add(moveableBoxController.getMoveableBoxView());
+		}
+		
 		this.inGameView = new InGameView(inGame, worldController.getWorldView(), statusBarController.getStatusBarView(), 
 				characterController.getCharacterView(), tmpMoveableBoxViewList, tmpSpikesViewList);
 		itemsDelivered = 0;
@@ -148,8 +148,8 @@ public class InGameController extends BasicGameState {
 					moveableBoxControllers.get(i).getMoveableBoxView().getBoxBody().getPosition().x));
 			moveableBoxControllers.get(i).getMoveableBox().setY(WorldUtils.meter2Pixel(
 					moveableBoxControllers.get(i).getMoveableBoxView().getBoxBody().getPosition().y));
-			
-		
+
+
 		}
 	}
 

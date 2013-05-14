@@ -52,6 +52,16 @@ public class InGameView {
 		for (int j = 0; j < worldView.getCandyMonsterViewList().size(); j++) {
 			this.g.setColor(worldView.getCandyMonsterViewList().get(j).getColor());
 			this.g.fill(worldView.getCandyMonsterViewList().get(j).getShape());
+			
+			if (worldView.getItemViewList().get(j).getItem().isDelivered()) {
+			this.g.drawImage(worldView.getCandyMonsterViewList().get(j).getHappyImage(),
+					worldView.getCandyMonsterViewList().get(j).getCandyMonster().getX(),
+					worldView.getCandyMonsterViewList().get(j).getCandyMonster().getY());
+			} else {
+				this.g.drawImage(worldView.getCandyMonsterViewList().get(j).getSadImage(),
+						worldView.getCandyMonsterViewList().get(j).getCandyMonster().getX(),
+						worldView.getCandyMonsterViewList().get(j).getCandyMonster().getY());
+			}
 		}	
 		//draw spikes
 		for (int j = 0; j < spikesViewList.size(); j++) {
@@ -62,26 +72,23 @@ public class InGameView {
 					spikesViewList.get(j).getSpikes().getX()- Spikes.RADIUS - 3, 
 					spikesViewList.get(j).getSpikes().getY() - Spikes.RADIUS - 3);
 		}
-		characterView.getImage().draw(characterView.getSlickShape().getX(), characterView.getSlickShape().getY());
+		
+		//draw Nelson
+		characterView.getAnimation().draw(characterView.getCharacter().getX(), characterView.getCharacter().getY());
+		
 		for (MoveableBoxView moveableBoxView : moveableBoxViewList) {
 			g.drawImage(moveableBoxView.getImage(), moveableBoxView.getMoveableBox().getPos().getX()-MoveableBox.HALF_WIDTH,
 					moveableBoxView.getMoveableBox().getPos().getY()-MoveableBox.HALF_HEIGHT+1); // +1 is to correct position which
 																							// probably is rounded incorrectly
 		}
-		
-
-		/* blinking animation - not yet working 
-		Image[] blinking = {new Image("pics/Nelson.png"), new Image("pics/GulNelson.png")};
-		int duration[] = {300, 300};
-		blink = new Animation(blinking, duration, true);
-		nelson = blink;
-		nelson.draw(characterView.getSlickShape().getX(), characterView.getSlickShape().getY());*/
-
 
 		//draw items
 		for (int j = 0; j < worldView.getItemViewList().size(); j++) {
 			this.g.setColor(worldView.getItemViewList().get(j).getColor());
 			this.g.fill(worldView.getItemViewList().get(j).getShape());
+			this.g.drawImage(worldView.getItemViewList().get(j).getImage(),
+					worldView.getItemViewList().get(j).getItem().getX(),
+					worldView.getItemViewList().get(j).getItem().getY());
 		}
 		//draw a temporary timer
 		this.g.drawString("Time : " + this.inGame.getTime(), 10, 25);

@@ -1,5 +1,7 @@
 package controller;
 
+import org.newdawn.slick.SlickException;
+
 import view.ItemView;
 import model.Item;
 
@@ -9,7 +11,7 @@ public class ItemController {
 	private Item item;
 	private ItemView itemView;
 	
-	public ItemController(InGameController inGameController, int candyNumber) {
+	public ItemController(InGameController inGameController, int candyNumber) throws SlickException {
 		this.inGameController = inGameController;
 		this.item = new Item(this.inGameController.getBlockMapController().getItemMap().getBlockList().get(candyNumber).getPosX(), 
 								this.inGameController.getBlockMapController().getItemMap().getBlockList().get(candyNumber).getPosY(), 
