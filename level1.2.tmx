@@ -4,16 +4,12 @@
   <image source="rutor32x32.png" width="128" height="256"/>
   <tile id="0">
    <properties>
-    <property name="friction" value="0.7"/>
     <property name="property" value="solidGround"/>
-    <property name="restitution" value="0"/>
    </properties>
   </tile>
   <tile id="1">
    <properties>
-    <property name="friction" value="0.7"/>
     <property name="property" value="solidGround"/>
-    <property name="restitution" value="0"/>
    </properties>
   </tile>
   <tile id="3">
@@ -23,16 +19,12 @@
   </tile>
   <tile id="4">
    <properties>
-    <property name="friction" value="0.7"/>
     <property name="property" value="spring"/>
-    <property name="restitution" value="1"/>
    </properties>
   </tile>
   <tile id="5">
    <properties>
-    <property name="friction" value="0"/>
-    <property name="property" value="solidGround"/>
-    <property name="restitution" value="0"/>
+    <property name="property" value="ice"/>
    </properties>
   </tile>
   <tile id="7">
