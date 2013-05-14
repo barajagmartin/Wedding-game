@@ -88,7 +88,7 @@ public class InGameController extends BasicGameState {
 			this.spikesControllers = new ArrayList<SpikesController>();
 			this.moveableBoxControllers = new ArrayList<MoveableBoxController>();
 
-			int nbrOfVersions = folder.listFiles(findFiles()).length;
+			int nbrOfVersions = folder.listFiles(findFiles(level)).length;
 			System.out.println("nbr of versions: " + nbrOfVersions + "of the level: " + level);
 			//Get a new level, randomize between different level versions (i.e. there are many level 1 to randomize from)
 			this.blockMapController = new BlockMapController(this, new TiledMap(BlockMapUtils.getTmxFile(level, inGame.randomizeVersion(nbrOfVersions))));
@@ -296,7 +296,7 @@ public class InGameController extends BasicGameState {
 	 * y is the level version
 	 * @return the filenameFilter
 	 */
-	private FilenameFilter findFiles() {
+	public FilenameFilter findFiles(final int level) {
 		FilenameFilter filenameFilter = new FilenameFilter() {
 
 			@Override
