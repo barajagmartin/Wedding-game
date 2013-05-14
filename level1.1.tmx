@@ -16,19 +16,38 @@
     <property name="restitution" value="0"/>
    </properties>
   </tile>
+  <tile id="3">
+   <properties>
+    <property name="property" value="solidGround"/>
+   </properties>
+  </tile>
   <tile id="4">
    <properties>
+    <property name="friction" value="0.7"/>
     <property name="property" value="spring"/>
+    <property name="restitution" value="1"/>
    </properties>
   </tile>
   <tile id="5">
    <properties>
-    <property name="property" value="ice"/>
+    <property name="friction" value="0"/>
+    <property name="property" value="solidGround"/>
+    <property name="restitution" value="0"/>
    </properties>
   </tile>
   <tile id="7">
    <properties>
     <property name="property" value="moveableBox"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="property" value="iceSpring"/>
+   </properties>
+  </tile>
+  <tile id="27">
+   <properties>
+    <property name="time" value="90"/>
    </properties>
   </tile>
   <tile id="28">
@@ -52,9 +71,19 @@
    </properties>
   </tile>
  </tileset>
- <layer name="layer" width="32" height="24">
+ <layer name="solids" width="32" height="24">
   <data encoding="base64" compression="zlib">
-   eJxjZBg4wAjFo/aTDjigeNR+0oEcHe1HV8OEhKltP6nhQWv/I/t1IOwnJE+s/djMQbcfn19xuXUw5j95IvQRilcQIMZt9C5/0d1EjP3E+JVcQG3/sxHArFAM46PbT2q8DmT5Tw0Asx/ZH7JQGpffFKggBjMbZj8ThZiVTH0gu5lH8YjGAIqpBCQ=
+   eJxjZBg4wAjFA20/ExIeCPvpCZD9OFjCf6TZD0trw8H/lOQZathPin50txJrPz4/4tJPTLgQaz8+NbjkiDV3IOwnNf0PN/8PlP3kpv/h4n9i7WelEcZlP9MAYZDdzKN4RGMAn2MChA==
+  </data>
+ </layer>
+ <layer name="data" width="32" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAASBD/N9piKoBAABeDFwPAB0=
+  </data>
+ </layer>
+ <layer name="position" width="32" height="24">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgcQH6gHTAKRsEQBAoD7QA6AAU66RkFo2AUDB2gQKI4PiBLvjNIBnJ0tGsUjAJ8AAC40wD7
   </data>
  </layer>
 </map>

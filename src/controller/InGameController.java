@@ -88,7 +88,7 @@ public class InGameController extends BasicGameState {
 
 			int nbrOfVersions = folder.listFiles(findFiles()).length;
 			//Get a new level, randomize between different level versions (i.e. there are many level 1 to randomize from)
-			this.blockMapController = new BlockMapController(this, new TiledMap(BlockMapUtils.getTmxFile(level, /*inGame.randomizeVersion(nbrOfVersions)*/4)));
+			this.blockMapController = new BlockMapController(this, new TiledMap(BlockMapUtils.getTmxFile(level, inGame.randomizeVersion(nbrOfVersions))));
 			/*Create candy monster and its items*/
 			for (int i = 0; i < blockMapController.getCandyMonsterMap().getBlockList().size(); i++){
 				this.candyMonsterControllers.add(new CandyMonsterController(this, i)); 
