@@ -42,7 +42,6 @@ public class SpikesController implements ContactListener {
 					inGameController.getCharacterController().getCharacter().getTimeSinceHit() > 1) {
 				this.inGameController.getCharacterController().getCharacterView().animateBlinking();
 				this.inGameController.getCharacterController().getCharacter().setOnSpikes(true);
-				this.inGameController.getCharacterController().getCharacter().setTimeSinceHit(0);
 			}
 		}
 	}
