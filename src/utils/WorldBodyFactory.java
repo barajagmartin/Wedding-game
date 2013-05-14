@@ -3,6 +3,7 @@ package utils;
 import model.Character;
 import model.MoveableBox;
 import model.Position;
+import model.Spikes;
 
 import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.collision.shapes.PolygonShape;
@@ -98,6 +99,21 @@ public class WorldBodyFactory {
 			body = jBox2DWorld.createBody(bodyDef);
 			body.createFixture(fixtureDef);
 			body.m_mass = 2000f;
+		} else if (worldObject.equals(WorldObjects.SPIKES_SENSOR)) {
+			shape = new CircleShape();
+			shape.m_radius = WorldUtils.pixel2Meter(Spikes.RADIUS);
+			bodyDef = new BodyDef();
+			bodyDef.position.set(WorldUtils.pixel2Meter(pos.getX()), WorldUtils.pixel2Meter(pos.getY())); //FIXME jbox sensor should be in the center
+			bodyDef.type = BodyType.STATIC;
+			bodyDef.fixedRotation = true;
+			
+			fixtureDef = new FixtureDef();
+			fixtureDef.isSensor = true;
+			fixtureDef.shape = shape;
+			fixtureDef.userData = "spikes";
+					
+			body = jBox2DWorld.createBody(bodyDef);
+			body.createFixture(fixtureDef);
 		}
 		return body;
 	}

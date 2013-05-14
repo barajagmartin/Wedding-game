@@ -2,5 +2,6 @@ package utils;
 
 public enum WorldObjects {
 	CHARACTER,
-	MOVEABLE_BOX
+	MOVEABLE_BOX,
+	SPIKES_SENSOR
 }

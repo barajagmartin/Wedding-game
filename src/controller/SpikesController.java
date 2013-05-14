@@ -5,6 +5,7 @@ import org.jbox2d.callbacks.ContactListener;
 import org.jbox2d.collision.Manifold;
 import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.contacts.Contact;
+import org.newdawn.slick.SlickException;
 
 import model.Spikes;
 import view.CharacterView;
@@ -16,7 +17,7 @@ public class SpikesController implements ContactListener {
 	private SpikesView spikesView;
 	private InGameController inGameController;
 
-	public SpikesController(InGameController inGameController, int index){
+	public SpikesController(InGameController inGameController, int index) throws SlickException{
 		this.inGameController = inGameController;
 		this.spikes = new Spikes(inGameController.getBlockMapController().getSpikesMap().getBlockList().get(index).getPosX(), 
 								inGameController.getBlockMapController().getSpikesMap().getBlockList().get(index).getPosY());

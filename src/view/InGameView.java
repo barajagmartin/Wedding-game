@@ -70,8 +70,8 @@ public class InGameView {
 			g.setColor(Color.transparent); //so it does not show the circle
 			g.fill(spikesViewList.get(j).getShape());
 			g.drawImage(spikesViewList.get(j).getImage(), 
-					spikesViewList.get(j).getSpikes().getX()- Spikes.RADIUS - 3, 
-					spikesViewList.get(j).getSpikes().getY() - Spikes.RADIUS - 3);
+					spikesViewList.get(j).getSpikes().getPos().getX()- Spikes.RADIUS - 3, 
+					spikesViewList.get(j).getSpikes().getPos().getY() - Spikes.RADIUS - 3);
 		}
 		
 		//draw Nelson
