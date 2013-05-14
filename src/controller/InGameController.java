@@ -43,6 +43,8 @@ public class InGameController extends BasicGameState {
 	private StateBasedGame sbg;
 	private GameController gameController;
 	private static int level;
+	private File folder;
+	private boolean isPaused;
 
 	//should be based on the frame update (delta or something like that)
 	private float timeStep = 1.0f / 60.0f;
@@ -60,54 +62,64 @@ public class InGameController extends BasicGameState {
 			throws SlickException {
 		this.sbg = sbg;
 		this.playerController = new PlayerController(this);
-		this.inGame = new InGame(playerController.getPlayer());//TODO
-		this.candyMonsterControllers = new ArrayList<CandyMonsterController>();//TODO
-		this.itemControllers = new ArrayList<ItemController>();//TODO
-		this.spikesControllers = new ArrayList<SpikesController>();//TODO
-		this.moveableBoxControllers = new ArrayList<MoveableBoxController>();//TODO
 		level = 1;
-		
-		File folder = new File(".");
-		int nbrOfVersions = folder.listFiles(findFiles()).length;//TODO
-		//Get a new level, randomize between different level versions (i.e. there are many level 1 to randomize from)
-		this.blockMapController = new BlockMapController(this, new TiledMap(BlockMapUtils.getTmxFile(level, /*inGame.randomizeVersion(nbrOfVersions)*/4)));//TODO
-		/*Create candy monster and its items*/
-		for (int i = 0; i < blockMapController.getCandyMonsterMap().getBlockList().size(); i++){//TODO
-			this.candyMonsterControllers.add(new CandyMonsterController(this, i)); 
-			this.itemControllers.add(new ItemController(this, i));
-		}
-
-		this.worldController = new WorldController(this);//TODO
-		/*Create spikes*/
-		for (int i = 0; i < blockMapController.getSpikesMap().getBlockList().size(); i++){//TODO
-			this.spikesControllers.add(new SpikesController(this, i));
-		}
+		folder = new File(".");
 		this.statusBarController = new StatusBarController(this);
-		this.characterController = new CharacterController(this);//TODO
-		for (FixedPosition pos : blockMapController.getBlockMapView().getMoveableBoxMap().getBlockList()) {//TODO
-			this.moveableBoxControllers.add(new MoveableBoxController(this, pos));
-		}
-		
-		//temporarily store the SpikesViews in a list
-		ArrayList<SpikesView> tmpSpikesViewList = new ArrayList<SpikesView>();//TODO
-		for (SpikesController spikesController : spikesControllers) {
-			tmpSpikesViewList.add(spikesController.getSpikesView());
-		}
-		//temporarily store the MoveableBoxViews in a list
-		ArrayList<MoveableBoxView> tmpMoveableBoxViewList = new ArrayList<MoveableBoxView>();//TODO
-		for (MoveableBoxController moveableBoxController : moveableBoxControllers) {
-			tmpMoveableBoxViewList.add(moveableBoxController.getMoveableBoxView());
-		}
-		//TODO
-		this.inGameView = new InGameView(inGame, worldController.getWorldView(), statusBarController.getStatusBarView(), 
-				characterController.getCharacterView(), tmpMoveableBoxViewList, tmpSpikesViewList);
-		itemsDelivered = 0;//TODO
-		
-		itemList = new ArrayList<Item>();//TODO
-		for (ItemController itemController : itemControllers) {
-			itemList.add(itemController.getItem());
-		}
+		isPaused = false;
+	}
 
+	@Override
+	public void enter(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		super.enter(container, game);
+		if (!isPaused) {
+			this.inGame = new InGame(playerController.getPlayer());
+			this.candyMonsterControllers = new ArrayList<CandyMonsterController>();
+			this.itemControllers = new ArrayList<ItemController>();
+			this.spikesControllers = new ArrayList<SpikesController>();
+			this.moveableBoxControllers = new ArrayList<MoveableBoxController>();
+
+			int nbrOfVersions = folder.listFiles(findFiles()).length;
+			//Get a new level, randomize between different level versions (i.e. there are many level 1 to randomize from)
+			this.blockMapController = new BlockMapController(this, new TiledMap(BlockMapUtils.getTmxFile(level, /*inGame.randomizeVersion(nbrOfVersions)*/4)));
+			/*Create candy monster and its items*/
+			for (int i = 0; i < blockMapController.getCandyMonsterMap().getBlockList().size(); i++){
+				this.candyMonsterControllers.add(new CandyMonsterController(this, i)); 
+				this.itemControllers.add(new ItemController(this, i));
+			}
+
+			this.worldController = new WorldController(this);
+			/*Create spikes*/
+			for (int i = 0; i < blockMapController.getSpikesMap().getBlockList().size(); i++){
+				this.spikesControllers.add(new SpikesController(this, i));
+			}
+			this.characterController = new CharacterController(this);
+			for (FixedPosition pos : blockMapController.getBlockMapView().getMoveableBoxMap().getBlockList()) {
+				this.moveableBoxControllers.add(new MoveableBoxController(this, pos));
+			}
+
+			//temporarily store the SpikesViews in a list
+			ArrayList<SpikesView> tmpSpikesViewList = new ArrayList<SpikesView>();
+			for (SpikesController spikesController : spikesControllers) {
+				tmpSpikesViewList.add(spikesController.getSpikesView());
+			}
+			//temporarily store the MoveableBoxViews in a list
+			ArrayList<MoveableBoxView> tmpMoveableBoxViewList = new ArrayList<MoveableBoxView>();
+			for (MoveableBoxController moveableBoxController : moveableBoxControllers) {
+				tmpMoveableBoxViewList.add(moveableBoxController.getMoveableBoxView());
+			}
+
+			this.inGameView = new InGameView(inGame, worldController.getWorldView(), statusBarController.getStatusBarView(), 
+					characterController.getCharacterView(), tmpMoveableBoxViewList, tmpSpikesViewList);
+			itemsDelivered = 0;
+
+			itemList = new ArrayList<Item>();
+			for (ItemController itemController : itemControllers) {
+				itemList.add(itemController.getItem());
+			}
+		} else {
+			isPaused = false;
+		}
 	}
 
 	@Override
@@ -119,7 +131,6 @@ public class InGameController extends BasicGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
-		System.out.println(this.characterController.getCharacter().isOnSpikes());
 		//change the time for the game and the character
 		this.inGame.setTime(this.inGame.getTime()-(delta/1000f));
 		this.characterController.getCharacter().setTimeSinceHit(this.characterController.getCharacter().getTimeSinceHit() + delta/1000f);
@@ -134,7 +145,7 @@ public class InGameController extends BasicGameState {
 		checkGameOverConditions();
 		//check key presses
 		characterController.keyPressedUpdate(gc);
-		//simulate the JBox2D world TODO timeStep --> delta
+		//simulate the JBox2D world, timeStep --> delta
 		if(delta > 0) {
 			this.timeStep = (float) delta / 1000f * 4; //4 is for getting a good speed
 		}
@@ -172,12 +183,12 @@ public class InGameController extends BasicGameState {
 		}
 		if (key == Input.KEY_ESCAPE){
 			try {
+				isPaused = true;
 				inGameView.createPauseImage();
 			} catch (SlickException e) {
 				System.out.println("ERROR: No image could be created");
 				e.printStackTrace();
 			}
-			//get init so pauseView restarts each time (lost code) FIXME
 			//Set previous state to the state you where in before entering pause menu
 			PauseController.setPreviousState(Game.IN_GAME); 
 			sbg.enterState(Game.PAUSE_MENU);
@@ -258,6 +269,11 @@ public class InGameController extends BasicGameState {
 	public PlayerController getPlayerController() {
 		return playerController;
 	}
+
+	public void setPaused(boolean isPaused) {
+		this.isPaused = isPaused;
+	}
+
 
 	/**
 	 * Find files that are on the form levelx.y.tmx.

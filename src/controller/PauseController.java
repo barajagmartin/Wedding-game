@@ -68,7 +68,8 @@ public class PauseController extends BasicGameState{
 						break;
 				case 3: //Enter state "Controls"
 						break;
-				case 4: sbg.enterState(Game.START_MENU);
+				case 4: gameController.getInGameController().setPaused(false);
+						sbg.enterState(Game.START_MENU);
 						break;
 			}
 		}
