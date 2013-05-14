@@ -2,20 +2,24 @@ package model;
 
 
 public class Player {
-	private Character character;
 	private int score;
+	private int life;
 
-	public Player(model.Character character) {
-		this.character = character;
+	public Player() {
 		this.score = 0;
-	}
-
-	public Character getCharacter() {
-		return character;
+		this.life = 3;
 	}
 
 	public int getScore() {
 		return score;
+	}
+	
+	public int getLife() {
+		return this.life;
+	}
+	
+	public void loseOneLife() {
+		this.life--;
 	}
 	
 	/**

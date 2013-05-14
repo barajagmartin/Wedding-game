@@ -7,6 +7,7 @@ import model.Character;
 
 public class CharacterTest {
 
+	/* FIXME Flytta till test av Player
 	@Test
 	public void testLoseOneLife() {
 		Character character = new Character(0, 0);
@@ -14,7 +15,7 @@ public class CharacterTest {
 		character.loseOneLife();
 		assertTrue(lifeFromStart-1 == character.getLife());
 	}
-	
+	*/
 	@Test
 	public void testPickUpItem() {
 		Item item = new Item(20, 30, 2);

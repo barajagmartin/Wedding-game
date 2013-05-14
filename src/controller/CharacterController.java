@@ -116,7 +116,6 @@ public class CharacterController {
 	 */
 	public void tryToJumpCharacter() {
 		if(characterView.getCharacterBody().getLinearVelocity().y <= 0.0001 && characterView.getCharacterBody().getLinearVelocity().y >= -0.0001){
-			characterView.setColor(Color.red);
 			inGameController.getWorldController().jumpBody();
 		}
 	}
@@ -133,18 +132,5 @@ public class CharacterController {
 			}
 		}
 		return null;
-	}
-	/**
-	 * 
-	 * @return true if the a character is holding an item.
-	 */
-	public boolean isHoldingItem() {
-		for (int i = 0; i < inGameController.getWorldController().getItemViewList().size(); i++) {
-			if (inGameController.getWorldController().getItemViewList().get(i).getItem().isPickedUp()) {
-				return true;
-			}
-			 
-		} 
-		return false; //måste vara här annars gnälls det.
 	}
 }

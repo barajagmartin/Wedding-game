@@ -123,7 +123,6 @@ public class GameController extends StateBasedGame {
 			try {
 				outputWriter = new BufferedWriter(new FileWriter("scoreList.txt"));
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			for (int j = 0; j < 10; j++) {
@@ -131,7 +130,6 @@ public class GameController extends StateBasedGame {
 					outputWriter.write(Integer.toString(this.scoreList[j]));
 					outputWriter.newLine();  
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -139,7 +137,6 @@ public class GameController extends StateBasedGame {
 				outputWriter.flush();
 				outputWriter.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}  
 			

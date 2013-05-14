@@ -7,18 +7,12 @@ import model.StatusBar;
 
 public class StatusBarController {
 
-	private StatusBar statusBar;
 	private StatusBarView statusBarView;
 	private InGameController inGameController;
 	
 	public StatusBarController(InGameController inGameController) throws SlickException {
-		statusBar = new StatusBar();
-		statusBarView = new StatusBarView(statusBar);
+		statusBarView = new StatusBarView();
 		
-	}
-
-	public StatusBar getStatusBar() {
-		return statusBar;
 	}
 
 	public StatusBarView getStatusBarView() {

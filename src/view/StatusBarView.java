@@ -9,13 +9,11 @@ import model.StatusBar;
 
 public class StatusBarView {
 
-	private StatusBar statusBar;
 	private Image[] heart;
 	private Rectangle fixedBar;
 	private Rectangle timeBar;
 	
-	public StatusBarView(StatusBar statusBar) throws SlickException {
-		this.statusBar = statusBar;
+	public StatusBarView() throws SlickException {
 		heart = new Image[3];
 		heart[0] = new Image("pics/heart.png");
 		heart[1] = heart[0].copy();

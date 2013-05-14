@@ -1,16 +1,17 @@
 package model;
 
+import java.util.Random;
+
 
 public class InGame {
 	private Player player;
-	private StatusBar statusBar;
 	//the total time of the level
 	private float levelTime;
 	//the changable time
 	private float time;
 		
-	public InGame() {
-		statusBar = new StatusBar();
+	public InGame(Player player) {
+		this.player = player;
 	}
 
 	public float getTime() {
@@ -25,16 +26,15 @@ public class InGame {
 		return player;
 	}
 
-
-	public StatusBar getStatusBar() {
-		return statusBar;
-	}
-
 	public float getLevelTime() {
 		return levelTime;
 	}
 
 	public void setLevelTime(float levelTime) {
 		this.levelTime = levelTime;
+	}
+	
+	public int randomizeVersion(int nbrOfVersions) {
+		return new Random().nextInt(nbrOfVersions) + 1;
 	}
 }

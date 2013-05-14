@@ -94,7 +94,7 @@ public class InGameView {
 		this.g.drawString("Time : " + this.inGame.getTime(), 10, 25);
 
 		//draw status bar
-		for(int k = 0; k < characterView.getCharacter().getLife(); k++) {
+		for(int k = 0; k < inGame.getPlayer().getLife(); k++) {
 			statusBarView.getHeart()[k].draw(StatusBar.HEART_POSX[k], StatusBar.HEART_POSY);
 		}
 		this.g.setColor(Color.white);

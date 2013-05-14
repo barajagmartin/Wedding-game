@@ -90,11 +90,11 @@ public class WorldController {
 				Character.RADIUS);
 	}
 	
-	public void updateItemShape(ArrayList<ItemView> itemList, CharacterView characterView){
+	public void updateItemPosition(ArrayList<ItemView> itemList, CharacterView characterView){
 		for (int i = 0; i < itemList.size(); i++) {
 			if (itemList.get(i).getItem().isPickedUp()) {
-				itemList.get(i).getShape().setX(characterView.getSlickShape().getX() + Character.RADIUS); //FIXME 
-				itemList.get(i).getShape().setY(characterView.getSlickShape().getY() + Character.RADIUS); //FIXME slickShapen verkar inte behövas? Godiset räknas som levererat om bilden/positionen var nära?
+				itemList.get(i).getShape().setX(characterView.getSlickShape().getX() + Character.RADIUS); 
+				itemList.get(i).getShape().setY(characterView.getSlickShape().getY() + Character.RADIUS);
 				itemList.get(i).getItem().setX((int)characterView.getSlickShape().getX() + Character.RADIUS);
 				itemList.get(i).getItem().setY((int)characterView.getSlickShape().getY() + Character.RADIUS);
 			}

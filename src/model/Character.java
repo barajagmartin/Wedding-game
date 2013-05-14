@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Character {
 	public static final int RADIUS = 25;
 	private Position pos;
@@ -14,7 +16,6 @@ public class Character {
 	
 	public Character(final Position pos) {
 		this.pos = pos;
-		this.life = 3;
 		this.heldItem = null;
 		this.timeSinceHit = 0;
 	}
@@ -46,17 +47,9 @@ public class Character {
 	public void setTimeSinceHit(float timeSinceHit) {
 		this.timeSinceHit = timeSinceHit;
 	}
-
-	public int getLife() {
-		return this.life;
-	}
 	
 	public Item getHeldItem() {
 		return heldItem;
-	}
-	
-	public void loseOneLife() {
-		this.life--;
 	}	
 	
 	public void pickUpItem(Item item){
@@ -79,5 +72,18 @@ public class Character {
 
 	public void setOnSpikes(boolean isOnSpikes) {
 		this.isOnSpikes = isOnSpikes;
+	}
+	
+	/**
+	 * 
+	 * @return true if the a character is holding an item.
+	 */
+	public boolean isHoldingItem(ArrayList<Item> items) {
+		for (int i = 0; i < items.size(); i++) {
+			if (items.get(i).isPickedUp()) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

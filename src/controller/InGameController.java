@@ -37,11 +37,12 @@ public class InGameController extends BasicGameState {
 	private ArrayList <ItemController> itemControllers;
 	private ArrayList <SpikesController> spikesControllers;
 	private ArrayList <MoveableBoxController> moveableBoxControllers;
+	private ArrayList <Item> itemList; //used when checking if pickedUp in update
 	private Item lastHeldItem;
 	private int itemsDelivered;
 	private StateBasedGame sbg;
 	private GameController gameController;
-	private int level;
+	private static int level;
 
 	//should be based on the frame update (delta or something like that)
 	private float timeStep = 1.0f / 60.0f;
@@ -57,56 +58,55 @@ public class InGameController extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		this.inGame = new InGame();
 		this.sbg = sbg;
-		this.candyMonsterControllers = new ArrayList<CandyMonsterController>();
-		this.itemControllers = new ArrayList<ItemController>();
-		this.spikesControllers = new ArrayList<SpikesController>();
-		this.moveableBoxControllers = new ArrayList<MoveableBoxController>();
+		this.playerController = new PlayerController(this);
+		this.inGame = new InGame(playerController.getPlayer());//TODO
+		this.candyMonsterControllers = new ArrayList<CandyMonsterController>();//TODO
+		this.itemControllers = new ArrayList<ItemController>();//TODO
+		this.spikesControllers = new ArrayList<SpikesController>();//TODO
+		this.moveableBoxControllers = new ArrayList<MoveableBoxController>();//TODO
 		level = 1;
-		FilenameFilter filenameFilter = new FilenameFilter() {
-
-			@Override
-			public boolean accept(File dir, String name) {
-				return name.matches("level" + String.valueOf(level) + ".\\d.tmx");
-			}
-		};
+		
 		File folder = new File(".");
-		int nbrOfVersions = folder.listFiles(filenameFilter).length;
+		int nbrOfVersions = folder.listFiles(findFiles()).length;//TODO
 		//Get a new level, randomize between different level versions (i.e. there are many level 1 to randomize from)
-		this.blockMapController = new BlockMapController(this, new TiledMap(BlockMapUtils.getTmxFile(level, /*new Random().nextInt(nbrOfVersions) + 1*/4)));
+		this.blockMapController = new BlockMapController(this, new TiledMap(BlockMapUtils.getTmxFile(level, /*inGame.randomizeVersion(nbrOfVersions)*/4)));//TODO
 		/*Create candy monster and its items*/
-		for (int i = 0; i < blockMapController.getCandyMonsterMap().getBlockList().size(); i++){
+		for (int i = 0; i < blockMapController.getCandyMonsterMap().getBlockList().size(); i++){//TODO
 			this.candyMonsterControllers.add(new CandyMonsterController(this, i)); 
 			this.itemControllers.add(new ItemController(this, i));
 		}
 
-		this.worldController = new WorldController(this);
+		this.worldController = new WorldController(this);//TODO
 		/*Create spikes*/
-		for (int i = 0; i < blockMapController.getSpikesMap().getBlockList().size(); i++){
+		for (int i = 0; i < blockMapController.getSpikesMap().getBlockList().size(); i++){//TODO
 			this.spikesControllers.add(new SpikesController(this, i));
 		}
 		this.statusBarController = new StatusBarController(this);
-		this.characterController = new CharacterController(this);
-		for (FixedPosition pos : blockMapController.getBlockMapView().getMoveableBoxMap().getBlockList()) {
+		this.characterController = new CharacterController(this);//TODO
+		for (FixedPosition pos : blockMapController.getBlockMapView().getMoveableBoxMap().getBlockList()) {//TODO
 			this.moveableBoxControllers.add(new MoveableBoxController(this, pos));
 		}
-		this.playerController = new PlayerController(characterController, this);
-
+		
 		//temporarily store the SpikesViews in a list
-		ArrayList<SpikesView> tmpSpikesViewList = new ArrayList<SpikesView>();
+		ArrayList<SpikesView> tmpSpikesViewList = new ArrayList<SpikesView>();//TODO
 		for (SpikesController spikesController : spikesControllers) {
 			tmpSpikesViewList.add(spikesController.getSpikesView());
 		}
 		//temporarily store the MoveableBoxViews in a list
-		ArrayList<MoveableBoxView> tmpMoveableBoxViewList = new ArrayList<MoveableBoxView>();
+		ArrayList<MoveableBoxView> tmpMoveableBoxViewList = new ArrayList<MoveableBoxView>();//TODO
 		for (MoveableBoxController moveableBoxController : moveableBoxControllers) {
 			tmpMoveableBoxViewList.add(moveableBoxController.getMoveableBoxView());
 		}
-		
+		//TODO
 		this.inGameView = new InGameView(inGame, worldController.getWorldView(), statusBarController.getStatusBarView(), 
 				characterController.getCharacterView(), tmpMoveableBoxViewList, tmpSpikesViewList);
-		itemsDelivered = 0;
+		itemsDelivered = 0;//TODO
+		
+		itemList = new ArrayList<Item>();//TODO
+		for (ItemController itemController : itemControllers) {
+			itemList.add(itemController.getItem());
+		}
 
 	}
 
@@ -125,7 +125,7 @@ public class InGameController extends BasicGameState {
 		this.characterController.getCharacter().setTimeSinceHit(this.characterController.getCharacter().getTimeSinceHit() + delta/1000f);
 		//check if the player is hit by spikes
 		if(this.characterController.getCharacter().isOnSpikes() && this.characterController.getCharacter().getTimeSinceHit() > 1) {
-			this.characterController.getCharacter().loseOneLife();
+			this.playerController.getPlayer().loseOneLife();
 			this.characterController.getCharacter().setTimeSinceHit(0);
 		}
 		//update the timeBar
@@ -140,7 +140,7 @@ public class InGameController extends BasicGameState {
 		}
 		worldController.getWorldView().getjBox2DWorld().step(timeStep, velocityIterations, positionIterations);
 		worldController.updateSlickShape();
-		worldController.updateItemShape(worldController.getItemViewList(), characterController.getCharacterView());
+		worldController.updateItemPosition(worldController.getItemViewList(), characterController.getCharacterView());
 		characterController.getCharacter().setX((int)characterController.getCharacterView().getSlickShape().getX());
 		characterController.getCharacter().setY((int)characterController.getCharacterView().getSlickShape().getY());
 		for (int i = 0; i < moveableBoxControllers.size(); i++) {
@@ -156,10 +156,10 @@ public class InGameController extends BasicGameState {
 	@Override
 	public void keyPressed (int key, char c) {
 		if (key == Input.KEY_DOWN) {
-			if (characterController.findItemToPickUp()!= null && !characterController.isHoldingItem()) {
+			if (characterController.findItemToPickUp()!= null && !characterController.getCharacter().isHoldingItem(itemList)) {
 				characterController.getCharacterView().setColor(Color.pink);
 				characterController.getCharacter().pickUpItem(characterController.findItemToPickUp());
-			} else if (characterController.isHoldingItem() && 
+			} else if (characterController.getCharacter().isHoldingItem(itemList) && 
 					characterController.getCharacterView().getCharacterBody().getLinearVelocity().y == 0) {
 				lastHeldItem = characterController.getCharacter().getHeldItem();	
 				characterController.getCharacter().dropDownItem(characterController.getCharacter().getHeldItem());
@@ -194,8 +194,9 @@ public class InGameController extends BasicGameState {
 			System.out.println("No more items to pick up, level cleared!");
 			this.playerController.getPlayer().setScore((int)this.inGame.getTime(), this.itemsDelivered);
 			this.gameController.tryToSaveScore(this.playerController.getPlayer().getScore()); //obs! skall bara göras vid sista leveln eller game over!!
+			level++;
 			sbg.enterState(Game.END_OF_LEVEL);
-		} else if (this.characterController.getCharacter().getLife() == 0 || this.inGame.getTime() <= 0) {
+		} else if (this.playerController.getPlayer().getLife() == 0 || this.inGame.getTime() <= 0) {
 			System.out.println("No more lives, you are dead!");
 			sbg.enterState(Game.END_OF_LEVEL);
 		}
@@ -258,4 +259,21 @@ public class InGameController extends BasicGameState {
 		return playerController;
 	}
 
+	/**
+	 * Find files that are on the form levelx.y.tmx.
+	 * 
+	 * x is the level
+	 * y is the level version
+	 * @return the filenameFilter
+	 */
+	private FilenameFilter findFiles() {
+		FilenameFilter filenameFilter = new FilenameFilter() {
+
+			@Override
+			public boolean accept(File dir, String name) {
+				return name.matches("level" + String.valueOf(level) + ".\\d.tmx");
+			}
+		};
+		return filenameFilter;
+	}
 }

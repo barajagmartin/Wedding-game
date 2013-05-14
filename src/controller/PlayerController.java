@@ -5,22 +5,14 @@ import model.Player;
 public class PlayerController {
 	
 	private Player player;
-	private CharacterController characterController;
 	private InGameController inGameController;
 
-	public PlayerController(CharacterController characterController,
-			InGameController inGameController) {
-		this.characterController = characterController;
+	public PlayerController(InGameController inGameController) {
 		this.inGameController = inGameController;
-		this.player = new Player(characterController.getCharacter());
+		this.player = new Player();
 	}
 	
 	public Player getPlayer() {
 		return player;
-	}
-
-
-	public CharacterController getCharacterController() {
-		return characterController;
 	}
 }
