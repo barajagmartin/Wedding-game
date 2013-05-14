@@ -2,8 +2,12 @@
 .classpath
 pics/pauseBackground.png
 
+*.xml
+*.db
 *.md
 */bin
+*/savings
+
 # Package Files #
 *.war
 *.ear
