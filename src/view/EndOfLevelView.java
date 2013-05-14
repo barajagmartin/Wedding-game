@@ -13,25 +13,37 @@ import controller.GameController;
 
 public class EndOfLevelView {
 	private int Score;
+	private boolean gameOver;
+	private boolean victory;
 	
 	
-	public EndOfLevelView (int Score) {
+	public EndOfLevelView (int Score, boolean gameOver, boolean victory) {
 		this.Score = Score;
+		this.gameOver = gameOver;
+		this.victory = victory;
 		
 	}
 	
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-		Image i = new Image("pics/rainbowattheend.jpg"); 
-		i.draw();
-		g.setColor(Color.black);
-		g.drawString("ENTER - enter see highScore", Game.WINDOW_WIDTH/2 - 30, Game.WINDOW_HEIGHT/2 + 40);
+		if (gameOver) {
+			Image i = new Image("pics/gameOver.png");
+			i.draw();
+			g.setColor(Color.red);
+		} else if (victory) {
+			Image i = new Image("pics/victory.png");
+			i.draw();
+			g.setColor(Color.green);
+			g.drawString("ENTER - enter see highScore", Game.WINDOW_WIDTH/2 - 30, Game.WINDOW_HEIGHT/2 + 40);
+		} else {
+			Image i = new Image("pics/levelCleared.png");
+			i.draw();
+			g.setColor(Color.yellow);
+			g.drawString("ENTER - enter see highScore", Game.WINDOW_WIDTH/2 - 30, Game.WINDOW_HEIGHT/2 + 40);
+		}
+		
 		g.drawString("ESC - quit the game", Game.WINDOW_WIDTH/2 - 30, Game.WINDOW_HEIGHT/2 + 60);
 		g.drawString("Score: " + this.Score, Game.WINDOW_WIDTH/2 - 30, Game.WINDOW_HEIGHT/2 + 90);
-	}
-
-	public void setScore(int score) {
-		Score = score;
 	}
 	
 

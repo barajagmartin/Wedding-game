@@ -16,20 +16,38 @@ public class EndOfLevelController extends BasicGameState{
 	private GameController gameController;
 	private StateBasedGame sbg;
 	private GameContainer gc;
+	private boolean gameOver;
+	private boolean victory;
+	private boolean newHighScore;
 	
 	public EndOfLevelController (GameController gameController) {
 		this.gameController = gameController;
-		
+		this.gameOver = false;
+		this.victory = false;
+		this.newHighScore = false;
 
 	}
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		
 		this.sbg = sbg;
 		this.gc = gc;
-		this.endOflevelView = new EndOfLevelView(this.gameController.getInGameController().getPlayerController().getPlayer().getScore());
+	}
+	
+	public void enter(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		super.enter(container, game);
+		
+		//kolla om det finns fler banor?
+		this.victory = this.gameController.getInGameController().getNbrOfFiles(this.gameController.getInGameController().getLevel() + 1) == 0;
+		//kolla om spelaren förlorat
+		this.gameOver = (this.gameController.getInGameController().isGameOver());
+		//kolla om newHighScore
+		this.newHighScore = (this.gameController.getInGameController().getPlayerController().getPlayer().getScore() > this.gameController.getScoreList()[9]);
+			
+		this.endOflevelView = new EndOfLevelView(this.gameController.getInGameController().getPlayerController().getPlayer().getScore(),
+				gameOver, victory);
 	}
 
 	@Override
@@ -41,15 +59,20 @@ public class EndOfLevelController extends BasicGameState{
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
-		this.endOflevelView.setScore(this.gameController.getInGameController().getPlayerController().getPlayer().getScore());
-		
 	}
 	
 	public void keyPressed (int key, char c) {
 		if (key == Input.KEY_ESCAPE) {
-			sbg.enterState(Game.HIGHSCORE);
+			sbg.enterState(Game.START_MENU);
 		} else if (key == Input.KEY_ENTER) {
-			sbg.enterState(Game.IN_GAME);
+			 if (this.newHighScore) {
+				sbg.enterState(Game.NEW_HIGHSCORE);
+			} else if (this.gameOver || this.victory) {
+				sbg.enterState(Game.HIGHSCORE);
+			} else {
+				sbg.enterState(Game.IN_GAME);
+			}
+			
 			
 		}
 	}

@@ -49,6 +49,7 @@ public class InGameController extends BasicGameState {
 	private float timeStep = 1.0f / 60.0f;
 	private int velocityIterations = 6;
 	private int positionIterations = 2;
+	private boolean gameOver;
 
 	public InGameController(GameController gameController) {
 		this.gameController = gameController;
@@ -79,13 +80,14 @@ public class InGameController extends BasicGameState {
 				level++;
 			}
 			
+			this.gameOver = false;
 			this.inGame = new InGame(playerController.getPlayer());
 			this.candyMonsterControllers = new ArrayList<CandyMonsterController>();
 			this.itemControllers = new ArrayList<ItemController>();
 			this.spikesControllers = new ArrayList<SpikesController>();
 			this.moveableBoxControllers = new ArrayList<MoveableBoxController>();
 
-			int nbrOfVersions = folder.listFiles(findFiles(level)).length;
+			int nbrOfVersions = getNbrOfFiles(level);
 			System.out.println("nbr of versions: " + nbrOfVersions + "of the level: " + level);
 			//Get a new level, randomize between different level versions (i.e. there are many level 1 to randomize from)
 			this.blockMapController = new BlockMapController(this, new TiledMap(BlockMapUtils.getTmxFile(level, inGame.randomizeVersion(nbrOfVersions))));
@@ -211,10 +213,10 @@ public class InGameController extends BasicGameState {
 		if (this.itemControllers.size() == itemsDelivered) {
 			System.out.println("No more items to pick up, level cleared!");
 			this.playerController.getPlayer().setScore((int)this.inGame.getTime(), this.itemsDelivered);
-			this.gameController.tryToSaveScore(this.playerController.getPlayer().getScore()); //obs! skall bara göras vid sista leveln eller game over!!
 			sbg.enterState(Game.END_OF_LEVEL);
 		} else if (this.playerController.getPlayer().getLife() == 0 || this.inGame.getTime() <= 0) {
-			System.out.println("No more lives, you are dead!");
+			System.out.println("you are dead!");
+			this.gameOver = true;
 			sbg.enterState(Game.END_OF_LEVEL);
 		}
 	}
@@ -297,5 +299,19 @@ public class InGameController extends BasicGameState {
 			}
 		};
 		return filenameFilter;
+	}
+
+
+	public int getLevel() {
+		return this.level;
+	}
+	
+	public int getNbrOfFiles(int level) {
+		return folder.listFiles(findFiles(level)).length;
+		
+	}
+	
+	public boolean isGameOver() {
+		return this.gameOver;
 	}
 }
