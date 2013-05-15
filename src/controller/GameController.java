@@ -20,7 +20,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class GameController extends StateBasedGame {
 	private StartMenuController startMenuController;
 	private InGameController inGameController;
-	private PauseController pauseController;
+	private PauseMenuController pauseMenuController;
 	private EndOfLevelController endOfLevelController;
 	private HighScoreStateController highScoreStateController;
 	private  int[] scoreList;
@@ -48,11 +48,11 @@ public class GameController extends StateBasedGame {
 		this.startMenuController = new StartMenuController(this);
 		this.highScoreStateController = new HighScoreStateController(this);
 		this.inGameController = new InGameController(this);
-		this.pauseController = new PauseController(this);
+		this.pauseMenuController = new PauseMenuController(this);
 		this.endOfLevelController = new EndOfLevelController(this);
 		this.addState(inGameController);
 		this.addState(highScoreStateController);
-		this.addState(pauseController);
+		this.addState(pauseMenuController);
 		this.addState(endOfLevelController);
 		this.addState(startMenuController);
 	}
@@ -70,8 +70,8 @@ public class GameController extends StateBasedGame {
 		return inGameController;
 	}
 	
-	public PauseController getPauseController(){
-		return pauseController;
+	public PauseMenuController getPauseController(){
+		return pauseMenuController;
 	}
 
 	public HighScoreStateController getHighScoreStateController() {
