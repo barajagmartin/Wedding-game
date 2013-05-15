@@ -13,7 +13,6 @@ import view.NewHighscoreView;
 public class NewHighscoreController extends BasicGameState {
 	
 	private NewHighscoreView newHighscoreView;
-	private TextField textField;
 	
 	public NewHighscoreController() {
 		
@@ -22,9 +21,9 @@ public class NewHighscoreController extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {		
-		this.textField = new TextField(gc, null, 500, 500, 300, 50);
-		this.textField.setMaxLength(8);
-		this.newHighscoreView = new NewHighscoreView(textField);
+		
+		this.newHighscoreView = new NewHighscoreView();
+		
 	}
 
 	@Override
