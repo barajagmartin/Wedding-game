@@ -57,15 +57,27 @@ public class PauseMenuView extends AbstractMenuView {
 			/*Add labels to buttons*/
 			switch(i) {
 			case 0: g.drawImage(super.getResumeLabel(), buttonX, buttonY);
-			break;
-			case 1: g.drawImage(super.getSoundOnLabel(), buttonX, buttonY);
-			break;
-			case 2: g.drawImage(super.getMusicOnLabel(), buttonX, buttonY);
-			break;
+					break;
+			
+			case 1: if(pauseMenu.isSoundOn()){
+						g.drawImage(super.getSoundOnLabel(), buttonX, buttonY);
+					} else {
+						g.drawImage(super.getSoundOffLabel(), buttonX, buttonY);
+					}
+					break;
+					
+			case 2: if(pauseMenu.isMusicOn()){
+						g.drawImage(super.getMusicOnLabel(), buttonX, buttonY);
+					} else {
+						g.drawImage(super.getMusicOffLabel(), buttonX, buttonY);
+					}
+					break;
+					
 			case 3: g.drawImage(super.getControlsLabel(), buttonX, buttonY);
-			break;	
+					break;
+					
 			case 4: g.drawImage(super.getExitToMenuLabel(), buttonX, buttonY);
-			break;
+					break;
 			}
 
 			//increase Y with buttonHeight to place the buttons underneath each other

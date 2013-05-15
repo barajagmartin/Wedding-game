@@ -8,7 +8,6 @@ import model.StartMenu;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
@@ -17,10 +16,6 @@ public class StartMenuView extends AbstractMenuView {
 	private StartMenu startMenu;
 	private int buttonWidth;
 	private int buttonHeight;
-	private int soundButtonX;
-	private int soundButtonY;
-	private int musicButtonX;
-	private int musicButtonY;
 	private ArrayList<Rectangle> buttonList;
 
 	public StartMenuView(StartMenu startMenu) throws SlickException {
@@ -67,9 +62,6 @@ public class StartMenuView extends AbstractMenuView {
 						} else {
 							g.drawImage(super.getSoundOffLabel(), buttonX, buttonY);
 						}
-				
-						soundButtonX = buttonX;
-						soundButtonY = buttonY;
 						break;
 						
 				case 3: if(startMenu.isMusicOn()){
@@ -77,8 +69,6 @@ public class StartMenuView extends AbstractMenuView {
 						} else {
 							g.drawImage(super.getMusicOffLabel(), buttonX, buttonY);
 						}
-						musicButtonX = buttonX;
-						musicButtonY = buttonY;
 						break;	
 						
 				case 4: g.drawImage(super.getControlsLabel(), buttonX, buttonY);

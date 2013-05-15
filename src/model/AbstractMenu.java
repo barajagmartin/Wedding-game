@@ -2,13 +2,9 @@ package model;
 
 /**All menu's shall extend this class to get basic menu logic */
 public abstract class AbstractMenu {
-	private boolean isSoundOn;
-	private boolean isMusicOn;
-	
-	public AbstractMenu() {
-		isSoundOn = true;
-		isMusicOn = true;
-	}
+	private static boolean isSoundOn = true;
+	private static boolean isMusicOn = true;
+
 
 	/**Move marker in if key is pressed down*/
 	public abstract void markButtonDown();
@@ -17,7 +13,7 @@ public abstract class AbstractMenu {
 	public abstract void markButtonUp();
 	
 	public void setSoundOn(boolean isSoundOn){
-		this.isSoundOn = isSoundOn;
+		AbstractMenu.isSoundOn = isSoundOn;
 	}
 	
 	public boolean isSoundOn() {
@@ -25,7 +21,7 @@ public abstract class AbstractMenu {
 	}
 	
 	public void setMusicOn(boolean isMusicOn){
-		this.isMusicOn = isMusicOn;
+		AbstractMenu.isMusicOn = isMusicOn;
 	}
 	
 	public boolean isMusicOn() {
