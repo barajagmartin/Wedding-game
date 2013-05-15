@@ -22,8 +22,11 @@ public class StartMenuView {
 	private int musicButtonX;
 	private int musicButtonY;
 	private ArrayList<Rectangle> buttonList;
-	private Graphics g;
-	/*Labels for buttons*/
+	
+	/*Images*/
+	private Image background;
+	private Image candyMonsterTitle;
+	
 	private Image startGameLabel;
 	private Image highscoreLabel;
 	private Image soundOnLabel;
@@ -40,22 +43,26 @@ public class StartMenuView {
 		this.buttonHeight = (2*Game.WINDOW_HEIGHT)/15;
 		buttonList = new ArrayList<Rectangle>();
 		
+		background = new Image("pics/bluebg.png");
+		candyMonsterTitle = new Image("pics/candy_monsters_orange.png");
+		
 		startGameLabel = new Image("pics/start_game.png");
 		highscoreLabel = new Image("pics/highscore.png");
 		soundOnLabel = new Image("pics/sound_on.png");
 		soundOffLabel = new Image("pics/sound_off.png");
 		musicOnLabel = new Image("pics/music_on.png");
+		musicOffLabel = new Image("pics/music_off.png");
 		controlsLabel = new Image("pics/controls.png");
 		exitGameLabel = new Image("pics/exit_game.png");
 	}
 	
 	public void render(GameContainer gc, StateBasedGame game, Graphics g)
 			throws SlickException {
-		this.g = g;
 		/*Add background and title, create buttons*/
-		g.drawImage(new Image("pics/bluebg.png"), 0, 0);
-		g.drawImage(new Image("pics/candy_monsters_orange.png"), 0, 0);
+		g.drawImage(background, 0, 0);
+		g.drawImage(candyMonsterTitle, 0, 0);
 		createButtons(gc, g);
+
 	}
 	
 	public void createButtons(GameContainer gc, Graphics g) throws SlickException {
@@ -79,11 +86,19 @@ public class StartMenuView {
 						break;
 				case 1: g.drawImage(highscoreLabel, buttonX, buttonY);
 						break;
-				case 2: g.drawImage(soundOnLabel, buttonX, buttonY);
+				case 2: if(startMenu.isSoundOn()){
+							g.drawImage(soundOnLabel, buttonX, buttonY);
+						} else {
+							g.drawImage(soundOffLabel, buttonX, buttonY);
+						}
 						soundButtonX = buttonX;
 						soundButtonY = buttonY;
 						break;
-				case 3: g.drawImage(musicOnLabel, buttonX, buttonY);
+				case 3: if(startMenu.isMusicOn()){
+							g.drawImage(musicOnLabel, buttonX, buttonY);
+						} else {
+							g.drawImage(musicOffLabel, buttonX, buttonY);
+						}
 						musicButtonX = buttonX;
 						musicButtonY = buttonY;
 						break;	
@@ -95,29 +110,6 @@ public class StartMenuView {
 			//increase Y with buttonHeight to place the buttons underneath each other
 			buttonY = buttonY + buttonHeight;
 		}
-	}
-	
-	/*Turn sound on and change label on button*/
-	public void soundOn() throws SlickException {
-		startMenu.setIsSoundOff(false);
-		soundOffLabel.destroy();
-	}
-	
-	/*Turn sound off and change label on button*/
-	public void soundOff() throws SlickException {
-		startMenu.setIsSoundOff(true);
-		g.drawImage(soundOffLabel, soundButtonX, soundButtonY);
-	}
-	
-	public void musicOn() throws SlickException {
-		startMenu.setIsMusicOff(false);
-		musicOffLabel.destroy();
-	}
-	
-	/*Turn music off and change label on button*/
-	public void musicOff() throws SlickException {
-		startMenu.setIsMusicOff(true);
-		g.drawImage(musicOffLabel, musicButtonX, musicButtonY);
 	}
 
 }
