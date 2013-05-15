@@ -9,12 +9,14 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
+import org.newdawn.slick.gui.AbstractComponent;
+import org.newdawn.slick.gui.ComponentListener;
 import org.newdawn.slick.gui.TextField;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import view.NewHighscoreView;
 
-public class NewHighscoreController extends BasicGameState {
+public class NewHighscoreController extends BasicGameState implements ComponentListener {
 	
 	private NewHighscoreView newHighscoreView;
 	private StateBasedGame sbg;
@@ -32,7 +34,8 @@ public class NewHighscoreController extends BasicGameState {
 		this.font = new TrueTypeFont(new Font("Courier", Font.BOLD, 50), false);
 		this.textField = new TextField(gc, font, Game.WINDOW_WIDTH/4, Game.WINDOW_HEIGHT/2, 300, 50);
 		this.textField.setMaxLength(8);
-		this.textField.setText("Enter");		
+		this.textField.setText("Enter");
+		textField.addListener(this);
 		this.newHighscoreView = new NewHighscoreView(textField);
 		
 	}
@@ -57,6 +60,13 @@ public class NewHighscoreController extends BasicGameState {
 	@Override
 	public int getID() {
 		return Game.NEW_HIGHSCORE;
+	}
+
+	@Override
+	public void componentActivated(AbstractComponent textField) {
+		textField.setFocus(false);
+		sbg.enterState(Game.HIGHSCORE);
+		
 	}
 
 }
