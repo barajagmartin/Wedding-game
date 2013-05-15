@@ -18,13 +18,12 @@ public class NewHighscoreView {
 	
 	public NewHighscoreView(TextField textField) {
 		this.textField = textField;
-		
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
-			throws SlickException {		
-		//TrueTypeFont font = new TrueTypeFont(new Font("Courier", Font.BOLD, 50), false);			
+			throws SlickException {					
 		g.drawString("New highscore!", Game.WINDOW_WIDTH/4, Game.WINDOW_HEIGHT/4);
+		textField.setFocus(true);
 		textField.render(gc, g);
 		
 	}

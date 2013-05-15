@@ -8,7 +8,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.UnicodeFont;
+import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.gui.TextField;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -18,7 +18,7 @@ public class NewHighscoreController extends BasicGameState {
 	
 	private NewHighscoreView newHighscoreView;
 	private StateBasedGame sbg;
-	private UnicodeFont font;
+	private TrueTypeFont font;
 	private TextField textField;
 	
 	public NewHighscoreController() {
@@ -29,12 +29,10 @@ public class NewHighscoreController extends BasicGameState {
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {						
 		this.sbg = sbg;
-		this.font = new UnicodeFont(new Font("Courier", Font.BOLD, 50), 50, true, false);
-		
+		this.font = new TrueTypeFont(new Font("Courier", Font.BOLD, 50), false);
 		this.textField = new TextField(gc, font, Game.WINDOW_WIDTH/4, Game.WINDOW_HEIGHT/2, 300, 50);
 		this.textField.setMaxLength(8);
-		textField.setText("Enter name");
-		textField.setFocus(true);
+		this.textField.setText("Enter");		
 		this.newHighscoreView = new NewHighscoreView(textField);
 		
 	}
@@ -43,14 +41,11 @@ public class NewHighscoreController extends BasicGameState {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		this.newHighscoreView.render(gc, sbg, g);
-
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
-		this.font.loadGlyphs();
-
 	}
 	
 	public void keyPressed(int key, char c) {
