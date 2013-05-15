@@ -9,6 +9,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -50,7 +51,7 @@ public class InGameController extends BasicGameState {
 	private int velocityIterations = 6;
 	private int positionIterations = 2;
 	private boolean gameOver;
-
+	private Music music; 
 	public InGameController(GameController gameController) {
 		this.gameController = gameController;
 
@@ -65,6 +66,7 @@ public class InGameController extends BasicGameState {
 		folder = new File(".");
 		this.statusBarController = new StatusBarController(this);
 		isPaused = false;
+		this.music = new Music("music/backgroundMusic.wav");
 	}
 
 	@Override
@@ -79,7 +81,7 @@ public class InGameController extends BasicGameState {
 			}else {
 				level++;
 			}
-			
+			music.loop();
 			this.gameOver = false;
 			this.inGame = new InGame(playerController.getPlayer());
 			this.candyMonsterControllers = new ArrayList<CandyMonsterController>();
@@ -199,7 +201,12 @@ public class InGameController extends BasicGameState {
 				e.printStackTrace();
 			}
 			//Set previous state to the state you where in before entering pause menu
+<<<<<<< HEAD
 			PauseMenuController.setPreviousState(Game.IN_GAME); 
+=======
+			PauseController.setPreviousState(Game.IN_GAME); 
+			music.stop();
+>>>>>>> 8e3242470af01ebb97885e16fb85b21fce4f8fa1
 			sbg.enterState(Game.PAUSE_MENU);
 		}
 	}
@@ -212,11 +219,17 @@ public class InGameController extends BasicGameState {
 	public void checkGameOverConditions() {
 		if (this.itemControllers.size() == itemsDelivered) {
 			System.out.println("No more items to pick up, level cleared!");
-			this.playerController.getPlayer().setScore((int)this.inGame.getTime(), this.itemsDelivered);
+			if (this.getNbrOfFiles(this.gameController.getInGameController().getLevel() + 1) == 0) {
+				this.playerController.getPlayer().setScore((int)this.inGame.getTime(), this.itemsDelivered, getPlayerController().getPlayer().getLife());
+			} else {
+				this.playerController.getPlayer().setScore((int)this.inGame.getTime(), this.itemsDelivered);
+			}
+			music.stop();
 			sbg.enterState(Game.END_OF_LEVEL);
 		} else if (this.playerController.getPlayer().getLife() == 0 || this.inGame.getTime() <= 0) {
 			System.out.println("you are dead!");
 			this.gameOver = true;
+			music.stop();
 			sbg.enterState(Game.END_OF_LEVEL);
 		}
 	}

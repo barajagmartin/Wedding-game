@@ -29,7 +29,7 @@ public class Player {
 	 * @param life , the number of lives the character has left when the game ends. 
 	 */
 	public void setScore(int time, int candy, int life) {
-		this.score =+ time*candy + life*100;
+		this.score += time*candy + life*100;
 	}
 	
 	/**
@@ -38,7 +38,7 @@ public class Player {
 	 * @param candy , the number of items delivered.
 	 */
 	public void setScore(int time, int candy) {
-		this.score =+ time*candy;
+		this.score += time*candy;
 	}
 
 	public void reset() {

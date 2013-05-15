@@ -65,7 +65,7 @@ public class EndOfLevelController extends BasicGameState{
 		if (key == Input.KEY_ESCAPE) {
 			sbg.enterState(Game.START_MENU);
 		} else if (key == Input.KEY_ENTER) {
-			 if (this.newHighScore) {
+			 if (this.newHighScore && (this.gameOver || this.victory)) {
 				sbg.enterState(Game.NEW_HIGHSCORE);
 			} else if (this.gameOver || this.victory) {
 				sbg.enterState(Game.HIGHSCORE);
