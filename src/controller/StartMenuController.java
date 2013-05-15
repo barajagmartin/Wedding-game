@@ -65,12 +65,26 @@ public class StartMenuController extends BasicGameState {
 			startMenu.markButtonUp();
 		}
 		if(key == Input.KEY_ENTER) {
-			switch(startMenu.getIsMarked()){
+			switch(startMenu.getIsMarked()) {
 				case 0: sbg.enterState(Game.IN_GAME);
 						break;
 				case 1: sbg.enterState(Game.HIGHSCORE);
 						break;
-				case 2: //Sound:: On/Off
+				case 2: if(!startMenu.getIsSoundOff()) {
+							try {
+								startMenuView.soundOff();
+							} catch (SlickException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						} else {
+							try {
+								startMenuView.soundOn();
+							} catch (SlickException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
 						break;
 				case 3: //Music: On/Off		
 						break;
