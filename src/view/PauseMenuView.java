@@ -3,6 +3,7 @@ package view;
 import java.util.ArrayList;
 
 import model.Game;
+import model.PauseMenu;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -12,18 +13,17 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 
-import controller.IMenu;
 
-public class PauseView implements IMenu {
+public class PauseMenuView {
+	private PauseMenu pauseMenu;
 	private int buttonHeight;
 	private int buttonWidth;
-	private int isMarked;
 	private ArrayList<Rectangle> buttonList;
 
-	public PauseView() {
+	public PauseMenuView(PauseMenu pauseMenu) {
+		this.pauseMenu = pauseMenu;
 		this.buttonWidth = Game.WINDOW_WIDTH;
 		this.buttonHeight = (2*Game.WINDOW_HEIGHT)/15;
-		this.isMarked = 0;
 		buttonList = new ArrayList<Rectangle>();
 	}
 
@@ -39,9 +39,8 @@ public class PauseView implements IMenu {
 		
 		createButtons(gc, g);
 
-
 	}
-	@Override
+	
 	public void createButtons(GameContainer gc, Graphics g) throws SlickException{
 		//start position
 		int buttonX = 0;
@@ -50,7 +49,7 @@ public class PauseView implements IMenu {
 		for(int i = 0; i < 5; i++){
 			this.buttonList.add(new Rectangle(buttonX, buttonY, buttonWidth, buttonHeight));
 
-			if(buttonList.indexOf(buttonList.get(i)) == isMarked) {
+			if(buttonList.indexOf(buttonList.get(i)) == pauseMenu.getIsMarked()) {
 				g.setColor(new Color(0f, 0f, 0f, 0.8f));
 				g.fill(buttonList.get(i));
 			} else {
@@ -59,7 +58,7 @@ public class PauseView implements IMenu {
 			}
 			/*Add labels to buttons*/
 			switch(i) {
-			case 0: g.drawImage(new Image("pics/start_game.png"), buttonX, buttonY);
+			case 0: g.drawImage(new Image("pics/resume.png"), buttonX, buttonY);
 			break;
 			case 1: g.drawImage(new Image("pics/sound_on.png"), buttonX, buttonY);
 			break;
@@ -74,22 +73,6 @@ public class PauseView implements IMenu {
 			//increase Y with buttonHeight to place the buttons underneath each other
 			buttonY = buttonY + buttonHeight;
 		}
-	}
-	
-	@Override
-	/*Move marker if key is pressed down*/
-	public void markButtonDown() {
-		isMarked = ++isMarked % 5;
-	}
-
-	@Override
-	/*Move marker if key is pressed up*/
-	public void markButtonUp() {
-		isMarked = (isMarked + 4) %5; //add 4 to make positive (--isMarked + 5)
-	}
-
-	public int getIsMarked() {
-		return isMarked;
 	}
 
 }
