@@ -1,6 +1,6 @@
 package model;
 
-/**All menu's shall implement this class to get basic menu logic */
+/**All menu's shall extend this class to get basic menu logic */
 public abstract class AbstractMenu {
 	private boolean isSoundOn;
 	private boolean isMusicOn;

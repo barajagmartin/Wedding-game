@@ -2,7 +2,6 @@ package controller;
 
 import model.Game;
 import model.InGame;
-import model.PauseMenu;
 import model.StartMenu;
 
 import org.newdawn.slick.GameContainer;
@@ -20,7 +19,6 @@ public class StartMenuController extends BasicGameState {
 	private StartMenuView startMenuView;
 	private StartMenu startMenu;
 	private StateBasedGame sbg;
-	private Graphics g;
 	private GameController gameController;
 	
 	public StartMenuController(GameController gameController) {
@@ -45,7 +43,6 @@ public class StartMenuController extends BasicGameState {
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
-		this.g = g;
 		this.startMenuView.render(container, game, g);
 		
 	}
