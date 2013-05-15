@@ -201,8 +201,12 @@ public class InGameController extends BasicGameState {
 				e.printStackTrace();
 			}
 			//Set previous state to the state you where in before entering pause menu
+<<<<<<< HEAD
+			PauseMenuController.setPreviousState(Game.IN_GAME); 
+=======
 			PauseController.setPreviousState(Game.IN_GAME); 
 			music.stop();
+>>>>>>> 8e3242470af01ebb97885e16fb85b21fce4f8fa1
 			sbg.enterState(Game.PAUSE_MENU);
 		}
 	}

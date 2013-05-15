@@ -2,6 +2,8 @@ package controller;
 
 import model.Game;
 import model.InGame;
+import model.PauseMenu;
+import model.StartMenu;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -16,6 +18,7 @@ import view.StartMenuView;
 
 public class StartMenuController extends BasicGameState {
 	private StartMenuView startMenuView;
+	private StartMenu startMenu;
 	private StateBasedGame sbg;
 	private Graphics g;
 	private GameController gameController;
@@ -28,7 +31,9 @@ public class StartMenuController extends BasicGameState {
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		this.sbg = game;
-		this.startMenuView = new StartMenuView();
+		this.startMenu = new StartMenu();
+		this.startMenuView = new StartMenuView(this.startMenu);
+
 	}
 	
 	@Override
@@ -54,20 +59,20 @@ public class StartMenuController extends BasicGameState {
 	
 	public void keyPressed (int key, char c) {
 		if(key == Input.KEY_DOWN) {
-			startMenuView.markButtonDown();
+			startMenu.markButtonDown();
 		}
 		if(key == Input.KEY_UP) {
-			startMenuView.markButtonUp();
+			startMenu.markButtonUp();
 		}
 		if(key == Input.KEY_ENTER) {
-			switch(startMenuView.getIsMarked()){
+			switch(startMenu.getIsMarked()){
 				case 0: sbg.enterState(Game.IN_GAME);
 						break;
 				case 1: sbg.enterState(Game.HIGHSCORE);
 						break;
-				case 2: //Sound: On/Off
+				case 2: //Sound:: On/Off
 						break;
-				case 3: //Music: On/Off			
+				case 3: //Music: On/Off		
 						break;
 				case 4: //sbg.enterState(Game.CONTROLS);
 						break;

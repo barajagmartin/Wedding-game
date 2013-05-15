@@ -1,6 +1,8 @@
 package controller;
 
 import model.Game;
+import model.PauseMenu;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -8,24 +10,26 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import view.PauseView;
+import view.PauseMenuView;
 
-public class PauseController extends BasicGameState{
+public class PauseMenuController extends BasicGameState{
 	private StateBasedGame sbg;
 	private GameController gameController;
-	private PauseView pauseView;
+	private PauseMenuView pauseView;
+	private PauseMenu pauseMenu;
 	private static int previousState;
 	
-	public PauseController(GameController gameController) {
+	public PauseMenuController(GameController gameController) {
 		this.gameController = gameController;
-		PauseController.setPreviousState(-1);
+		PauseMenuController.setPreviousState(-1);
 	}
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		this.sbg = sbg;
-		this.pauseView = new PauseView();
+		this.pauseMenu = new PauseMenu();
+		this.pauseView = new PauseMenuView(this.pauseMenu);
 	}
 	
 	/*Render in view*/
@@ -46,21 +50,21 @@ public class PauseController extends BasicGameState{
 	public void keyPressed (int key, char c) {
 		if(key == Input.KEY_ESCAPE) {
 			//check if we have a valid previous state
-			if(PauseController.previousState >= 0){
-				sbg.enterState(PauseController.previousState); 
+			if(PauseMenuController.previousState >= 0){
+				sbg.enterState(PauseMenuController.previousState); 
 			} else {
 				System.out.println("ERROR: previousState has not been initialized");  //FIXME better
 			}
 		}
 		if(key == Input.KEY_DOWN) {
-			pauseView.markButtonDown();
+			pauseMenu.markButtonDown();
 		}
 		if(key == Input.KEY_UP) {
-			pauseView.markButtonUp();
+			pauseMenu.markButtonUp();
 		}
 		if(key == Input.KEY_ENTER) {
-			switch(pauseView.getIsMarked()){
-				case 0: sbg.enterState(PauseController.previousState);
+			switch(pauseMenu.getIsMarked()) {
+				case 0: sbg.enterState(PauseMenuController.previousState);
 						break;
 				case 1: //Sound: On/Off
 						break;
@@ -75,7 +79,7 @@ public class PauseController extends BasicGameState{
 		}
 	}
 	
-	public PauseView getPauseView(){
+	public PauseMenuView getPauseView(){
 		return pauseView;
 	}
 
@@ -84,7 +88,7 @@ public class PauseController extends BasicGameState{
 	}
 
 	public static void setPreviousState(int previousState) {
-		PauseController.previousState = previousState;
+		PauseMenuController.previousState = previousState;
 	}
 	
 	@Override
