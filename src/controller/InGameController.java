@@ -9,6 +9,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -50,7 +51,7 @@ public class InGameController extends BasicGameState {
 	private int velocityIterations = 6;
 	private int positionIterations = 2;
 	private boolean gameOver;
-
+	private Music music; 
 	public InGameController(GameController gameController) {
 		this.gameController = gameController;
 
@@ -65,6 +66,7 @@ public class InGameController extends BasicGameState {
 		folder = new File(".");
 		this.statusBarController = new StatusBarController(this);
 		isPaused = false;
+		this.music = new Music("music/backgroundMusic.wav");
 	}
 
 	@Override
@@ -79,7 +81,7 @@ public class InGameController extends BasicGameState {
 			}else {
 				level++;
 			}
-			
+			music.loop();
 			this.gameOver = false;
 			this.inGame = new InGame(playerController.getPlayer());
 			this.candyMonsterControllers = new ArrayList<CandyMonsterController>();
@@ -200,6 +202,7 @@ public class InGameController extends BasicGameState {
 			}
 			//Set previous state to the state you where in before entering pause menu
 			PauseController.setPreviousState(Game.IN_GAME); 
+			music.stop();
 			sbg.enterState(Game.PAUSE_MENU);
 		}
 	}
@@ -217,11 +220,12 @@ public class InGameController extends BasicGameState {
 			} else {
 				this.playerController.getPlayer().setScore((int)this.inGame.getTime(), this.itemsDelivered);
 			}
-			
+			music.stop();
 			sbg.enterState(Game.END_OF_LEVEL);
 		} else if (this.playerController.getPlayer().getLife() == 0 || this.inGame.getTime() <= 0) {
 			System.out.println("you are dead!");
 			this.gameOver = true;
+			music.stop();
 			sbg.enterState(Game.END_OF_LEVEL);
 		}
 	}

@@ -1,21 +1,15 @@
 package model;
 
 import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+
 import org.junit.Test;
 import model.Character;
 
 
 public class CharacterTest {
 
-	/* FIXME Flytta till test av Player
-	@Test
-	public void testLoseOneLife() {
-		Character character = new Character(0, 0);
-		int lifeFromStart = character.getLife();
-		character.loseOneLife();
-		assertTrue(lifeFromStart-1 == character.getLife());
-	}
-	*/
 	@Test
 	public void testPickUpItem() {
 		Item item = new Item(20, 30, 2);
@@ -38,5 +32,19 @@ public class CharacterTest {
 		assertTrue(item.getX() == character.getX() + Character.RADIUS);
 		assertTrue(item.getY() == character.getY()+ Character.RADIUS*2-item.HEIGHT);
 		assertTrue(character.getHeldItem() == null);
+	}
+	
+	@Test
+	public void testIsHoldingItem() {
+		Character character = new Character(0, 0);
+		ArrayList <Item> itemList = new ArrayList <Item>();
+		itemList.add(new Item(10, 10, 0));
+		itemList.add(new Item(20, 10, 1));
+		itemList.add(new Item(30, 10, 2));
+		assertTrue(!character.isHoldingItem(itemList));	
+		itemList.get(1).setPickedUp(true);
+		assertTrue(character.isHoldingItem(itemList));
+		itemList.get(1).setPickedUp(false);
+		assertTrue(!character.isHoldingItem(itemList));	
 	}
 }
