@@ -23,6 +23,7 @@ public class StartMenuView {
 	private int musicButtonY;
 	private ArrayList<Rectangle> buttonList;
 	private Graphics g;
+	/*Labels for buttons*/
 
 	public StartMenuView(StartMenu startMenu) {
 		this.startMenu = startMenu;
