@@ -66,9 +66,17 @@ public class PauseMenuController extends BasicGameState{
 			switch(pauseMenu.getIsMarked()) {
 				case 0: sbg.enterState(PauseMenuController.previousState);
 						break;
-				case 1: //Sound: On/Off
+				case 1: if(pauseMenu.isSoundOn()) {
+							pauseMenu.setSoundOn(false);
+						} else {
+							pauseMenu.setSoundOn(true);
+						}
 						break;
-				case 2: //Music: On/Off
+				case 2: if(pauseMenu.isMusicOn()) {
+							pauseMenu.setMusicOn(false);
+						} else {
+							pauseMenu.setMusicOn(true);
+						}	
 						break;
 				case 3: //Enter state "Controls"
 						break;
