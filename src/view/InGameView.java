@@ -51,7 +51,7 @@ public class InGameView {
 		worldView.getBlockMapView().getTiledMap().render(0, 0, worldView.getBlockMapView().getTiledMap().getLayerIndex("solids"));
 		//draw candyMonsters
 		for (int j = 0; j < worldView.getCandyMonsterViewList().size(); j++) {
-			this.g.setColor(worldView.getCandyMonsterViewList().get(j).getColor());
+			this.g.setColor(Color.transparent);
 			this.g.fill(worldView.getCandyMonsterViewList().get(j).getShape());
 			
 			if (worldView.getItemViewList().get(j).getItem().isDelivered()) {
@@ -85,7 +85,7 @@ public class InGameView {
 
 		//draw items
 		for (int j = 0; j < worldView.getItemViewList().size(); j++) {
-			this.g.setColor(worldView.getItemViewList().get(j).getColor());
+			this.g.setColor(Color.transparent);
 			this.g.fill(worldView.getItemViewList().get(j).getShape());
 			this.g.drawImage(worldView.getItemViewList().get(j).getImage(),
 					worldView.getItemViewList().get(j).getItem().getX(),
