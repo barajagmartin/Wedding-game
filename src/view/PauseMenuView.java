@@ -37,7 +37,6 @@ public class PauseMenuView extends AbstractMenuView {
 		g.fillRect(0, 0, Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
 		
 		createButtons(gc, g);
-
 	}
 	
 	public void createButtons(GameContainer gc, Graphics g) throws SlickException{
