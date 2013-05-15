@@ -212,7 +212,12 @@ public class InGameController extends BasicGameState {
 	public void checkGameOverConditions() {
 		if (this.itemControllers.size() == itemsDelivered) {
 			System.out.println("No more items to pick up, level cleared!");
-			this.playerController.getPlayer().setScore((int)this.inGame.getTime(), this.itemsDelivered);
+			if (this.getNbrOfFiles(this.gameController.getInGameController().getLevel() + 1) == 0) {
+				this.playerController.getPlayer().setScore((int)this.inGame.getTime(), this.itemsDelivered, getPlayerController().getPlayer().getLife());
+			} else {
+				this.playerController.getPlayer().setScore((int)this.inGame.getTime(), this.itemsDelivered);
+			}
+			
 			sbg.enterState(Game.END_OF_LEVEL);
 		} else if (this.playerController.getPlayer().getLife() == 0 || this.inGame.getTime() <= 0) {
 			System.out.println("you are dead!");
