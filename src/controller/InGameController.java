@@ -66,7 +66,7 @@ public class InGameController extends BasicGameState {
 		folder = new File(".");
 		this.statusBarController = new StatusBarController(this);
 		isPaused = false;
-		this.music = new Music("music/backgroundMusic.wav");
+		this.music = new Music("music/Marimba.wav");
 	}
 
 	@Override
