@@ -110,15 +110,20 @@ public class GameController extends StateBasedGame {
 	 * @param newScore the new score you want to save
 	 */
 	public void saveScore (int newScore, String name) { 
-		for (int i = 9; i >= 0; i--) { 
+		this.scoreList[9] = newScore;
+		this.nameList[9] = name;
+		for (int i = 8; i >= 0; i--) { 
 			if (newScore > this.scoreList[i]) {
-				this.scoreList[i+1] = this.scoreList[i];
-				this.nameList[i+1] = this.nameList[i];
-				this.scoreList[i] = newScore;
-				this.nameList[i] = name;
-				if (i == 0 || this.scoreList[i-1] > newScore) {
-					break;
+					this.scoreList[i] = newScore;
+					this.nameList[i] = name;
+					this.scoreList[i+1] = this.scoreList[i];
+					this.nameList[i+1] = this.nameList[i];
+					this.scoreList[i] = newScore;
+					this.nameList[i] = name;
+					if (i == 0 || this.scoreList[i-1] > newScore) {
+						break;
 				}
+				
 			}
 		}
 		this.scoreFile.delete();
