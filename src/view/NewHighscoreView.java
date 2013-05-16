@@ -15,17 +15,21 @@ import org.newdawn.slick.state.StateBasedGame;
 public class NewHighscoreView {
 	
 	private TextField textField;
+	private TrueTypeFont font;
 	
-	public NewHighscoreView(TextField textField) {
-		this.textField = textField;
+	public NewHighscoreView(GameContainer gc) {
+		this.font = new TrueTypeFont(new Font("Courier", Font.BOLD, 50), false);
+		this.textField = new TextField(gc, font, Game.WINDOW_WIDTH/4, Game.WINDOW_HEIGHT/2, 300, 50);
+		this.textField.setMaxLength(8);
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
-			throws SlickException {					
+			throws SlickException {		
+		g.setFont(font);
 		g.drawString("New highscore!", Game.WINDOW_WIDTH/4, Game.WINDOW_HEIGHT/4);
-		textField.setFocus(true);
-		textField.render(gc, g);
-		
+		g.drawString("Enter name:", this.textField.getX(), this.textField.getY()-this.textField.getHeight());
+		this.textField.setFocus(true);
+		this.textField.render(gc, g);
 	}
 
 	public TextField getTextField() {
