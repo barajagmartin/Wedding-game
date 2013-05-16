@@ -51,7 +51,7 @@ public class InGameController extends BasicGameState {
 	private int velocityIterations = 6;
 	private int positionIterations = 2;
 	private boolean gameOver;
-	private Music music; 
+	private Music inGameMusic; 
 	public InGameController(GameController gameController) {
 		this.gameController = gameController;
 
@@ -66,7 +66,7 @@ public class InGameController extends BasicGameState {
 		folder = new File(".");
 		this.statusBarController = new StatusBarController(this);
 		isPaused = false;
-		this.music = new Music("music/Marimba.wav");
+		this.inGameMusic = new Music("music/Marimba.wav");
 	}
 
 	@Override
@@ -81,7 +81,7 @@ public class InGameController extends BasicGameState {
 			}else {
 				level++;
 			}
-			music.loop();
+			inGameMusic.loop();
 			this.gameOver = false;
 			this.inGame = new InGame(playerController.getPlayer());
 			this.candyMonsterControllers = new ArrayList<CandyMonsterController>();
@@ -149,6 +149,7 @@ public class InGameController extends BasicGameState {
 		if(this.characterController.getCharacter().isOnSpikes() && this.characterController.getCharacter().getTimeSinceHit() > 1) {
 			this.playerController.getPlayer().loseOneLife();
 			this.characterController.getCharacter().setTimeSinceHit(0);
+			this.characterController.getCharacterView().animateWalking();
 		}
 		//update the timeBar
 		this.statusBarController.getStatusBarView().updateTimeBar(this.inGame.getLevelTime(), this.inGame.getTime());
@@ -202,7 +203,7 @@ public class InGameController extends BasicGameState {
 			}
 			//Set previous state to the state you where in before entering pause menu
 			PauseMenuController.setPreviousState(Game.IN_GAME); 
-			music.pause();
+			inGameMusic.setVolume(0.5f);
 			sbg.enterState(Game.PAUSE_MENU);
 		}
 	}
@@ -220,13 +221,13 @@ public class InGameController extends BasicGameState {
 			} else {
 				this.playerController.getPlayer().setScore((int)this.inGame.getTime(), this.itemsDelivered);
 			}
-			music.stop();
+			inGameMusic.stop();
 			sbg.enterState(Game.END_OF_LEVEL);
 		} else if (this.playerController.getPlayer().getLife() == 0 || this.inGame.getTime() <= 0) {
 			System.out.println("you are dead!");
 			this.gameOver = true;
-			if(music.playing()){
-				music.pause();
+			if(inGameMusic.playing()){
+				inGameMusic.pause();
 			}
 			sbg.enterState(Game.END_OF_LEVEL);
 		}
@@ -326,7 +327,7 @@ public class InGameController extends BasicGameState {
 		return this.gameOver;
 	}
 	
-	public Music getMusic(){
-		return music;
+	public Music getInGameMusic(){
+		return inGameMusic;
 	}
 }
