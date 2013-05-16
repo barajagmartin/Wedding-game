@@ -43,7 +43,7 @@ public class StartMenuView extends AbstractMenuView {
 			this.buttonList.add(new Rectangle(buttonX, buttonY, buttonWidth, buttonHeight));
 
 			if(buttonList.indexOf(buttonList.get(i)) == startMenu.getIsMarked()) {
-				g.setColor(new Color(0f, 0f, 0f, 0.5f));
+				g.setColor(new Color(0f, 0f, 0f, 0.7f));
 				g.fill(buttonList.get(i));
 			} else {
 				g.setColor(new Color(0f, 0f, 0f, 0f));
