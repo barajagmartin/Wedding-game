@@ -1,9 +1,9 @@
 package controller;
 
-import java.awt.Font;
 
 import model.Game;
-import model.NewHighscore;
+
+import view.NewHighscoreView;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -15,11 +15,10 @@ import org.newdawn.slick.gui.ComponentListener;
 import org.newdawn.slick.gui.TextField;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-import view.NewHighscoreView;
+
 
 public class NewHighscoreController extends BasicGameState implements ComponentListener {
 	private GameController gameController;
-	private NewHighscore newHighscore;
 	private NewHighscoreView newHighscoreView;
 	private StateBasedGame sbg;
 	
@@ -33,7 +32,6 @@ public class NewHighscoreController extends BasicGameState implements ComponentL
 		this.sbg = sbg;		
 		this.newHighscoreView = new NewHighscoreView(gc);
 		this.newHighscoreView.getTextField().addListener(this);
-		this.newHighscore = new NewHighscore();
 	}
 
 	@Override
