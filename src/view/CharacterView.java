@@ -28,9 +28,9 @@ public class CharacterView {
 		
 		Image[] walking = {new Image("pics/GulNelson.png"), new Image("pics/GulNelson.png")};
 		Image[] blinking = {new Image("pics/invisibleNelson.png"), new Image("pics/GulNelson.png")};
-		int duration[] = {200, 200};		
-		walk = new Animation(walking, duration, false);
-		blink = new Animation(blinking, duration, false);
+		int duration = 100;		
+		walk = new Animation(walking, duration);
+		blink = new Animation(blinking, duration);
 		nelson = walk;
 	}
 
