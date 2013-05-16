@@ -5,7 +5,7 @@ public class PauseMenu extends AbstractMenu{
 	private int isMarked;
 	
 	public PauseMenu() {
-		isMarked = 0;
+		this.resetIsMarked();
 		
 	}
 	
@@ -23,5 +23,8 @@ public class PauseMenu extends AbstractMenu{
 		return isMarked;
 	}
 	
+	public void resetIsMarked() {
+		this.isMarked = 0;
+	}
 
 }

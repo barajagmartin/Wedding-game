@@ -32,6 +32,11 @@ public class PauseMenuController extends BasicGameState{
 		this.pauseView = new PauseMenuView(this.pauseMenu);
 	}
 	
+	@Override
+	public void enter(GameContainer gc, StateBasedGame sbg) {
+		this.pauseMenu.resetIsMarked();
+	}
+	
 	/*Render in view*/
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
