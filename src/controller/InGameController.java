@@ -201,8 +201,6 @@ public class InGameController extends BasicGameState {
 				e.printStackTrace();
 			}
 			//Set previous state to the state you where in before entering pause menu
-
-			PauseMenuController.setPreviousState(Game.IN_GAME); 
 			PauseMenuController.setPreviousState(Game.IN_GAME); 
 			music.stop();
 			sbg.enterState(Game.PAUSE_MENU);
@@ -227,7 +225,9 @@ public class InGameController extends BasicGameState {
 		} else if (this.playerController.getPlayer().getLife() == 0 || this.inGame.getTime() <= 0) {
 			System.out.println("you are dead!");
 			this.gameOver = true;
-			music.stop();
+			if(music.playing()){
+				music.pause();
+			}
 			sbg.enterState(Game.END_OF_LEVEL);
 		}
 	}
@@ -324,5 +324,9 @@ public class InGameController extends BasicGameState {
 	
 	public boolean isGameOver() {
 		return this.gameOver;
+	}
+	
+	public Music getMusic(){
+		return music;
 	}
 }

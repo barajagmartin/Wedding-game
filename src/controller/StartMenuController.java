@@ -72,8 +72,10 @@ public class StartMenuController extends BasicGameState {
 						}
 						break;
 				case 3: if(startMenu.isMusicOn()) {
+							gameController.getInGameController().getMusic().setVolume(0);
 							startMenu.setMusicOn(false);
 						} else {
+							gameController.getInGameController().getMusic().setVolume(100);
 							startMenu.setMusicOn(true);
 						}	
 						break;

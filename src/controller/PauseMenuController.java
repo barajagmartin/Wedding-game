@@ -51,9 +51,13 @@ public class PauseMenuController extends BasicGameState{
 		if(key == Input.KEY_ESCAPE) {
 			//check if we have a valid previous state
 			if(PauseMenuController.previousState >= 0){
-				sbg.enterState(PauseMenuController.previousState); 
+				if(gameController.getInGameController().getMusic().paused()){
+					gameController.getInGameController().getMusic().resume();
+				}
+				sbg.enterState(PauseMenuController.previousState);
+				
 			} else {
-				System.out.println("ERROR: previousState has not been initialized");  //FIXME better
+				System.out.println("ERROR: previousState has not been initialized");
 			}
 		}
 		if(key == Input.KEY_DOWN) {
@@ -73,8 +77,10 @@ public class PauseMenuController extends BasicGameState{
 						}
 						break;
 				case 2: if(pauseMenu.isMusicOn()) {
+							gameController.getInGameController().getMusic().setVolume(0);
 							pauseMenu.setMusicOn(false);
 						} else {
+							gameController.getInGameController().getMusic().setVolume(100);
 							pauseMenu.setMusicOn(true);
 						}	
 						break;
