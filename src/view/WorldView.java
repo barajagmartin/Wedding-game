@@ -18,6 +18,7 @@ import org.jbox2d.dynamics.contacts.Contact;
 import org.jbox2d.dynamics.joints.Joint;
 import org.jbox2d.dynamics.joints.WeldJointDef;
 
+import utils.WorldBodyFactory;
 import utils.WorldUtils;
 
 public class WorldView {
@@ -57,18 +58,18 @@ public class WorldView {
 		jBox2DWorld = new World(gravity, doSleep);
 		
 
-		//ground
-		addSolidGround(new Vec2(0, worldHeightMeter), new Vec2(worldWidthMeter, WorldUtils.pixel2Meter(2)),
-				NORMAL_FRICTION, NO_BOUNCE_RESTITUTION); //(x, y, width, height)
-		//left wall
-		addSolidGround(new Vec2(0, 0), new Vec2(WorldUtils.pixel2Meter(2), worldHeightMeter),
-				NORMAL_FRICTION, NO_BOUNCE_RESTITUTION);
-		//right wall
-		addSolidGround(new Vec2(worldWidthMeter, 0), new Vec2(WorldUtils.pixel2Meter(2), worldHeightMeter),
-				NORMAL_FRICTION, NO_BOUNCE_RESTITUTION);
-		//roof
-		addSolidGround(new Vec2(0, 0), new Vec2(worldWidthMeter, WorldUtils.pixel2Meter(2)),
-				NORMAL_FRICTION, NO_BOUNCE_RESTITUTION);
+		//ground of window
+		WorldBodyFactory.addSolidGround(new Vec2(0, worldHeightMeter), new Vec2(worldWidthMeter, WorldUtils.pixel2Meter(2)),
+				NORMAL_FRICTION, NO_BOUNCE_RESTITUTION, jBox2DWorld); //(x, y, width, height)
+		//left wall of window
+		WorldBodyFactory.addSolidGround(new Vec2(0, 0), new Vec2(WorldUtils.pixel2Meter(2), worldHeightMeter),
+				NORMAL_FRICTION, NO_BOUNCE_RESTITUTION, jBox2DWorld);
+		//right wall of window
+		WorldBodyFactory.addSolidGround(new Vec2(worldWidthMeter, 0), new Vec2(WorldUtils.pixel2Meter(2), worldHeightMeter),
+				NORMAL_FRICTION, NO_BOUNCE_RESTITUTION, jBox2DWorld);
+		//roof of window
+		WorldBodyFactory.addSolidGround(new Vec2(0, 0), new Vec2(worldWidthMeter, WorldUtils.pixel2Meter(2)),
+				NORMAL_FRICTION, NO_BOUNCE_RESTITUTION, jBox2DWorld);
 
 		//Create normal ground
 		addIterativeSolids(this.blockMapView.getSolidGroundMap().getBlockList(), NORMAL_FRICTION, NO_BOUNCE_RESTITUTION);		
@@ -105,34 +106,13 @@ public class WorldView {
 		return groundBody;
 	}	
 	
-	/**
-	 * Add solid ground to prevent the character from moving outside of the window.
-	 */
-	private void addSolidGround(final Vec2 pos, final Vec2 size, final float friction, final float restitution) {
-		PolygonShape polygonShape = new PolygonShape();
-		polygonShape.setAsBox(size.x, size.y);
-		FixtureDef fixtureDef = new FixtureDef();
-		fixtureDef.shape = polygonShape;
-		fixtureDef.friction = friction;
-		fixtureDef.density = 1f;
-		fixtureDef.restitution = restitution;
-		
-		BodyDef bodyDef = new BodyDef();
-		bodyDef.position.set(pos);
-		bodyDef.type = BodyType.STATIC;
-		bodyDef.fixedRotation = true;
-		
-		Body body = jBox2DWorld.createBody(bodyDef);
-		body.createFixture(fixtureDef);
-	}
-	
 	private void addIterativeSolids(ArrayList<FixedPosition> blockList, final float friction, final float restitution) {
 		for (FixedPosition block : blockList) {
-			addSolidGround(new Vec2(WorldUtils.pixel2Meter(block.getPosX() + this.blockMapView.getTiledMap().getTileWidth()/2),
+			WorldBodyFactory.addSolidGround(new Vec2(WorldUtils.pixel2Meter(block.getPosX() + this.blockMapView.getTiledMap().getTileWidth()/2),
 					WorldUtils.pixel2Meter(block.getPosY() + this.blockMapView.getTiledMap().getTileWidth()/2)),
 					new Vec2(WorldUtils.pixel2Meter(this.blockMapView.getTiledMap().getTileWidth()/2),
 							WorldUtils.pixel2Meter(this.blockMapView.getTiledMap().getTileHeight()/2)),
-							friction, restitution);
+							friction, restitution, jBox2DWorld);
 		}
 	}
 }

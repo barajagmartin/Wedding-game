@@ -8,6 +8,7 @@ import model.Spikes;
 import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.collision.shapes.Shape;
+import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
@@ -116,5 +117,23 @@ public class WorldBodyFactory {
 			body.createFixture(fixtureDef);
 		}
 		return body;
+	}
+	
+	public static void addSolidGround(final Vec2 pos, final Vec2 size, final float friction, final float restitution, World jBox2DWorld) {
+		PolygonShape polygonShape = new PolygonShape();
+		polygonShape.setAsBox(size.x, size.y);
+		FixtureDef fixtureDef = new FixtureDef();
+		fixtureDef.shape = polygonShape;
+		fixtureDef.friction = friction;
+		fixtureDef.density = 1f;
+		fixtureDef.restitution = restitution;
+		
+		BodyDef bodyDef = new BodyDef();
+		bodyDef.position.set(pos);
+		bodyDef.type = BodyType.STATIC;
+		bodyDef.fixedRotation = true;
+		
+		Body body = jBox2DWorld.createBody(bodyDef);
+		body.createFixture(fixtureDef);
 	}
 }
