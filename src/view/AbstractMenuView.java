@@ -20,7 +20,7 @@ public abstract class AbstractMenuView {
 	private Image exitToMenuLabel;
 	
 	public AbstractMenuView() throws SlickException {
-		background = new Image("pics/bluebg.png");
+		background = new Image("pics/start_background.png");
 		candyMonsterTitle = new Image("pics/candy_monsters_orange.png");
 		startGameLabel = new Image("pics/start_game.png");
 		highscoreLabel = new Image("pics/highscore.png");
