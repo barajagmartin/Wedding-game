@@ -89,7 +89,8 @@ public class PauseMenuController extends BasicGameState{
 						break;
 				case 3: //Enter state "Controls"
 						break;
-				case 4: gameController.getInGameController().getMusic().play();
+				case 4: gameController.getInGameController().getMusic().stop(); //Stop current thread
+						gameController.getInGameController().getMusic().play(); //Begin new thread
 						sbg.enterState(Game.START_MENU);
 						break;
 			}
