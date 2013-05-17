@@ -6,6 +6,7 @@ import model.PauseMenu;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -17,6 +18,7 @@ public class PauseMenuController extends BasicGameState{
 	private GameController gameController;
 	private PauseMenuView pauseView;
 	private PauseMenu pauseMenu;
+	private Music pauseMusic;
 	private static int previousState;
 	
 	public PauseMenuController(GameController gameController) {
@@ -30,12 +32,13 @@ public class PauseMenuController extends BasicGameState{
 		this.sbg = sbg;
 		this.pauseMenu = new PauseMenu();
 		this.pauseView = new PauseMenuView(this.pauseMenu);
+		this.pauseMusic = new Music("music/Marimba.wav");
 	}
 	
 	@Override
 	public void enter(GameContainer gc, StateBasedGame sbg) {
 		this.pauseMenu.resetIsMarked();
-		this.gameController.getInGameController().getInGameMusic().setVolume(0.3f);
+		this.pauseMusic.setVolume(0.3f);
 	}
 	
 	/*Render in view*/
@@ -120,6 +123,10 @@ public class PauseMenuController extends BasicGameState{
 		PauseMenuController.previousState = previousState;
 	}
 	
+	public Music getPauseMusic() {
+		return pauseMusic;
+	}
+
 	@Override
 	public int getID() {
 		return Game.PAUSE_MENU;
