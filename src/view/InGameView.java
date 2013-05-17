@@ -104,7 +104,12 @@ public class InGameView {
 		this.g.drawString("Lv." + this.level, Game.WINDOW_WIDTH - 60, StatusBar.HEART_POSY - 40);
 		this.g.setColor(Color.darkGray);
 		this.g.fill(statusBarView.getFixedBar());
-		this.g.setColor(Color.green);
+		
+		if(inGame.getTime()/inGame.getLevelTime() < 0.1) { //when 10% of the time remains
+			this.g.setColor(Color.red);
+		} else {
+			this.g.setColor(Color.green);
+		}
 		this.g.fill(statusBarView.getTimeBar());
 		
 

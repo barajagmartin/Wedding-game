@@ -7,6 +7,7 @@ import model.StartMenu;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -18,6 +19,7 @@ public class StartMenuController extends BasicGameState {
 	private StartMenu startMenu;
 	private StateBasedGame sbg;
 	private GameController gameController;
+	private Music startMenuMusic;
 	
 	public StartMenuController(GameController gameController) {
 		this.gameController = gameController;
@@ -29,13 +31,17 @@ public class StartMenuController extends BasicGameState {
 		this.sbg = game;
 		this.startMenu = new StartMenu();
 		this.startMenuView = new StartMenuView(this.startMenu);
-
+		this.startMenuMusic = new Music("music/backgroundMusic.wav");
+		
 	}
 	
 	@Override
 	public void enter(GameContainer container, StateBasedGame game) throws SlickException {
 		super.enter(container, game);
 		InGame.setNewGame(true);
+		if(this.startMenu.isMusicOn()) {
+			this.startMenuMusic.loop();
+		}
 	}
 
 	@Override
@@ -72,10 +78,10 @@ public class StartMenuController extends BasicGameState {
 						}
 						break;
 				case 3: if(startMenu.isMusicOn()) {
-							gameController.getInGameController().getMusic().setVolume(0);
+							this.startMenuMusic.pause();
 							startMenu.setMusicOn(false);
 						} else {
-							gameController.getInGameController().getMusic().setVolume(100);
+							this.startMenuMusic.play();
 							startMenu.setMusicOn(true);
 						}	
 						break;
@@ -84,6 +90,14 @@ public class StartMenuController extends BasicGameState {
 				case 5: System.exit(0);
 			}
 		}
+	}
+
+	public StartMenu getStartMenu() {
+		return startMenu;
+	}
+
+	public Music getStartMenuMusic() {
+		return startMenuMusic;
 	}
 
 	@Override
