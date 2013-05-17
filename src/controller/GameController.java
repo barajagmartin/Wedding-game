@@ -159,16 +159,4 @@ public class GameController extends StateBasedGame {
 
 		System.out.println("new scoreList: " + Arrays.toString(scoreList));
 	}
-	
-	public void turnMusicOff() {
-		this.inGameController.getInGameMusic().stop();
-		this.startMenuController.getStartMenuMusic().stop();
-		this.pauseMenuController.getPauseMusic().stop();
-	}
-	
-	public void turnMusicOn() {
-		this.inGameController.getInGameMusic().play();
-		this.startMenuController.getStartMenuMusic().play();
-		this.pauseMenuController.getPauseMusic().play();
-	}
 }
