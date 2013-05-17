@@ -11,6 +11,7 @@ public class CandyMonsterController {
 	private CandyMonsterView candyMonsterView;
 	private CandyMonster candyMonster;
 	private InGameController inGameController;
+	boolean isSoundPlayed = false;
 	
 	public CandyMonsterController(InGameController inGameController, int candyNumber) throws SlickException{
 		this.inGameController = inGameController;
@@ -29,14 +30,19 @@ public class CandyMonsterController {
 	}
 	/*Checks if the item is dropped correctly by checking if: the item is picked up, the candynumbers are the same
 	 * and if the item contains/intersects with the character*/
-	public void isDroppedOnMonster(Item item){
+	public boolean isDroppedOnMonster(Item item){
 		if(!item.isPickedUp() && item.CANDY_NUMBER == candyMonster.CANDY_NUMBER && 
 				(candyMonsterView.getShape().contains(inGameController.getItemController().get(candyMonster.CANDY_NUMBER).getItemView().getShape())) ||
 				 candyMonsterView.getShape().intersects(inGameController.getItemController().get(candyMonster.CANDY_NUMBER).getItemView().getShape())){
-			candyMonsterView.setColor(Color.black); //ändra senare till bild
 			//kolla isDelivered
 			item.setDelivered(true);
 			this.inGameController.setItemsDelivered(inGameController.getItemsDelivered()+1);
+			return true;
 		}
+		return false;
+	}
+	
+	public boolean isSoundPlayed() {
+		return isSoundPlayed;
 	}
 }

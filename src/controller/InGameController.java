@@ -11,6 +11,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
@@ -51,7 +52,9 @@ public class InGameController extends BasicGameState {
 	private int velocityIterations = 6;
 	private int positionIterations = 2;
 	private boolean gameOver;
-	private Music inGameMusic; 
+	private Music inGameMusic;
+	private Sound happySound;
+	
 	public InGameController(GameController gameController) {
 		this.gameController = gameController;
 
@@ -67,6 +70,7 @@ public class InGameController extends BasicGameState {
 		this.statusBarController = new StatusBarController(this);
 		isPaused = false;
 		this.inGameMusic = new Music("music/Marimba.wav");
+		this.happySound = new Sound("music/happy0.wav");
 	}
 
 	@Override
@@ -172,10 +176,9 @@ public class InGameController extends BasicGameState {
 					moveableBoxControllers.get(i).getMoveableBoxView().getBoxBody().getPosition().x));
 			moveableBoxControllers.get(i).getMoveableBox().setY(WorldUtils.meter2Pixel(
 					moveableBoxControllers.get(i).getMoveableBoxView().getBoxBody().getPosition().y));
-
-
 		}
 	}
+
 
 	@Override
 	public void keyPressed (int key, char c) {
@@ -188,7 +191,9 @@ public class InGameController extends BasicGameState {
 				lastHeldItem = characterController.getCharacter().getHeldItem();	
 				characterController.getCharacter().dropDownItem(characterController.getCharacter().getHeldItem());
 				this.itemControllers.get(lastHeldItem.CANDY_NUMBER).uppdateItemShape();
-				candyMonsterControllers.get(lastHeldItem.CANDY_NUMBER).isDroppedOnMonster(lastHeldItem);
+				if(candyMonsterControllers.get(lastHeldItem.CANDY_NUMBER).isDroppedOnMonster(lastHeldItem)) {
+					this.happySound.play();
+				}
 			}
 		}
 		if (key == Input.KEY_UP) {
@@ -291,6 +296,11 @@ public class InGameController extends BasicGameState {
 
 	public PlayerController getPlayerController() {
 		return playerController;
+	}
+	
+
+	public Sound getHappySound() {
+		return happySound;
 	}
 
 	public void setPaused(boolean isPaused) {
