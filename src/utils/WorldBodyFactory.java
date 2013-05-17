@@ -96,6 +96,8 @@ public class WorldBodyFactory {
 			bodyDef.fixedRotation = true;
 			bodyDef.position.set(WorldUtils.pixel2Meter(pos.getX()+MoveableBox.HALF_WIDTH-3), // -3 is for correcting starting position with pixel precision
 					WorldUtils.pixel2Meter(pos.getY()+MoveableBox.HALF_HEIGHT));				 // to make it look good
+			bodyDef.allowSleep = true;
+			bodyDef.awake = true;
 			
 			body = jBox2DWorld.createBody(bodyDef);
 			body.createFixture(fixtureDef);
