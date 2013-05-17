@@ -81,7 +81,9 @@ public class InGameController extends BasicGameState {
 			}else {
 				level++;
 			}
-			inGameMusic.loop();
+			if(this.gameController.getStartMenuController().getStartMenu().isMusicOn()) {
+				inGameMusic.loop();
+			}
 			this.gameOver = false;
 			this.inGame = new InGame(playerController.getPlayer());
 			this.candyMonsterControllers = new ArrayList<CandyMonsterController>();
@@ -149,7 +151,6 @@ public class InGameController extends BasicGameState {
 		if(this.characterController.getCharacter().isOnSpikes() && this.characterController.getCharacter().getTimeSinceHit() > 1) {
 			this.playerController.getPlayer().loseOneLife();
 			this.characterController.getCharacter().setTimeSinceHit(0);
-			this.characterController.getCharacterView().animateWalking();
 		}
 		//update the timeBar
 		this.statusBarController.getStatusBarView().updateTimeBar(this.inGame.getLevelTime(), this.inGame.getTime());
@@ -203,7 +204,9 @@ public class InGameController extends BasicGameState {
 			}
 			//Set previous state to the state you where in before entering pause menu
 			PauseMenuController.setPreviousState(Game.IN_GAME); 
-			inGameMusic.setVolume(0.5f);
+			//if sound is off, set volume to 0
+			
+//			inGameMusic.setVolume(0.5f);
 			sbg.enterState(Game.PAUSE_MENU);
 		}
 	}
