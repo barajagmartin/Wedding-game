@@ -85,7 +85,7 @@ public class StartMenuController extends BasicGameState {
 							startMenu.setMusicOn(true);
 						}	
 						break;
-				case 4: //sbg.enterState(Game.CONTROLS);
+				case 4: sbg.enterState(Game.CONTROLS);
 						break;
 				case 5: System.exit(0);
 			}
