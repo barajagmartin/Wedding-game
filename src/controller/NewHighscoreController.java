@@ -21,6 +21,7 @@ public class NewHighscoreController extends BasicGameState implements ComponentL
 	private GameController gameController;
 	private NewHighscoreView newHighscoreView;
 	private StateBasedGame sbg;
+	private GameContainer gc;
 	
 	public NewHighscoreController(GameController gameController) {
 		this.gameController = gameController;
@@ -43,6 +44,13 @@ public class NewHighscoreController extends BasicGameState implements ComponentL
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
+		this.gc = gc;
+	}
+	
+	public void keyPressed (int key, char c) {
+		if(key == Input.KEY_F11) {
+			this.gameController.changeFullscreen(this.gc);
+		}
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.Random;
 
+import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -43,12 +44,13 @@ public class InGameController extends BasicGameState {
 	private Item lastHeldItem;
 	private StateBasedGame sbg;
 	private GameController gameController;
-	
+	private GameContainer gameContainer;
 	//should be based on the frame update (delta or something like that)
 	private float timeStep = 1.0f / 60.0f;
 	private int velocityIterations = 6;
 	private int positionIterations = 2;
 	private Sound happySound;
+	
 	
 	public InGameController(GameController gameController) {
 		this.gameController = gameController;
@@ -141,6 +143,7 @@ public class InGameController extends BasicGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
+		this.gameContainer = gc;
 		//change the time for the game and the character
 		this.inGame.setTime(this.inGame.getTime()-(delta/1000f));
 		this.characterController.getCharacter().setTimeSinceHit(this.characterController.getCharacter().getTimeSinceHit() + delta/1000f);
@@ -173,6 +176,7 @@ public class InGameController extends BasicGameState {
 			moveableBoxControllers.get(i).getMoveableBox().setY(WorldUtils.meter2Pixel(
 					moveableBoxControllers.get(i).getMoveableBoxView().getBoxBody().getPosition().y));
 		}
+		
 	}
 
 
@@ -209,6 +213,10 @@ public class InGameController extends BasicGameState {
 			
 			gameController.getInGameMusic().setVolume(0.3f);
 			sbg.enterState(Game.PAUSE_MENU);
+		}
+		
+		if(key == Input.KEY_F11) {
+			this.gameController.changeFullscreen(this.gameContainer);
 		}
 	}
 
