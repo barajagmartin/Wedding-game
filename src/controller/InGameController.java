@@ -75,6 +75,7 @@ public class InGameController extends BasicGameState {
 	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		super.enter(container, game);
+		inGameMusic.setVolume(1f);
 		if (!isPaused) {
 			if (inGame.isNewGame()) {
 				inGame.resetLevel();

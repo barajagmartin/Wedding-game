@@ -36,7 +36,6 @@ public class PauseMenuController extends BasicGameState{
 	@Override
 	public void enter(GameContainer gc, StateBasedGame sbg) {
 		this.pauseMenu.resetIsMarked();
-		//this.gameController.getInGameController().getInGameMusic().setVolume(0.3f);
 	}
 	
 	/*Render in view*/
@@ -48,21 +47,14 @@ public class PauseMenuController extends BasicGameState{
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
-			throws SlickException {
-		// TODO Auto-generated method stub
-		
-	}
+			throws SlickException {}
 	
 	@Override
 	public void keyPressed (int key, char c) {
 		if(key == Input.KEY_ESCAPE) {
 			//check if we have a valid previous state
 			if(PauseMenuController.previousState >= 0){
-				if(gameController.getInGameController().getInGameMusic().getVolume() < 1 ) {
-					gameController.getInGameController().getInGameMusic().setVolume(1);
-				}
 				sbg.enterState(PauseMenuController.previousState);
-				
 			} else {
 				System.out.println("ERROR: previousState has not been initialized");
 			}
