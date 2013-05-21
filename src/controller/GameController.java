@@ -24,6 +24,7 @@ public class GameController extends StateBasedGame {
 	private EndOfLevelController endOfLevelController;
 	private HighScoreStateController highScoreStateController;
 	private NewHighscoreController newHighscoreController;
+	private ControlsController controlsController;
 	private  int[] scoreList;
 	private String[] nameList;
 	private File scoreFile;
@@ -52,6 +53,7 @@ public class GameController extends StateBasedGame {
 		this.inGameController = new InGameController(this);
 		this.pauseMenuController = new PauseMenuController(this);
 		this.endOfLevelController = new EndOfLevelController(this);
+		this.controlsController = new ControlsController(this);
 		this.addState(inGameController);
 		this.addState(highScoreStateController);
 		this.addState(pauseMenuController);
@@ -59,6 +61,7 @@ public class GameController extends StateBasedGame {
 		this.addState(pauseMenuController);
 		this.addState(endOfLevelController);
 		this.addState(startMenuController);
+		this.addState(controlsController);
 	}
 	
 	@Override
