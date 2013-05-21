@@ -44,8 +44,8 @@ public class InGameController extends BasicGameState {
 	private int itemsDelivered;
 	private StateBasedGame sbg;
 	private GameController gameController;
-	private static int level;
-	private File folder;
+	
+	
 	private boolean isPaused;
 	//should be based on the frame update (delta or something like that)
 	private float timeStep = 1.0f / 60.0f;
@@ -65,7 +65,6 @@ public class InGameController extends BasicGameState {
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		this.sbg = sbg;
-		folder = new File(".");
 		this.statusBarController = new StatusBarController(this);
 		isPaused = false;
 		this.inGameMusic = new Music("music/Marimba.wav");
@@ -78,11 +77,11 @@ public class InGameController extends BasicGameState {
 		super.enter(container, game);
 		if (!isPaused) {
 			if (inGame.isNewGame()) {
-				level = 1;
+				inGame.resetLevel();
 				playerController.getPlayer().reset();
 				inGame.setNewGame(false);
 			}else {
-				level++;
+				this.inGame.levelUp();
 			}
 			if(this.gameController.getStartMenuController().getStartMenu().isMusicOn()) {
 				inGameMusic.loop();
@@ -95,10 +94,10 @@ public class InGameController extends BasicGameState {
 			this.spikesControllers = new ArrayList<SpikesController>();
 			this.moveableBoxControllers = new ArrayList<MoveableBoxController>();
 
-			int nbrOfVersions = getNbrOfFiles(level);
-			System.out.println("nbr of versions: " + nbrOfVersions + "of the level: " + level);
+			int nbrOfVersions = inGame.getNbrOfFiles(this.inGame.getLevel());
+			System.out.println("nbr of versions: " + nbrOfVersions + "of the level: " + this.inGame.getLevel());
 			//Get a new level, randomize between different level versions (i.e. there are many level 1 to randomize from)
-			this.blockMapController = new BlockMapController(this, new TiledMap(BlockMapUtils.getTmxFile(level, inGame.randomizeVersion(nbrOfVersions))));
+			this.blockMapController = new BlockMapController(this, new TiledMap(BlockMapUtils.getTmxFile(this.inGame.getLevel(), inGame.randomizeVersion(nbrOfVersions))));
 			/*Create candy monster and its items*/
 			for (int i = 0; i < blockMapController.getCandyMonsterMap().getBlockList().size(); i++){
 				this.candyMonsterControllers.add(new CandyMonsterController(this, i)); 
@@ -127,7 +126,7 @@ public class InGameController extends BasicGameState {
 			}
 
 			this.inGameView = new InGameView(inGame, worldController.getWorldView(), statusBarController.getStatusBarView(), 
-					characterController.getCharacterView(), tmpMoveableBoxViewList, tmpSpikesViewList, level);
+					characterController.getCharacterView(), tmpMoveableBoxViewList, tmpSpikesViewList, this.inGame.getLevel());
 			itemsDelivered = 0;
 
 			itemList = new ArrayList<Item>();
@@ -224,7 +223,7 @@ public class InGameController extends BasicGameState {
 	public void checkGameOverConditions() {
 		if (this.itemControllers.size() == itemsDelivered) {
 			System.out.println("No more items to pick up, level cleared!");
-			if (this.getNbrOfFiles(this.gameController.getInGameController().getLevel() + 1) == 0) {
+			if (this.inGame.getNbrOfFiles(this.inGame.getLevel() + 1) == 0) {
 				this.playerController.getPlayer().setScore((int)this.inGame.getTime(), this.itemsDelivered, getPlayerController().getPlayer().getLife());
 			} else {
 				this.playerController.getPlayer().setScore((int)this.inGame.getTime(), this.itemsDelivered);
@@ -306,36 +305,6 @@ public class InGameController extends BasicGameState {
 	public void setPaused(boolean isPaused) {
 		this.isPaused = isPaused;
 	}
-
-
-	/**
-	 * Find files that are on the form levelx.y.tmx.
-	 * 
-	 * x is the level
-	 * y is the level version
-	 * @return the filenameFilter
-	 */
-	public FilenameFilter findFiles(final int level) {
-		FilenameFilter filenameFilter = new FilenameFilter() {
-
-			@Override
-			public boolean accept(File dir, String name) {
-				return name.matches("level" + String.valueOf(level) + ".\\d.tmx");
-			}
-		};
-		return filenameFilter;
-	}
-
-
-	public int getLevel() {
-		return this.level;
-	}
-	
-	public int getNbrOfFiles(int level) {
-		return folder.listFiles(findFiles(level)).length;
-		
-	}
-	
 	
 	public Music getInGameMusic(){
 		return inGameMusic;
