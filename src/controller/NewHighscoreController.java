@@ -48,7 +48,7 @@ public class NewHighscoreController extends BasicGameState implements ComponentL
 	}
 	
 	public void keyPressed (int key, char c) {
-		if(key == Input.KEY_F11) {
+		if(key == Input.KEY_F) {
 			this.gameController.changeFullscreen(this.gc);
 		}
 	}
