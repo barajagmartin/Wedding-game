@@ -16,6 +16,7 @@ public class ControlsController extends BasicGameState {
 	private ControlsView controlsView;
 	private GameController gameController;
 	private StateBasedGame sbg;
+	private GameContainer gc;
 
 	public ControlsController(GameController gameController) {
 		this.gameController = gameController;
@@ -37,11 +38,14 @@ public class ControlsController extends BasicGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
-		// TODO Auto-generated method stub
+		this.gc = gc;
 
 	}
 	
 	public void keyPressed(int key, char c) {
+		if(key == Input.KEY_F11) {
+			this.gameController.changeFullscreen(this.gc);
+		}
 		if (key == Input.KEY_ENTER) {
 			sbg.enterState(Game.START_MENU);
 		}

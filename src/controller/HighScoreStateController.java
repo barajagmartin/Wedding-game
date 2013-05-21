@@ -46,6 +46,9 @@ public class HighScoreStateController extends BasicGameState{
 	}
 	
 	public void keyPressed (int key, char c) {
+		if(key == Input.KEY_F11) {
+			this.gameController.changeFullscreen(this.gc);
+		}
 		if (key == Input.KEY_ESCAPE) {
 			gc.exit();
 		} else if (key == Input.KEY_ENTER) {

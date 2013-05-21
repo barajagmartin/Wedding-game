@@ -18,6 +18,7 @@ public class PauseMenuController extends BasicGameState{
 	private GameController gameController;
 	private PauseMenuView pauseView;
 	private PauseMenu pauseMenu;
+	private GameContainer gc;
 	private static int previousState;
 	
 	public PauseMenuController(GameController gameController) {
@@ -47,10 +48,15 @@ public class PauseMenuController extends BasicGameState{
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
-			throws SlickException {}
+			throws SlickException {
+		this.gc = gc;
+	}
 	
 	@Override
 	public void keyPressed (int key, char c) {
+		if(key == Input.KEY_F11) {
+			this.gameController.changeFullscreen(this.gc);
+		}
 		if(key == Input.KEY_ESCAPE) {
 			//check if we have a valid previous state
 			if(PauseMenuController.previousState >= 0){
