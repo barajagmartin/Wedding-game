@@ -14,6 +14,7 @@ import java.util.Scanner;
 
 import model.Game;
 
+import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
@@ -80,5 +81,19 @@ public class GameController extends StateBasedGame {
 
 	public Music getInGameMusic() {
 		return inGameMusic;
+	}
+	
+	public void changeFullscreen (GameContainer gc) {
+		AppGameContainer agc = (AppGameContainer) gc;
+		try {
+        	if (!gc.isFullscreen()) {
+        		agc.setDisplayMode(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT, true);
+			} else 	{
+				agc.setDisplayMode(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT, false);
+			}
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

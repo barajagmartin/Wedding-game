@@ -5,6 +5,7 @@ import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.Random;
 
+import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -41,15 +42,15 @@ public class InGameController extends BasicGameState {
 	private ArrayList <MoveableBoxController> moveableBoxControllers;
 	private ArrayList <Item> itemList; //used when checking if pickedUp in update
 	private Item lastHeldItem;
-	private int itemsDelivered;
 	private StateBasedGame sbg;
 	private GameController gameController;
-	
+	private GameContainer gameContainer;
 	//should be based on the frame update (delta or something like that)
 	private float timeStep = 1.0f / 60.0f;
 	private int velocityIterations = 6;
 	private int positionIterations = 2;
 	private Sound happySound;
+	
 	
 	public InGameController(GameController gameController) {
 		this.gameController = gameController;
@@ -123,7 +124,6 @@ public class InGameController extends BasicGameState {
 
 			this.inGameView = new InGameView(inGame, worldController.getWorldView(), statusBarController.getStatusBarView(), 
 					characterController.getCharacterView(), tmpMoveableBoxViewList, tmpSpikesViewList, this.inGame.getLevel());
-			itemsDelivered = 0;
 
 			itemList = new ArrayList<Item>();
 			for (ItemController itemController : itemControllers) {
@@ -143,6 +143,7 @@ public class InGameController extends BasicGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
+		this.gameContainer = gc;
 		//change the time for the game and the character
 		this.inGame.setTime(this.inGame.getTime()-(delta/1000f));
 		this.characterController.getCharacter().setTimeSinceHit(this.characterController.getCharacter().getTimeSinceHit() + delta/1000f);
@@ -154,7 +155,10 @@ public class InGameController extends BasicGameState {
 		//update the timeBar
 		this.statusBarController.getStatusBarView().updateTimeBar(this.inGame.getLevelTime(), this.inGame.getTime());
 		//check if the game is over
-		checkGameOverConditions();
+		if (inGame.checkIfGameIsOver(itemControllers.size())) {
+			gameController.getInGameMusic().stop();
+			sbg.enterState(Game.END_OF_LEVEL);
+		}
 		//check key presses
 		characterController.keyPressedUpdate(gc);
 		//simulate the JBox2D world, timeStep --> delta
@@ -172,6 +176,7 @@ public class InGameController extends BasicGameState {
 			moveableBoxControllers.get(i).getMoveableBox().setY(WorldUtils.meter2Pixel(
 					moveableBoxControllers.get(i).getMoveableBoxView().getBoxBody().getPosition().y));
 		}
+		
 	}
 
 
@@ -209,30 +214,9 @@ public class InGameController extends BasicGameState {
 			gameController.getInGameMusic().setVolume(0.3f);
 			sbg.enterState(Game.PAUSE_MENU);
 		}
-	}
-
-	/**
-	 * checks if the game is done by checking the lives on the character 
-	 * and the items left in the world.
-	 * 
-	 */
-	public void checkGameOverConditions() {
-		if (this.itemControllers.size() == itemsDelivered) {
-			System.out.println("No more items to pick up, level cleared!");
-			if (this.inGame.getNbrOfFiles(this.inGame.getLevel() + 1) == 0) {
-				this.playerController.getPlayer().setScore((int)this.inGame.getTime(), this.itemsDelivered, getPlayerController().getPlayer().getLife());
-			} else {
-				this.playerController.getPlayer().setScore((int)this.inGame.getTime(), this.itemsDelivered);
-			}
-			gameController.getInGameMusic().stop();
-			sbg.enterState(Game.END_OF_LEVEL);
-		} else if (this.playerController.getPlayer().getLife() == 0 || this.inGame.getTime() <= 0) {
-			System.out.println("you are dead!");
-			this.inGame.setGameOver(true);
-			if(gameController.getInGameMusic().playing()){
-				gameController.getInGameMusic().pause();
-			}
-			sbg.enterState(Game.END_OF_LEVEL);
+		
+		if(key == Input.KEY_F11) {
+			this.gameController.changeFullscreen(this.gameContainer);
 		}
 	}
 
@@ -249,17 +233,6 @@ public class InGameController extends BasicGameState {
 	public InGameView getInGameView() {
 		return inGameView;
 	}
-
-
-	public int getItemsDelivered() {
-		return itemsDelivered;
-	}
-
-
-	public void setItemsDelivered(int itemsDelivered) {
-		this.itemsDelivered = itemsDelivered;
-	}
-
 
 	public CharacterController getCharacterController() {
 		return characterController;

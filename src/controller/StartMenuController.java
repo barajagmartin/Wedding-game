@@ -20,6 +20,7 @@ public class StartMenuController extends BasicGameState {
 	private StateBasedGame sbg;
 	private GameController gameController;
 	private Music startMenuMusic;
+	private GameContainer gc;
 	
 	public StartMenuController(GameController gameController) {
 		this.gameController = gameController;
@@ -54,7 +55,7 @@ public class StartMenuController extends BasicGameState {
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
-		// TODO Auto-generated method stub
+		this.gc = container;
 		
 	}
 	
@@ -89,6 +90,9 @@ public class StartMenuController extends BasicGameState {
 						break;
 				case 5: System.exit(0);
 			}
+		}
+		if(key == Input.KEY_F11) {
+			this.gameController.changeFullscreen(this.gc);
 		}
 	}
 

@@ -36,7 +36,7 @@ public class CandyMonsterController {
 				 candyMonsterView.getShape().intersects(inGameController.getItemController().get(candyMonster.CANDY_NUMBER).getItemView().getShape())){
 			//kolla isDelivered
 			item.setDelivered(true);
-			this.inGameController.setItemsDelivered(inGameController.getItemsDelivered()+1);
+			this.inGameController.getInGame().increaseItemsDelivered();
 			return true;
 		}
 		return false;
