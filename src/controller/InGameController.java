@@ -220,9 +220,9 @@ public class InGameController extends BasicGameState {
 		if (this.itemControllers.size() == itemsDelivered) {
 			System.out.println("No more items to pick up, level cleared!");
 			if (this.inGame.getNbrOfFiles(this.inGame.getLevel() + 1) == 0) {
-				this.playerController.getPlayer().setScore((int)this.inGame.getTime(), this.itemsDelivered, getPlayerController().getPlayer().getLife());
+				this.playerController.getPlayer().setScore(inGame.getTime() < 1 ? 1 : (int)inGame.getTime(), this.itemsDelivered, getPlayerController().getPlayer().getLife());
 			} else {
-				this.playerController.getPlayer().setScore((int)this.inGame.getTime(), this.itemsDelivered);
+				this.playerController.getPlayer().setScore(inGame.getTime() < 1 ? 1 : (int)inGame.getTime(), this.itemsDelivered);
 			}
 			gameController.getInGameMusic().stop();
 			sbg.enterState(Game.END_OF_LEVEL);
