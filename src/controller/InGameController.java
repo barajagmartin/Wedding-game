@@ -215,7 +215,7 @@ public class InGameController extends BasicGameState {
 			sbg.enterState(Game.PAUSE_MENU);
 		}
 		
-		if(key == Input.KEY_F11) {
+		if(key == Input.KEY_F) {
 			this.gameController.changeFullscreen(this.gameContainer);
 		}
 	}
