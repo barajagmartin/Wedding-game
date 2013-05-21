@@ -23,13 +23,13 @@ public class StartMenuController extends BasicGameState {
 	
 	public StartMenuController(GameController gameController) {
 		this.gameController = gameController;
+		this.startMenu = new StartMenu();
 	}
 	
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		this.sbg = game;
-		this.startMenu = new StartMenu();
 		this.startMenuView = new StartMenuView(this.startMenu);
 		this.startMenuMusic = new Music("music/backgroundMusic.wav");
 		

@@ -27,13 +27,15 @@ public class Game {
 	private Scanner nameScanner;
 	
 	private InGame inGame;
+	private StartMenu startMenu;
 	
-	public Game(InGame inGame) {
+	public Game(InGame inGame, StartMenu startMenu) {
 		this.scoreList = new int[10];
 		this.nameList = new String[10];
 		this.scoreFile = new File("savings/scoreList.txt");
 		this.nameFile = new File("savings/nameList.txt");
 		this.inGame = inGame;
+		this.startMenu = startMenu;
 		try {
 			this.scoreScanner = new Scanner(scoreFile);
 			this.nameScanner = new Scanner(nameFile);
@@ -45,6 +47,10 @@ public class Game {
 		}
 	}
 	
+	public StartMenu getStartMenu() {
+		return startMenu;
+	}
+
 	public InGame getInGame() {
 		return inGame;
 	}

@@ -79,7 +79,7 @@ public class InGameController extends BasicGameState {
 			}else {
 				this.inGame.levelUp();
 			}
-			if(this.gameController.getStartMenuController().getStartMenu().isMusicOn()) {
+			if(this.gameController.getGame().getStartMenu().isMusicOn()) {
 				gameController.getInGameMusic().loop();
 			}
 			
