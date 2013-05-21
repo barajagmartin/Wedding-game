@@ -210,7 +210,7 @@ public class InGameController extends BasicGameState {
 			PauseMenuController.setPreviousState(Game.IN_GAME); 
 			//if sound is off, set volume to 0
 			
-//			inGameMusic.setVolume(0.5f);
+			inGameMusic.setVolume(0.3f);
 			sbg.enterState(Game.PAUSE_MENU);
 		}
 	}

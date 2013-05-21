@@ -36,7 +36,7 @@ public class PauseMenuController extends BasicGameState{
 	@Override
 	public void enter(GameContainer gc, StateBasedGame sbg) {
 		this.pauseMenu.resetIsMarked();
-		this.gameController.getInGameController().getInGameMusic().setVolume(0.3f);
+		//this.gameController.getInGameController().getInGameMusic().setVolume(0.3f);
 	}
 	
 	/*Render in view*/
