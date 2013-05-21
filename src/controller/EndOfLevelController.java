@@ -44,7 +44,7 @@ public class EndOfLevelController extends BasicGameState{
 		//kolla om spelaren förlorat
 		this.gameOver = (this.gameController.getInGameController().isGameOver());
 		//kolla om newHighScore
-		this.newHighScore = (this.gameController.getInGameController().getPlayerController().getPlayer().getScore() > this.gameController.getScoreList()[9]);
+		this.newHighScore = (this.gameController.getInGameController().getPlayerController().getPlayer().getScore() > this.gameController.getGame().getScoreList()[9]);
 			
 		this.endOflevelView = new EndOfLevelView(this.gameController.getInGameController().getPlayerController().getPlayer().getScore(),
 				gameOver, victory);

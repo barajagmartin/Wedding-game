@@ -26,8 +26,10 @@ public class NewHighscoreView {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {		
 		g.setFont(font);
-		g.drawString("New highscore!", Game.WINDOW_WIDTH/4, Game.WINDOW_HEIGHT/4);
+		g.drawString("New highscore: 1337!", Game.WINDOW_WIDTH/4, Game.WINDOW_HEIGHT/4);
 		g.drawString("Enter name:", this.textField.getX(), this.textField.getY()-this.textField.getHeight());
+		
+		//TODO drawString score - spara undan score i en model?
 		this.textField.setFocus(true);
 		this.textField.render(gc, g);
 	}

@@ -25,7 +25,7 @@ public class HighScoreStateController extends BasicGameState{
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		this.highScoreStateView = new HighScoreStateView(this.gameController.getScoreList(), this.gameController.getNameList());
+		this.highScoreStateView = new HighScoreStateView(this.gameController.getGame().getScoreList(), this.gameController.getGame().getNameList());
 		this.gc = gc;
 		this.sbg=sbg;
 		
