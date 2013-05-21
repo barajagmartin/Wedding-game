@@ -21,8 +21,7 @@ public class SpikesController implements ContactListener {
 		this.inGameController = inGameController;
 		this.spikes = new Spikes(inGameController.getBlockMapController().getSpikesMap().getBlockList().get(index).getPosX(), 
 								inGameController.getBlockMapController().getSpikesMap().getBlockList().get(index).getPosY());
-		this.spikesView = new SpikesView(this.spikes, inGameController.getWorldController().getWorldView());
-		inGameController.getWorldController().getWorldView().getjBox2DWorld().setContactListener(this);
+		this.spikesView = new SpikesView(this.spikes);
 	}
 
 	public Spikes getSpikes() {

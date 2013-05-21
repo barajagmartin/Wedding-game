@@ -35,7 +35,7 @@ public class CharacterController {
 					this.inGameController.getBlockMapController().getBlockMapView().getStartingPos().getPosY());
 		}
 		
-		this.characterView = new CharacterView(character, inGameController.getWorldController().getWorldView());
+		this.characterView = new CharacterView(character);
 	}
 	
 	public Character getCharacter() {

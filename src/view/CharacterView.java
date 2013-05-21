@@ -19,12 +19,11 @@ public class CharacterView {
 	private Body characterBody;
 	private Animation nelson, walk, blink;
 	
-	public CharacterView(Character character, WorldView worldView) throws SlickException {
+	public CharacterView(Character character) throws SlickException {
 		this.character = character;
 		this.slickShape = new Circle(this.character.getX()-(Character.RADIUS/2f), 
 				this.character.getY()-(Character.RADIUS/2f), Character.RADIUS);
 		this.color = Color.blue;
-		characterBody = WorldBodyFactory.createBody(WorldObjects.CHARACTER, worldView.getjBox2DWorld(), character.getPos());
 		
 		Image[] walking = {new Image("pics/GulNelson.png"), new Image("pics/GulNelson.png")};
 		Image[] blinking = {new Image("pics/invisibleNelson.png"), new Image("pics/GulNelson.png")};
@@ -52,6 +51,10 @@ public class CharacterView {
 	
 	public Body getCharacterBody() {
 		return characterBody;
+	}
+
+	public void setCharacterBody(Body characterBody) {
+		this.characterBody = characterBody;
 	}
 
 	public Animation getAnimation() {

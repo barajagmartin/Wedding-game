@@ -27,6 +27,9 @@ public class InGameView {
 	private CharacterView characterView;
 	private ArrayList<MoveableBoxView> moveableBoxViewList;
 	private ArrayList<SpikesView> spikesViewList;
+	public CharacterView getCharacterView() {
+		return characterView;
+	}
 	private Graphics g;
 	private int level;
 

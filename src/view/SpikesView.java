@@ -20,12 +20,19 @@ public class SpikesView {
 	private Color color;
 	private Body body;
 
-	public SpikesView(Spikes spikes, WorldView worldView) throws SlickException {
+	public SpikesView(Spikes spikes) throws SlickException {
 		this.spikes = spikes;
 		this.color = color.gray;
 		this.circle = new Circle(spikes.getPos().getX(), spikes.getPos().getY(), Spikes.RADIUS);
 		image = new Image("pics/spikes2.png");
-		body = WorldBodyFactory.createBody(WorldObjects.SPIKES_SENSOR, worldView.getjBox2DWorld(), spikes.getPos());
+	}
+
+	public Body getBody() {
+		return body;
+	}
+
+	public void setBody(Body body) {
+		this.body = body;
 	}
 
 	public Spikes getSpikes() {
