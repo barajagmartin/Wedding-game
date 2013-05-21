@@ -25,7 +25,6 @@ public class EndOfLevelController extends BasicGameState{
 		this.gameOver = false;
 		this.victory = false;
 		this.newHighScore = false;
-
 	}
 
 	@Override
@@ -40,7 +39,7 @@ public class EndOfLevelController extends BasicGameState{
 		super.enter(container, game);
 		
 		//kolla om det finns fler banor?
-		this.victory = this.gameController.getInGameController().getInGame().getNbrOfFiles(this.gameController.getGame().getInGame().getLevel() + 1) == 0;
+		this.victory = this.gameController.getGame().getInGame().getNbrOfFiles(this.gameController.getGame().getInGame().getLevel() + 1) == 0;
 		//kolla om spelaren förlorat
 		this.gameOver = (this.gameController.getGame().getInGame().isGameOver());
 		//kolla om newHighScore
@@ -71,8 +70,6 @@ public class EndOfLevelController extends BasicGameState{
 			} else {
 				sbg.enterState(Game.IN_GAME);
 			}
-			
-			
 		}
 	}
 

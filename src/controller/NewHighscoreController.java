@@ -52,7 +52,7 @@ public class NewHighscoreController extends BasicGameState implements ComponentL
 
 	@Override
 	public void componentActivated(AbstractComponent textField) {
-		this.gameController.getGame().saveScore(this.gameController.getInGameController().getPlayerController().getPlayer().getScore(),
+		this.gameController.getGame().saveScore(this.gameController.getGame().getInGame().getPlayer().getScore(),
 				this.newHighscoreView.getTextField().getText());
 		textField.setFocus(false);
 		sbg.enterState(Game.HIGHSCORE);
