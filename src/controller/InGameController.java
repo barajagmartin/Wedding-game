@@ -41,7 +41,6 @@ public class InGameController extends BasicGameState {
 	private ArrayList <MoveableBoxController> moveableBoxControllers;
 	private ArrayList <Item> itemList; //used when checking if pickedUp in update
 	private Item lastHeldItem;
-	private int itemsDelivered;
 	private StateBasedGame sbg;
 	private GameController gameController;
 	
@@ -123,7 +122,6 @@ public class InGameController extends BasicGameState {
 
 			this.inGameView = new InGameView(inGame, worldController.getWorldView(), statusBarController.getStatusBarView(), 
 					characterController.getCharacterView(), tmpMoveableBoxViewList, tmpSpikesViewList, this.inGame.getLevel());
-			itemsDelivered = 0;
 
 			itemList = new ArrayList<Item>();
 			for (ItemController itemController : itemControllers) {
@@ -154,7 +152,10 @@ public class InGameController extends BasicGameState {
 		//update the timeBar
 		this.statusBarController.getStatusBarView().updateTimeBar(this.inGame.getLevelTime(), this.inGame.getTime());
 		//check if the game is over
-		checkGameOverConditions();
+		if (inGame.checkIfGameIsOver(itemControllers.size())) {
+			gameController.getInGameMusic().stop();
+			sbg.enterState(Game.END_OF_LEVEL);
+		}
 		//check key presses
 		characterController.keyPressedUpdate(gc);
 		//simulate the JBox2D world, timeStep --> delta
@@ -211,31 +212,6 @@ public class InGameController extends BasicGameState {
 		}
 	}
 
-	/**
-	 * checks if the game is done by checking the lives on the character 
-	 * and the items left in the world.
-	 * 
-	 */
-	public void checkGameOverConditions() {
-		if (this.itemControllers.size() == itemsDelivered) {
-			System.out.println("No more items to pick up, level cleared!");
-			if (this.inGame.getNbrOfFiles(this.inGame.getLevel() + 1) == 0) {
-				this.playerController.getPlayer().setScore(inGame.getTime() < 1 ? 1 : (int)inGame.getTime(), this.itemsDelivered, getPlayerController().getPlayer().getLife());
-			} else {
-				this.playerController.getPlayer().setScore(inGame.getTime() < 1 ? 1 : (int)inGame.getTime(), this.itemsDelivered);
-			}
-			gameController.getInGameMusic().stop();
-			sbg.enterState(Game.END_OF_LEVEL);
-		} else if (this.playerController.getPlayer().getLife() == 0 || this.inGame.getTime() <= 0) {
-			System.out.println("you are dead!");
-			this.inGame.setGameOver(true);
-			if(gameController.getInGameMusic().playing()){
-				gameController.getInGameMusic().pause();
-			}
-			sbg.enterState(Game.END_OF_LEVEL);
-		}
-	}
-
 	@Override
 	public int getID() {
 		return Game.IN_GAME;
@@ -249,17 +225,6 @@ public class InGameController extends BasicGameState {
 	public InGameView getInGameView() {
 		return inGameView;
 	}
-
-
-	public int getItemsDelivered() {
-		return itemsDelivered;
-	}
-
-
-	public void setItemsDelivered(int itemsDelivered) {
-		this.itemsDelivered = itemsDelivered;
-	}
-
 
 	public CharacterController getCharacterController() {
 		return characterController;

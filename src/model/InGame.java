@@ -16,6 +16,7 @@ public class InGame {
 	private boolean gameOver;
 	private File folder;
 	private boolean isPaused;
+	private int itemsDelivered;
 
 		
 	public InGame(Player player) {
@@ -25,6 +26,7 @@ public class InGame {
 		this.folder = new File(".");
 		this.level = 1;
 		isPaused = false;
+		itemsDelivered = 0;
 	}
 
 	public float getTime() {
@@ -79,6 +81,7 @@ public class InGame {
 	public void reset() {
 		this.gameOver = false;
 		this.isPaused = false;
+		this.itemsDelivered = 0;
 	}
 	
 	/**
@@ -114,5 +117,33 @@ public class InGame {
 
 	public void setPaused(boolean isPaused) {
 		this.isPaused = isPaused;
+	}
+	
+	public int getItemsDelivered() {
+		return itemsDelivered;
+	}
+
+	/**
+	 * checks if the game is done by checking the lives on the character 
+	 * and the items left in the world.
+	 * 
+	 */
+	public boolean checkIfGameIsOver(int totalAmountOfItems) {
+		if (totalAmountOfItems == itemsDelivered) {
+			if (getNbrOfFiles(level + 1) == 0) {
+				player.setScore(time < 1 ? 1 : (int)time, this.itemsDelivered, player.getLife());
+			} else {
+				player.setScore(time < 1 ? 1 : (int)time, this.itemsDelivered);
+			}
+			return true;
+		} else if (player.getLife() == 0 || time <= 0) {
+			setGameOver(true);
+			return true;
+		}
+		return false;
+	}
+
+	public void increaseItemsDelivered() {
+		itemsDelivered++;
 	}
 }
