@@ -26,11 +26,14 @@ public class Game {
 	private Scanner scoreScanner;
 	private Scanner nameScanner;
 	
-	public Game() {
+	private InGame inGame;
+	
+	public Game(InGame inGame) {
 		this.scoreList = new int[10];
 		this.nameList = new String[10];
 		this.scoreFile = new File("savings/scoreList.txt");
 		this.nameFile = new File("savings/nameList.txt");
+		this.inGame = inGame;
 		try {
 			this.scoreScanner = new Scanner(scoreFile);
 			this.nameScanner = new Scanner(nameFile);
@@ -42,6 +45,10 @@ public class Game {
 		}
 	}
 	
+	public InGame getInGame() {
+		return inGame;
+	}
+
 	public int[] getScoreList() {
 		return scoreList;
 	}

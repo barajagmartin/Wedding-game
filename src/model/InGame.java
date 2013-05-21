@@ -9,11 +9,13 @@ public class InGame {
 	private float levelTime;
 	//the changable time
 	private float time;
-	private static boolean isNewGame = true;
-	private boolean gameOver = false;
+	private boolean isNewGame;
+	private boolean gameOver;
 		
 	public InGame(Player player) {
 		this.player = player;
+		this.isNewGame = true;
+		this.gameOver = false;
 	}
 
 	public float getTime() {
@@ -40,12 +42,12 @@ public class InGame {
 		return new Random().nextInt(nbrOfVersions) + 1;
 	}
 	
-	public static boolean isNewGame() {
+	public boolean isNewGame() {
 		return isNewGame;
 	}
 
-	public static void setNewGame(final boolean newGame) {
-		isNewGame = newGame;
+	public void setNewGame(final boolean isNewGame) {
+		this.isNewGame = isNewGame;
 	}
 
 	public boolean isGameOver() {
@@ -54,5 +56,9 @@ public class InGame {
 
 	public void setGameOver(boolean gameOver) {
 		this.gameOver = gameOver;
+	}
+
+	public void reset() {
+		this.gameOver = false;
 	}
 }

@@ -56,7 +56,8 @@ public class InGameController extends BasicGameState {
 	
 	public InGameController(GameController gameController) {
 		this.gameController = gameController;
-
+		this.playerController = new PlayerController(this);
+		this.inGame = new InGame(playerController.getPlayer());
 	}
 
 
@@ -64,7 +65,6 @@ public class InGameController extends BasicGameState {
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		this.sbg = sbg;
-		this.playerController = new PlayerController(this);
 		folder = new File(".");
 		this.statusBarController = new StatusBarController(this);
 		isPaused = false;
@@ -77,10 +77,10 @@ public class InGameController extends BasicGameState {
 			throws SlickException {
 		super.enter(container, game);
 		if (!isPaused) {
-			if (InGame.isNewGame()) {
+			if (inGame.isNewGame()) {
 				level = 1;
 				playerController.getPlayer().reset();
-				InGame.setNewGame(false);
+				inGame.setNewGame(false);
 			}else {
 				level++;
 			}
@@ -88,7 +88,7 @@ public class InGameController extends BasicGameState {
 				inGameMusic.loop();
 			}
 			
-			this.inGame = new InGame(playerController.getPlayer());
+			this.inGame.reset();
 			this.inGame.setGameOver(false);
 			this.candyMonsterControllers = new ArrayList<CandyMonsterController>();
 			this.itemControllers = new ArrayList<ItemController>();
