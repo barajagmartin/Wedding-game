@@ -15,6 +15,7 @@ import java.util.Scanner;
 import model.Game;
 
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -28,10 +29,12 @@ public class GameController extends StateBasedGame {
 	private HighScoreStateController highScoreStateController;
 	private NewHighscoreController newHighscoreController;
 	private ControlsController controlsController;
+	private Music inGameMusic;
+
 	
-	public GameController(String name) {
+	public GameController(String name) throws SlickException {
 		super(name);
-		
+		this.inGameMusic = new Music("music/Marimba.wav");
 		this.startMenuController = new StartMenuController(this);
 		this.highScoreStateController = new HighScoreStateController(this);
 		this.newHighscoreController = new NewHighscoreController(this);
@@ -73,5 +76,9 @@ public class GameController extends StateBasedGame {
 
 	public Game getGame() {
 		return game;
+	}
+
+	public Music getInGameMusic() {
+		return inGameMusic;
 	}
 }

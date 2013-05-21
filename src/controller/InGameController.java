@@ -45,13 +45,10 @@ public class InGameController extends BasicGameState {
 	private StateBasedGame sbg;
 	private GameController gameController;
 	
-	
-	private boolean isPaused;
 	//should be based on the frame update (delta or something like that)
 	private float timeStep = 1.0f / 60.0f;
 	private int velocityIterations = 6;
 	private int positionIterations = 2;
-	private Music inGameMusic;
 	private Sound happySound;
 	
 	public InGameController(GameController gameController) {
@@ -66,8 +63,6 @@ public class InGameController extends BasicGameState {
 			throws SlickException {
 		this.sbg = sbg;
 		this.statusBarController = new StatusBarController(this);
-		isPaused = false;
-		this.inGameMusic = new Music("music/Marimba.wav");
 		this.happySound = new Sound("music/happy0.wav");
 	}
 
@@ -75,8 +70,8 @@ public class InGameController extends BasicGameState {
 	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		super.enter(container, game);
-		inGameMusic.setVolume(1f);
-		if (!isPaused) {
+		gameController.getInGameMusic().setVolume(1f);
+		if (!inGame.isPaused()) {
 			if (inGame.isNewGame()) {
 				inGame.resetLevel();
 				playerController.getPlayer().reset();
@@ -85,7 +80,7 @@ public class InGameController extends BasicGameState {
 				this.inGame.levelUp();
 			}
 			if(this.gameController.getStartMenuController().getStartMenu().isMusicOn()) {
-				inGameMusic.loop();
+				gameController.getInGameMusic().loop();
 			}
 			
 			this.inGame.reset();
@@ -135,7 +130,7 @@ public class InGameController extends BasicGameState {
 				itemList.add(itemController.getItem());
 			}
 		} else {
-			isPaused = false;
+			this.inGame.setPaused(false);
 		}
 	}
 
@@ -201,7 +196,7 @@ public class InGameController extends BasicGameState {
 		}
 		if (key == Input.KEY_ESCAPE){
 			try {
-				isPaused = true;
+				inGame.setPaused(true);
 				inGameView.createPauseImage();
 			} catch (SlickException e) {
 				System.out.println("ERROR: No image could be created");
@@ -211,7 +206,7 @@ public class InGameController extends BasicGameState {
 			PauseMenuController.setPreviousState(Game.IN_GAME); 
 			//if sound is off, set volume to 0
 			
-			inGameMusic.setVolume(0.3f);
+			gameController.getInGameMusic().setVolume(0.3f);
 			sbg.enterState(Game.PAUSE_MENU);
 		}
 	}
@@ -229,13 +224,13 @@ public class InGameController extends BasicGameState {
 			} else {
 				this.playerController.getPlayer().setScore((int)this.inGame.getTime(), this.itemsDelivered);
 			}
-			inGameMusic.stop();
+			gameController.getInGameMusic().stop();
 			sbg.enterState(Game.END_OF_LEVEL);
 		} else if (this.playerController.getPlayer().getLife() == 0 || this.inGame.getTime() <= 0) {
 			System.out.println("you are dead!");
 			this.inGame.setGameOver(true);
-			if(inGameMusic.playing()){
-				inGameMusic.pause();
+			if(gameController.getInGameMusic().playing()){
+				gameController.getInGameMusic().pause();
 			}
 			sbg.enterState(Game.END_OF_LEVEL);
 		}
@@ -303,11 +298,5 @@ public class InGameController extends BasicGameState {
 		return happySound;
 	}
 
-	public void setPaused(boolean isPaused) {
-		this.isPaused = isPaused;
-	}
 	
-	public Music getInGameMusic(){
-		return inGameMusic;
-	}
 }

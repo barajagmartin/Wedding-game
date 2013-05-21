@@ -15,6 +15,8 @@ public class InGame {
 	private boolean isNewGame;
 	private boolean gameOver;
 	private File folder;
+	private boolean isPaused;
+
 		
 	public InGame(Player player) {
 		this.player = player;
@@ -22,6 +24,7 @@ public class InGame {
 		this.gameOver = false;
 		this.folder = new File(".");
 		this.level = 1;
+		isPaused = false;
 	}
 
 	public float getTime() {
@@ -75,6 +78,7 @@ public class InGame {
 
 	public void reset() {
 		this.gameOver = false;
+		this.isPaused = false;
 	}
 	
 	/**
@@ -102,6 +106,13 @@ public class InGame {
 
 	public void resetLevel() {
 		this.level = 1;
-		
+	}
+	
+	public boolean isPaused() {
+		return isPaused;
+	}
+
+	public void setPaused(boolean isPaused) {
+		this.isPaused = isPaused;
 	}
 }
