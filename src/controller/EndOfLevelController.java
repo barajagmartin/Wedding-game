@@ -42,7 +42,7 @@ public class EndOfLevelController extends BasicGameState{
 		//kolla om det finns fler banor?
 		this.victory = this.gameController.getInGameController().getNbrOfFiles(this.gameController.getInGameController().getLevel() + 1) == 0;
 		//kolla om spelaren förlorat
-		this.gameOver = (this.gameController.getInGameController().isGameOver());
+		this.gameOver = (this.gameController.getInGameController().getInGame().isGameOver());
 		//kolla om newHighScore
 		this.newHighScore = (this.gameController.getInGameController().getPlayerController().getPlayer().getScore() > this.gameController.getScoreList()[9]);
 			

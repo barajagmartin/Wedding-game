@@ -10,6 +10,7 @@ public class InGame {
 	//the changable time
 	private float time;
 	private static boolean isNewGame = true;
+	private boolean gameOver = false;
 		
 	public InGame(Player player) {
 		this.player = player;
@@ -45,5 +46,13 @@ public class InGame {
 
 	public static void setNewGame(final boolean newGame) {
 		isNewGame = newGame;
+	}
+
+	public boolean isGameOver() {
+		return gameOver;
+	}
+
+	public void setGameOver(boolean gameOver) {
+		this.gameOver = gameOver;
 	}
 }

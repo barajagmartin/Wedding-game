@@ -51,7 +51,6 @@ public class InGameController extends BasicGameState {
 	private float timeStep = 1.0f / 60.0f;
 	private int velocityIterations = 6;
 	private int positionIterations = 2;
-	private boolean gameOver;
 	private Music inGameMusic;
 	private Sound happySound;
 	
@@ -88,8 +87,9 @@ public class InGameController extends BasicGameState {
 			if(this.gameController.getStartMenuController().getStartMenu().isMusicOn()) {
 				inGameMusic.loop();
 			}
-			this.gameOver = false;
+			
 			this.inGame = new InGame(playerController.getPlayer());
+			this.inGame.setGameOver(false);
 			this.candyMonsterControllers = new ArrayList<CandyMonsterController>();
 			this.itemControllers = new ArrayList<ItemController>();
 			this.spikesControllers = new ArrayList<SpikesController>();
@@ -233,7 +233,7 @@ public class InGameController extends BasicGameState {
 			sbg.enterState(Game.END_OF_LEVEL);
 		} else if (this.playerController.getPlayer().getLife() == 0 || this.inGame.getTime() <= 0) {
 			System.out.println("you are dead!");
-			this.gameOver = true;
+			this.inGame.setGameOver(true);
 			if(inGameMusic.playing()){
 				inGameMusic.pause();
 			}
@@ -336,9 +336,6 @@ public class InGameController extends BasicGameState {
 		
 	}
 	
-	public boolean isGameOver() {
-		return this.gameOver;
-	}
 	
 	public Music getInGameMusic(){
 		return inGameMusic;
