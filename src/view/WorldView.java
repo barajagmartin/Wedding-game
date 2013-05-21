@@ -43,11 +43,13 @@ public class WorldView {
 	
 	private float worldWidthMeter;
 	private float worldHeightMeter;
+	public CharacterView characterView;
 	
-	public WorldView(model.World world, BlockMapView blockMapView, 
+	public WorldView(model.World world, CharacterView characterView, BlockMapView blockMapView, 
 			ArrayList<ItemView> itemViewList, 
 			ArrayList<CandyMonsterView> candyMonsterViewList) {
 		this.world = world;
+		this.characterView = characterView;
 		worldWidthMeter = WorldUtils.pixel2Meter(world.getWorldWidthPx());
 		worldHeightMeter = WorldUtils.pixel2Meter(world.getWorldHeightPx());
 		this.blockMapView = blockMapView;
@@ -85,6 +87,10 @@ public class WorldView {
 		
 	}
 	
+	public CharacterView getCharacterView() {
+		return characterView;
+	}
+
 	public World getjBox2DWorld() {
 		return jBox2DWorld;
 	}

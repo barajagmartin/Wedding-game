@@ -7,6 +7,7 @@ import java.util.Random;
 
 public class InGame {
 	private Player player;
+	private World world;
 	//the total time of the level
 	private float levelTime;
 	private int level;
@@ -39,6 +40,14 @@ public class InGame {
 
 	public Player getPlayer() {
 		return player;
+	}
+
+	public World getWorld() {
+		return world;
+	}
+
+	public void setWorld(World world) {
+		this.world = world;
 	}
 
 	public float getLevelTime() {

@@ -16,14 +16,16 @@ public class MoveableBoxView {
 	
 	public MoveableBoxView(MoveableBox moveableBox, WorldView worldView) throws SlickException {
 		this.moveableBox = moveableBox;
-		boxBody = WorldBodyFactory.createBody(WorldObjects.MOVEABLE_BOX, worldView.getjBox2DWorld(), moveableBox.getPos());
 		image = new Image("pics/moveableBox.png");
 	}
 
 	public MoveableBox getMoveableBox() {
 		return moveableBox;
 	}
-
+	
+	public void setBoxBody(Body boxBody) {
+		this.boxBody = boxBody;
+	}
 	public Body getBoxBody() {
 		return boxBody;
 	}

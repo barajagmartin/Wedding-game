@@ -54,7 +54,7 @@ public class PauseMenuController extends BasicGameState{
 	
 	@Override
 	public void keyPressed (int key, char c) {
-		if(key == Input.KEY_F11) {
+		if(key == Input.KEY_F) {
 			this.gameController.changeFullscreen(this.gc);
 		}
 		if(key == Input.KEY_ESCAPE) {

@@ -23,6 +23,7 @@ import view.CandyMonsterView;
 import view.InGameView;
 import view.MoveableBoxView;
 import view.SpikesView;
+import model.Character;
 import model.FixedPosition;
 import model.Game;
 import model.InGame;
@@ -100,13 +101,13 @@ public class InGameController extends BasicGameState {
 				this.candyMonsterControllers.add(new CandyMonsterController(this, i)); 
 				this.itemControllers.add(new ItemController(this, i));
 			}
+			
+			this.characterController = new CharacterController(this);
 
-			this.worldController = new WorldController(this);
 			/*Create spikes*/
 			for (int i = 0; i < blockMapController.getSpikesMap().getBlockList().size(); i++){
 				this.spikesControllers.add(new SpikesController(this, i));
 			}
-			this.characterController = new CharacterController(this);
 			for (FixedPosition pos : blockMapController.getBlockMapView().getMoveableBoxMap().getBlockList()) {
 				this.moveableBoxControllers.add(new MoveableBoxController(this, pos));
 			}
@@ -121,7 +122,9 @@ public class InGameController extends BasicGameState {
 			for (MoveableBoxController moveableBoxController : moveableBoxControllers) {
 				tmpMoveableBoxViewList.add(moveableBoxController.getMoveableBoxView());
 			}
-
+			
+			this.worldController = new WorldController(this, characterController.getCharacterView());
+			inGame.setWorld(worldController.getWorld());
 			this.inGameView = new InGameView(inGame, worldController.getWorldView(), statusBarController.getStatusBarView(), 
 					characterController.getCharacterView(), tmpMoveableBoxViewList, tmpSpikesViewList, this.inGame.getLevel());
 
@@ -166,6 +169,14 @@ public class InGameController extends BasicGameState {
 			this.timeStep = (float) delta / 1000f * 4; //4 is for getting a good speed
 		}
 		worldController.getWorldView().getjBox2DWorld().step(timeStep, velocityIterations, positionIterations);
+		
+		characterController.getCharacter().setX(WorldUtils.meter2Pixel(
+				inGameView.getCharacterView().getCharacterBody().getPosition().x) -
+				Character.RADIUS);
+		characterController.getCharacter().setY(WorldUtils.meter2Pixel(
+				inGameView.getCharacterView().getCharacterBody().getPosition().y) -
+				Character.RADIUS);
+		
 		worldController.updateSlickShape();
 		worldController.updateItemPosition(worldController.getItemViewList(), characterController.getCharacterView());
 		characterController.getCharacter().setX((int)characterController.getCharacterView().getSlickShape().getX());
@@ -215,7 +226,7 @@ public class InGameController extends BasicGameState {
 			sbg.enterState(Game.PAUSE_MENU);
 		}
 		
-		if(key == Input.KEY_F11) {
+		if(key == Input.KEY_F) {
 			this.gameController.changeFullscreen(this.gameContainer);
 		}
 	}
@@ -244,6 +255,11 @@ public class InGameController extends BasicGameState {
 
 	public BlockMapController getBlockMapController() {
 		return blockMapController;
+	}
+
+
+	public ArrayList<MoveableBoxController> getMoveableBoxControllers() {
+		return moveableBoxControllers;
 	}
 
 
