@@ -47,4 +47,12 @@ public class CharacterTest {
 		itemList.get(1).setPickedUp(false);
 		assertTrue(!character.isHoldingItem(itemList));	
 	}
+	
+	@Test
+	public void testIsOnSpikes() {
+		Character character = new Character(100, 100);
+		assertTrue(!character.isOnSpikes());
+		character.setOnSpikes(true);
+		assertTrue(character.isOnSpikes());
+	}
 }
