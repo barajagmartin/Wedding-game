@@ -40,6 +40,7 @@ public class WorldController {
 		this.inGameController = inGameController;
 		candyMonsters = new ArrayList<CandyMonster>();
 		items = new ArrayList<Item>();
+		spikes = new ArrayList<Spikes>();
 		moveableBoxViewList = new ArrayList<MoveableBoxView>();
 		candyMonsterViewList = new ArrayList<CandyMonsterView>();
 		itemViewList = new ArrayList<ItemView>();
@@ -50,17 +51,17 @@ public class WorldController {
 			moveableBoxViewList.add(moveableBoxController.getMoveableBoxView());
 		}
 		
-		for (CandyMonsterController candyMonsterController : inGameController.getCandyMonsterController()) { //FIXME
+		for (CandyMonsterController candyMonsterController : inGameController.getCandyMonsterControllers()) { //FIXME
 			candyMonsters.add(candyMonsterController.getCandyMonster());
 			candyMonsterViewList.add(candyMonsterController.getCandyMonsterView());
 		}
 		
-		for (ItemController itemController : inGameController.getItemController()) { //FIXME
+		for (ItemController itemController : inGameController.getItemControllers()) { //FIXME
 			items.add(itemController.getItem());
 			itemViewList.add(itemController.getItemView());
 		}
 		
-		for (SpikesController spikesController : inGameController.getSpikesController()) { //FIXME
+		for (SpikesController spikesController : inGameController.getSpikesControllers()) { //FIXME
 			spikes.add(spikesController.getSpikes());
 			spikesViewList.add(spikesController.getSpikesView());
 		}
@@ -84,7 +85,7 @@ public class WorldController {
 			spikesView.setBody(WorldBodyFactory.createBody(WorldObjects.SPIKES_SENSOR,
 					worldView.getjBox2DWorld(), spikesView.getSpikes().getPos()));
 		}
-		for (SpikesController spikesController : inGameController.getSpikesController()) { //FIXME
+		for (SpikesController spikesController : inGameController.getSpikesControllers()) { //FIXME
 			worldView.getjBox2DWorld().setContactListener(spikesController);
 		}
 			

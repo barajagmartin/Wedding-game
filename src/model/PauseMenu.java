@@ -6,7 +6,6 @@ public class PauseMenu extends AbstractMenu{
 	
 	public PauseMenu() {
 		this.resetIsMarked();
-		
 	}
 	
 	@Override
