@@ -2,7 +2,12 @@ package controller;
 
 import java.util.ArrayList;
 
+import org.jbox2d.callbacks.ContactImpulse;
+import org.jbox2d.callbacks.ContactListener;
+import org.jbox2d.collision.Manifold;
 import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.Fixture;
+import org.jbox2d.dynamics.contacts.Contact;
 
 import utils.WorldBodyFactory;
 import utils.WorldObjects;
@@ -22,7 +27,7 @@ import model.MoveableBox;
 import model.Spikes;
 import model.World;
 
-public class WorldController {
+public class WorldController implements ContactListener {
 	private InGameController inGameController;
 	private ArrayList<MoveableBox> moveableBoxes;
 	private ArrayList<CandyMonster> candyMonsters;
@@ -36,7 +41,7 @@ public class WorldController {
 	private WorldView worldView;
 	
 	
-	public WorldController(InGameController inGameController, CharacterView characterView) implements ContactListener {
+	public WorldController(InGameController inGameController, CharacterView characterView) {
 		this.inGameController = inGameController;
 		moveableBoxes = new ArrayList<MoveableBox>();
 		candyMonsters = new ArrayList<CandyMonster>();
@@ -87,7 +92,7 @@ public class WorldController {
 					worldView.getjBox2DWorld(), spikesViewList.get(i).getSpikes().getPos()));
 		}
 		for (int i = 0; i < inGameController.getSpikesControllers().size(); i++) {
-			worldView.getjBox2DWorld().setContactListener(inGameController.getSpikesControllers().get(i));
+			worldView.getjBox2DWorld().setContactListener(this);
 		}
 			
 	}
@@ -142,5 +147,38 @@ public class WorldController {
 			}
 		}
 	}
+	
+	@Override
+	public void beginContact(Contact contact) {
+		Fixture fixtA = contact.getFixtureA();
+		Fixture fixtB = contact.getFixtureB();
+		if(fixtA.getUserData() != null && fixtB.getUserData() != null) {
+			if(fixtA.getUserData().equals("spikes") && fixtB.getUserData().equals("player") && 
+					inGameController.getCharacterController().getCharacter().getTimeSinceHit() > 1) {
+				this.inGameController.getCharacterController().getCharacterView().animateBlinking();
+				this.inGameController.getCharacterController().getCharacter().setOnSpikes(true);
+			}
+		}
+	}
+
+	@Override
+	public void endContact(Contact contact) {
+		Fixture fixtA = contact.getFixtureA();
+		Fixture fixtB = contact.getFixtureB();
+		
+		if(fixtA.getUserData() != null && fixtB.getUserData() != null) {
+			if(fixtA.getUserData().equals("spikes") && fixtB.getUserData().equals("player")) {
+				inGameController.getCharacterController().getCharacterView().animateWalking();	
+				this.inGameController.getCharacterController().getCharacter().setOnSpikes(false);
+			}
+		}
+	}
+
+	@Override
+	public void postSolve(Contact contact, ContactImpulse impulse) {}
+
+	@Override
+	public void preSolve(Contact contact, Manifold oldManifold) {}
+
 	
 }

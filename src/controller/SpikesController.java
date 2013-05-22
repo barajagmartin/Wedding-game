@@ -1,17 +1,12 @@
 package controller;
 
-import org.jbox2d.callbacks.ContactImpulse;
-import org.jbox2d.callbacks.ContactListener;
-import org.jbox2d.collision.Manifold;
-import org.jbox2d.dynamics.Fixture;
-import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.SlickException;
 
 import model.Spikes;
 import view.CharacterView;
 import view.SpikesView;
 
-public class SpikesController implements ContactListener {
+public class SpikesController {
 	
 	private Spikes spikes;
 	private SpikesView spikesView;
@@ -30,39 +25,5 @@ public class SpikesController implements ContactListener {
 
 	public SpikesView getSpikesView() {
 		return spikesView;
-	}
-
-	@Override
-	public void beginContact(Contact contact) {
-		Fixture fixtA = contact.getFixtureA();
-		Fixture fixtB = contact.getFixtureB();
-		
-		if(fixtA.getUserData() != null && fixtB.getUserData() != null) {
-			if(fixtA.getUserData().equals("spikes") && fixtB.getUserData().equals("player") && 
-					inGameController.getCharacterController().getCharacter().getTimeSinceHit() > 1) {
-				this.inGameController.getCharacterController().getCharacterView().animateBlinking();
-				this.inGameController.getCharacterController().getCharacter().setOnSpikes(true);
-			}
-		}
-	}
-
-	@Override
-	public void endContact(Contact contact) {
-		Fixture fixtA = contact.getFixtureA();
-		Fixture fixtB = contact.getFixtureB();
-		
-		if(fixtA.getUserData() != null && fixtB.getUserData() != null) {
-			if(fixtA.getUserData().equals("spikes") && fixtB.getUserData().equals("player")) {
-				inGameController.getCharacterController().getCharacterView().animateWalking();	
-				this.inGameController.getCharacterController().getCharacter().setOnSpikes(false);
-			}
-		}
-	}
-
-	@Override
-	public void postSolve(Contact contact, ContactImpulse impulse) {}
-
-	@Override
-	public void preSolve(Contact contact, Manifold oldManifold) {}
-	
+	}	
 }
