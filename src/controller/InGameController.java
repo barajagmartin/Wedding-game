@@ -101,7 +101,7 @@ public class InGameController extends BasicGameState {
 				this.candyMonsterControllers.add(new CandyMonsterController(this, i)); 
 				this.itemControllers.add(new ItemController(this, i));
 			}
-			
+
 			this.characterController = new CharacterController(this);
 
 			/*Create spikes*/
@@ -114,8 +114,8 @@ public class InGameController extends BasicGameState {
 
 			//temporarily store the SpikesViews in a list
 			ArrayList<SpikesView> tmpSpikesViewList = new ArrayList<SpikesView>();
-			for (SpikesController spikesController : spikesControllers) {
-				tmpSpikesViewList.add(spikesController.getSpikesView());
+			for (int i = 0; i < spikesControllers.size(); i++) {
+				tmpSpikesViewList.add(spikesControllers.get(i).getSpikesView());
 			}
 			//temporarily store the MoveableBoxViews in a list
 			ArrayList<MoveableBoxView> tmpMoveableBoxViewList = new ArrayList<MoveableBoxView>();

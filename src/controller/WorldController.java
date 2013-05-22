@@ -36,8 +36,9 @@ public class WorldController {
 	private WorldView worldView;
 	
 	
-	public WorldController(InGameController inGameController, CharacterView characterView) {
+	public WorldController(InGameController inGameController, CharacterView characterView) implements ContactListener {
 		this.inGameController = inGameController;
+		moveableBoxes = new ArrayList<MoveableBox>();
 		candyMonsters = new ArrayList<CandyMonster>();
 		items = new ArrayList<Item>();
 		spikes = new ArrayList<Spikes>();
@@ -61,9 +62,9 @@ public class WorldController {
 			itemViewList.add(itemController.getItemView());
 		}
 		
-		for (SpikesController spikesController : inGameController.getSpikesControllers()) { //FIXME
-			spikes.add(spikesController.getSpikes());
-			spikesViewList.add(spikesController.getSpikesView());
+		for (int i = 0; i < inGameController.getSpikesControllers().size(); i++) {
+			spikes.add(inGameController.getSpikesControllers().get(i).getSpikes());
+			spikesViewList.add(inGameController.getSpikesControllers().get(i).getSpikesView());
 		}
 		
 		this.world = new World(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT, characterView.getCharacter(),
@@ -81,12 +82,12 @@ public class WorldController {
 					worldView.getjBox2DWorld(), moveableBoxView.getMoveableBox().getPos()));
 		}
 		
-		for (SpikesView spikesView : spikesViewList) {
-			spikesView.setBody(WorldBodyFactory.createBody(WorldObjects.SPIKES_SENSOR,
-					worldView.getjBox2DWorld(), spikesView.getSpikes().getPos()));
+		for (int i = 0; i < spikesViewList.size(); i++) {
+			spikesViewList.get(i).setBody(WorldBodyFactory.createBody(WorldObjects.SPIKES_SENSOR,
+					worldView.getjBox2DWorld(), spikesViewList.get(i).getSpikes().getPos()));
 		}
-		for (SpikesController spikesController : inGameController.getSpikesControllers()) { //FIXME
-			worldView.getjBox2DWorld().setContactListener(spikesController);
+		for (int i = 0; i < inGameController.getSpikesControllers().size(); i++) {
+			worldView.getjBox2DWorld().setContactListener(inGameController.getSpikesControllers().get(i));
 		}
 			
 	}

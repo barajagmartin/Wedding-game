@@ -21,6 +21,7 @@ public class Main {
 		try {
 			app = new AppGameContainer(new GameController(GAME_NAME));
 			app.setDisplayMode(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT, false);
+			app.setShowFPS(false);
 			app.start();
 		} catch (SlickException e) {
 			e.printStackTrace();
