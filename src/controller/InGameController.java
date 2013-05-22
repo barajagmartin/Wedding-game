@@ -263,17 +263,17 @@ public class InGameController extends BasicGameState {
 	}
 
 
-	public ArrayList<CandyMonsterController> getCandyMonsterController() {
+	public ArrayList<CandyMonsterController> getCandyMonsterControllers() {
 		return candyMonsterControllers;
 	}
 
 
-	public ArrayList<ItemController> getItemController() {
+	public ArrayList<ItemController> getItemControllers() {
 		return itemControllers;
 	}
 
 
-	public ArrayList<SpikesController> getSpikesController() {
+	public ArrayList<SpikesController> getSpikesControllers() {
 		return spikesControllers;
 	}
 
