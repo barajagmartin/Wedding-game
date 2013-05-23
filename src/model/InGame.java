@@ -6,6 +6,7 @@ import java.util.Random;
 
 
 public class InGame {
+	public static final int STATE_ID = 1;
 	private Player player;
 	private World world;
 	//the total time of the level
@@ -23,11 +24,9 @@ public class InGame {
 	public InGame(Player player) {
 		this.player = player;
 		this.isNewGame = true;
-		this.gameOver = false;
 		this.folder = new File(".");
-		this.level = 1;
-		isPaused = false;
-		itemsDelivered = 0;
+		resetLevel();
+		reset();
 	}
 
 	public float getTime() {
@@ -86,6 +85,10 @@ public class InGame {
 	public void setGameOver(boolean gameOver) {
 		this.gameOver = gameOver;
 	}
+	
+	public void resetLevel() {
+		this.level = 1;
+	}
 
 	public void reset() {
 		this.gameOver = false;
@@ -114,10 +117,6 @@ public class InGame {
 	public int getNbrOfFiles(int level) {
 		return folder.listFiles(findFiles(level)).length;
 		
-	}
-
-	public void resetLevel() {
-		this.level = 1;
 	}
 	
 	public boolean isPaused() {

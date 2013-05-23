@@ -49,5 +49,4 @@ public class Item {
 	public void setDelivered(boolean isDelivered) {
 		this.isDelivered = isDelivered;
 	}
-	
 }

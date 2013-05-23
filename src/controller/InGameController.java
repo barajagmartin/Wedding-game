@@ -24,10 +24,12 @@ import view.InGameView;
 import view.MoveableBoxView;
 import view.SpikesView;
 import model.Character;
+import model.EndOfLevel;
 import model.FixedPosition;
 import model.Game;
 import model.InGame;
 import model.Item;
+import model.PauseMenu;
 
 public class InGameController extends BasicGameState {
 	private InGame inGame;
@@ -81,7 +83,7 @@ public class InGameController extends BasicGameState {
 			}else {
 				this.inGame.levelUp();
 			}
-			if(this.gameController.getGame().getStartMenu().isMusicOn()) {
+			if(this.gameController.getGame().isMusicOn()) {
 				gameController.getInGameMusic().loop();
 			}
 			
@@ -155,12 +157,18 @@ public class InGameController extends BasicGameState {
 			this.playerController.getPlayer().loseOneLife();
 			this.characterController.getCharacter().setTimeSinceHit(0);
 		}
+		
+		if (this.characterController.getCharacter().getTimeSinceHit() <= 1) {
+			characterController.getCharacterView().animateBlinking();
+		} else {
+			characterController.getCharacterView().animateWalking();
+		}
 		//update the timeBar
 		this.statusBarController.getStatusBarView().updateTimeBar(this.inGame.getLevelTime(), this.inGame.getTime());
 		//check if the game is over
 		if (inGame.checkIfGameIsOver(itemControllers.size())) {
 			gameController.getInGameMusic().stop();
-			sbg.enterState(Game.END_OF_LEVEL);
+			sbg.enterState(EndOfLevel.STATE_ID);
 		}
 		//check key presses
 		characterController.keyPressedUpdate(gc);
@@ -219,11 +227,11 @@ public class InGameController extends BasicGameState {
 				e.printStackTrace();
 			}
 			//Set previous state to the state you where in before entering pause menu
-			PauseMenuController.setPreviousState(Game.IN_GAME); 
+			PauseMenuController.setPreviousState(InGame.STATE_ID); 
 			//if sound is off, set volume to 0
 			
 			gameController.getInGameMusic().setVolume(0.3f);
-			sbg.enterState(Game.PAUSE_MENU);
+			sbg.enterState(PauseMenu.STATE_ID);
 		}
 		
 		if(key == Input.KEY_F) {
@@ -233,7 +241,7 @@ public class InGameController extends BasicGameState {
 
 	@Override
 	public int getID() {
-		return Game.IN_GAME;
+		return InGame.STATE_ID;
 	}
 
 	public InGame getInGame() {

@@ -1,7 +1,8 @@
 package model;
 
-public class StartMenu extends AbstractMenu {
+public class StartMenu implements IMenu {
 	private int isMarked;
+	public static final int STATE_ID = 0;
 	
 	public StartMenu(){
 		isMarked = 0;

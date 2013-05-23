@@ -1,6 +1,8 @@
 package controller;
 
+import model.Controls;
 import model.Game;
+import model.HighScore;
 import model.InGame;
 import model.StartMenu;
 
@@ -31,7 +33,7 @@ public class StartMenuController extends BasicGameState {
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		this.sbg = game;
-		this.startMenuView = new StartMenuView(this.startMenu);
+		this.startMenuView = new StartMenuView(this.startMenu, gameController.getGameView());
 		this.startMenuMusic = new Music("music/backgroundMusic.wav");
 		
 	}
@@ -40,7 +42,7 @@ public class StartMenuController extends BasicGameState {
 	public void enter(GameContainer container, StateBasedGame game) throws SlickException {
 		super.enter(container, game);
 		this.gameController.getGame().getInGame().setNewGame(true);
-		if(this.startMenu.isMusicOn()) {
+		if(gameController.getGame().isMusicOn()) {
 			this.startMenuMusic.loop();
 		}
 	}
@@ -68,25 +70,25 @@ public class StartMenuController extends BasicGameState {
 		}
 		if(key == Input.KEY_ENTER) {
 			switch(startMenu.getIsMarked()) {
-				case 0: sbg.enterState(Game.IN_GAME);
+				case 0: sbg.enterState(InGame.STATE_ID);
 						break;
-				case 1: sbg.enterState(Game.HIGHSCORE);
+				case 1: sbg.enterState(HighScore.STATE_ID);
 						break;
-				case 2: if(startMenu.isSoundOn()) {
-							startMenu.setSoundOn(false);
+				case 2: if(gameController.getGame().isSoundOn()) {
+							gameController.getGame().setSoundOn(false);
 						} else {
-							startMenu.setSoundOn(true);
+							gameController.getGame().setSoundOn(true);
 						}
 						break;
-				case 3: if(startMenu.isMusicOn()) {
+				case 3: if(gameController.getGame().isMusicOn()) {
 							this.startMenuMusic.pause();
-							startMenu.setMusicOn(false);
+							gameController.getGame().setMusicOn(false);
 						} else {
 							this.startMenuMusic.play();
-							startMenu.setMusicOn(true);
+							gameController.getGame().setMusicOn(true);
 						}	
 						break;
-				case 4: sbg.enterState(Game.CONTROLS);
+				case 4: sbg.enterState(Controls.STATE_ID);
 						break;
 				case 5: System.exit(0);
 			}
@@ -106,7 +108,7 @@ public class StartMenuController extends BasicGameState {
 
 	@Override
 	public int getID() {
-		return Game.START_MENU;
+		return StartMenu.STATE_ID;
 	}
 
 }

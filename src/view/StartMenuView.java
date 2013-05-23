@@ -14,12 +14,14 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class StartMenuView extends AbstractMenuView {
 	private StartMenu startMenu;
+	private GameView gameView;
 	private int buttonWidth;
 	private int buttonHeight;
 	private ArrayList<Rectangle> buttonList;
 
-	public StartMenuView(StartMenu startMenu) throws SlickException {
+	public StartMenuView(StartMenu startMenu, GameView gameView) throws SlickException {
 		this.startMenu = startMenu;
+		this.gameView = gameView;
 		this.buttonWidth = Game.WINDOW_WIDTH;
 		this.buttonHeight = (2*Game.WINDOW_HEIGHT)/15;
 		buttonList = new ArrayList<Rectangle>();
@@ -57,14 +59,14 @@ public class StartMenuView extends AbstractMenuView {
 				case 1: g.drawImage(super.getHighscoreLabel(), buttonX, buttonY);
 						break;
 						
-				case 2: if(startMenu.isSoundOn()){
+				case 2: if(gameView.getGame().isSoundOn()){
 							g.drawImage(super.getSoundOnLabel(), buttonX, buttonY);
 						} else {
 							g.drawImage(super.getSoundOffLabel(), buttonX, buttonY);
 						}
 						break;
 						
-				case 3: if(startMenu.isMusicOn()){
+				case 3: if(gameView.getGame().isMusicOn()){
 							g.drawImage(super.getMusicOnLabel(), buttonX, buttonY);
 						} else {
 							g.drawImage(super.getMusicOffLabel(), buttonX, buttonY);

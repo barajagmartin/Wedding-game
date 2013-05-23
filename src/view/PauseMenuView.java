@@ -16,12 +16,14 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class PauseMenuView extends AbstractMenuView {
 	private PauseMenu pauseMenu;
+	private GameView gameView;
 	private int buttonHeight;
 	private int buttonWidth;
 	private ArrayList<Rectangle> buttonList;
 
-	public PauseMenuView(PauseMenu pauseMenu) throws SlickException {
+	public PauseMenuView(PauseMenu pauseMenu, GameView gameView) throws SlickException {
 		this.pauseMenu = pauseMenu;
+		this.gameView = gameView;
 		this.buttonWidth = Game.WINDOW_WIDTH;
 		this.buttonHeight = (2*Game.WINDOW_HEIGHT)/15;
 		buttonList = new ArrayList<Rectangle>();
@@ -59,14 +61,14 @@ public class PauseMenuView extends AbstractMenuView {
 			case 0: g.drawImage(super.getResumeLabel(), buttonX, buttonY);
 					break;
 			
-			case 1: if(pauseMenu.isSoundOn()){
+			case 1: if(gameView.getGame().isSoundOn()){
 						g.drawImage(super.getSoundOnLabel(), buttonX, buttonY);
 					} else {
 						g.drawImage(super.getSoundOffLabel(), buttonX, buttonY);
 					}
 					break;
 					
-			case 2: if(pauseMenu.isMusicOn()){
+			case 2: if(gameView.getGame().isMusicOn()){
 						g.drawImage(super.getMusicOnLabel(), buttonX, buttonY);
 					} else {
 						g.drawImage(super.getMusicOffLabel(), buttonX, buttonY);

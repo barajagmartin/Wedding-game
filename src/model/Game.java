@@ -8,18 +8,13 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Game {
-	public static final int START_MENU = 0;
-	public static final int IN_GAME = 1;
-	public static final int HIGHSCORE = 2;
-	public static final int PAUSE_MENU = 3; 
-	public static final int END_OF_LEVEL = 4;
-	public static final int NEW_HIGHSCORE = 5;
-	public static final int CONTROLS = 6;
 	
 	public static final int WINDOW_WIDTH = 1024;
 	public static final int WINDOW_HEIGHT = 768;
 	
-	private  int[] scoreList;
+	private boolean isMusicOn;
+	private boolean isSoundOn;
+	private int[] scoreList;
 	private String[] nameList;
 	private File scoreFile;
 	private File nameFile;
@@ -29,13 +24,14 @@ public class Game {
 	private InGame inGame;
 	private StartMenu startMenu;
 	
-	public Game(InGame inGame, StartMenu startMenu) {
+	public Game(InGame inGame) {
 		this.scoreList = new int[10];
 		this.nameList = new String[10];
 		this.scoreFile = new File("savings/scoreList.txt");
 		this.nameFile = new File("savings/nameList.txt");
 		this.inGame = inGame;
-		this.startMenu = startMenu;
+		this.isMusicOn = true;
+		this.isSoundOn = true;
 		try {
 			this.scoreScanner = new Scanner(scoreFile);
 			this.nameScanner = new Scanner(nameFile);
@@ -47,10 +43,11 @@ public class Game {
 		}
 	}
 	
+
 	public StartMenu getStartMenu() {
 		return startMenu;
 	}
-
+	
 	public InGame getInGame() {
 		return inGame;
 	}
@@ -61,6 +58,22 @@ public class Game {
 
 	public String[] getNameList() {
 		return nameList;
+	}
+	
+	public void setSoundOn(boolean isSoundOn){
+		this.isSoundOn = isSoundOn;
+	}
+	
+	public boolean isSoundOn() {
+		return isSoundOn;
+	}
+	
+	public void setMusicOn(boolean isMusicOn){
+		this.isMusicOn = isMusicOn;
+	}
+	
+	public boolean isMusicOn() {
+		return isMusicOn;
 	}
 	
 	public void readScoreList () throws IOException {
