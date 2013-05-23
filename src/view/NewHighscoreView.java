@@ -24,6 +24,7 @@ public class NewHighscoreView {
 		this.font = new TrueTypeFont(new Font(Font.MONOSPACED, Font.BOLD, 50), false);
 		this.textField = new TextField(gc, font, Game.WINDOW_WIDTH/4, Game.WINDOW_HEIGHT/2, 300, 50);
 		this.textField.setMaxLength(8);
+		this.score = score;
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
