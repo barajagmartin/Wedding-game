@@ -11,6 +11,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import utils.SaveUtils;
 import view.HighScoreStateView;
 
 public class HighScoreStateController extends BasicGameState{
@@ -27,7 +28,7 @@ public class HighScoreStateController extends BasicGameState{
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		this.highScoreStateView = new HighScoreStateView(this.gameController.getGame().getScoreList(), this.gameController.getGame().getNameList());
+		this.highScoreStateView = new HighScoreStateView(SaveUtils.getScoreList(), SaveUtils.getNameList());
 		this.gc = gc;
 		this.sbg=sbg;
 		

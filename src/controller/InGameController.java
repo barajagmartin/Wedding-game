@@ -103,8 +103,8 @@ public class InGameController extends BasicGameState {
 			this.blockMapController = new BlockMapController(this, new TiledMap(BlockMapUtils.getTmxFile(this.inGame.getLevel(), inGame.randomizeVersion(nbrOfVersions))));
 			/*Create candy monster and its items*/
 			for (int i = 0; i < blockMapController.getCandyMonsterMap().getBlockList().size(); i++){
-				this.candyMonsterControllers.add(new CandyMonsterController(this, i)); 
-				this.itemControllers.add(new ItemController(this, i));
+				this.candyMonsterControllers.add(new CandyMonsterController(this, blockMapController.getBlockMapView().getCandyMonsterNbrMap().get(i)));
+				this.itemControllers.add(new ItemController(this, blockMapController.getBlockMapView().getItemNbrMap().get(i)));
 			}
 
 			this.characterController = new CharacterController(this);

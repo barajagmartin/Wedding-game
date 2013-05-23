@@ -5,6 +5,7 @@ import model.Game;
 import model.HighScore;
 import model.NewHighscore;
 
+import utils.SaveUtils;
 import view.NewHighscoreView;
 import model.NewHighscore;
 
@@ -68,7 +69,7 @@ public class NewHighscoreController extends BasicGameState implements ComponentL
 
 	@Override
 	public void componentActivated(AbstractComponent textField) {
-		this.gameController.getGame().saveScore(this.gameController.getGame().getInGame().getPlayer().getScore(),
+		SaveUtils.saveScore(this.gameController.getGame().getInGame().getPlayer().getScore(),
 				this.newHighscoreView.getTextField().getText());
 		textField.setFocus(false);
 		sbg.enterState(HighScore.STATE_ID);
