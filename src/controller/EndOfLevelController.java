@@ -9,6 +9,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import utils.SaveUtils;
 import view.EndOfLevelView;
 
 public class EndOfLevelController extends BasicGameState{
@@ -43,7 +44,7 @@ public class EndOfLevelController extends BasicGameState{
 		//kolla om spelaren förlorat
 		this.gameOver = (this.gameController.getGame().getInGame().isGameOver());
 		//kolla om newHighScore
-		this.newHighScore = (this.gameController.getGame().getInGame().getPlayer().getScore() > this.gameController.getGame().getScoreList()[9]);
+		this.newHighScore = (this.gameController.getGame().getInGame().getPlayer().getScore() > SaveUtils.getScoreList()[9]);
 			
 		this.endOflevelView = new EndOfLevelView(this.gameController.getGame().getInGame().getPlayer().getScore(), gameOver, victory);
 	}
