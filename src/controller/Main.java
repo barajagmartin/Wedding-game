@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 
 import model.Game;
 
+import org.lwjgl.opengl.Display;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.SlickException;
 
@@ -22,6 +23,7 @@ public class Main {
 			app = new AppGameContainer(new GameController(GAME_NAME));
 			app.setDisplayMode(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT, false);
 			app.setShowFPS(false);
+			app.setIcons(new String[]{"pics/icon16.png", "pics/icon32.png"});
 			app.start();
 		} catch (SlickException e) {
 			e.printStackTrace();
