@@ -91,9 +91,7 @@ public class WorldController implements ContactListener {
 			spikesViewList.get(i).setBody(WorldBodyFactory.createBody(WorldObjects.SPIKES_SENSOR,
 					worldView.getjBox2DWorld(), spikesViewList.get(i).getSpikes().getPos()));
 		}
-		for (int i = 0; i < inGameController.getSpikesControllers().size(); i++) {
-			worldView.getjBox2DWorld().setContactListener(this);
-		}
+		worldView.getjBox2DWorld().setContactListener(this);
 			
 	}
 	
@@ -152,8 +150,13 @@ public class WorldController implements ContactListener {
 	public void beginContact(Contact contact) {
 		Fixture fixtA = contact.getFixtureA();
 		Fixture fixtB = contact.getFixtureB();
+		System.out.println(fixtA.m_userData);
+		System.out.println(fixtB.m_userData);
+		System.out.println();
+		System.out.println("hej");
 		if(fixtA.getUserData() != null && fixtB.getUserData() != null) {
-			if(fixtA.getUserData().equals("spikes") && fixtB.getUserData().equals("player") && 
+			if((fixtA.getUserData().equals("spikes") && fixtB.getUserData().equals("player") ||
+					fixtA.getUserData().equals("player") && fixtB.getUserData().equals("spikes")) && 
 					inGameController.getCharacterController().getCharacter().getTimeSinceHit() > 1) {
 				this.inGameController.getCharacterController().getCharacterView().animateBlinking();
 				this.inGameController.getCharacterController().getCharacter().setOnSpikes(true);
@@ -165,9 +168,9 @@ public class WorldController implements ContactListener {
 	public void endContact(Contact contact) {
 		Fixture fixtA = contact.getFixtureA();
 		Fixture fixtB = contact.getFixtureB();
-		
 		if(fixtA.getUserData() != null && fixtB.getUserData() != null) {
-			if(fixtA.getUserData().equals("spikes") && fixtB.getUserData().equals("player")) {
+			if(fixtA.getUserData().equals("spikes") && fixtB.getUserData().equals("player") ||
+					fixtA.getUserData().equals("player") && fixtB.getUserData().equals("spikes")) {
 				inGameController.getCharacterController().getCharacterView().animateWalking();	
 				this.inGameController.getCharacterController().getCharacter().setOnSpikes(false);
 			}
