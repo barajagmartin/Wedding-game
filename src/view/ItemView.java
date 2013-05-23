@@ -19,19 +19,6 @@ public class ItemView {
 		this.item = item;
 		this.shape = new Rectangle(item.getX(), item.getY(), item.WIDTH, item.HEIGHT);
 		this.image = new Image("pics/item" + String.valueOf(candyNumber) +".png");
-		/*Set a color of a candy monster depending on its ID*/
-		switch(candyNumber){
-			case 0: color = Color.cyan;
-					break;
-			case 1: color = Color.magenta;
-					break;
-			case 2: color = Color.pink;
-					break;
-		}
-	}
-	
-	public Color getColor(){
-		return color;
 	}
 	
 	public Item getItem(){

@@ -17,20 +17,23 @@ public class CharacterView {
 	private Shape slickShape;
 	private Color color;
 	private Body characterBody;
-	private Animation nelson, walk, blink;
+	private Animation nelson, walkingLeft, walkingRight, blink;
 	
 	public CharacterView(Character character) throws SlickException {
 		this.character = character;
 		this.slickShape = new Circle(this.character.getX()-(Character.RADIUS/2f), 
-				this.character.getY()-(Character.RADIUS/2f), Character.RADIUS);
+		this.character.getY()-(Character.RADIUS/2f), Character.RADIUS);
 		this.color = Color.blue;
 		
-		Image[] walking = {new Image("pics/GulNelson.png"), new Image("pics/GulNelson.png")};
+		Image image = new Image("pics/GulNelson.png");
+		Image[] walkLeft = {image, image};
+		Image[] walkRight = {image.getFlippedCopy(true, false), image.getFlippedCopy(true, false)};
 		Image[] blinking = {new Image("pics/invisibleNelson.png"), new Image("pics/GulNelson.png")};
 		int duration = 100;		
-		walk = new Animation(walking, duration);
+		walkingRight = new Animation(walkRight, duration);
+		walkingLeft = new Animation(walkLeft, duration);
 		blink = new Animation(blinking, duration);
-		nelson = walk;
+		nelson = walkingRight;
 	}
 
 	public Character getCharacter() {
@@ -65,7 +68,11 @@ public class CharacterView {
 		this.nelson = blink;
 	}
 	
-	public void animateWalking() {
-		this.nelson = walk;
+	public void animateWalkingRight() {
+		this.nelson = walkingRight;
+	}
+	
+	public void animateWalkingLeft() {
+		this.nelson = walkingLeft;
 	}	
 }
