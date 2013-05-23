@@ -5,6 +5,7 @@ import java.awt.Font;
 import model.Game;
 import model.NewHighscore;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -28,6 +29,7 @@ public class NewHighscoreView {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {		
 		g.setFont(font);
+		g.setColor(Color.green);
 		g.drawString("New highscore: " + this.score + "!", Game.WINDOW_WIDTH/4, Game.WINDOW_HEIGHT/4);
 		g.drawString("Enter name:", this.textField.getX(), this.textField.getY()-this.textField.getHeight());
 		
