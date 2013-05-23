@@ -15,7 +15,6 @@ import model.Character;
 public class CharacterView {
 	private Character character;
 	private Shape slickShape;
-	private Color color;
 	private Body characterBody;
 	private Animation nelson, walkingLeft, walkingRight, blink;
 	
@@ -23,7 +22,6 @@ public class CharacterView {
 		this.character = character;
 		this.slickShape = new Circle(this.character.getX()-(Character.RADIUS/2f), 
 		this.character.getY()-(Character.RADIUS/2f), Character.RADIUS);
-		this.color = Color.blue;
 		
 		Image image = new Image("pics/GulNelson.png");
 		Image[] walkLeft = {image, image};
@@ -44,14 +42,6 @@ public class CharacterView {
 		return this.slickShape;
 	}
 	
-	public Color getColor() {
-		return this.color;
-	}
-	
-	public void setColor(Color color) {
-		this.color = color;
-	}
-	
 	public Body getCharacterBody() {
 		return characterBody;
 	}
@@ -61,7 +51,7 @@ public class CharacterView {
 	}
 
 	public Animation getAnimation() {
-		return nelson;
+		return this.nelson;
 	}
 	
 	public void animateBlinking() {

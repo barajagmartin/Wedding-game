@@ -47,9 +47,6 @@ public class InGameView {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		this.g = g;
-		//draw character
-		this.g.setColor(characterView.getColor());
-		this.g.fill(characterView.getSlickShape());
 		Image background = new Image("pics/rainbow.jpg");
 		background.draw();
 		worldView.getBlockMapView().getTiledMap().render(0, 0, worldView.getBlockMapView().getTiledMap().getLayerIndex("solids"));
