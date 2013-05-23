@@ -96,8 +96,10 @@ public class GameController extends StateBasedGame {
 		try {
         	if (!gc.isFullscreen()) {
         		agc.setDisplayMode(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT, true);
+    			gc.setMouseGrabbed(true);
 			} else 	{
 				agc.setDisplayMode(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT, false);
+				gc.setMouseGrabbed(false);
 			}
 		} catch (SlickException e) {
 			e.printStackTrace();
