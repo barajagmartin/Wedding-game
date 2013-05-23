@@ -17,7 +17,6 @@ public class NewHighscoreView {
 	
 	private TextField textField;
 	private TrueTypeFont font;
-	private NewHighscore newHighscore;
 	private int score;
 	
 	public NewHighscoreView(GameContainer gc, int score) {
