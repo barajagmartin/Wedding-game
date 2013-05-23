@@ -236,7 +236,7 @@ public class InGameController extends BasicGameState {
 				lastHeldItem = characterController.getCharacter().getHeldItem();	
 				characterController.getCharacter().dropDownItem(characterController.getCharacter().getHeldItem());
 				this.itemControllers.get(lastHeldItem.CANDY_NUMBER).uppdateItemShape();
-				if(candyMonsterControllers.get(lastHeldItem.CANDY_NUMBER).isDroppedOnMonster(lastHeldItem)) {
+				if(candyMonsterControllers.get(lastHeldItem.CANDY_NUMBER).isDroppedOnMonster(lastHeldItem) && gameController.getGame().isSoundOn()) {
 					this.happySound.play();
 				}
 			}
