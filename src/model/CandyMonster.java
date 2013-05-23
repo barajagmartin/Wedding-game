@@ -12,7 +12,6 @@ public class CandyMonster {
 	public CandyMonster(final Position pos, final int candyNumber) {
 		this.pos = pos;
 		this.CANDY_NUMBER = candyNumber;
-
 	}
 	
 	public int getX() {
