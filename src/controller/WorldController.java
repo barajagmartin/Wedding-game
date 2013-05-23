@@ -158,7 +158,6 @@ public class WorldController implements ContactListener {
 			if((fixtA.getUserData().equals("spikes") && fixtB.getUserData().equals("player") ||
 					fixtA.getUserData().equals("player") && fixtB.getUserData().equals("spikes")) && 
 					inGameController.getCharacterController().getCharacter().getTimeSinceHit() > 1) {
-				this.inGameController.getCharacterController().getCharacterView().animateBlinking();
 				this.inGameController.getCharacterController().getCharacter().setOnSpikes(true);
 			}
 		}
@@ -171,7 +170,6 @@ public class WorldController implements ContactListener {
 		if(fixtA.getUserData() != null && fixtB.getUserData() != null) {
 			if(fixtA.getUserData().equals("spikes") && fixtB.getUserData().equals("player") ||
 					fixtA.getUserData().equals("player") && fixtB.getUserData().equals("spikes")) {
-				inGameController.getCharacterController().getCharacterView().animateWalking();	
 				this.inGameController.getCharacterController().getCharacter().setOnSpikes(false);
 			}
 		}

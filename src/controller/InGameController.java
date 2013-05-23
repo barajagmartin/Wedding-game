@@ -155,6 +155,12 @@ public class InGameController extends BasicGameState {
 			this.playerController.getPlayer().loseOneLife();
 			this.characterController.getCharacter().setTimeSinceHit(0);
 		}
+		
+		if (this.characterController.getCharacter().getTimeSinceHit() <= 1) {
+			characterController.getCharacterView().animateBlinking();
+		} else {
+			characterController.getCharacterView().animateWalking();
+		}
 		//update the timeBar
 		this.statusBarController.getStatusBarView().updateTimeBar(this.inGame.getLevelTime(), this.inGame.getTime());
 		//check if the game is over
