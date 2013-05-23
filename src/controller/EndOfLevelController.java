@@ -1,6 +1,6 @@
 package controller;
 
-import model.Game;
+import model.*;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -64,21 +64,21 @@ public class EndOfLevelController extends BasicGameState{
 			this.gameController.changeFullscreen(this.gc);
 		}
 		if (key == Input.KEY_ESCAPE) {
-			sbg.enterState(Game.START_MENU);
+			sbg.enterState(StartMenu.STATE_ID);
 		} else if (key == Input.KEY_ENTER) {
 			 if (this.newHighScore && (this.gameOver || this.victory)) {
-				sbg.enterState(Game.NEW_HIGHSCORE);
+				sbg.enterState(NewHighscore.STATE_ID);
 			} else if (this.gameOver || this.victory) {
-				sbg.enterState(Game.HIGHSCORE);
+				sbg.enterState(HighScore.STATE_ID);
 			} else {
-				sbg.enterState(Game.IN_GAME);
+				sbg.enterState(InGame.STATE_ID);
 			}
 		}
 	}
 
 	@Override
 	public int getID() {
-		return Game.END_OF_LEVEL;
+		return EndOfLevel.STATE_ID;
 	}
 
 }

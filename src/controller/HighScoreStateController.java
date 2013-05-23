@@ -1,6 +1,8 @@
 package controller;
 
 import model.Game;
+import model.HighScore;
+import model.StartMenu;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -53,13 +55,13 @@ public class HighScoreStateController extends BasicGameState{
 			gc.exit();
 		} else if (key == Input.KEY_ENTER) {
 			//back to start menu or something
-			sbg.enterState(Game.START_MENU);
+			sbg.enterState(StartMenu.STATE_ID);
 		}
 	}
 
 	@Override
 	public int getID() {
-		return Game.HIGHSCORE;
+		return HighScore.STATE_ID;
 	}
 
 }
