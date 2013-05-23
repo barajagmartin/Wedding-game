@@ -103,8 +103,8 @@ public class InGameController extends BasicGameState {
 			this.blockMapController = new BlockMapController(this, new TiledMap(BlockMapUtils.getTmxFile(this.inGame.getLevel(), inGame.randomizeVersion(nbrOfVersions))));
 			/*Create candy monster and its items*/
 			for (int i = 0; i < blockMapController.getCandyMonsterMap().getBlockList().size(); i++){
-				this.candyMonsterControllers.add(new CandyMonsterController(this, i)); 
-				this.itemControllers.add(new ItemController(this, i));
+				this.candyMonsterControllers.add(new CandyMonsterController(this, blockMapController.getBlockMapView().getCandyMonsterNbrMap().get(i)));
+				this.itemControllers.add(new ItemController(this, blockMapController.getBlockMapView().getItemNbrMap().get(i)));
 			}
 
 			this.characterController = new CharacterController(this);
@@ -175,7 +175,10 @@ public class InGameController extends BasicGameState {
 		this.characterController.getCharacter().setTimeSinceHit(this.characterController.getCharacter().getTimeSinceHit() + delta/1000f);
 		//check if the player is hit by spikes
 		if(this.characterController.getCharacter().isOnSpikes() && this.characterController.getCharacter().getTimeSinceHit() > 1) {
-			this.hurtSound.play(); //plays hurt sound 
+			//plays hurt sound if sound is on
+			if(gameController.getGame().isSoundOn()){
+				this.hurtSound.play();  
+			}
 			this.playerController.getPlayer().loseOneLife();
 			this.characterController.getCharacter().setTimeSinceHit(0);
 		}
