@@ -87,6 +87,10 @@ public class WorldView {
 		
 	}
 	
+	public model.World getWorld() {
+		return world;
+	}
+
 	public CharacterView getCharacterView() {
 		return characterView;
 	}

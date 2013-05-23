@@ -41,35 +41,35 @@ public class WorldController implements ContactListener {
 	private WorldView worldView;
 	
 	
-	public WorldController(InGameController inGameController, CharacterView characterView) {
+	public WorldController(InGameController inGameController, CharacterView characterView,
+			ArrayList<MoveableBoxView> moveableBoxViewList,
+			ArrayList<CandyMonsterView> candyMonsterViewList,
+			ArrayList<ItemView> itemViewList,
+			ArrayList<SpikesView> spikesViewList) {
 		this.inGameController = inGameController;
 		moveableBoxes = new ArrayList<MoveableBox>();
 		candyMonsters = new ArrayList<CandyMonster>();
 		items = new ArrayList<Item>();
 		spikes = new ArrayList<Spikes>();
-		moveableBoxViewList = new ArrayList<MoveableBoxView>();
-		candyMonsterViewList = new ArrayList<CandyMonsterView>();
-		itemViewList = new ArrayList<ItemView>();
-		spikesViewList = new ArrayList<SpikesView>();
+		this.moveableBoxViewList = moveableBoxViewList;;
+		this.candyMonsterViewList = candyMonsterViewList;
+		this.itemViewList = itemViewList;
+		this.spikesViewList = spikesViewList;;
 		
-		for (MoveableBoxController moveableBoxController : inGameController.getMoveableBoxControllers()) { //FIXME
-			moveableBoxes.add(moveableBoxController.getMoveableBox());
-			moveableBoxViewList.add(moveableBoxController.getMoveableBoxView());
+		for (MoveableBoxView moveableBoxView : moveableBoxViewList) {
+			moveableBoxes.add(moveableBoxView.getMoveableBox());
 		}
 		
-		for (CandyMonsterController candyMonsterController : inGameController.getCandyMonsterControllers()) { //FIXME
-			candyMonsters.add(candyMonsterController.getCandyMonster());
-			candyMonsterViewList.add(candyMonsterController.getCandyMonsterView());
+		for (CandyMonsterView candyMonsterView : candyMonsterViewList) {
+			candyMonsters.add(candyMonsterView.getCandyMonster());
 		}
 		
-		for (ItemController itemController : inGameController.getItemControllers()) { //FIXME
-			items.add(itemController.getItem());
-			itemViewList.add(itemController.getItemView());
+		for (ItemView itemView : itemViewList) {
+			items.add(itemView.getItem());
 		}
 		
-		for (int i = 0; i < inGameController.getSpikesControllers().size(); i++) {
-			spikes.add(inGameController.getSpikesControllers().get(i).getSpikes());
-			spikesViewList.add(inGameController.getSpikesControllers().get(i).getSpikesView());
+		for (int i = 0; i < spikesViewList.size(); i++) {
+			spikes.add(spikesViewList.get(i).getSpikes());
 		}
 		
 		this.world = new World(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT, characterView.getCharacter(),
@@ -109,39 +109,37 @@ public class WorldController implements ContactListener {
 
 	public void moveBodyRight() {
 		//add force to move right - maxSpeed right
-		if(inGameController.getInGameView().getCharacterView().getCharacterBody().m_linearVelocity.x <= 3){
-			inGameController.getInGameView().getCharacterView().getCharacterBody().applyLinearImpulse(new Vec2(5f, 0),
-					inGameController.getInGameView().getCharacterView().getCharacterBody().getPosition());
+		if(worldView.getCharacterView().getCharacterBody().m_linearVelocity.x <= 3){
+			worldView.getCharacterView().getCharacterBody().applyLinearImpulse(new Vec2(5f, 0),
+					worldView.getCharacterView().getCharacterBody().getPosition());
 		}
 	}
 	
 	public void moveBodyLeft() {
 		//add force to move left - maxSpeed left
-		if(inGameController.getInGameView().getCharacterView().getCharacterBody().m_linearVelocity.x >= -3){
-			inGameController.getInGameView().getCharacterView().getCharacterBody().applyLinearImpulse(new Vec2(-5f, 0),
-					inGameController.getInGameView().getCharacterView().getCharacterBody().getPosition()); 
+		if(worldView.getCharacterView().getCharacterBody().m_linearVelocity.x >= -3){
+			worldView.getCharacterView().getCharacterBody().applyLinearImpulse(new Vec2(-5f, 0),
+					worldView.getCharacterView().getCharacterBody().getPosition()); 
 		}
 	}
 
 	
 	public void jumpBody(){
-		final float impulse = inGameController.getInGameView().getCharacterView().getCharacterBody().getMass()+70;
-		inGameController.getInGameView().getCharacterView().getCharacterBody().applyLinearImpulse(new Vec2(0,-impulse),
-				inGameController.getInGameView().getCharacterView().getCharacterBody().getWorldCenter());
+		final float impulse = worldView.getCharacterView().getCharacterBody().getMass()+70;
+		worldView.getCharacterView().getCharacterBody().applyLinearImpulse(new Vec2(0,-impulse),
+				worldView.getCharacterView().getCharacterBody().getWorldCenter());
 	}
 	
-	public void updateSlickShape() {
-		inGameController.getInGameView().getCharacterView().getSlickShape().setX(world.getCharacter().getX());
-		inGameController.getInGameView().getCharacterView().getSlickShape().setY(world.getCharacter().getY());
+	public void updateCharacterSlickShape() {
+		worldView.getCharacterView().getSlickShape().setX(world.getCharacter().getX());
+		worldView.getCharacterView().getSlickShape().setY(world.getCharacter().getY());
 	}
 	
-	public void updateItemPosition(ArrayList<ItemView> itemList, CharacterView characterView){
-		for (int i = 0; i < itemList.size(); i++) {
-			if (itemList.get(i).getItem().isPickedUp()) {
-				itemList.get(i).getShape().setX(characterView.getSlickShape().getX() + Character.RADIUS); 
-				itemList.get(i).getShape().setY(characterView.getSlickShape().getY() + Character.RADIUS);
-				itemList.get(i).getItem().setX((int)characterView.getSlickShape().getX() + Character.RADIUS);
-				itemList.get(i).getItem().setY((int)characterView.getSlickShape().getY() + Character.RADIUS);
+	public void updateItemSlickShapePosition(ArrayList<ItemView> itemViewList, CharacterView characterView){
+		for (int i = 0; i < itemViewList.size(); i++) {
+			if (itemViewList.get(i).getItem().isPickedUp()) {
+				itemViewList.get(i).getShape().setX(itemViewList.get(i).getItem().getX()); 
+				itemViewList.get(i).getShape().setY(itemViewList.get(i).getItem().getY());
 			}
 		}
 	}
@@ -153,8 +151,8 @@ public class WorldController implements ContactListener {
 		if(fixtA.getUserData() != null && fixtB.getUserData() != null) {
 			if((fixtA.getUserData().equals("spikes") && fixtB.getUserData().equals("player") ||
 					fixtA.getUserData().equals("player") && fixtB.getUserData().equals("spikes")) && 
-					inGameController.getCharacterController().getCharacter().getTimeSinceHit() > 1) {
-				this.inGameController.getCharacterController().getCharacter().setOnSpikes(true);
+					world.getCharacter().getTimeSinceHit() > 1) {
+				world.getCharacter().setOnSpikes(true);
 			}
 		}
 	}
@@ -166,7 +164,7 @@ public class WorldController implements ContactListener {
 		if(fixtA.getUserData() != null && fixtB.getUserData() != null) {
 			if(fixtA.getUserData().equals("spikes") && fixtB.getUserData().equals("player") ||
 					fixtA.getUserData().equals("player") && fixtB.getUserData().equals("spikes")) {
-				this.inGameController.getCharacterController().getCharacter().setOnSpikes(false);
+				world.getCharacter().setOnSpikes(false);
 			}
 		}
 	}
@@ -175,7 +173,5 @@ public class WorldController implements ContactListener {
 	public void postSolve(Contact contact, ContactImpulse impulse) {}
 
 	@Override
-	public void preSolve(Contact contact, Manifold oldManifold) {}
-
-	
+	public void preSolve(Contact contact, Manifold oldManifold) {}	
 }
