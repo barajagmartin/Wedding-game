@@ -39,7 +39,7 @@ public class NewHighscoreController extends BasicGameState implements ComponentL
 	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		super.enter(container, game);
-		this.newHighscoreView = new NewHighscoreView(gc, this.gameController.getGame().getInGame().getPlayer().getScore());
+		this.newHighscoreView = new NewHighscoreView(container, this.gameController.getGame().getInGame().getPlayer().getScore());
 		this.newHighscoreView.getTextField().addListener(this);
 	}
 
