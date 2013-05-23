@@ -27,6 +27,7 @@ public class InGameView {
 	private CharacterView characterView;
 	private ArrayList<MoveableBoxView> moveableBoxViewList;
 	private ArrayList<SpikesView> spikesViewList;
+	private Image pauseImage;
 	public CharacterView getCharacterView() {
 		return characterView;
 	}
@@ -49,7 +50,7 @@ public class InGameView {
 		//draw character
 		this.g.setColor(characterView.getColor());
 		this.g.fill(characterView.getSlickShape());
-		Image background = new Image("pics/rainbow.jpg"); //Will be get from the Multimedia class later
+		Image background = new Image("pics/rainbow.jpg");
 		background.draw();
 		worldView.getBlockMapView().getTiledMap().render(0, 0, worldView.getBlockMapView().getTiledMap().getLayerIndex("solids"));
 		//draw candyMonsters
@@ -120,10 +121,15 @@ public class InGameView {
 	/**Save all graphics in an Image to create an illusion of a paused screen in PauseView
 	 * @throws SlickException */
 	public void createPauseImage() throws SlickException {
-		Image pauseImage = new Image(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
+		pauseImage = new Image(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
 		this.g.copyArea(pauseImage, 0, 0);
 		ImageOut.write(pauseImage.copy(), "pics/pauseBackground.png", false);
 		pauseImage.destroy();
+		System.out.println(pauseImage.isDestroyed());
+	}
+	
+	public Image getPauseImage(){
+		return pauseImage;
 	}
 
 
