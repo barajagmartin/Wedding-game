@@ -12,13 +12,13 @@ import org.newdawn.slick.state.StateBasedGame;
 import controller.GameController;
 
 public class EndOfLevelView {
-	private int Score;
+	private int score;
 	private boolean gameOver;
 	private boolean victory;
 	
 	
-	public EndOfLevelView (int Score, boolean gameOver, boolean victory) {
-		this.Score = Score;
+	public EndOfLevelView (int score, boolean gameOver, boolean victory) {
+		this.score = score;
 		this.gameOver = gameOver;
 		this.victory = victory;
 		
@@ -43,7 +43,7 @@ public class EndOfLevelView {
 		}
 		
 		g.drawString("ESC - quit the game", Game.WINDOW_WIDTH/2 - 30, Game.WINDOW_HEIGHT/2 + 60);
-		g.drawString("Score: " + this.Score, Game.WINDOW_WIDTH/2 - 30, Game.WINDOW_HEIGHT/2 + 90);
+		g.drawString("Score: " + this.score, Game.WINDOW_WIDTH/2 - 30, Game.WINDOW_HEIGHT/2 + 90);
 	}
 	
 
