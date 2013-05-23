@@ -123,14 +123,9 @@ public class InGameView {
 	public void createPauseImage() throws SlickException {
 		pauseImage = new Image(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
 		this.g.copyArea(pauseImage, 0, 0);
-		ImageOut.write(pauseImage.copy(), "pics/pauseBackground.png", false);
-		pauseImage.destroy();
-		System.out.println(pauseImage.isDestroyed());
 	}
 	
 	public Image getPauseImage(){
 		return pauseImage;
 	}
-
-
 }
