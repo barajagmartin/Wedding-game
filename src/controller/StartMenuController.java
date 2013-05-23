@@ -34,7 +34,7 @@ public class StartMenuController extends BasicGameState {
 			throws SlickException {
 		this.sbg = game;
 		this.startMenuView = new StartMenuView(this.startMenu, gameController.getGameView());
-		this.startMenuMusic = new Music("music/backgroundMusic.wav");
+		this.startMenuMusic = new Music("music/Marimba.wav");
 		
 	}
 	
