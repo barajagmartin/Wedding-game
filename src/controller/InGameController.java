@@ -54,6 +54,7 @@ public class InGameController extends BasicGameState {
 	private int velocityIterations = 6;
 	private int positionIterations = 2;
 	private Sound happySound;
+	private Sound hurtSound;
 	
 	
 	public InGameController(GameController gameController) {
@@ -69,6 +70,7 @@ public class InGameController extends BasicGameState {
 		this.sbg = sbg;
 		this.statusBarController = new StatusBarController(this);
 		this.happySound = new Sound("music/happy0.wav");
+		this.hurtSound = new Sound("music/aj0.wav");
 	}
 
 	@Override
@@ -173,6 +175,7 @@ public class InGameController extends BasicGameState {
 		this.characterController.getCharacter().setTimeSinceHit(this.characterController.getCharacter().getTimeSinceHit() + delta/1000f);
 		//check if the player is hit by spikes
 		if(this.characterController.getCharacter().isOnSpikes() && this.characterController.getCharacter().getTimeSinceHit() > 1) {
+			this.hurtSound.play(); //plays hurt sound 
 			this.playerController.getPlayer().loseOneLife();
 			this.characterController.getCharacter().setTimeSinceHit(0);
 		}
@@ -254,7 +257,6 @@ public class InGameController extends BasicGameState {
 			}
 			//Set previous state to the state you where in before entering pause menu
 			PauseMenuController.setPreviousState(InGame.STATE_ID); 
-			//if sound is off, set volume to 0
 			
 			gameController.getInGameMusic().setVolume(0.3f);
 			sbg.enterState(PauseMenu.STATE_ID);

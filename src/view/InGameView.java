@@ -125,7 +125,6 @@ public class InGameView {
 		this.g.copyArea(pauseImage, 0, 0);
 		ImageOut.write(pauseImage.copy(), "pics/pauseBackground.png", false);
 		pauseImage.destroy();
-		System.out.println(pauseImage.isDestroyed());
 	}
 	
 	public Image getPauseImage(){

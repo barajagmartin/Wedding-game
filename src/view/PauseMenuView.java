@@ -33,7 +33,10 @@ public class PauseMenuView extends AbstractMenuView {
 			throws SlickException {
 		/*Draw illusion image of the game*/
 		//Kom på ett sätt att få tag på bilden i InGameView
-		g.drawImage(new Image("pics/pauseBackground.png"), 0, 0);
+		Image pauseBackground = null;
+		pauseBackground = new Image("pics/pauseBackground.png");
+		g.drawImage(pauseBackground, 0, 0);
+		
 		
 
 		/*Make background darker to highlight pause menu*/
