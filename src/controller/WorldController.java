@@ -150,10 +150,6 @@ public class WorldController implements ContactListener {
 	public void beginContact(Contact contact) {
 		Fixture fixtA = contact.getFixtureA();
 		Fixture fixtB = contact.getFixtureB();
-		System.out.println(fixtA.m_userData);
-		System.out.println(fixtB.m_userData);
-		System.out.println();
-		System.out.println("hej");
 		if(fixtA.getUserData() != null && fixtB.getUserData() != null) {
 			if((fixtA.getUserData().equals("spikes") && fixtB.getUserData().equals("player") ||
 					fixtA.getUserData().equals("player") && fixtB.getUserData().equals("spikes")) && 
