@@ -21,13 +21,16 @@ import utils.BlockMapUtils;
 import utils.WorldUtils;
 import view.CandyMonsterView;
 import view.InGameView;
+import view.ItemView;
 import view.MoveableBoxView;
 import view.SpikesView;
 import model.Character;
+import model.EndOfLevel;
 import model.FixedPosition;
 import model.Game;
 import model.InGame;
 import model.Item;
+import model.PauseMenu;
 
 public class InGameController extends BasicGameState {
 	private InGame inGame;
@@ -112,18 +115,36 @@ public class InGameController extends BasicGameState {
 				this.moveableBoxControllers.add(new MoveableBoxController(this, pos));
 			}
 
-			//temporarily store the SpikesViews in a list
-			ArrayList<SpikesView> tmpSpikesViewList = new ArrayList<SpikesView>();
-			for (int i = 0; i < spikesControllers.size(); i++) {
-				tmpSpikesViewList.add(spikesControllers.get(i).getSpikesView());
-			}
 			//temporarily store the MoveableBoxViews in a list
 			ArrayList<MoveableBoxView> tmpMoveableBoxViewList = new ArrayList<MoveableBoxView>();
 			for (MoveableBoxController moveableBoxController : moveableBoxControllers) {
 				tmpMoveableBoxViewList.add(moveableBoxController.getMoveableBoxView());
 			}
 			
-			this.worldController = new WorldController(this, characterController.getCharacterView());
+			//temporarily store the CandyMonsterViews in a list
+			ArrayList<CandyMonsterView> tmpCandyMonsterViewList = new ArrayList<CandyMonsterView>();
+			for (CandyMonsterController candyMonsterController : candyMonsterControllers) {
+				tmpCandyMonsterViewList.add(candyMonsterController.getCandyMonsterView());
+			}
+			
+			//temporarily store the ItemViews in a list
+			ArrayList<ItemView> tmpItemViewList = new ArrayList<ItemView>();
+			for (ItemController itemController : itemControllers) {
+				tmpItemViewList.add(itemController.getItemView());
+			}
+			
+			//temporarily store the SpikesViews in a list
+			ArrayList<SpikesView> tmpSpikesViewList = new ArrayList<SpikesView>();
+			for (int i = 0; i < spikesControllers.size(); i++) {
+				tmpSpikesViewList.add(spikesControllers.get(i).getSpikesView());
+			}
+			
+			
+			this.worldController = new WorldController(this, characterController.getCharacterView(),
+					tmpMoveableBoxViewList,
+					tmpCandyMonsterViewList,
+					tmpItemViewList,
+					tmpSpikesViewList);
 			inGame.setWorld(worldController.getWorld());
 			this.inGameView = new InGameView(inGame, worldController.getWorldView(), statusBarController.getStatusBarView(), 
 					characterController.getCharacterView(), tmpMoveableBoxViewList, tmpSpikesViewList, this.inGame.getLevel());
@@ -166,7 +187,7 @@ public class InGameController extends BasicGameState {
 		//check if the game is over
 		if (inGame.checkIfGameIsOver(itemControllers.size())) {
 			gameController.getInGameMusic().stop();
-			sbg.enterState(Game.END_OF_LEVEL);
+			sbg.enterState(EndOfLevel.STATE_ID);
 		}
 		//check key presses
 		characterController.keyPressedUpdate(gc);
@@ -183,8 +204,15 @@ public class InGameController extends BasicGameState {
 				inGameView.getCharacterView().getCharacterBody().getPosition().y) -
 				Character.RADIUS);
 		
-		worldController.updateSlickShape();
-		worldController.updateItemPosition(worldController.getItemViewList(), characterController.getCharacterView());
+		for (int i = 0; i < itemList.size(); i++) {
+			if (itemList.get(i).isPickedUp()) {
+				itemList.get(i).setX((int)characterController.getCharacterView().getSlickShape().getX() + Character.RADIUS);
+				itemList.get(i).setY((int)characterController.getCharacterView().getSlickShape().getY() + Character.RADIUS);
+			}
+		}
+		
+		worldController.updateCharacterSlickShape();
+		worldController.updateItemSlickShapePosition(worldController.getItemViewList(), characterController.getCharacterView());
 		characterController.getCharacter().setX((int)characterController.getCharacterView().getSlickShape().getX());
 		characterController.getCharacter().setY((int)characterController.getCharacterView().getSlickShape().getY());
 		for (int i = 0; i < moveableBoxControllers.size(); i++) {
@@ -225,11 +253,11 @@ public class InGameController extends BasicGameState {
 				e.printStackTrace();
 			}
 			//Set previous state to the state you where in before entering pause menu
-			PauseMenuController.setPreviousState(Game.IN_GAME); 
+			PauseMenuController.setPreviousState(InGame.STATE_ID); 
 			//if sound is off, set volume to 0
 			
 			gameController.getInGameMusic().setVolume(0.3f);
-			sbg.enterState(Game.PAUSE_MENU);
+			sbg.enterState(PauseMenu.STATE_ID);
 		}
 		
 		if(key == Input.KEY_F) {
@@ -239,7 +267,7 @@ public class InGameController extends BasicGameState {
 
 	@Override
 	public int getID() {
-		return Game.IN_GAME;
+		return InGame.STATE_ID;
 	}
 
 	public InGame getInGame() {

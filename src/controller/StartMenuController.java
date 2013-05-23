@@ -1,6 +1,8 @@
 package controller;
 
+import model.Controls;
 import model.Game;
+import model.HighScore;
 import model.InGame;
 import model.StartMenu;
 
@@ -68,9 +70,9 @@ public class StartMenuController extends BasicGameState {
 		}
 		if(key == Input.KEY_ENTER) {
 			switch(startMenu.getIsMarked()) {
-				case 0: sbg.enterState(Game.IN_GAME);
+				case 0: sbg.enterState(InGame.STATE_ID);
 						break;
-				case 1: sbg.enterState(Game.HIGHSCORE);
+				case 1: sbg.enterState(HighScore.STATE_ID);
 						break;
 				case 2: if(gameController.getGame().isSoundOn()) {
 							gameController.getGame().setSoundOn(false);
@@ -86,7 +88,7 @@ public class StartMenuController extends BasicGameState {
 							gameController.getGame().setMusicOn(true);
 						}	
 						break;
-				case 4: sbg.enterState(Game.CONTROLS);
+				case 4: sbg.enterState(Controls.STATE_ID);
 						break;
 				case 5: System.exit(0);
 			}
@@ -106,7 +108,7 @@ public class StartMenuController extends BasicGameState {
 
 	@Override
 	public int getID() {
-		return Game.START_MENU;
+		return StartMenu.STATE_ID;
 	}
 
 }

@@ -1,6 +1,8 @@
 package controller;
 
+import model.Controls;
 import model.Game;
+import model.StartMenu;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -47,13 +49,13 @@ public class ControlsController extends BasicGameState {
 			this.gameController.changeFullscreen(this.gc);
 		}
 		if (key == Input.KEY_ENTER) {
-			sbg.enterState(Game.START_MENU);
+			sbg.enterState(StartMenu.STATE_ID);
 		}
 	}
 
 	@Override
 	public int getID() {
-		return Game.CONTROLS;
+		return Controls.STATE_ID;
 	}
 
 }

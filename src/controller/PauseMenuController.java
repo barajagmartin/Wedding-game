@@ -2,6 +2,7 @@ package controller;
 
 import model.Game;
 import model.PauseMenu;
+import model.StartMenu;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -93,7 +94,7 @@ public class PauseMenuController extends BasicGameState{
 						break;
 				case 4: gameController.getGame().getInGame().setPaused(false);
 						gameController.getInGameMusic().stop(); //Stop current thread
-						sbg.enterState(Game.START_MENU);
+						sbg.enterState(StartMenu.STATE_ID);
 						break;
 			}
 		}
@@ -113,7 +114,7 @@ public class PauseMenuController extends BasicGameState{
 
 	@Override
 	public int getID() {
-		return Game.PAUSE_MENU;
+		return PauseMenu.STATE_ID;
 	}
 	
 
