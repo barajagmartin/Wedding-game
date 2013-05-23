@@ -1,7 +1,7 @@
 package model;
 
 /**This class represent the model for both the start- and the pause menu*/
-public class PauseMenu extends AbstractMenu{
+public class PauseMenu implements IMenu{
 	private int isMarked;
 	
 	public PauseMenu() {

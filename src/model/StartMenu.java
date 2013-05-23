@@ -1,6 +1,6 @@
 package model;
 
-public class StartMenu extends AbstractMenu {
+public class StartMenu implements IMenu {
 	private int isMarked;
 	
 	public StartMenu(){

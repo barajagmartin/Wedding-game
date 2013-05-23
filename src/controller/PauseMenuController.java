@@ -31,7 +31,7 @@ public class PauseMenuController extends BasicGameState{
 			throws SlickException {
 		this.sbg = sbg;
 		this.pauseMenu = new PauseMenu();
-		this.pauseView = new PauseMenuView(this.pauseMenu);
+		this.pauseView = new PauseMenuView(this.pauseMenu, gameController.getGameView());
 	}
 	
 	@Override
@@ -75,18 +75,18 @@ public class PauseMenuController extends BasicGameState{
 			switch(pauseMenu.getIsMarked()) {
 				case 0:	sbg.enterState(PauseMenuController.previousState);
 						break;
-				case 1: if(pauseMenu.isSoundOn()) {
-							pauseMenu.setSoundOn(false);
+				case 1: if(gameController.getGame().isSoundOn()) {
+							gameController.getGame().setSoundOn(false);
 						} else {
-							pauseMenu.setSoundOn(true);
+							gameController.getGame().setSoundOn(true);
 						}
 						break;
-				case 2: if(pauseMenu.isMusicOn()) {
-							gameController.getInGameMusic().pause();
-							pauseMenu.setMusicOn(false);
+				case 2: if(gameController.getGame().isMusicOn()) {
+							gameController.getInGameMusic().pause();	//TODO
+							gameController.getGame().setMusicOn(false);
 						} else {
-							gameController.getInGameMusic().play(1.0f, 0.3f);
-							pauseMenu.setMusicOn(true);
+							gameController.getInGameMusic().play(1.0f, 0.3f); //TODO
+							gameController.getGame().setMusicOn(true);
 						}	
 						break;
 				case 3: //Enter state "Controls"

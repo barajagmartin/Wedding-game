@@ -20,9 +20,12 @@ import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import view.GameView;
+
 
 public class GameController extends StateBasedGame {
 	private Game game;
+	private GameView gameView;
 	private StartMenuController startMenuController;
 	private InGameController inGameController;
 	private PauseMenuController pauseMenuController;
@@ -31,19 +34,20 @@ public class GameController extends StateBasedGame {
 	private NewHighscoreController newHighscoreController;
 	private ControlsController controlsController;
 	private Music inGameMusic;
-
 	
 	public GameController(String name) throws SlickException {
 		super(name);
 		this.inGameMusic = new Music("music/Marimba.wav");
+		this.inGameController = new InGameController(this);
+		this.game = new Game(inGameController.getInGame());
 		this.startMenuController = new StartMenuController(this);
+		this.gameView = new GameView(this.game);
 		this.highScoreStateController = new HighScoreStateController(this);
 		this.newHighscoreController = new NewHighscoreController(this);
-		this.inGameController = new InGameController(this);
+		this.gameView = new GameView(this.game);
 		this.pauseMenuController = new PauseMenuController(this);
 		this.endOfLevelController = new EndOfLevelController(this);
 		this.controlsController = new ControlsController(this);
-		this.game = new Game(inGameController.getInGame(), startMenuController.getStartMenu());
 		this.addState(inGameController);
 		this.addState(highScoreStateController);
 		this.addState(pauseMenuController);
@@ -76,7 +80,11 @@ public class GameController extends StateBasedGame {
 	}
 
 	public Game getGame() {
-		return game;
+		return this.game;
+	}
+	
+	public GameView getGameView() {
+		return this.gameView;
 	}
 
 	public Music getInGameMusic() {
@@ -92,8 +100,10 @@ public class GameController extends StateBasedGame {
 				agc.setDisplayMode(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT, false);
 			}
 		} catch (SlickException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+
+
+
 }
