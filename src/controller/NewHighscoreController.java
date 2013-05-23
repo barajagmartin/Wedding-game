@@ -4,6 +4,7 @@ package controller;
 import model.Game;
 
 import view.NewHighscoreView;
+import model.NewHighscore;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -30,8 +31,13 @@ public class NewHighscoreController extends BasicGameState implements ComponentL
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {						
-		this.sbg = sbg;		
-		this.newHighscoreView = new NewHighscoreView(gc);
+		this.sbg = sbg;	
+	}
+	
+	public void enter(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		super.enter(container, game);
+		this.newHighscoreView = new NewHighscoreView(gc, this.gameController.getGame().getInGame().getPlayer().getScore());
 		this.newHighscoreView.getTextField().addListener(this);
 	}
 
