@@ -17,7 +17,7 @@ public class Character {
 	public Character(final Position pos) {
 		this.pos = pos;
 		this.heldItem = null;
-		this.timeSinceHit = 0;
+		this.timeSinceHit = 1;
 	}
 	
 	public int getX() {
