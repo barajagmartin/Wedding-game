@@ -251,6 +251,7 @@ public class InGameController extends BasicGameState {
 			try {
 				inGame.setPaused(true);
 				inGameView.createPauseImage();
+				gameController.getGameView().setPauseImage(inGameView.getPauseImage());
 			} catch (SlickException e) {
 				System.out.println("ERROR: No image could be created");
 				e.printStackTrace();
