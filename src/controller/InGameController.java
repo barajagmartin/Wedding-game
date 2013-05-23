@@ -175,7 +175,10 @@ public class InGameController extends BasicGameState {
 		this.characterController.getCharacter().setTimeSinceHit(this.characterController.getCharacter().getTimeSinceHit() + delta/1000f);
 		//check if the player is hit by spikes
 		if(this.characterController.getCharacter().isOnSpikes() && this.characterController.getCharacter().getTimeSinceHit() > 1) {
-			this.hurtSound.play(); //plays hurt sound 
+			//plays hurt sound if sound is on
+			if(gameController.getGame().isSoundOn()){
+				this.hurtSound.play();  
+			}
 			this.playerController.getPlayer().loseOneLife();
 			this.characterController.getCharacter().setTimeSinceHit(0);
 		}
