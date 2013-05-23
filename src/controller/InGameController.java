@@ -180,7 +180,7 @@ public class InGameController extends BasicGameState {
 		if (this.characterController.getCharacter().getTimeSinceHit() <= 1) {
 			characterController.getCharacterView().animateBlinking();
 		} else {
-			characterController.getCharacterView().animateWalking();
+			characterController.getCharacterView().animateWalkingRight();
 		}
 		//update the timeBar
 		this.statusBarController.getStatusBarView().updateTimeBar(this.inGame.getLevelTime(), this.inGame.getTime());
