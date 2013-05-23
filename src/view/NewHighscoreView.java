@@ -18,11 +18,13 @@ public class NewHighscoreView {
 	private TextField textField;
 	private TrueTypeFont font;
 	private int score;
+	private final int POSX = Game.WINDOW_WIDTH/5;
 	
 	public NewHighscoreView(GameContainer gc, int score) {
 		this.font = new TrueTypeFont(new Font(Font.MONOSPACED, Font.BOLD, 50), false);
-		this.textField = new TextField(gc, font, Game.WINDOW_WIDTH/4, Game.WINDOW_HEIGHT/2, 300, 50);
+		this.textField = new TextField(gc, font, POSX + 330, Game.WINDOW_HEIGHT/2, 300, font.getHeight() + 5);
 		this.textField.setMaxLength(8);
+		textField.setBorderColor(Color.transparent);
 		this.score = score;
 	}
 
@@ -30,8 +32,8 @@ public class NewHighscoreView {
 			throws SlickException {		
 		g.setFont(font);
 		g.setColor(Color.green);
-		g.drawString("New highscore: " + this.score + "!", Game.WINDOW_WIDTH/4, Game.WINDOW_HEIGHT/4);
-		g.drawString("Enter name:", this.textField.getX(), this.textField.getY()-this.textField.getHeight());
+		g.drawString("New highscore: " + this.score + "!", POSX, Game.WINDOW_HEIGHT/4);
+		g.drawString("Enter name:", POSX, Game.WINDOW_HEIGHT/2);
 		
 		this.textField.setFocus(true);
 		this.textField.render(gc, g);

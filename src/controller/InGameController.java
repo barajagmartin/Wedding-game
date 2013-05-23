@@ -183,7 +183,7 @@ public class InGameController extends BasicGameState {
 		if (this.characterController.getCharacter().getTimeSinceHit() <= 1) {
 			characterController.getCharacterView().animateBlinking();
 		} else {
-			characterController.getCharacterView().animateWalkingRight();
+			characterController.getCharacterView().getAnimation();
 		}
 		//update the timeBar
 		this.statusBarController.getStatusBarView().updateTimeBar(this.inGame.getLevelTime(), this.inGame.getTime());
@@ -232,7 +232,6 @@ public class InGameController extends BasicGameState {
 	public void keyPressed (int key, char c) {
 		if (key == Input.KEY_DOWN) {
 			if (characterController.findItemToPickUp()!= null && !characterController.getCharacter().isHoldingItem(itemList)) {
-				characterController.getCharacterView().setColor(Color.pink);
 				characterController.getCharacter().pickUpItem(characterController.findItemToPickUp());
 			} else if (characterController.getCharacter().isHoldingItem(itemList) && 
 					characterController.getCharacterView().getCharacterBody().getLinearVelocity().y == 0) {
