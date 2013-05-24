@@ -173,6 +173,8 @@ public class InGameController extends BasicGameState {
 		//change the time for the game and the character
 		this.inGame.setTime(this.inGame.getTime()-(delta/1000f));
 		this.characterController.getCharacter().setTimeSinceHit(this.characterController.getCharacter().getTimeSinceHit() + delta/1000f);
+		//update animation so that it animates at the right speed
+//		characterController.getCharacterView().getAnimation().update(delta);
 		//check if the player is hit by spikes
 		if(this.characterController.getCharacter().isOnSpikes() && this.characterController.getCharacter().getTimeSinceHit() > 1) {
 			//plays hurt sound if sound is on
