@@ -22,8 +22,12 @@ public class HighScoreStateView {
 			throws SlickException {
 		g.setColor(Color.green);
 		int y = 200;
+		String space = " ";
 		for (int i = 0; i < 10; i++) {
-			g.drawString(Integer.toString(i+1) + ". " + this.nameList[i] + " .................................... " + Integer.toString(this.scoreList[i]), (Game.WINDOW_WIDTH/2-200), y);
+			if (i == 9) {
+				space = "";
+			}
+			g.drawString(Integer.toString(i+1) + ". " + space + this.nameList[i] + " .................................... " + Integer.toString(this.scoreList[i]), (Game.WINDOW_WIDTH/2-200), y);
 			y = y + 40;
 		}
 		
