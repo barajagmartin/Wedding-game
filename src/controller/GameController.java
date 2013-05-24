@@ -20,6 +20,7 @@ import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import utils.SaveUtils;
 import view.GameView;
 
 
@@ -40,6 +41,7 @@ public class GameController extends StateBasedGame {
 		this.inGameMusic = new Music("music/game_music_regular.wav");
 		this.inGameController = new InGameController(this);
 		this.game = new Game(inGameController.getInGame());
+		SaveUtils.init();
 		this.startMenuController = new StartMenuController(this);
 		this.gameView = new GameView(this.game);
 		this.highScoreStateController = new HighScoreStateController(this);

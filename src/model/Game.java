@@ -25,7 +25,6 @@ public class Game {
 		this.inGame = inGame;
 		this.isMusicOn = true;
 		this.isSoundOn = true;
-		SaveUtils.init();
 	}
 	
 
