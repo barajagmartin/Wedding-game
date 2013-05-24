@@ -72,8 +72,12 @@ public class InGameView {
 						//clouds w. candy
 						this.g.drawImage(this.cloud, worldView.getCandyMonsterViewList().get(j).getCandyMonster().getX(),
 								worldView.getCandyMonsterViewList().get(j).getCandyMonster().getY()-30);
-								this.g.drawImage(worldView.getItemViewList().get(j).getImage(), worldView.getCandyMonsterViewList().get(j).getCandyMonster().getX()+5, 
+						for (int k = 0; k < this.worldView.getItemViewList().size(); k++) {
+							if (this.worldView.getItemViewList().get(k).getItem().CANDY_NUMBER == worldView.getCandyMonsterViewList().get(j).getCandyMonster().CANDY_NUMBER) {
+								this.g.drawImage(worldView.getItemViewList().get(k).getImage(), worldView.getCandyMonsterViewList().get(j).getCandyMonster().getX()+5, 
 										worldView.getCandyMonsterViewList().get(j).getCandyMonster().getY()-27);
+							}
+						}
 			}
 		}	
 		//draw spikes

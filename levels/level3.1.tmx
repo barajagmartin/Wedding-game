@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="32" height="24" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="position32x32" tilewidth="32" tileheight="32">
+  <image source="position32x32.png" width="128" height="97"/>
+  <tile id="0">
+   <properties>
+    <property name="candyNumber" value="0"/>
+    <property name="property" value="candyMonster"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="candyNumber" value="0"/>
+    <property name="property" value="item"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="candyNumber" value="3"/>
+    <property name="property" value="candyMonster"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="candyNumber" value="3"/>
+    <property name="property" value="item"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="candyNumber" value="1"/>
+    <property name="property" value="candyMonster"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="candyNumber" value="1"/>
+    <property name="property" value="item"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="property" value="moveableBox"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="time" value="60"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="candyNumber" value="2"/>
+    <property name="property" value="candyMonster"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="candyNumber" value="2"/>
+    <property name="property" value="item"/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="property" value="player"/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="property" value="spikes"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="13" name="nya rutor" tilewidth="32" tileheight="32">
+  <image source="JosRutor32x32.png" width="128" height="256"/>
+  <tile id="0">
+   <properties>
+    <property name="property" value="solidGround"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="property" value="solidGround"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="property" value="solidGround"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="property" value="spring"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="ice" value=""/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="property" value="iceSpring"/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="property" value="solidGround"/>
+   </properties>
+  </tile>
+  <tile id="16">
+   <properties>
+    <property name="property" value="ice"/>
+   </properties>
+  </tile>
+  <tile id="17">
+   <properties>
+    <property name="property" value="solidGround"/>
+   </properties>
+  </tile>
+  <tile id="19">
+   <properties>
+    <property name="property" value="solidGround"/>
+   </properties>
+  </tile>
+  <tile id="20">
+   <properties>
+    <property name="property" value="ice"/>
+   </properties>
+  </tile>
+  <tile id="21">
+   <properties>
+    <property name="property" value="solidGround"/>
+   </properties>
+  </tile>
+  <tile id="23">
+   <properties>
+    <property name="property" value="SolidGround"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="solids" width="32" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztwzENAAAIA7A5wAD+dSJjB23SBACAT7Z8rD521gkh
+  </data>
+ </layer>
+ <layer name="data" width="32" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztwSEBAAAAAiCj/xc7RKABAABeDGwAAAk=
+  </data>
+ </layer>
+ <layer name="position" width="32" height="24">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwSgYBfQGjFjEWLGIcRIwhxuPHBeUZoPSTIQcNQpGBAAAbRQALQ==
+  </data>
+ </layer>
+</map>
