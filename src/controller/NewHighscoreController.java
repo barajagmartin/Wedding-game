@@ -26,6 +26,7 @@ public class NewHighscoreController extends BasicGameState implements ComponentL
 	private NewHighscoreView newHighscoreView;
 	private StateBasedGame sbg;
 	private GameContainer gc;
+	private boolean ctrlDown;
 	
 	public NewHighscoreController(GameController gameController) {
 		this.gameController = gameController;
@@ -56,9 +57,11 @@ public class NewHighscoreController extends BasicGameState implements ComponentL
 		this.gc = gc;
 	}
 	
+	@Override
 	public void keyPressed (int key, char c) {
-		if(key == Input.KEY_F) {
+		if (key == Input.KEY_TAB) {
 			this.gameController.changeFullscreen(this.gc);
+
 		}
 	}
 
