@@ -33,10 +33,10 @@ public class CandyMonsterController {
 	public boolean isDroppedOnMonster(Item item){
 		if(!item.isPickedUp() && item.CANDY_NUMBER == candyMonster.CANDY_NUMBER && 
 				(candyMonsterView.getShape().contains(inGameController.getItemControllers().
-						get(inGameController.getBlockMapController().getBlockMapView().getCandyMonsterNbrMap().
+						get(inGameController.getBlockMapController().getBlockMapView().getItemNbrMap().
 								indexOf(candyMonster.CANDY_NUMBER)).getItemView().getShape())) ||
 				 candyMonsterView.getShape().intersects(inGameController.getItemControllers().
-						 get(inGameController.getBlockMapController().getBlockMapView().getCandyMonsterNbrMap().
+						 get(inGameController.getBlockMapController().getBlockMapView().getItemNbrMap().
 								 indexOf(candyMonster.CANDY_NUMBER)).getItemView().getShape())){
 			//kolla isDelivered
 			item.setDelivered(true);
