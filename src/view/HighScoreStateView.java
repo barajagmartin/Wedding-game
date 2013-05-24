@@ -8,22 +8,22 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class HighScoreStateView {
-	
-	public int[] scoreList;
-	public String[] nameList;
-	
-	public HighScoreStateView (int[] scoreList, String[] nameList) {
-		this.scoreList = scoreList;
-		this.nameList = nameList;
-	}
+import utils.SaveUtils;
+
+public class HighScoreStateView {	
+	public HighScoreStateView () {}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		g.setColor(Color.green);
 		int y = 200;
+		String space = " ";
 		for (int i = 0; i < 10; i++) {
-			g.drawString(Integer.toString(i+1) + ". " + this.nameList[i] + " .................................... " + Integer.toString(this.scoreList[i]), (Game.WINDOW_WIDTH/2-200), y);
+			if (i == 9) {
+				space = "";
+			}
+			g.drawString(Integer.toString(i+1) + ". " + space + SaveUtils.getNameList()[i] +
+					" .................................... " + Integer.toString(SaveUtils.getScoreList()[i]), (Game.WINDOW_WIDTH/2-200), y);
 			y = y + 40;
 		}
 		

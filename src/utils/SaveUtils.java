@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class SaveUtils {
@@ -14,6 +15,7 @@ public class SaveUtils {
 	private static Scanner scoreScanner;
 	private static Scanner nameScanner;
 	
+	@SuppressWarnings("null")
 	public static void init() {
 		
 		try {
@@ -22,8 +24,28 @@ public class SaveUtils {
 			readScoreList();
 			readNameList();
 		} catch (IOException e) {
-			System.out.println("something went wrong with reading the Lists");
-			e.printStackTrace();
+			File savingsDir = new File("savings");
+			savingsDir.mkdir();
+			PrintWriter newScoreFile = null;
+			PrintWriter newNameFile = null;
+			try {
+				scoreFile.createNewFile();
+				nameFile.createNewFile();
+			} catch (IOException e1) {
+				System.exit(0);
+			}
+			try {
+				newScoreFile = new PrintWriter(new FileWriter(scoreFile), true);
+				newNameFile = new PrintWriter(new FileWriter(nameFile), true);
+				for (int j = 0; j < 10; j++) {
+					newScoreFile.println("0");
+					newNameFile.println("");
+				}
+				init();
+			} catch (IOException e1) {
+				System.exit(0);
+			}
+			
 		}
 		
 		
@@ -57,6 +79,8 @@ public class SaveUtils {
 	public static void saveScore (int newScore, String name) { 
 		scoreList[9] = newScore;
 		nameList[9] = name;
+		scoreFile = new File("savings/scoreList.txt");
+		nameFile = new File("savings/nameList.txt");
 		for (int i = 8; i >= 0; i--) { 
 			if (newScore > scoreList[i]) {
 				scoreList[i+1] = scoreList[i];
@@ -71,13 +95,11 @@ public class SaveUtils {
 		}
 		scoreFile.delete();
 		nameFile.delete();
-		scoreFile = new File("savings/scoreList.txt");
-		nameFile = new File("savings/nameList.txt");
 		BufferedWriter outputWriterS = null;
 		BufferedWriter outputWriterN = null;
 		try {
-			outputWriterS = new BufferedWriter(new FileWriter("savings/scoreList.txt"));
-			outputWriterN = new BufferedWriter(new FileWriter("savings/NameList.txt"));
+			outputWriterS = new BufferedWriter(new FileWriter(scoreFile));
+			outputWriterN = new BufferedWriter(new FileWriter(nameFile));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -101,6 +123,4 @@ public class SaveUtils {
 			e.printStackTrace();
 		}  
 	}
-	
-	
 }
