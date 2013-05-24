@@ -184,9 +184,10 @@ public class InGameController extends BasicGameState {
 		}
 		
 		if (this.characterController.getCharacter().getTimeSinceHit() <= 1) {
+			characterController.getCharacterView().storeAnimation(characterController.getCharacterView().getAnimation()); //save previous animation
 			characterController.getCharacterView().animateBlinking();
 		} else {
-			characterController.getCharacterView().getAnimation();
+			characterController.getCharacterView().setAnimation(characterController.getCharacterView().getPrevAnimation());
 		}
 		//update the timeBar
 		this.statusBarController.getStatusBarView().updateTimeBar(this.inGame.getLevelTime(), this.inGame.getTime());

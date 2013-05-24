@@ -16,7 +16,7 @@ public class CharacterView {
 	private Character character;
 	private Shape slickShape;
 	private Body characterBody;
-	private Animation nelson, walkingLeft, walkingRight, blink;
+	private Animation nelson, walkLeft, walkRight, blink, prevAnimation;
 	
 	public CharacterView(Character character) throws SlickException {
 		this.character = character;
@@ -24,14 +24,14 @@ public class CharacterView {
 		this.character.getY()-(Character.RADIUS/2f), Character.RADIUS);
 		
 		Image image = new Image("pics/GulNelson.png");
-		Image[] walkLeft = {image, image};
-		Image[] walkRight = {image.getFlippedCopy(true, false), image.getFlippedCopy(true, false)};
-		Image[] blinking = {new Image("pics/invisibleNelson.png"), new Image("pics/GulNelson.png")};
+		Image[] walkingLeft = {image, image};
+		Image[] walkingRight = {image.getFlippedCopy(true, false), image.getFlippedCopy(true, false)};
+		Image[] blinking = {new Image("pics/invisibleNelson.png"), image};
 		int duration = 100;		
-		walkingRight = new Animation(walkRight, duration);
-		walkingLeft = new Animation(walkLeft, duration);
+		walkRight = new Animation(walkingRight, duration);
+		walkLeft = new Animation(walkingLeft, duration);
 		blink = new Animation(blinking, duration);
-		nelson = walkingRight;
+		nelson = walkRight;
 	}
 
 	public Character getCharacter() {
@@ -54,15 +54,27 @@ public class CharacterView {
 		return this.nelson;
 	}
 	
+	public void setAnimation(Animation animation) {
+		this.nelson = animation;
+	}
+	
+	public void storeAnimation(Animation animation) {
+		this.prevAnimation = animation;
+	}
+
+	public Animation getPrevAnimation() {
+		return prevAnimation;
+	}
+
 	public void animateBlinking() {
 		this.nelson = blink;
 	}
 	
 	public void animateWalkingRight() {
-		this.nelson = walkingRight;
+		this.nelson = walkRight;
 	}
 	
 	public void animateWalkingLeft() {
-		this.nelson = walkingLeft;
+		this.nelson = walkLeft;
 	}	
 }
