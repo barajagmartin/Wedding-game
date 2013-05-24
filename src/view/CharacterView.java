@@ -39,7 +39,6 @@ public class CharacterView {
 		blinkLeft = new Animation(blinkingLeft, duration);
 		blinkRight = new Animation(blinkingRight, duration);
 		nelson = walkLeft;
-		walkLeft.stop();
 	}
 
 	public Character getCharacter() {
