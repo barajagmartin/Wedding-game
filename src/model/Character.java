@@ -61,7 +61,7 @@ public class Character {
 	
 	public void dropDownItem(Item item){
 		item.setPickedUp(false);
-		item.setX(this.pos.getX()+RADIUS);
+		item.setX(this.pos.getX()+(RADIUS/2));
 		item.setY((this.pos.getY()+RADIUS*2-Item.HEIGHT));
 		this.heldItem = null;
 	}
