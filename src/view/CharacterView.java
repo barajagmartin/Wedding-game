@@ -16,6 +16,7 @@ public class CharacterView {
 	private Character character;
 	private Shape slickShape;
 	private Body characterBody;
+
 	private Animation nelson, walkRight, walkLeft, blinkLeft, blinkRight;
 	
 	public CharacterView(Character character) throws SlickException {
