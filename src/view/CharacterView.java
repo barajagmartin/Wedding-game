@@ -32,6 +32,7 @@ public class CharacterView {
 		walkLeft = new Animation(walkingLeft, duration);
 		blink = new Animation(blinking, duration);
 		nelson = walkRight;
+		prevAnimation = nelson;
 	}
 
 	public Character getCharacter() {
@@ -60,6 +61,10 @@ public class CharacterView {
 	
 	public void storeAnimation(Animation animation) {
 		this.prevAnimation = animation;
+	}
+
+	public Animation getBlinkingAnimation() {
+		return blink;
 	}
 
 	public Animation getPrevAnimation() {

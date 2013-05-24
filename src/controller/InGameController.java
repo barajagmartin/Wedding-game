@@ -179,16 +179,18 @@ public class InGameController extends BasicGameState {
 			if(gameController.getGame().isSoundOn()){
 				this.hurtSound.play();  
 			}
+			characterController.getCharacterView().storeAnimation(characterController.getCharacterView().getAnimation()); //save previous animation
 			this.playerController.getPlayer().loseOneLife();
 			this.characterController.getCharacter().setTimeSinceHit(0);
 		}
 		
-		if (this.characterController.getCharacter().getTimeSinceHit() <= 1) {
-			characterController.getCharacterView().storeAnimation(characterController.getCharacterView().getAnimation()); //save previous animation
+		if(this.characterController.getCharacter().getTimeSinceHit() <= 1) {
 			characterController.getCharacterView().animateBlinking();
-		} else {
+		} else if (this.characterController.getCharacter().getTimeSinceHit() > 1 && 
+				characterController.getCharacterView().getAnimation() == characterController.getCharacterView().getBlinkingAnimation()) { //if the character is blinking
 			characterController.getCharacterView().setAnimation(characterController.getCharacterView().getPrevAnimation());
 		}
+		
 		//update the timeBar
 		this.statusBarController.getStatusBarView().updateTimeBar(this.inGame.getLevelTime(), this.inGame.getTime());
 		
