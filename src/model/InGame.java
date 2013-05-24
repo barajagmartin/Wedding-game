@@ -24,7 +24,7 @@ public class InGame {
 	public InGame(Player player) {
 		this.player = player;
 		this.isNewGame = true;
-		this.folder = new File(".");
+		this.folder = new File("levels");
 		resetLevel();
 		reset();
 	}

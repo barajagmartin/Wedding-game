@@ -16,25 +16,31 @@ public class CharacterView {
 	private Character character;
 	private Shape slickShape;
 	private Body characterBody;
-	private Animation nelson, walkLeft, walkRight, blinkLeft, blinkRight;
+
+	private Animation nelson, walkRight, walkLeft, blinkLeft, blinkRight;
 	
 	public CharacterView(Character character) throws SlickException {
 		this.character = character;
 		this.slickShape = new Circle(this.character.getX()-(Character.RADIUS/2f), 
 		this.character.getY()-(Character.RADIUS/2f), Character.RADIUS);
 		
-		Image imageLeft = new Image("pics/GulNelson.png");
-		Image imageRight = imageLeft.getFlippedCopy(true, false);
-		Image[] walkingLeft = {imageLeft, imageLeft};
-		Image[] walkingRight = {imageRight, imageRight};
-		Image[] blinkingLeft = {new Image("pics/invisibleNelson.png"), imageLeft};
-		Image[] blinkingRight = {new Image("pics/invisibleNelson.png"), imageRight};
-		int duration = 100;		
+		Image imageRight1 = new Image("pics/nelson1.png");
+		Image imageRight2 = new Image("pics/nelson2.png");
+		Image invisibleNelson = new Image("pics/invisibleNelson.png");
+		Image imageLeft1 = imageRight1.getFlippedCopy(true, false);
+		Image imageLeft2 = imageRight2.getFlippedCopy(true, false);
+		Image[] walkingRight = {imageRight1, imageRight2};
+		Image[] walkingLeft = {imageLeft1, imageLeft2};
+		Image[] blinkingRight = {invisibleNelson, imageRight1, imageRight2};
+		Image[] blinkingLeft = {invisibleNelson, imageLeft1, imageLeft2};
+		
+		int duration = 300;		
 		walkRight = new Animation(walkingRight, duration);
 		walkLeft = new Animation(walkingLeft, duration);
 		blinkLeft = new Animation(blinkingLeft, duration);
 		blinkRight = new Animation(blinkingRight, duration);
-		nelson = walkRight;
+		nelson = walkLeft;
+		walkLeft.stop();
 	}
 
 	public Character getCharacter() {
