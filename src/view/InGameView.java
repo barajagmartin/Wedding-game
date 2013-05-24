@@ -60,26 +60,20 @@ public class InGameView {
 		for (int j = 0; j < worldView.getCandyMonsterViewList().size(); j++) {
 			this.g.setColor(Color.transparent);
 			this.g.fill(worldView.getCandyMonsterViewList().get(j).getShape());
-			
-			if (worldView.getItemViewList().get(j).getItem().isDelivered()) {
-			this.g.drawImage(worldView.getCandyMonsterViewList().get(j).getHappyImage(),
+			this.g.drawImage(worldView.getCandyMonsterViewList().get(j).getImage(),
 					worldView.getCandyMonsterViewList().get(j).getCandyMonster().getX(),
 					worldView.getCandyMonsterViewList().get(j).getCandyMonster().getY());
-			} else {
-				this.g.drawImage(worldView.getCandyMonsterViewList().get(j).getSadImage(),
-						worldView.getCandyMonsterViewList().get(j).getCandyMonster().getX(),
-						worldView.getCandyMonsterViewList().get(j).getCandyMonster().getY());
-						//clouds w. candy
-						this.g.drawImage(this.cloud, worldView.getCandyMonsterViewList().get(j).getCandyMonster().getX(),
-								worldView.getCandyMonsterViewList().get(j).getCandyMonster().getY()-30);
-						for (int k = 0; k < this.worldView.getItemViewList().size(); k++) {
-							if (this.worldView.getItemViewList().get(k).getItem().CANDY_NUMBER == worldView.getCandyMonsterViewList().get(j).getCandyMonster().CANDY_NUMBER) {
-								this.g.drawImage(worldView.getItemViewList().get(k).getImage(), worldView.getCandyMonsterViewList().get(j).getCandyMonster().getX()+5, 
-										worldView.getCandyMonsterViewList().get(j).getCandyMonster().getY()-27);
-							}
-						}
+			//clouds w. candy
+			this.g.drawImage(this.cloud, worldView.getCandyMonsterViewList().get(j).getCandyMonster().getX(),
+					worldView.getCandyMonsterViewList().get(j).getCandyMonster().getY()-30);
+			for (int k = 0; k < this.worldView.getItemViewList().size(); k++) {
+				if (this.worldView.getItemViewList().get(k).getItem().CANDY_NUMBER == worldView.getCandyMonsterViewList().get(j).getCandyMonster().CANDY_NUMBER) {
+					this.g.drawImage(worldView.getItemViewList().get(k).getImage(), worldView.getCandyMonsterViewList().get(j).getCandyMonster().getX()+5, 
+							worldView.getCandyMonsterViewList().get(j).getCandyMonster().getY()-27);
+				}
 			}
-		}	
+		}
+
 		//draw spikes
 		for (int j = 0; j < spikesViewList.size(); j++) {
 			//set the color when "debugging"
@@ -89,14 +83,14 @@ public class InGameView {
 					spikesViewList.get(j).getSpikes().getPos().getX()- Spikes.RADIUS - 3, 
 					spikesViewList.get(j).getSpikes().getPos().getY() - Spikes.RADIUS - 3);
 		}
-		
+
 		//draw Nelson
 		characterView.getAnimation().draw(characterView.getCharacter().getX(), characterView.getCharacter().getY());
-		
+
 		for (MoveableBoxView moveableBoxView : moveableBoxViewList) {
 			g.drawImage(moveableBoxView.getImage(), moveableBoxView.getMoveableBox().getPos().getX()-MoveableBox.HALF_WIDTH,
 					moveableBoxView.getMoveableBox().getPos().getY()-MoveableBox.HALF_HEIGHT+1); // +1 is to correct position which
-																							// probably is rounded incorrectly
+			// probably is rounded incorrectly
 		}
 
 		//draw items
@@ -120,14 +114,14 @@ public class InGameView {
 		this.g.drawString("Lv." + this.level, Game.WINDOW_WIDTH - 60, StatusBar.HEART_POSY - 40);
 		this.g.setColor(Color.darkGray);
 		this.g.fill(statusBarView.getFixedBar());
-		
+
 		if(inGame.timeIsReallyRunningOut()) { //when 10% of the time remains
 			this.g.setColor(Color.red);
 		} else {
 			this.g.setColor(Color.green);
 		}
 		this.g.fill(statusBarView.getTimeBar());
-		
+
 
 	}
 	/**Save all graphics in an Image to create an illusion of a paused screen in PauseView
@@ -136,7 +130,7 @@ public class InGameView {
 		pauseImage = new Image(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT);
 		this.g.copyArea(pauseImage, 0, 0);
 	}
-	
+
 	public Image getPauseImage(){
 		return pauseImage;
 	}

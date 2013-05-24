@@ -48,13 +48,11 @@ public class CandyMonsterView {
 		this.color = color;
 	}
 
-	public Image getHappyImage() {
-		return happyImage;
-	}
-
-	public Image getSadImage() {
-		return sadImage;
-	}
-
-	
+	public Image getImage() {
+		if (candyMonster.isHappy()) {
+			return happyImage;
+		} else {
+			return sadImage;	
+		}
+	}	
 }

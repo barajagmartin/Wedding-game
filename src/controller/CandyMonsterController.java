@@ -38,7 +38,8 @@ public class CandyMonsterController {
 				 candyMonsterView.getShape().intersects(inGameController.getItemControllers().
 						 get(inGameController.getBlockMapController().getBlockMapView().getItemNbrMap().
 								 indexOf(candyMonster.CANDY_NUMBER)).getItemView().getShape())){
-			//kolla isDelivered
+
+			candyMonster.setIsHappy(true);
 			item.setDelivered(true);
 			this.inGameController.getInGame().increaseItemsDelivered();
 			return true;
