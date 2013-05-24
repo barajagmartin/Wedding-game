@@ -37,37 +37,37 @@
   <image source="position32x32.png" width="128" height="97"/>
   <tile id="0">
    <properties>
-    <property name="candyNumber" value="1"/>
+    <property name="candyNumber" value="0"/>
     <property name="property" value="candyMonster"/>
    </properties>
   </tile>
   <tile id="1">
    <properties>
-    <property name="candyNumber" value="1"/>
+    <property name="candyNumber" value="0"/>
     <property name="property" value="item"/>
    </properties>
   </tile>
   <tile id="2">
    <properties>
-    <property name="candyNumber" value="4"/>
+    <property name="candyNumber" value="3"/>
     <property name="property" value="candyMonster"/>
    </properties>
   </tile>
   <tile id="3">
    <properties>
-    <property name="candyNumber" value="4"/>
+    <property name="candyNumber" value="3"/>
     <property name="property" value="item"/>
    </properties>
   </tile>
   <tile id="4">
    <properties>
-    <property name="candyNumber" value="2"/>
+    <property name="candyNumber" value="1"/>
     <property name="property" value="candyMonster"/>
    </properties>
   </tile>
   <tile id="5">
    <properties>
-    <property name="candyNumber" value="2"/>
+    <property name="candyNumber" value="1"/>
     <property name="property" value="item"/>
    </properties>
   </tile>
@@ -83,12 +83,13 @@
   </tile>
   <tile id="8">
    <properties>
-    <property name="candyNumber" value="3"/>
+    <property name="candyNumber" value="2"/>
+    <property name="property" value="candyMonster"/>
    </properties>
   </tile>
   <tile id="9">
    <properties>
-    <property name="candyNumber" value="3"/>
+    <property name="candyNumber" value="2"/>
     <property name="property" value="item"/>
    </properties>
   </tile>
@@ -115,7 +116,7 @@
  </layer>
  <layer name="position" width="32" height="24">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2BwA7WBdsAwAooD7YBRQFWgPdAOoBHQGWgH0AgMV38NV6BKJXOUqGTOKBgF1AQAAAIBEg==
+   eJxjYBgFo2AUjBSgONAOGAUUAzUktvaAuYK2QGegHUAjMFz9NVyBKpXMUaKSOaNgFFATAACLkwES
   </data>
  </layer>
 </map>

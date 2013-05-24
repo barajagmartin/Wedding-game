@@ -15,14 +15,14 @@ public class CandyMonsterView {
 	private Image happyImage;
 	private Image sadImage;
 	
-	public CandyMonsterView(CandyMonster candyMonster, int candyNumber) throws SlickException {
+	public CandyMonsterView(CandyMonster candyMonster) throws SlickException {
 		this.candyMonster = candyMonster;
 		this.shape = new Rectangle(candyMonster.getX(), candyMonster.getY(), CandyMonster.WIDTH, CandyMonster.HEIGHT);
-		happyImage = new Image("pics/happyCandyMonster" + String.valueOf(candyNumber) + ".png");
-		sadImage = new Image("pics/sadCandyMonster" + String.valueOf(candyNumber) + ".png");
+		happyImage = new Image("pics/happyCandyMonster" + String.valueOf(candyMonster.CANDY_NUMBER) + ".png");
+		sadImage = new Image("pics/sadCandyMonster" + String.valueOf(candyMonster.CANDY_NUMBER) + ".png");
 
 		/*Set the color of a candy monster depending on its ID*/
-		switch(candyNumber){
+		switch(candyMonster.CANDY_NUMBER){
 			case 0: color = Color.cyan;
 					break;
 			case 1: color = Color.magenta;

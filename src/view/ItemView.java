@@ -15,10 +15,10 @@ public class ItemView {
 	private Color color;
 	private Image image;
 	
-	public ItemView(Item item, int candyNumber) throws SlickException {
+	public ItemView(Item item) throws SlickException {
 		this.item = item;
-		this.shape = new Rectangle(item.getX(), item.getY(), item.WIDTH, item.HEIGHT);
-		this.image = new Image("pics/item" + String.valueOf(candyNumber) +".png");
+		this.shape = new Rectangle(item.getX(), item.getY(), Item.WIDTH, Item.HEIGHT);
+		this.image = new Image("pics/item" + String.valueOf(item.CANDY_NUMBER) +".png");
 	}
 	
 	public Item getItem(){
