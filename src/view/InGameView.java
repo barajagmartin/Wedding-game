@@ -53,7 +53,7 @@ public class InGameView {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		this.g = g;
-		Image background = new Image("pics/rainbow.jpg");
+		Image background = new Image("pics/bg_"+level+".jpg");
 		background.draw();
 		worldView.getBlockMapView().getTiledMap().render(0, 0, worldView.getBlockMapView().getTiledMap().getLayerIndex("solids"));
 		//draw candyMonsters and clouds

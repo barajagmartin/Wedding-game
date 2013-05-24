@@ -4,16 +4,12 @@
   <image source="rutor32x32.png" width="128" height="256"/>
   <tile id="0">
    <properties>
-    <property name="friction" value="0.7"/>
     <property name="property" value="solidGround"/>
-    <property name="restitution" value="0"/>
    </properties>
   </tile>
   <tile id="1">
    <properties>
-    <property name="friction" value="0.7"/>
     <property name="property" value="solidGround"/>
-    <property name="restitution" value="0"/>
    </properties>
   </tile>
   <tile id="3">
@@ -23,21 +19,12 @@
   </tile>
   <tile id="4">
    <properties>
-    <property name="friction" value="0.7"/>
     <property name="property" value="spring"/>
-    <property name="restitution" value="1"/>
    </properties>
   </tile>
   <tile id="5">
    <properties>
-    <property name="friction" value="0"/>
-    <property name="property" value="solidGround"/>
-    <property name="restitution" value="0"/>
-   </properties>
-  </tile>
-  <tile id="7">
-   <properties>
-    <property name="property" value="moveableBox"/>
+    <property name="property" value="ice"/>
    </properties>
   </tile>
   <tile id="8">
@@ -45,27 +32,72 @@
     <property name="property" value="iceSpring"/>
    </properties>
   </tile>
-  <tile id="27">
+ </tileset>
+ <tileset firstgid="33" name="position32x32" tilewidth="32" tileheight="32">
+  <image source="position32x32.png" width="128" height="97"/>
+  <tile id="0">
    <properties>
-    <property name="time" value="90"/>
-   </properties>
-  </tile>
-  <tile id="28">
-   <properties>
+    <property name="candyNumber" value="1"/>
     <property name="property" value="candyMonster"/>
    </properties>
   </tile>
-  <tile id="29">
+  <tile id="1">
    <properties>
+    <property name="candyNumber" value="1"/>
     <property name="property" value="item"/>
    </properties>
   </tile>
-  <tile id="30">
+  <tile id="2">
+   <properties>
+    <property name="candyNumber" value="4"/>
+    <property name="property" value="candyMonster"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="candyNumber" value="4"/>
+    <property name="property" value="item"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="candyNumber" value="2"/>
+    <property name="property" value="candyMonster"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="candyNumber" value="1"/>
+    <property name="property" value="item"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="property" value="moveableBox"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="time" value="60"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="candyNumber" value="3"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="candyNumber" value="3"/>
+    <property name="property" value="item"/>
+   </properties>
+  </tile>
+  <tile id="10">
    <properties>
     <property name="property" value="player"/>
    </properties>
   </tile>
-  <tile id="31">
+  <tile id="11">
    <properties>
     <property name="property" value="spikes"/>
    </properties>
@@ -73,17 +105,17 @@
  </tileset>
  <layer name="solids" width="32" height="24">
   <data encoding="base64" compression="zlib">
-   eJxjZBg4wAjFA20/ExIeCPvpCZD9OFjCf6TZD0trw8H/lOQZathPin50txJrPz4/4tJPTLgQaz8+NbjkiDV3IOwnNf0PN/8PlP3kpv/h4n9i7WelEcZlP9MAYZDdzKN4RGMAn2MChA==
+   eJxjZBg4wAjFo/aP2j9q/6j9o/aP2j+c7GcigAeL/9HdRW/70TG93IDLfuQwwQcIxS8l9uOKG2zphxy9MP3Mo3hEYwDPsQIN
   </data>
  </layer>
  <layer name="data" width="32" height="24">
   <data encoding="base64" compression="zlib">
-   eJztwQEBAAAAASBD/N9piKoBAABeDFwPAB0=
+   eJztwQEBAAAAASBz/F9oiKoBAABeDOwPACk=
   </data>
  </layer>
  <layer name="position" width="32" height="24">
   <data encoding="base64" compression="zlib">
-   eJxjYBgcQH6gHTAKRsEQBAoD7QA6AAU66RkFo2AUDB2gQKI4PiBLvjNIBnJ0tGsUjAJ8AAC40wD7
+   eJxjYBgFo2AUjIJRMAqGP1AaaAfgAdoD7YAhDBToYIciHewYBaOAngAAPA4Ajw==
   </data>
  </layer>
 </map>
