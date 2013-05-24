@@ -103,8 +103,8 @@ public class InGameController extends BasicGameState {
 			this.blockMapController = new BlockMapController(this, new TiledMap(BlockMapUtils.getTmxFile(this.inGame.getLevel(), inGame.randomizeVersion(nbrOfVersions))));
 			/*Create candy monster and its items*/
 			for (int i = 0; i < blockMapController.getCandyMonsterMap().getBlockList().size(); i++){
-				this.candyMonsterControllers.add(new CandyMonsterController(this, blockMapController.getBlockMapView().getCandyMonsterNbrMap().get(i)));
-				this.itemControllers.add(new ItemController(this, blockMapController.getBlockMapView().getItemNbrMap().get(i)));
+				this.candyMonsterControllers.add(new CandyMonsterController(this, blockMapController.getBlockMapView().getCandyMonsterNbrMap().get(i), i));
+				this.itemControllers.add(new ItemController(this, blockMapController.getBlockMapView().getItemNbrMap().get(i), i));
 			}
 
 			this.characterController = new CharacterController(this);
@@ -240,7 +240,7 @@ public class InGameController extends BasicGameState {
 					characterController.getCharacterView().getCharacterBody().getLinearVelocity().y == 0) {
 				lastHeldItem = characterController.getCharacter().getHeldItem();	
 				characterController.getCharacter().dropDownItem(characterController.getCharacter().getHeldItem());
-				this.itemControllers.get(lastHeldItem.CANDY_NUMBER).uppdateItemShape();
+				this.itemControllers.get(lastHeldItem.CANDY_NUMBER).updateItemShape();
 				if(candyMonsterControllers.get(lastHeldItem.CANDY_NUMBER).isDroppedOnMonster(lastHeldItem) && gameController.getGame().isSoundOn()) {
 					this.happySound.play();
 				}

@@ -11,12 +11,12 @@ public class ItemController {
 	private Item item;
 	private ItemView itemView;
 	
-	public ItemController(InGameController inGameController, int candyNumber) throws SlickException {
+	public ItemController(InGameController inGameController, int candyNumber, int index) throws SlickException {
 		this.inGameController = inGameController;
-		this.item = new Item(this.inGameController.getBlockMapController().getItemMap().getBlockList().get(candyNumber).getPosX(), 
-								this.inGameController.getBlockMapController().getItemMap().getBlockList().get(candyNumber).getPosY(), 
+		this.item = new Item(this.inGameController.getBlockMapController().getItemMap().getBlockList().get(index).getPosX(), 
+								this.inGameController.getBlockMapController().getItemMap().getBlockList().get(index).getPosY(), 
 								candyNumber); //x, y, candyNumber
-		this.itemView = new ItemView(this.item, candyNumber); 
+		this.itemView = new ItemView(this.item); 
 	}
 	
 	public Item getItem(){
@@ -27,7 +27,7 @@ public class ItemController {
 		return itemView;
 	}
 	
-	public void uppdateItemShape(){
+	public void updateItemShape(){
 		this.itemView.getShape().setX(this.item.getX());
 		this.itemView.getShape().setY(this.item.getY());
 	}

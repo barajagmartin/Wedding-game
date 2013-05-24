@@ -13,12 +13,12 @@ public class CandyMonsterController {
 	private InGameController inGameController;
 	boolean isSoundPlayed = false;
 	
-	public CandyMonsterController(InGameController inGameController, int candyNumber) throws SlickException{
+	public CandyMonsterController(InGameController inGameController, int candyNumber, int index) throws SlickException{
 		this.inGameController = inGameController;
-		this.candyMonster = new CandyMonster(this.inGameController.getBlockMapController().getCandyMonsterMap().getBlockList().get(candyNumber).getPosX(), 
-											this.inGameController.getBlockMapController().getCandyMonsterMap().getBlockList().get(candyNumber).getPosY(), 
+		this.candyMonster = new CandyMonster(this.inGameController.getBlockMapController().getCandyMonsterMap().getBlockList().get(index).getPosX(), 
+											this.inGameController.getBlockMapController().getCandyMonsterMap().getBlockList().get(index).getPosY(), 
 											candyNumber); //x, y, candyNumber
-		this.candyMonsterView = new CandyMonsterView(this.candyMonster, candyNumber);
+		this.candyMonsterView = new CandyMonsterView(this.candyMonster);
 	}
 	
 	public CandyMonster getCandyMonster(){
