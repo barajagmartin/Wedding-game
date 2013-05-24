@@ -16,23 +16,25 @@ public class CharacterView {
 	private Character character;
 	private Shape slickShape;
 	private Body characterBody;
-	private Animation nelson, walkLeft, walkRight, blink, prevAnimation;
+	private Animation nelson, walkLeft, walkRight, blinkLeft, blinkRight;
 	
 	public CharacterView(Character character) throws SlickException {
 		this.character = character;
 		this.slickShape = new Circle(this.character.getX()-(Character.RADIUS/2f), 
 		this.character.getY()-(Character.RADIUS/2f), Character.RADIUS);
 		
-		Image image = new Image("pics/GulNelson.png");
-		Image[] walkingLeft = {image, image};
-		Image[] walkingRight = {image.getFlippedCopy(true, false), image.getFlippedCopy(true, false)};
-		Image[] blinking = {new Image("pics/invisibleNelson.png"), image};
+		Image imageLeft = new Image("pics/GulNelson.png");
+		Image imageRight = imageLeft.getFlippedCopy(true, false);
+		Image[] walkingLeft = {imageLeft, imageLeft};
+		Image[] walkingRight = {imageRight, imageRight};
+		Image[] blinkingLeft = {new Image("pics/invisibleNelson.png"), imageLeft};
+		Image[] blinkingRight = {new Image("pics/invisibleNelson.png"), imageRight};
 		int duration = 100;		
 		walkRight = new Animation(walkingRight, duration);
 		walkLeft = new Animation(walkingLeft, duration);
-		blink = new Animation(blinking, duration);
+		blinkLeft = new Animation(blinkingLeft, duration);
+		blinkRight = new Animation(blinkingRight, duration);
 		nelson = walkRight;
-		prevAnimation = nelson;
 	}
 
 	public Character getCharacter() {
@@ -58,21 +60,17 @@ public class CharacterView {
 	public void setAnimation(Animation animation) {
 		this.nelson = animation;
 	}
+
+	public boolean isBlinking() {
+		return this.nelson == blinkLeft || nelson == blinkRight;
+	}
+
+	public void animateBlinkingLeft() {
+		this.nelson = blinkLeft;
+	}
 	
-	public void storeAnimation(Animation animation) {
-		this.prevAnimation = animation;
-	}
-
-	public Animation getBlinkingAnimation() {
-		return blink;
-	}
-
-	public Animation getPrevAnimation() {
-		return prevAnimation;
-	}
-
-	public void animateBlinking() {
-		this.nelson = blink;
+	public void animateBlinkingRight() {
+		this.nelson = blinkRight;
 	}
 	
 	public void animateWalkingRight() {
@@ -81,5 +79,13 @@ public class CharacterView {
 	
 	public void animateWalkingLeft() {
 		this.nelson = walkLeft;
+	}
+
+	public boolean isWalkingLeft() {
+		return this.nelson == walkLeft;
+	}
+
+	public boolean isBlinkingLeft() {
+		return this.nelson == blinkLeft;
 	}	
 }

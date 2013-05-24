@@ -179,16 +179,22 @@ public class InGameController extends BasicGameState {
 			if(gameController.getGame().isSoundOn()){
 				this.hurtSound.play();  
 			}
-			characterController.getCharacterView().storeAnimation(characterController.getCharacterView().getAnimation()); //save previous animation
 			this.playerController.getPlayer().loseOneLife();
 			this.characterController.getCharacter().setTimeSinceHit(0);
 		}
 		
 		if(this.characterController.getCharacter().getTimeSinceHit() <= 1) {
-			characterController.getCharacterView().animateBlinking();
-		} else if (this.characterController.getCharacter().getTimeSinceHit() > 1 && 
-				characterController.getCharacterView().getAnimation() == characterController.getCharacterView().getBlinkingAnimation()) { //if the character is blinking
-			characterController.getCharacterView().setAnimation(characterController.getCharacterView().getPrevAnimation());
+			if(characterController.getCharacterView().isWalkingLeft()) {
+				characterController.getCharacterView().animateBlinkingLeft();
+			} else {
+				characterController.getCharacterView().animateBlinkingRight();
+			}
+		} else if (this.characterController.getCharacter().getTimeSinceHit() > 1 && characterController.getCharacterView().isBlinking()) { //if the character is blinking
+			if(characterController.getCharacterView().isBlinkingLeft()) {
+				characterController.getCharacterView().animateWalkingLeft();
+			} else {
+				characterController.getCharacterView().animateWalkingRight();
+			}
 		}
 		
 		//update the timeBar
