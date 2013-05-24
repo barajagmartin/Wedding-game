@@ -93,7 +93,7 @@ public class StartMenuController extends BasicGameState {
 				case 5: System.exit(0);
 			}
 		}
-		if(key == Input.KEY_F) {
+		if(key == Input.KEY_TAB) {
 			this.gameController.changeFullscreen(this.gc);
 		}
 	}

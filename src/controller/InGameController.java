@@ -248,10 +248,10 @@ public class InGameController extends BasicGameState {
 				}
 			}
 		}
-		if (key == Input.KEY_UP) {
+		else if (key == Input.KEY_UP) {
 			characterController.tryToJumpCharacter();
 		}
-		if (key == Input.KEY_ESCAPE){
+		else if (key == Input.KEY_ESCAPE){
 			try {
 				inGame.setPaused(true);
 				inGameView.createPauseImage();
@@ -267,7 +267,7 @@ public class InGameController extends BasicGameState {
 			sbg.enterState(PauseMenu.STATE_ID);
 		}
 		
-		if(key == Input.KEY_F) {
+		else if(key == Input.KEY_TAB) {
 			this.gameController.changeFullscreen(this.gameContainer);
 		}
 	}
