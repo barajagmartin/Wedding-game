@@ -183,13 +183,32 @@ public class InGameController extends BasicGameState {
 			this.characterController.getCharacter().setTimeSinceHit(0);
 		}
 		
-		if (this.characterController.getCharacter().getTimeSinceHit() <= 1) {
-			characterController.getCharacterView().animateBlinking();
-		} else {
-			characterController.getCharacterView().getAnimation();
+		if(this.characterController.getCharacter().getTimeSinceHit() <= 1) {
+			if(characterController.getCharacterView().isWalkingLeft()) {
+				characterController.getCharacterView().animateBlinkingLeft();
+			} else {
+				characterController.getCharacterView().animateBlinkingRight();
+			}
+		} else if (this.characterController.getCharacter().getTimeSinceHit() > 1 && characterController.getCharacterView().isBlinking()) { //if the character is blinking
+			if(characterController.getCharacterView().isBlinkingLeft()) {
+				characterController.getCharacterView().animateWalkingLeft();
+			} else {
+				characterController.getCharacterView().animateWalkingRight();
+			}
 		}
+		
 		//update the timeBar
 		this.statusBarController.getStatusBarView().updateTimeBar(this.inGame.getLevelTime(), this.inGame.getTime());
+		
+		//increase pitch when time is running out
+//		if(this.gameController.getGame().isMusicOn()) {
+//			if(inGame.timeIsRunningOut()) {
+//				gameController.getInGameMusic().pause();
+//				gameController.getInGameMusic().play(1.3f, 1f);
+//			} else if(inGame.timeIsReallyRunningOut()) {
+//				gameController.getInGameMusic().play(1.5f, 1f);
+//			}
+//		}
 		//check if the game is over
 		if (inGame.checkIfGameIsOver(itemControllers.size())) {
 			gameController.getInGameMusic().stop();
