@@ -98,7 +98,6 @@ public class InGameController extends BasicGameState {
 			this.moveableBoxControllers = new ArrayList<MoveableBoxController>();
 
 			int nbrOfVersions = inGame.getNbrOfFiles(this.inGame.getLevel());
-			System.out.println("nbr of versions: " + nbrOfVersions + "of the level: " + this.inGame.getLevel());
 			//Get a new level, randomize between different level versions (i.e. there are many level 1 to randomize from)
 			this.blockMapController = new BlockMapController(this, new TiledMap(BlockMapUtils.getTmxFile(this.inGame.getLevel(), inGame.randomizeVersion(nbrOfVersions)), "levels"));
 			/*Create candy monster and its items*/
@@ -268,8 +267,6 @@ public class InGameController extends BasicGameState {
 				lastHeldItem = characterController.getCharacter().getHeldItem();
 				characterController.getCharacter().dropDownItem(lastHeldItem);
 				this.itemControllers.get(blockMapController.getBlockMapView().getItemNbrMap().indexOf(lastHeldItem.CANDY_NUMBER)).updateItemShape();
-				System.out.println(blockMapController.getBlockMapView().getCandyMonsterNbrMap().indexOf(lastHeldItem.CANDY_NUMBER));
-				System.out.println(lastHeldItem.CANDY_NUMBER);
 				if(candyMonsterControllers.get(blockMapController.getBlockMapView().getCandyMonsterNbrMap().indexOf(lastHeldItem.CANDY_NUMBER)).isDroppedOnMonster(lastHeldItem) && gameController.getGame().isSoundOn()) { //här är problemet FIXME
 					this.happySound.play();
 				}
@@ -284,7 +281,6 @@ public class InGameController extends BasicGameState {
 				inGameView.createPauseImage();
 				gameController.getGameView().setPauseImage(inGameView.getPauseImage());
 			} catch (SlickException e) {
-				System.out.println("ERROR: No image could be created");
 				e.printStackTrace();
 			}
 			//Set previous state to the state you where in before entering pause menu
