@@ -5,6 +5,7 @@ import model.Game;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -15,6 +16,8 @@ public class HighScoreStateView {
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
+		Image background = new Image("pics/highscore_background.png");
+		background.draw();
 		g.setColor(Color.green);
 		int y = 200;
 		String space = " ";
