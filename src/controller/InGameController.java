@@ -238,10 +238,12 @@ public class InGameController extends BasicGameState {
 				characterController.getCharacter().pickUpItem(characterController.findItemToPickUp());
 			} else if (characterController.getCharacter().isHoldingItem(itemList) && 
 					characterController.getCharacterView().getCharacterBody().getLinearVelocity().y == 0) {
-				lastHeldItem = characterController.getCharacter().getHeldItem();	
-				characterController.getCharacter().dropDownItem(characterController.getCharacter().getHeldItem());
-				this.itemControllers.get(lastHeldItem.CANDY_NUMBER).updateItemShape();
-				if(candyMonsterControllers.get(lastHeldItem.CANDY_NUMBER).isDroppedOnMonster(lastHeldItem) && gameController.getGame().isSoundOn()) {
+				lastHeldItem = characterController.getCharacter().getHeldItem();
+				characterController.getCharacter().dropDownItem(lastHeldItem);
+				this.itemControllers.get(blockMapController.getBlockMapView().getItemNbrMap().indexOf(lastHeldItem.CANDY_NUMBER)).updateItemShape();
+				System.out.println(blockMapController.getBlockMapView().getCandyMonsterNbrMap().indexOf(lastHeldItem.CANDY_NUMBER));
+				System.out.println(lastHeldItem.CANDY_NUMBER);
+				if(candyMonsterControllers.get(blockMapController.getBlockMapView().getCandyMonsterNbrMap().indexOf(lastHeldItem.CANDY_NUMBER)).isDroppedOnMonster(lastHeldItem) && gameController.getGame().isSoundOn()) { //här är problemet FIXME
 					this.happySound.play();
 				}
 			}
