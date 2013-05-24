@@ -27,37 +27,78 @@
     <property name="property" value="ice"/>
    </properties>
   </tile>
-  <tile id="7">
-   <properties>
-    <property name="property" value="moveableBox"/>
-   </properties>
-  </tile>
   <tile id="8">
    <properties>
     <property name="property" value="iceSpring"/>
    </properties>
   </tile>
-  <tile id="27">
+ </tileset>
+ <tileset firstgid="33" name="position32x32" tilewidth="32" tileheight="32">
+  <image source="position32x32.png" width="128" height="97"/>
+  <tile id="0">
+   <properties>
+    <property name="candyNumber" value="0"/>
+    <property name="property" value="candyMonster"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="candyNumber" value="0"/>
+    <property name="property" value="item"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="candyNumber" value="3"/>
+    <property name="property" value="candyMonster"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="candyNumber" value="3"/>
+    <property name="property" value="item"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="candyNumber" value="1"/>
+    <property name="property" value="candyMonster"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="candyNumber" value="1"/>
+    <property name="property" value="item"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="property" value="moveableBox"/>
+   </properties>
+  </tile>
+  <tile id="7">
    <properties>
     <property name="time" value="60"/>
    </properties>
   </tile>
-  <tile id="28">
+  <tile id="8">
    <properties>
+    <property name="candyNumber" value="2"/>
     <property name="property" value="candyMonster"/>
    </properties>
   </tile>
-  <tile id="29">
+  <tile id="9">
    <properties>
+    <property name="candyNumber" value="2"/>
     <property name="property" value="item"/>
    </properties>
   </tile>
-  <tile id="30">
+  <tile id="10">
    <properties>
     <property name="property" value="player"/>
    </properties>
   </tile>
-  <tile id="31">
+  <tile id="11">
    <properties>
     <property name="property" value="spikes"/>
    </properties>
@@ -65,17 +106,17 @@
  </tileset>
  <layer name="solids" width="32" height="24">
   <data encoding="base64" compression="zlib">
-   eJztw0EJAAAIBLBD+3e2hT7cYAkAAJvqePv6AB+eAcE=
+   eJxjYBgFo4A6gAkHHkoAlx+Gur/oDYZKGA429wx2gC8uWaF4KAFcfhgOaWIo5L+RDkipb4jBrAzY0zAuzDyKRzQGAINHAko=
   </data>
  </layer>
  <layer name="data" width="32" height="24">
   <data encoding="base64" compression="zlib">
-   eJztwQEBAAAAASBD/N9piKoBAABeDFwPAB0=
+   eJztwQEBAAAAASBz/F9oiKoBAABeDOwPACk=
   </data>
  </layer>
  <layer name="position" width="32" height="24">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMApGwSigDVAYaAdQAcjjEFeA0nJofFxAlhqOGQWjgAoAAB6+ALs=
+   eJxjYBgFo2AUjBSgONAOGAUUAzUktvaAuYK2QGegHUAjMFz9NVyBKpXMUaKSOaNgFFATAACLkwES
   </data>
  </layer>
 </map>

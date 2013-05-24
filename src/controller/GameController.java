@@ -37,7 +37,7 @@ public class GameController extends StateBasedGame {
 	
 	public GameController(String name) throws SlickException {
 		super(name);
-		this.inGameMusic = new Music("music/Marimba.wav");
+		this.inGameMusic = new Music("music/game_music_regular.wav");
 		this.inGameController = new InGameController(this);
 		this.game = new Game(inGameController.getInGame());
 		this.startMenuController = new StartMenuController(this);
@@ -96,8 +96,10 @@ public class GameController extends StateBasedGame {
 		try {
         	if (!gc.isFullscreen()) {
         		agc.setDisplayMode(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT, true);
+    			gc.setMouseGrabbed(true);
 			} else 	{
 				agc.setDisplayMode(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT, false);
+				gc.setMouseGrabbed(false);
 			}
 		} catch (SlickException e) {
 			e.printStackTrace();

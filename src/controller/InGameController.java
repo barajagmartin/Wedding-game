@@ -54,6 +54,7 @@ public class InGameController extends BasicGameState {
 	private int velocityIterations = 6;
 	private int positionIterations = 2;
 	private Sound happySound;
+	private Sound hurtSound;
 	
 	
 	public InGameController(GameController gameController) {
@@ -69,6 +70,7 @@ public class InGameController extends BasicGameState {
 		this.sbg = sbg;
 		this.statusBarController = new StatusBarController(this);
 		this.happySound = new Sound("music/happy0.wav");
+		this.hurtSound = new Sound("music/aj0.wav");
 	}
 
 	@Override
@@ -98,11 +100,11 @@ public class InGameController extends BasicGameState {
 			int nbrOfVersions = inGame.getNbrOfFiles(this.inGame.getLevel());
 			System.out.println("nbr of versions: " + nbrOfVersions + "of the level: " + this.inGame.getLevel());
 			//Get a new level, randomize between different level versions (i.e. there are many level 1 to randomize from)
-			this.blockMapController = new BlockMapController(this, new TiledMap(BlockMapUtils.getTmxFile(this.inGame.getLevel(), inGame.randomizeVersion(nbrOfVersions))));
+			this.blockMapController = new BlockMapController(this, new TiledMap(BlockMapUtils.getTmxFile(this.inGame.getLevel(), inGame.randomizeVersion(nbrOfVersions)), "levels"));
 			/*Create candy monster and its items*/
 			for (int i = 0; i < blockMapController.getCandyMonsterMap().getBlockList().size(); i++){
-				this.candyMonsterControllers.add(new CandyMonsterController(this, i)); 
-				this.itemControllers.add(new ItemController(this, i));
+				this.candyMonsterControllers.add(new CandyMonsterController(this, blockMapController.getBlockMapView().getCandyMonsterNbrMap().get(i), i));
+				this.itemControllers.add(new ItemController(this, blockMapController.getBlockMapView().getItemNbrMap().get(i), i));
 			}
 
 			this.characterController = new CharacterController(this);
@@ -173,17 +175,40 @@ public class InGameController extends BasicGameState {
 		this.characterController.getCharacter().setTimeSinceHit(this.characterController.getCharacter().getTimeSinceHit() + delta/1000f);
 		//check if the player is hit by spikes
 		if(this.characterController.getCharacter().isOnSpikes() && this.characterController.getCharacter().getTimeSinceHit() > 1) {
+			//plays hurt sound if sound is on
+			if(gameController.getGame().isSoundOn()){
+				this.hurtSound.play();  
+			}
 			this.playerController.getPlayer().loseOneLife();
 			this.characterController.getCharacter().setTimeSinceHit(0);
 		}
 		
-		if (this.characterController.getCharacter().getTimeSinceHit() <= 1) {
-			characterController.getCharacterView().animateBlinking();
-		} else {
-			characterController.getCharacterView().animateWalking();
+		if(this.characterController.getCharacter().getTimeSinceHit() <= 1) {
+			if(characterController.getCharacterView().isWalkingLeft()) {
+				characterController.getCharacterView().animateBlinkingLeft();
+			} else {
+				characterController.getCharacterView().animateBlinkingRight();
+			}
+		} else if (this.characterController.getCharacter().getTimeSinceHit() > 1 && characterController.getCharacterView().isBlinking()) { //if the character is blinking
+			if(characterController.getCharacterView().isBlinkingLeft()) {
+				characterController.getCharacterView().animateWalkingLeft();
+			} else {
+				characterController.getCharacterView().animateWalkingRight();
+			}
 		}
+		
 		//update the timeBar
 		this.statusBarController.getStatusBarView().updateTimeBar(this.inGame.getLevelTime(), this.inGame.getTime());
+		
+		//increase pitch when time is running out
+//		if(this.gameController.getGame().isMusicOn()) {
+//			if(inGame.timeIsRunningOut()) {
+//				gameController.getInGameMusic().pause();
+//				gameController.getInGameMusic().play(1.3f, 1f);
+//			} else if(inGame.timeIsReallyRunningOut()) {
+//				gameController.getInGameMusic().play(1.5f, 1f);
+//			}
+//		}
 		//check if the game is over
 		if (inGame.checkIfGameIsOver(itemControllers.size())) {
 			gameController.getInGameMusic().stop();
@@ -229,22 +254,23 @@ public class InGameController extends BasicGameState {
 	public void keyPressed (int key, char c) {
 		if (key == Input.KEY_DOWN) {
 			if (characterController.findItemToPickUp()!= null && !characterController.getCharacter().isHoldingItem(itemList)) {
-				characterController.getCharacterView().setColor(Color.pink);
 				characterController.getCharacter().pickUpItem(characterController.findItemToPickUp());
 			} else if (characterController.getCharacter().isHoldingItem(itemList) && 
 					characterController.getCharacterView().getCharacterBody().getLinearVelocity().y == 0) {
-				lastHeldItem = characterController.getCharacter().getHeldItem();	
-				characterController.getCharacter().dropDownItem(characterController.getCharacter().getHeldItem());
-				this.itemControllers.get(lastHeldItem.CANDY_NUMBER).uppdateItemShape();
-				if(candyMonsterControllers.get(lastHeldItem.CANDY_NUMBER).isDroppedOnMonster(lastHeldItem) && gameController.getGame().isSoundOn()) {
+				lastHeldItem = characterController.getCharacter().getHeldItem();
+				characterController.getCharacter().dropDownItem(lastHeldItem);
+				this.itemControllers.get(blockMapController.getBlockMapView().getItemNbrMap().indexOf(lastHeldItem.CANDY_NUMBER)).updateItemShape();
+				System.out.println(blockMapController.getBlockMapView().getCandyMonsterNbrMap().indexOf(lastHeldItem.CANDY_NUMBER));
+				System.out.println(lastHeldItem.CANDY_NUMBER);
+				if(candyMonsterControllers.get(blockMapController.getBlockMapView().getCandyMonsterNbrMap().indexOf(lastHeldItem.CANDY_NUMBER)).isDroppedOnMonster(lastHeldItem) && gameController.getGame().isSoundOn()) { //här är problemet FIXME
 					this.happySound.play();
 				}
 			}
 		}
-		if (key == Input.KEY_UP) {
+		else if (key == Input.KEY_UP) {
 			characterController.tryToJumpCharacter();
 		}
-		if (key == Input.KEY_ESCAPE){
+		else if (key == Input.KEY_ESCAPE){
 			try {
 				inGame.setPaused(true);
 				inGameView.createPauseImage();
@@ -255,13 +281,12 @@ public class InGameController extends BasicGameState {
 			}
 			//Set previous state to the state you where in before entering pause menu
 			PauseMenuController.setPreviousState(InGame.STATE_ID); 
-			//if sound is off, set volume to 0
 			
 			gameController.getInGameMusic().setVolume(0.3f);
 			sbg.enterState(PauseMenu.STATE_ID);
 		}
 		
-		if(key == Input.KEY_F) {
+		else if(key == Input.KEY_TAB) {
 			this.gameController.changeFullscreen(this.gameContainer);
 		}
 	}

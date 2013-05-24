@@ -5,6 +5,7 @@ import model.Game;
 import model.HighScore;
 import model.NewHighscore;
 
+import utils.SaveUtils;
 import view.NewHighscoreView;
 import model.NewHighscore;
 
@@ -25,6 +26,7 @@ public class NewHighscoreController extends BasicGameState implements ComponentL
 	private NewHighscoreView newHighscoreView;
 	private StateBasedGame sbg;
 	private GameContainer gc;
+	private boolean ctrlDown;
 	
 	public NewHighscoreController(GameController gameController) {
 		this.gameController = gameController;
@@ -55,9 +57,11 @@ public class NewHighscoreController extends BasicGameState implements ComponentL
 		this.gc = gc;
 	}
 	
+	@Override
 	public void keyPressed (int key, char c) {
-		if(key == Input.KEY_F) {
+		if (key == Input.KEY_TAB) {
 			this.gameController.changeFullscreen(this.gc);
+
 		}
 	}
 
@@ -68,7 +72,7 @@ public class NewHighscoreController extends BasicGameState implements ComponentL
 
 	@Override
 	public void componentActivated(AbstractComponent textField) {
-		this.gameController.getGame().saveScore(this.gameController.getGame().getInGame().getPlayer().getScore(),
+		SaveUtils.saveScore(this.gameController.getGame().getInGame().getPlayer().getScore(),
 				this.newHighscoreView.getTextField().getText());
 		textField.setFocus(false);
 		sbg.enterState(HighScore.STATE_ID);

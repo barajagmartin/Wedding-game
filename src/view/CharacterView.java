@@ -15,22 +15,26 @@ import model.Character;
 public class CharacterView {
 	private Character character;
 	private Shape slickShape;
-	private Color color;
 	private Body characterBody;
-	private Animation nelson, walk, blink;
+	private Animation nelson, walkLeft, walkRight, blinkLeft, blinkRight;
 	
 	public CharacterView(Character character) throws SlickException {
 		this.character = character;
 		this.slickShape = new Circle(this.character.getX()-(Character.RADIUS/2f), 
-				this.character.getY()-(Character.RADIUS/2f), Character.RADIUS);
-		this.color = Color.blue;
+		this.character.getY()-(Character.RADIUS/2f), Character.RADIUS);
 		
-		Image[] walking = {new Image("pics/GulNelson.png"), new Image("pics/GulNelson.png")};
-		Image[] blinking = {new Image("pics/invisibleNelson.png"), new Image("pics/GulNelson.png")};
+		Image imageLeft = new Image("pics/GulNelson.png");
+		Image imageRight = imageLeft.getFlippedCopy(true, false);
+		Image[] walkingLeft = {imageLeft, imageLeft};
+		Image[] walkingRight = {imageRight, imageRight};
+		Image[] blinkingLeft = {new Image("pics/invisibleNelson.png"), imageLeft};
+		Image[] blinkingRight = {new Image("pics/invisibleNelson.png"), imageRight};
 		int duration = 100;		
-		walk = new Animation(walking, duration);
-		blink = new Animation(blinking, duration);
-		nelson = walk;
+		walkRight = new Animation(walkingRight, duration);
+		walkLeft = new Animation(walkingLeft, duration);
+		blinkLeft = new Animation(blinkingLeft, duration);
+		blinkRight = new Animation(blinkingRight, duration);
+		nelson = walkRight;
 	}
 
 	public Character getCharacter() {
@@ -39,14 +43,6 @@ public class CharacterView {
 	
 	public Shape getSlickShape() {
 		return this.slickShape;
-	}
-	
-	public Color getColor() {
-		return this.color;
-	}
-	
-	public void setColor(Color color) {
-		this.color = color;
 	}
 	
 	public Body getCharacterBody() {
@@ -58,14 +54,38 @@ public class CharacterView {
 	}
 
 	public Animation getAnimation() {
-		return nelson;
+		return this.nelson;
 	}
 	
-	public void animateBlinking() {
-		this.nelson = blink;
+	public void setAnimation(Animation animation) {
+		this.nelson = animation;
+	}
+
+	public boolean isBlinking() {
+		return this.nelson == blinkLeft || nelson == blinkRight;
+	}
+
+	public void animateBlinkingLeft() {
+		this.nelson = blinkLeft;
 	}
 	
-	public void animateWalking() {
-		this.nelson = walk;
+	public void animateBlinkingRight() {
+		this.nelson = blinkRight;
+	}
+	
+	public void animateWalkingRight() {
+		this.nelson = walkRight;
+	}
+	
+	public void animateWalkingLeft() {
+		this.nelson = walkLeft;
+	}
+
+	public boolean isWalkingLeft() {
+		return this.nelson == walkLeft;
+	}
+
+	public boolean isBlinkingLeft() {
+		return this.nelson == blinkLeft;
 	}	
 }

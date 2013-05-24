@@ -34,15 +34,13 @@ public class EndOfLevelView {
 			Image i = new Image("pics/victory.png");
 			i.draw();
 			g.setColor(Color.green);
-			g.drawString("ENTER - enter see highScore", Game.WINDOW_WIDTH/2 - 30, Game.WINDOW_HEIGHT/2 + 40);
 		} else {
 			Image i = new Image("pics/levelCleared.png");
 			i.draw();
 			g.setColor(Color.yellow);
-			g.drawString("ENTER - enter see highScore", Game.WINDOW_WIDTH/2 - 30, Game.WINDOW_HEIGHT/2 + 40);
 		}
-		
-		g.drawString("ESC - quit the game", Game.WINDOW_WIDTH/2 - 30, Game.WINDOW_HEIGHT/2 + 60);
+		g.drawString("ENTER - continue", Game.WINDOW_WIDTH/2 - 30, Game.WINDOW_HEIGHT/2 + 40);
+		g.drawString("ESC - back to menu", Game.WINDOW_WIDTH/2 - 30, Game.WINDOW_HEIGHT/2 + 60);
 		g.drawString("Score: " + this.score, Game.WINDOW_WIDTH/2 - 30, Game.WINDOW_HEIGHT/2 + 90);
 	}
 	

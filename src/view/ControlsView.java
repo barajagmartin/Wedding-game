@@ -10,7 +10,7 @@ public class ControlsView {
 
 	
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		Image image = new Image("pics/controls_image.png");
+		Image image = new Image("pics/controls_image3.jpg");
 		image.draw();
 	}
 }

@@ -13,12 +13,12 @@ public class CandyMonsterController {
 	private InGameController inGameController;
 	boolean isSoundPlayed = false;
 	
-	public CandyMonsterController(InGameController inGameController, int candyNumber) throws SlickException{
+	public CandyMonsterController(InGameController inGameController, int candyNumber, int index) throws SlickException{
 		this.inGameController = inGameController;
-		this.candyMonster = new CandyMonster(this.inGameController.getBlockMapController().getCandyMonsterMap().getBlockList().get(candyNumber).getPosX(), 
-											this.inGameController.getBlockMapController().getCandyMonsterMap().getBlockList().get(candyNumber).getPosY(), 
+		this.candyMonster = new CandyMonster(this.inGameController.getBlockMapController().getCandyMonsterMap().getBlockList().get(index).getPosX(), 
+											this.inGameController.getBlockMapController().getCandyMonsterMap().getBlockList().get(index).getPosY(), 
 											candyNumber); //x, y, candyNumber
-		this.candyMonsterView = new CandyMonsterView(this.candyMonster, candyNumber);
+		this.candyMonsterView = new CandyMonsterView(this.candyMonster);
 	}
 	
 	public CandyMonster getCandyMonster(){
@@ -32,8 +32,12 @@ public class CandyMonsterController {
 	 * and if the item contains/intersects with the character*/
 	public boolean isDroppedOnMonster(Item item){
 		if(!item.isPickedUp() && item.CANDY_NUMBER == candyMonster.CANDY_NUMBER && 
-				(candyMonsterView.getShape().contains(inGameController.getItemControllers().get(candyMonster.CANDY_NUMBER).getItemView().getShape())) ||
-				 candyMonsterView.getShape().intersects(inGameController.getItemControllers().get(candyMonster.CANDY_NUMBER).getItemView().getShape())){
+				(candyMonsterView.getShape().contains(inGameController.getItemControllers().
+						get(inGameController.getBlockMapController().getBlockMapView().getCandyMonsterNbrMap().
+								indexOf(candyMonster.CANDY_NUMBER)).getItemView().getShape())) ||
+				 candyMonsterView.getShape().intersects(inGameController.getItemControllers().
+						 get(inGameController.getBlockMapController().getBlockMapView().getCandyMonsterNbrMap().
+								 indexOf(candyMonster.CANDY_NUMBER)).getItemView().getShape())){
 			//kolla isDelivered
 			item.setDelivered(true);
 			this.inGameController.getInGame().increaseItemsDelivered();

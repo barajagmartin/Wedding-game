@@ -34,7 +34,7 @@ public class StartMenuController extends BasicGameState {
 			throws SlickException {
 		this.sbg = game;
 		this.startMenuView = new StartMenuView(this.startMenu, gameController.getGameView());
-		this.startMenuMusic = new Music("music/backgroundMusic.wav");
+		this.startMenuMusic = new Music("music/Marimba.wav");
 		
 	}
 	
@@ -93,7 +93,7 @@ public class StartMenuController extends BasicGameState {
 				case 5: System.exit(0);
 			}
 		}
-		if(key == Input.KEY_F) {
+		if(key == Input.KEY_TAB) {
 			this.gameController.changeFullscreen(this.gc);
 		}
 	}

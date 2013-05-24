@@ -15,23 +15,10 @@ public class ItemView {
 	private Color color;
 	private Image image;
 	
-	public ItemView(Item item, int candyNumber) throws SlickException {
+	public ItemView(Item item) throws SlickException {
 		this.item = item;
-		this.shape = new Rectangle(item.getX(), item.getY(), item.WIDTH, item.HEIGHT);
-		this.image = new Image("pics/item" + String.valueOf(candyNumber) +".png");
-		/*Set a color of a candy monster depending on its ID*/
-		switch(candyNumber){
-			case 0: color = Color.cyan;
-					break;
-			case 1: color = Color.magenta;
-					break;
-			case 2: color = Color.pink;
-					break;
-		}
-	}
-	
-	public Color getColor(){
-		return color;
+		this.shape = new Rectangle(item.getX(), item.getY(), Item.WIDTH, Item.HEIGHT);
+		this.image = new Image("pics/item" + String.valueOf(item.CANDY_NUMBER) +".png");
 	}
 	
 	public Item getItem(){

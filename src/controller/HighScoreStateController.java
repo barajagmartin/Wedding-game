@@ -11,6 +11,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import utils.SaveUtils;
 import view.HighScoreStateView;
 
 public class HighScoreStateController extends BasicGameState{
@@ -27,7 +28,7 @@ public class HighScoreStateController extends BasicGameState{
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		this.highScoreStateView = new HighScoreStateView(this.gameController.getGame().getScoreList(), this.gameController.getGame().getNameList());
+		this.highScoreStateView = new HighScoreStateView();
 		this.gc = gc;
 		this.sbg=sbg;
 		
@@ -48,12 +49,10 @@ public class HighScoreStateController extends BasicGameState{
 	}
 	
 	public void keyPressed (int key, char c) {
-		if(key == Input.KEY_F) {
+		if(key == Input.KEY_TAB) {
 			this.gameController.changeFullscreen(this.gc);
 		}
-		if (key == Input.KEY_ESCAPE) {
-			gc.exit();
-		} else if (key == Input.KEY_ENTER) {
+		else if (key == Input.KEY_ENTER || key == Input.KEY_ESCAPE) {
 			//back to start menu or something
 			sbg.enterState(StartMenu.STATE_ID);
 		}

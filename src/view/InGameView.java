@@ -28,6 +28,7 @@ public class InGameView {
 	private ArrayList<MoveableBoxView> moveableBoxViewList;
 	private ArrayList<SpikesView> spikesViewList;
 	private Image pauseImage;
+	private Image cloud;
 	public CharacterView getCharacterView() {
 		return characterView;
 	}
@@ -41,19 +42,21 @@ public class InGameView {
 		this.characterView = characterView;
 		this.moveableBoxViewList = tmpMoveableBoxViewList;
 		this.spikesViewList = spikesViewList;
+		try {
+			this.cloud = new Image("pics/cloud.png");
+		} catch (SlickException e) {
+			e.printStackTrace();
+		}
 		this.level = level;
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		this.g = g;
-		//draw character
-		this.g.setColor(characterView.getColor());
-		this.g.fill(characterView.getSlickShape());
-		Image background = new Image("pics/rainbow.jpg");
+		Image background = new Image("pics/bg_"+level+".jpg");
 		background.draw();
 		worldView.getBlockMapView().getTiledMap().render(0, 0, worldView.getBlockMapView().getTiledMap().getLayerIndex("solids"));
-		//draw candyMonsters
+		//draw candyMonsters and clouds
 		for (int j = 0; j < worldView.getCandyMonsterViewList().size(); j++) {
 			this.g.setColor(Color.transparent);
 			this.g.fill(worldView.getCandyMonsterViewList().get(j).getShape());
@@ -66,6 +69,11 @@ public class InGameView {
 				this.g.drawImage(worldView.getCandyMonsterViewList().get(j).getSadImage(),
 						worldView.getCandyMonsterViewList().get(j).getCandyMonster().getX(),
 						worldView.getCandyMonsterViewList().get(j).getCandyMonster().getY());
+						//clouds w. candy
+						this.g.drawImage(this.cloud, worldView.getCandyMonsterViewList().get(j).getCandyMonster().getX(),
+								worldView.getCandyMonsterViewList().get(j).getCandyMonster().getY()-30);
+								this.g.drawImage(worldView.getItemViewList().get(j).getImage(), worldView.getCandyMonsterViewList().get(j).getCandyMonster().getX()+5, 
+										worldView.getCandyMonsterViewList().get(j).getCandyMonster().getY()-27);
 			}
 		}	
 		//draw spikes
@@ -109,7 +117,7 @@ public class InGameView {
 		this.g.setColor(Color.darkGray);
 		this.g.fill(statusBarView.getFixedBar());
 		
-		if(inGame.getTime()/inGame.getLevelTime() < 0.1) { //when 10% of the time remains
+		if(inGame.timeIsReallyRunningOut()) { //when 10% of the time remains
 			this.g.setColor(Color.red);
 		} else {
 			this.g.setColor(Color.green);

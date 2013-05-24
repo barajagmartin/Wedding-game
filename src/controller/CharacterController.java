@@ -105,9 +105,19 @@ public class CharacterController {
 		
 		if(input.isKeyDown(Input.KEY_RIGHT)) {
 			inGameController.getWorldController().moveBodyRight();
+			if(!characterView.isBlinking()) {
+				characterView.animateWalkingRight();
+			} else {
+				characterView.animateBlinkingRight();
+			}
 		}
 		if(input.isKeyDown(Input.KEY_LEFT)) {
 			inGameController.getWorldController().moveBodyLeft();
+			if(!characterView.isBlinking()) {
+				characterView.animateWalkingLeft();
+			} else {
+				characterView.animateBlinkingLeft();
+			}
 		}
 	}
 	

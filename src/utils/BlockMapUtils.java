@@ -11,8 +11,10 @@ public class BlockMapUtils {
 	}
 	public static InputStream getTmxFile(int level, int version) {
 		try {
-			return new FileInputStream("level" + String.valueOf(level) + "." + String.valueOf(version) +".tmx");
+			System.out.println("trying to find files");
+			return new FileInputStream("levels/level" + String.valueOf(level) + "." + String.valueOf(version) +".tmx");
 		} catch (FileNotFoundException e) {
+			System.out.println("did not find any files");
 			e.printStackTrace();
 		}
 		return null; //to satisfy compiler

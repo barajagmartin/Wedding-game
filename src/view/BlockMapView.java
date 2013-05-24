@@ -1,6 +1,7 @@
 package view;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import model.FixedPosition;
 import model.BlockMap;
@@ -23,6 +24,8 @@ public class BlockMapView {
 	private BlockMap moveableBoxMap;
 	private TiledMap tiledMap;
 	private FixedPosition startingPos;
+	private ArrayList<Integer> candyMonsterNbrMap;
+	private ArrayList<Integer> itemNbrMap;
 	
 	public BlockMapView(BlockMap solidGroundMap, BlockMap iceMap, BlockMap springMap, BlockMap iceSpringMap, BlockMap candyMonsterMap,
 			BlockMap spikesMap, BlockMap itemMap, BlockMap moveableBoxMap, TiledMap tiledMap, InGame inGame) {
@@ -35,6 +38,8 @@ public class BlockMapView {
 		this.itemMap = itemMap;
 		this.moveableBoxMap = moveableBoxMap;
 		this.tiledMap = tiledMap;
+		candyMonsterNbrMap = new ArrayList<Integer>();
+		itemNbrMap = new ArrayList<Integer>();
 		
 
 		//loop through map and place out Blocks
@@ -59,12 +64,16 @@ public class BlockMapView {
 				} else if (positionTileProperty.equals("candyMonster")) {
 					candyMonsterMap.getBlockList().add(new FixedPosition(x * tiledMap.getTileWidth()+(tiledMap.getTileWidth()/2 - CandyMonster.WIDTH/2),
 							y * tiledMap.getTileHeight()+(tiledMap.getTileHeight() - CandyMonster.HEIGHT)));
+					String candyNumber = tiledMap.getTileProperty(positionID, "candyNumber", "1");
+					candyMonsterNbrMap.add(Integer.valueOf(candyNumber));
 				} else if (positionTileProperty.equals("spikes")) {
 					spikesMap.getBlockList().add(new FixedPosition(x * tiledMap.getTileWidth() + (tiledMap.getTileWidth()/2),
 							y * tiledMap.getTileHeight() + (tiledMap.getTileHeight()/2)));
 				} else if (positionTileProperty.equals("item")) {
 					itemMap.getBlockList().add(new FixedPosition(x * tiledMap.getTileWidth() + (tiledMap.getTileWidth()/2 - Item.WIDTH/2),
 							y * tiledMap.getTileHeight() + (tiledMap.getTileHeight() - Item.HEIGHT)));
+					String candyNumber = tiledMap.getTileProperty(positionID, "candyNumber", "1");
+					itemNbrMap.add(Integer.valueOf(candyNumber));
 				} else if (positionTileProperty.equals("player")) {
 					this.startingPos = new FixedPosition(x * tiledMap.getTileWidth(),
 							y * tiledMap.getTileHeight());
@@ -118,5 +127,13 @@ public class BlockMapView {
 
 	public FixedPosition getStartingPos() {
 		return startingPos;
+	}
+
+	public ArrayList<Integer> getCandyMonsterNbrMap() {
+		return candyMonsterNbrMap;
+	}
+
+	public ArrayList<Integer> getItemNbrMap() {
+		return itemNbrMap;
 	}
 }

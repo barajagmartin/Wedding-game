@@ -24,7 +24,7 @@ public class InGame {
 	public InGame(Player player) {
 		this.player = player;
 		this.isNewGame = true;
-		this.folder = new File(".");
+		this.folder = new File("levels");
 		resetLevel();
 		reset();
 	}
@@ -153,5 +153,13 @@ public class InGame {
 
 	public void increaseItemsDelivered() {
 		itemsDelivered++;
+	}
+	
+	public boolean timeIsRunningOut() {
+		return this.time/this.levelTime < 0.8 && this.time/this.levelTime > 0.4;
+	}
+	
+	public boolean timeIsReallyRunningOut() {
+		return this.time/this.levelTime < 0.1;
 	}
 }
