@@ -135,7 +135,7 @@
   </tile>
   <tile id="23">
    <properties>
-    <property name="property" value="SolidGround"/>
+    <property name="property" value="solidGround"/>
    </properties>
   </tile>
  </tileset>
