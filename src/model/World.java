@@ -11,7 +11,6 @@ public class World {
 	private ArrayList<CandyMonster> candyMonsters;
 	private ArrayList<Item> items;
 	private ArrayList<Spikes> spikes;
-	//Kommer ha spikes, Items och CandyMonster TODO
 	
 	public World(final int worldWidth, final int worldHeight, final Character character,
 			final ArrayList<MoveableBox> moveableBoxes, final ArrayList<CandyMonster> candyMonsters,
