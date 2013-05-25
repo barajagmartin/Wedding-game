@@ -45,7 +45,7 @@
   </tile>
   <tile id="7">
    <properties>
-    <property name="time" value="60"/>
+    <property name="time" value="110"/>
    </properties>
   </tile>
   <tile id="8">
@@ -141,7 +141,7 @@
  </tileset>
  <layer name="solids" width="32" height="24">
   <data encoding="base64" compression="zlib">
-   eJztwzENAAAMA6A6qH+3dbE9kJAAAMCd+npPfAWh
+   eJxjYBgFIxnI0AmPgqEFRtPFyACj8TwKsIHRdDEyAL3iGRfmH8UDigFaGRSB
   </data>
  </layer>
  <layer name="data" width="32" height="24">
@@ -151,7 +151,7 @@
  </layer>
  <layer name="position" width="32" height="24">
   <data encoding="base64" compression="zlib">
-   eJztwQEBAAAAgiD/r25IQAEAAC8GDAAAAQ==
+   eJxjYBgF5AJ2Evm4ADcanxGJzYrE5iRgDg+R9o0C0gG+uMQmR6p6QgBf3GKTYyPDjpEMcMUJKeLkxCu5gAmL2Gj+pw0gNW1QIocNUDteR9MJJqAkvogtC8gtHwjFFxeVzBkFIw8AAAytARk=
   </data>
  </layer>
 </map>
