@@ -63,8 +63,7 @@ public class EndOfLevelController extends BasicGameState{
 	public void keyPressed (int key, char c) {
 		if(key == Input.KEY_TAB) {
 			this.gameController.changeFullscreen(this.gc);
-		}
-		if (key == Input.KEY_ESCAPE) {
+		} else if (key == Input.KEY_ESCAPE) {
 			sbg.enterState(StartMenu.STATE_ID);
 		} else if (key == Input.KEY_ENTER) {
 			 if (this.newHighScore && (this.gameOver || this.victory)) {

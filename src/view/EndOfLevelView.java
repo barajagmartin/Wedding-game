@@ -15,28 +15,30 @@ public class EndOfLevelView {
 	private int score;
 	private boolean gameOver;
 	private boolean victory;
+	private Image gameOverImage;
+	private Image victoryImage;
+	private Image levelClearedImage;
 	
 	
-	public EndOfLevelView (int score, boolean gameOver, boolean victory) {
+	public EndOfLevelView (int score, boolean gameOver, boolean victory) throws SlickException {
 		this.score = score;
 		this.gameOver = gameOver;
 		this.victory = victory;
-		
+		gameOverImage = new Image("pics/gameOver.png");
+		victoryImage = new Image("pics/victory.png");
+		levelClearedImage = new Image("pics/levelCleared.png");
 	}
 	
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		if (gameOver) {
-			Image i = new Image("pics/gameOver.png");
-			i.draw();
+			gameOverImage.draw();
 			g.setColor(Color.red);
 		} else if (victory) {
-			Image i = new Image("pics/victory.png");
-			i.draw();
+			victoryImage.draw();
 			g.setColor(Color.green);
 		} else {
-			Image i = new Image("pics/levelCleared.png");
-			i.draw();
+			levelClearedImage.draw();
 			g.setColor(Color.yellow);
 		}
 		g.drawString("ENTER - continue", Game.WINDOW_WIDTH/2 - 30, Game.WINDOW_HEIGHT/2 + 40);
