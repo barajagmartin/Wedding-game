@@ -79,7 +79,6 @@ public class InGameView {
 
 		//draw spikes
 		for (int j = 0; j < spikesViewList.size(); j++) {
-			//set the color when "debugging"
 			g.setColor(Color.transparent); //so it does not show the circle
 			g.fill(spikesViewList.get(j).getShape());
 			g.drawImage(spikesViewList.get(j).getImage(), 
@@ -90,12 +89,6 @@ public class InGameView {
 		//draw Nelson
 		characterView.getAnimation().draw(characterView.getCharacter().getX(), characterView.getCharacter().getY());
 
-		for (MoveableBoxView moveableBoxView : moveableBoxViewList) {
-			g.drawImage(moveableBoxView.getImage(), moveableBoxView.getMoveableBox().getPos().getX()-MoveableBox.HALF_WIDTH,
-					moveableBoxView.getMoveableBox().getPos().getY()-MoveableBox.HALF_HEIGHT+1); // +1 is to correct position which
-			// probably is rounded incorrectly
-		}
-
 		//draw items
 		for (int j = 0; j < worldView.getItemViewList().size(); j++) {
 			this.g.setColor(Color.transparent);
@@ -104,6 +97,14 @@ public class InGameView {
 					worldView.getItemViewList().get(j).getItem().getX(),
 					worldView.getItemViewList().get(j).getItem().getY());
 		}
+		
+		for (MoveableBoxView moveableBoxView : moveableBoxViewList) {
+			g.drawImage(moveableBoxView.getImage(), moveableBoxView.getMoveableBox().getPos().getX()-MoveableBox.HALF_WIDTH,
+					moveableBoxView.getMoveableBox().getPos().getY()-MoveableBox.HALF_HEIGHT+1); // +1 is to correct position which
+			// probably is rounded incorrectly
+		}
+
+		
 		//draw a temporary timer
 		this.g.drawString("Time : " + this.inGame.getTime(), 10, 25);
 

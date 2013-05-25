@@ -45,7 +45,7 @@
   </tile>
   <tile id="7">
    <properties>
-    <property name="time" value="60"/>
+    <property name="time" value="70"/>
    </properties>
   </tile>
   <tile id="8">
@@ -83,6 +83,11 @@
     <property name="property" value="solidGround"/>
    </properties>
   </tile>
+  <tile id="3">
+   <properties>
+    <property name="property" value="solidGround"/>
+   </properties>
+  </tile>
   <tile id="4">
    <properties>
     <property name="property" value="spring"/>
@@ -90,7 +95,7 @@
   </tile>
   <tile id="5">
    <properties>
-    <property name="ice" value=""/>
+    <property name="property" value="ice"/>
    </properties>
   </tile>
   <tile id="8">
@@ -136,7 +141,7 @@
  </tileset>
  <layer name="solids" width="32" height="24">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMApGwSgYBfQEMgOM+UfxiMYAguELAQ==
+   eJxjYBgFo2AUjIJRMBBACQmPAkwgRAFWwoJHweAAAxUfA5UesKVFEBYlgClJ/7jyADLmH8UjGgMAEroODw==
   </data>
  </layer>
  <layer name="data" width="32" height="24">
@@ -146,7 +151,7 @@
  </layer>
  <layer name="position" width="32" height="24">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMApGwSgYmYARhzg3Hj08RIozke6cUTAK6AIAdRAAJw==
+   eJxjYBgFo2AUjIKRCzgH2gFDFPCg8bmwqGGlh0NGwSigMuBhwEzfTFjUcaPx2dD4jFRz0SgYBdQHAGF7AFE=
   </data>
  </layer>
 </map>

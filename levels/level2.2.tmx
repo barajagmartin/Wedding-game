@@ -83,6 +83,11 @@
     <property name="property" value="solidGround"/>
    </properties>
   </tile>
+  <tile id="3">
+   <properties>
+    <property name="property" value="solidGround"/>
+   </properties>
+  </tile>
   <tile id="4">
    <properties>
     <property name="property" value="spring"/>
@@ -136,7 +141,7 @@
  </tileset>
  <layer name="solids" width="32" height="24">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMApGwSgYBfQEMgOM+UfxiMYAguELAQ==
+   eJxjYBgFwwEIEIFHwdAGo/E7MgC5cTyaNoYeIDauKInb0XQxeIHgAGP+UTyiMQDL4AzB
   </data>
  </layer>
  <layer name="data" width="32" height="24">
@@ -146,7 +151,7 @@
  </layer>
  <layer name="position" width="32" height="24">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMApGwSgYmYARhzg3Hj08RIozke6cUTAK6AIAdRAAJw==
+   eJxjYBgF1ASMaHzWAXHFKBgFo2AUjAJaACYK9bNRxRWjgJqAh0gxSuTw6RkFo2AgAAAXbwBL
   </data>
  </layer>
 </map>
