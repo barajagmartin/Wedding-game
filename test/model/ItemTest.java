@@ -9,7 +9,7 @@ public class ItemTest {
 	@Test
 	public void testIsPickedUp() {
 		Item item = new Item(0, 10, 1);
-		assertTrue(!item.isPickedUp());
+		assertFalse(item.isPickedUp());
 		item.setPickedUp(true);
 		assertTrue(item.isPickedUp());
 	}
@@ -17,7 +17,7 @@ public class ItemTest {
 	@Test
 	public void testIsDelivered() {
 		Item item = new Item(0, 10, 1);
-		assertTrue(!item.isDelivered());
+		assertFalse(item.isDelivered());
 		item.setDelivered(true);
 		assertTrue(item.isDelivered());
 	}

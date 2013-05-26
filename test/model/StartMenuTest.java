@@ -12,18 +12,18 @@ public class StartMenuTest {
 		for(int i = 0; i < 6; i++) {
 			startMenu.markButtonDown();
 		}
-		assertTrue(startMenu.getIsMarked() == 0);
+		assertSame(startMenu.getIsMarked(), 0);
 		startMenu.markButtonDown();
-		assertTrue(startMenu.getIsMarked() == 1);
+		assertSame(startMenu.getIsMarked(), 1);
 	}
 	
 	@Test
 	public void testMarkButtonUp() {
 		StartMenu startMenu = new StartMenu();
 		startMenu.markButtonUp();
-		assertTrue(startMenu.getIsMarked() == 5);
+		assertSame(startMenu.getIsMarked(), 5);
 		startMenu.markButtonUp();
-		assertTrue(startMenu.getIsMarked() == 4);
+		assertSame(startMenu.getIsMarked(), 4);
 	}
 
 }

@@ -9,11 +9,11 @@ public class InGameTest {
 	@Test
 	public void testLevelUp() {
 		InGame inGame = new InGame(new Player());
-		assertTrue(inGame.getLevel() == 1);
+		assertSame(inGame.getLevel(), 1);
 		inGame.levelUp();
-		assertTrue(inGame.getLevel() == 2);
+		assertSame(inGame.getLevel(), 2);
 		inGame.levelUp();
-		assertTrue(inGame.getLevel() == 3);
+		assertSame(inGame.getLevel(), 3);
 	}
 	
 	@Test
@@ -21,13 +21,13 @@ public class InGameTest {
 		InGame inGame = new InGame(new Player());
 		assertTrue(inGame.isNewGame());
 		inGame.setNewGame(false);
-		assertTrue(!inGame.isNewGame());
+		assertFalse(inGame.isNewGame());
 	}
 	
 	@Test
 	public void testIsGameOver() {
 		InGame inGame = new InGame(new Player());
-		assertTrue(!inGame.isGameOver());
+		assertFalse(inGame.isGameOver());
 		inGame.setGameOver(true);
 		assertTrue(inGame.isGameOver());
 	}
@@ -38,9 +38,13 @@ public class InGameTest {
 		inGame.setGameOver(true);
 		inGame.setPaused(true);
 		inGame.increaseItemsDelivered();
-		assertTrue(inGame.isGameOver() == true && inGame.isPaused() == true && inGame.getItemsDelivered() == 1 );
+		assertSame(inGame.isGameOver(), true);
+		assertSame(inGame.isPaused(), true);
+		assertSame(inGame.getItemsDelivered(), 1);
 		inGame.reset();
-		assertTrue(inGame.isGameOver() == false && inGame.isPaused() == false && inGame.getItemsDelivered() == 0 );
+		assertSame(inGame.isGameOver(), false);
+		assertSame(inGame.isPaused(), false);
+		assertSame(inGame.getItemsDelivered(), 0);
 	}
 	
 	@Test
@@ -48,15 +52,15 @@ public class InGameTest {
 		InGame inGame = new InGame(new Player());
 		inGame.levelUp();
 		inGame.levelUp();
-		assertTrue(inGame.getLevel() == 3);
+		assertSame(inGame.getLevel(), 3);
 		inGame.resetLevel();
-		assertTrue(inGame.getLevel() == 1);
+		assertSame(inGame.getLevel(), 1);
 	}
 	
 	@Test
 	public void testIsPaused() {
 		InGame inGame = new InGame(new Player());
-		assertTrue(!inGame.isPaused());
+		assertFalse(inGame.isPaused());
 		inGame.setPaused(true);
 		assertTrue(inGame.isPaused());
 	}
@@ -66,11 +70,11 @@ public class InGameTest {
 		InGame inGame = new InGame(new Player());
 		inGame.setTime(10);
 		inGame.increaseItemsDelivered();
-		assertTrue(!inGame.checkIfGameIsOver(2));
+		assertFalse(inGame.checkIfGameIsOver(2));
 		inGame.increaseItemsDelivered();
 		assertTrue(inGame.checkIfGameIsOver(2));
 		inGame.getPlayer().loseOneLife();
-		assertTrue(!inGame.checkIfGameIsOver(3));
+		assertFalse(inGame.checkIfGameIsOver(3));
 		inGame.getPlayer().loseOneLife();
 		inGame.setTime(0);
 		assertTrue(inGame.checkIfGameIsOver(3));
@@ -93,9 +97,9 @@ public class InGameTest {
 		InGame inGame = new InGame(new Player());
 		inGame.setLevelTime(10f);
 		inGame.setTime(5f);
-		assertTrue(!inGame.isTimeRunningOut());
+		assertFalse(inGame.isTimeRunningOut());
 		inGame.setTime(1f);
-		assertTrue(!inGame.isTimeRunningOut());
+		assertFalse(inGame.isTimeRunningOut());
 		inGame.setTime(0.9f);
 		assertTrue(inGame.isTimeRunningOut());
 	}

@@ -12,18 +12,18 @@ public class PauseMenuTest {
 		for(int i = 0; i < 5; i++) {
 			pauseMenu.markButtonDown();
 		}
-		assertTrue(pauseMenu.getIsMarked() == 0);
+		assertSame(pauseMenu.getIsMarked(), 0);
 		pauseMenu.markButtonDown();
-		assertTrue(pauseMenu.getIsMarked() == 1);
+		assertSame(pauseMenu.getIsMarked(), 1);
 	}
 	
 	@Test
 	public void testMarkButtonUp() {
 		PauseMenu pauseMenu = new PauseMenu();
 		pauseMenu.markButtonUp();
-		assertTrue(pauseMenu.getIsMarked() == 4);
+		assertSame(pauseMenu.getIsMarked(), 4);
 		pauseMenu.markButtonUp();
-		assertTrue(pauseMenu.getIsMarked() == 3);
+		assertSame(pauseMenu.getIsMarked(), 3);
 	}
 	
 	@Test
@@ -31,7 +31,7 @@ public class PauseMenuTest {
 		PauseMenu pauseMenu = new PauseMenu();
 		pauseMenu.markButtonUp();
 		pauseMenu.resetIsMarked();
-		assertTrue(pauseMenu.getIsMarked() == 0);
+		assertSame(pauseMenu.getIsMarked(), 0);
 	}
 
 }

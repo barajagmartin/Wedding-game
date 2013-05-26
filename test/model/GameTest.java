@@ -11,7 +11,7 @@ public class GameTest {
 		Game game = new Game(new InGame(new Player()));
 		assertTrue(game.isSoundOn());
 		game.setSoundOn(false);
-		assertTrue(!game.isSoundOn());
+		assertFalse(game.isSoundOn());
 	}
 	
 	@Test
@@ -19,7 +19,7 @@ public class GameTest {
 		Game game = new Game(new InGame(new Player()));
 		assertTrue(game.isMusicOn());
 		game.setMusicOn(false);
-		assertTrue(!game.isMusicOn());
+		assertFalse(game.isMusicOn());
 	}
 
 }
