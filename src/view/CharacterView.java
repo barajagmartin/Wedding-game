@@ -93,7 +93,7 @@ public class CharacterView {
 	public boolean isWalkingLeft() {
 		return this.nelson == walkLeft;
 	}
-
+	
 	public boolean isBlinkingLeft() {
 		return this.nelson == blinkLeft;
 	}

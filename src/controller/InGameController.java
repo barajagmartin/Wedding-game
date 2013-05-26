@@ -233,7 +233,7 @@ public class InGameController extends BasicGameState {
 		
 		for (int i = 0; i < itemList.size(); i++) {
 			if (itemList.get(i).isPickedUp()) {
-				if (this.characterController.getCharacterView().isWalkingLeft()) {
+				if (this.characterController.getCharacterView().isWalkingLeft() || this.characterController.getCharacterView().isBlinkingLeft() || this.characterController.getCharacterView().isStandingLeft()) {
 					itemList.get(i).setX((int)characterController.getCharacterView().getSlickShape().getX());
 					itemList.get(i).setY((int)characterController.getCharacterView().getSlickShape().getY() + Character.RADIUS);
 				} else {
