@@ -1,8 +1,6 @@
 package view;
 
 import java.awt.Font;
-
-import model.Game;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -10,6 +8,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.gui.TextField;
 import org.newdawn.slick.state.StateBasedGame;
+
+import model.Game;
 
 public class NewHighscoreView {
 	private TextField textField;
@@ -31,7 +31,6 @@ public class NewHighscoreView {
 		g.setColor(Color.green);
 		g.drawString("New highscore: " + this.score + "!", POSX, Game.WINDOW_HEIGHT/4);
 		g.drawString("Enter name:", POSX, Game.WINDOW_HEIGHT/2);
-
 		this.textField.render(gc, g);
 	}
 
