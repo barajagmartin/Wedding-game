@@ -27,6 +27,11 @@ import model.InGame;
 import model.Item;
 import model.PauseMenu;
 
+/**
+ * This class is the state that is the actual game. It's here all different object in the world are created.
+ * @author Josefin, Martin, Sara, Kino
+ *
+ */
 public class InGameController extends BasicGameState {
 	private final InGame inGame;
 	private InGameView inGameView;

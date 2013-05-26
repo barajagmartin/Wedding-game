@@ -12,7 +12,11 @@ import org.newdawn.slick.state.StateBasedGame;
 import utils.SaveUtils;
 import view.GameView;
 
-
+/**
+ * 
+ * @author Josefin, Martin, Sara, Kino
+ *
+ */
 public class GameController extends StateBasedGame {
 	private final Game game;
 	private final GameView gameView;

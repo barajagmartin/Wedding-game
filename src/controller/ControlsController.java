@@ -12,7 +12,11 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import view.ControlsView;
-
+/**
+ * This state shows how to play the game, which controls on the keyboard that you can use
+ * @author Josefin, Martin, Sara, Kino
+ *
+ */
 public class ControlsController extends BasicGameState {
 	
 	private ControlsView controlsView;

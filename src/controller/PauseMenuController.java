@@ -12,7 +12,11 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import view.PauseMenuView;
-
+/**
+ * Representing the pause menu for this game, which is accessed by pressing ESC while playing
+ * @author Josefin, Martin, Sara, Kino
+ *
+ */
 public class PauseMenuController extends BasicGameState{
 	private StateBasedGame sbg;
 	private final GameController gameController;

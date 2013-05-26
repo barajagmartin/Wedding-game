@@ -26,6 +26,11 @@ import model.MoveableBox;
 import model.Spikes;
 import model.World;
 
+/**
+ * The world is the area where the character, items, candymonster are located, the actual level or map.
+ * @author Josefin, Martin, Sara, Kino
+ *
+ */
 public class WorldController implements ContactListener {
 	private List<MoveableBox> moveableBoxes;
 	private List<CandyMonster> candyMonsters;

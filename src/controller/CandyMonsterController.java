@@ -5,7 +5,11 @@ import org.newdawn.slick.SlickException;
 import model.CandyMonster;
 import model.Item;
 import view.CandyMonsterView;
-
+/**
+ * This class represent the candymonsters in the world.
+ * @author Josefin, Martin, Sara, Kino
+ *
+ */
 public class CandyMonsterController {
 	private final CandyMonsterView candyMonsterView;
 	private final CandyMonster candyMonster;

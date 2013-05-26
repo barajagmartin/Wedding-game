@@ -14,7 +14,11 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import view.StartMenuView;
-
+/**
+ * This state is the first state entering the game, the start menu. You will always return to this state before exiting the game
+ * @author Josefin
+ *
+ */
 public class StartMenuController extends BasicGameState {
 	private StartMenuView startMenuView;
 	private final StartMenu startMenu;
