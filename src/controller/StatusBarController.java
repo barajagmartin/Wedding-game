@@ -7,7 +7,7 @@ import view.StatusBarView;
 public class StatusBarController {
 
 	private StatusBarView statusBarView;
-	public StatusBarController(InGameController inGameController) throws SlickException {
+	public StatusBarController() throws SlickException {
 		statusBarView = new StatusBarView();
 		
 	}

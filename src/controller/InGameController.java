@@ -61,7 +61,7 @@ public class InGameController extends BasicGameState {
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		this.sbg = sbg;
-		this.statusBarController = new StatusBarController(this);
+		this.statusBarController = new StatusBarController();
 		this.happySound = new Sound("music/happy0.wav");
 		this.hurtSound = new Sound("music/aj0.wav");
 	}
@@ -107,7 +107,7 @@ public class InGameController extends BasicGameState {
 				this.spikesControllers.add(new SpikesController(this, i));
 			}
 			for (FixedPosition pos : blockMapController.getBlockMapView().getMoveableBoxMap().getBlockList()) {
-				this.moveableBoxControllers.add(new MoveableBoxController(this, pos));
+				this.moveableBoxControllers.add(new MoveableBoxController(pos));
 			}
 
 			//temporarily store the MoveableBoxViews in a list
