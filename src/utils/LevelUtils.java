@@ -12,7 +12,7 @@ public class LevelUtils {
 	 * @return the filenameFilter
 	 */
 	private static FilenameFilter findFiles(final int level) {
-		FilenameFilter filenameFilter = new FilenameFilter() {
+		final FilenameFilter filenameFilter = new FilenameFilter() {
 
 			@Override
 			public boolean accept(File dir, String name) {
