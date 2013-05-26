@@ -1,13 +1,13 @@
 package view;
 
 import java.util.ArrayList;
+import org.newdawn.slick.tiled.TiledMap;
 
 import model.FixedPosition;
 import model.BlockMap;
 import model.CandyMonster;
 import model.InGame;
 import model.Item;
-import org.newdawn.slick.tiled.TiledMap;
 
 public class BlockMapView {
 	private BlockMap solidGroundMap;
@@ -22,7 +22,7 @@ public class BlockMapView {
 	private FixedPosition startingPos;
 	private ArrayList<Integer> candyMonsterNbrMap;
 	private ArrayList<Integer> itemNbrMap;
-	
+
 	public BlockMapView(BlockMap solidGroundMap, BlockMap iceMap, BlockMap springMap, BlockMap iceSpringMap, BlockMap candyMonsterMap,
 			BlockMap spikesMap, BlockMap itemMap, BlockMap moveableBoxMap, TiledMap tiledMap, InGame inGame) {
 		this.solidGroundMap = solidGroundMap;
@@ -36,15 +36,15 @@ public class BlockMapView {
 		this.tiledMap = tiledMap;
 		candyMonsterNbrMap = new ArrayList<Integer>();
 		itemNbrMap = new ArrayList<Integer>();
-		
 
-		//loop through map and place out Blocks
+
+		//loop through map and save positions of tiles
 		for (int x = 0; x < tiledMap.getWidth(); x++) {
 			for (int y = 0; y < tiledMap.getHeight(); y++) {
-			int solidsID = tiledMap.getTileId(x, y, tiledMap.getLayerIndex("solids"));
-			int positionID = tiledMap.getTileId(x, y, tiledMap.getLayerIndex("position"));
-			String layerTileProperty = tiledMap.getTileProperty(solidsID, "property", "nothing"); //If there were no value it would return false
-			String positionTileProperty = tiledMap.getTileProperty(positionID, "property", "nothing"); //If there were no value it would return false
+				int solidsID = tiledMap.getTileId(x, y, tiledMap.getLayerIndex("solids"));
+				int positionID = tiledMap.getTileId(x, y, tiledMap.getLayerIndex("position"));
+				String layerTileProperty = tiledMap.getTileProperty(solidsID, "property", "nothing"); //If there were no value it would return false
+				String positionTileProperty = tiledMap.getTileProperty(positionID, "property", "nothing"); //If there were no value it would return false
 				if (layerTileProperty.equals("solidGround")) { //if the tile is solid ground, then add its properties to a Block-list
 					solidGroundMap.getBlockList().add(new FixedPosition(x * tiledMap.getTileWidth(),
 							y * tiledMap.getTileHeight()));
