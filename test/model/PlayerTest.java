@@ -24,9 +24,10 @@ public class PlayerTest {
 		
 		Player player2 = new Player();
 		player2.setScore(10, 2, 3);
-		assertSame(player2.getScore(), 320);
+		//somehow it didn't work with assertSame here...
+		assertTrue(player2.getScore() == 320);
 		player2.setScore(10, 1, 1);
-		assertSame(player2.getScore(), 430);
+		assertTrue(player2.getScore() == 430);
 	}
 	
 	@Test
