@@ -8,7 +8,11 @@ import org.newdawn.slick.geom.Circle;
 import org.newdawn.slick.geom.Shape;
 
 import model.Character;
-
+/**
+ * 
+ * @author Josefin, Martin, Sara, Kino
+ *
+ */
 public class CharacterView {
 	private final Character character;
 	private final Shape slickShape;

@@ -10,7 +10,11 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import utils.SaveUtils;
-
+/**
+ * 
+ * @author Josefin, Martin, Sara, Kino
+ *
+ */
 public class HighScoreStateView {
 	final private Image background;
 	final private StringBuilder stringBuilder;

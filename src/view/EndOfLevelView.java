@@ -8,7 +8,11 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import model.Game;
-
+/**
+ * 
+ * @author Josefin, Martin, Sara, Kino
+ *
+ */
 public class EndOfLevelView {
 	final private int score;
 	final private boolean gameOver;
