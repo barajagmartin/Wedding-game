@@ -83,7 +83,6 @@ public class CharacterView {
 	
 	public void animateWalkingRight() {
 		this.nelson = walkRight;
-		walkRight.start();
 	}
 	
 	public void animateWalkingLeft() {
@@ -109,6 +108,4 @@ public class CharacterView {
 	public boolean isStandingLeft() {
 		return this.nelson == standLeft;
 	}
-
-	
 }
