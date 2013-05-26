@@ -33,7 +33,6 @@ public class StartMenuView extends AbstractMenuView {
 		g.drawImage(super.getBackground(), 0, 0);
 		g.drawImage(super.getCandyMonsterTitle(), 0, 0);
 		createButtons(gc, g);
-
 	}
 	
 	public void createButtons(GameContainer gc, Graphics g) throws SlickException {
@@ -83,5 +82,4 @@ public class StartMenuView extends AbstractMenuView {
 			buttonY = buttonY + buttonHeight;
 		}
 	}
-
 }

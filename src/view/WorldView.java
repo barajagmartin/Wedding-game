@@ -1,12 +1,11 @@
 package view;
 
 import java.util.ArrayList;
-
-import model.FixedPosition;
-
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.World;
+
+import model.FixedPosition;
 import utils.WorldBodyFactory;
 import utils.WorldUtils;
 
@@ -16,7 +15,6 @@ public class WorldView {
 	public static final float NO_BOUNCE_RESTITUTION = 0f;
 	public static final float BOUNCE_RESTITUTION = 1f;
 	
-	
 	private model.World world;
 	private Vec2 gravity;
 	boolean doSleep;
@@ -25,8 +23,6 @@ public class WorldView {
 	private BlockMapView blockMapView;
 	private ArrayList<ItemView> itemViewList;
 	private ArrayList<CandyMonsterView> candyMonsterViewList;
-
-	
 	private float worldWidthMeter;
 	private float worldHeightMeter;
 	public CharacterView characterView;
@@ -44,7 +40,6 @@ public class WorldView {
 		gravity = new Vec2(0.0f, 9.82f);
 		doSleep = true;
 		jBox2DWorld = new World(gravity, doSleep);
-		
 
 		//ground of window
 		WorldBodyFactory.addSolidGround(new Vec2(0, worldHeightMeter), new Vec2(worldWidthMeter, WorldUtils.pixel2Meter(2)),
@@ -70,7 +65,6 @@ public class WorldView {
 		
 		//Create clouds
 		addIterativeSolids(this.blockMapView.getIceSpringMap().getBlockList(), ICE_FRICTION, BOUNCE_RESTITUTION);
-		
 	}
 	
 	public model.World getWorld() {
@@ -96,7 +90,6 @@ public class WorldView {
 	public ArrayList<CandyMonsterView> getCandyMonsterViewList() {
 		return candyMonsterViewList;
 	}
-
 
 	public Body getGroundBody() {
 		return groundBody;
