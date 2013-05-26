@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Character {
 	public static final int RADIUS = 25;
 	private Position pos;
-	private int life;
 	private Item heldItem;
 	private float timeSinceHit; //in seconds
 	private boolean isOnSpikes;

@@ -3,7 +3,6 @@ package model;
 import java.util.ArrayList;
 
 public class World {
-	private BlockMap blockMap;
 	private int worldWidth;
 	private int worldHeight;
 	private Character character;
