@@ -94,8 +94,8 @@ public class InGameView {
 			this.g.setColor(Color.transparent);
 			this.g.fill(worldView.getItemViewList().get(j).getShape());
 			this.g.drawImage(worldView.getItemViewList().get(j).getImage(),
-					worldView.getItemViewList().get(j).getItem().getX(),
-					worldView.getItemViewList().get(j).getItem().getY());
+					worldView.getItemViewList().get(j).getItem().getPos().getX(),
+					worldView.getItemViewList().get(j).getItem().getPos().getY());
 		}
 		
 		for (MoveableBoxView moveableBoxView : moveableBoxViewList) {

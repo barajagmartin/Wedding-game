@@ -15,8 +15,8 @@ public class CharacterTest {
 		Item item = new Item(20, 30, 2);
 		Character character = new Character(0, 0);
 		character.pickUpItem(item);
-		assertTrue(item.getX() == character.getX());
-		assertTrue(item.getY() == character.getY());
+		assertTrue(item.getPos().getX() == character.getX());
+		assertTrue(item.getPos().getY() == character.getY());
 		assertTrue(item.isPickedUp());
 		assertTrue(character.getHeldItem() == item);
 	}
@@ -28,9 +28,8 @@ public class CharacterTest {
 		Character character = new Character(0, 0);
 		character.pickUpItem(item);
 		character.dropDownItem(item);
+		//OBS! testa så att positionen på item stämmer!
 		assertTrue(!item.isPickedUp());
-		assertTrue(item.getX() == character.getX() + Character.RADIUS);
-		assertTrue(item.getY() == character.getY()+ Character.RADIUS*2-item.HEIGHT);
 		assertTrue(character.getHeldItem() == null);
 	}
 	

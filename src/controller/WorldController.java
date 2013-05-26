@@ -138,8 +138,8 @@ public class WorldController implements ContactListener {
 	public void updateItemSlickShapePosition(ArrayList<ItemView> itemViewList, CharacterView characterView){
 		for (int i = 0; i < itemViewList.size(); i++) {
 			if (itemViewList.get(i).getItem().isPickedUp()) {
-				itemViewList.get(i).getShape().setX(itemViewList.get(i).getItem().getX()); 
-				itemViewList.get(i).getShape().setY(itemViewList.get(i).getItem().getY());
+				itemViewList.get(i).getShape().setX(itemViewList.get(i).getItem().getPos().getX()); 
+				itemViewList.get(i).getShape().setY(itemViewList.get(i).getItem().getPos().getY());
 			}
 		}
 	}

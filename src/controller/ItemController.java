@@ -28,8 +28,8 @@ public class ItemController {
 	}
 	
 	public void updateItemShape(){
-		this.itemView.getShape().setX(this.item.getX());
-		this.itemView.getShape().setY(this.item.getY());
+		this.itemView.getShape().setX(this.item.getPos().getX());
+		this.itemView.getShape().setY(this.item.getPos().getY());
 	}
 
 }

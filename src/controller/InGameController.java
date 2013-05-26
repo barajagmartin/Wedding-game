@@ -234,11 +234,11 @@ public class InGameController extends BasicGameState {
 		for (int i = 0; i < itemList.size(); i++) {
 			if (itemList.get(i).isPickedUp()) {
 				if (this.characterController.getCharacterView().isWalkingLeft() || this.characterController.getCharacterView().isBlinkingLeft() || this.characterController.getCharacterView().isStandingLeft()) {
-					itemList.get(i).setX((int)characterController.getCharacterView().getSlickShape().getX());
-					itemList.get(i).setY((int)characterController.getCharacterView().getSlickShape().getY() + Character.RADIUS);
+					itemList.get(i).getPos().setX((int)characterController.getCharacterView().getSlickShape().getX());
+					itemList.get(i).getPos().setY((int)characterController.getCharacterView().getSlickShape().getY() + Character.RADIUS);
 				} else {
-					itemList.get(i).setX((int)characterController.getCharacterView().getSlickShape().getX() + Character.RADIUS +5);
-					itemList.get(i).setY((int)characterController.getCharacterView().getSlickShape().getY() + Character.RADIUS);
+					itemList.get(i).getPos().setX((int)characterController.getCharacterView().getSlickShape().getX() + Character.RADIUS +5);
+					itemList.get(i).getPos().setY((int)characterController.getCharacterView().getSlickShape().getY() + Character.RADIUS);
 				}
 				
 			}

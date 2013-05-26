@@ -17,7 +17,7 @@ public class ItemView {
 	
 	public ItemView(Item item) throws SlickException {
 		this.item = item;
-		this.shape = new Rectangle(item.getX(), item.getY(), Item.WIDTH, Item.HEIGHT);
+		this.shape = new Rectangle(item.getPos().getX(), item.getPos().getY(), Item.WIDTH, Item.HEIGHT);
 		this.image = new Image("pics/item" + String.valueOf(item.CANDY_NUMBER) +".png");
 	}
 	

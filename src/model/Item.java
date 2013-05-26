@@ -18,20 +18,9 @@ public class Item {
 		this.CANDY_NUMBER = candyNumber;
 	}
 
-	public int getX() {
-		return this.pos.getX();
-	}
-
-	public int getY() {
-		return this.pos.getY();
-	}
-
-	public void setX(int x) {
-		this.pos.setX(x);
-	}
 	
-	public void setY(int y) {
-		this.pos.setY(y);
+	public Position getPos() {
+		return this.pos;
 	}
 
 	public boolean isPickedUp() {
