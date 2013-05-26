@@ -1,22 +1,17 @@
 package controller;
 
 
-import model.Game;
 import model.HighScore;
 import model.NewHighscore;
 
 import utils.SaveUtils;
 import view.NewHighscoreView;
-import model.NewHighscore;
-
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.gui.AbstractComponent;
 import org.newdawn.slick.gui.ComponentListener;
-import org.newdawn.slick.gui.TextField;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -26,8 +21,6 @@ public class NewHighscoreController extends BasicGameState implements ComponentL
 	private NewHighscoreView newHighscoreView;
 	private StateBasedGame sbg;
 	private GameContainer gc;
-	private boolean ctrlDown;
-	
 	public NewHighscoreController(GameController gameController) {
 		this.gameController = gameController;
 	}

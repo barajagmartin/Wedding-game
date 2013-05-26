@@ -1,6 +1,5 @@
 package controller;
 
-import org.newdawn.slick.Color;
 import org.newdawn.slick.SlickException;
 
 import model.CandyMonster;

@@ -1,7 +1,6 @@
 package controller;
 
 import model.Controls;
-import model.Game;
 import model.HighScore;
 import model.InGame;
 import model.StartMenu;

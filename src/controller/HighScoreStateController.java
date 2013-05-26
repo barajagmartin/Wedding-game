@@ -1,6 +1,5 @@
 package controller;
 
-import model.Game;
 import model.HighScore;
 import model.StartMenu;
 
@@ -11,7 +10,6 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import utils.SaveUtils;
 import view.HighScoreStateView;
 
 public class HighScoreStateController extends BasicGameState{
@@ -44,8 +42,6 @@ public class HighScoreStateController extends BasicGameState{
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	public void keyPressed (int key, char c) {
@@ -53,7 +49,7 @@ public class HighScoreStateController extends BasicGameState{
 			this.gameController.changeFullscreen(this.gc);
 		}
 		else if (key == Input.KEY_ENTER || key == Input.KEY_ESCAPE) {
-			//back to start menu or something
+			//back to start menu 
 			sbg.enterState(StartMenu.STATE_ID);
 		}
 	}
