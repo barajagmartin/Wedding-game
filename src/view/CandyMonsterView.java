@@ -17,7 +17,7 @@ public class CandyMonsterView {
 	
 	public CandyMonsterView(CandyMonster candyMonster) throws SlickException {
 		this.candyMonster = candyMonster;
-		this.shape = new Rectangle(candyMonster.getX(), candyMonster.getY(), CandyMonster.WIDTH, CandyMonster.HEIGHT);
+		this.shape = new Rectangle(candyMonster.getPos().getX(), candyMonster.getPos().getY(), CandyMonster.WIDTH, CandyMonster.HEIGHT);
 		happyImage = new Image("pics/happyCandyMonster" + String.valueOf(candyMonster.CANDY_NUMBER) + ".png");
 		sadImage = new Image("pics/sadCandyMonster" + String.valueOf(candyMonster.CANDY_NUMBER) + ".png");
 

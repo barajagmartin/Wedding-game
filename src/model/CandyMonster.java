@@ -16,21 +16,11 @@ public class CandyMonster {
 		this.isHappy = false;
 	}
 	
-	public int getX() {
-		return this.pos.getX();
+	
+	public Position getPos() {
+		return this.pos;
 	}
 	
-	public int getY() {
-		return this.pos.getY();
-	}
-	
-	public void setX(final int x) {
-		this.pos.setX(x);
-	}
-	
-	public void setY(final int y) {
-		this.pos.setY(y);
-	}
 	public boolean isHappy() {
 		return isHappy;
 	}
