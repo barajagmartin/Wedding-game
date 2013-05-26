@@ -28,14 +28,16 @@ public class NewHighscoreController extends BasicGameState implements ComponentL
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {						
-		this.sbg = sbg;	
+		this.sbg = sbg;
+		this.newHighscoreView = new NewHighscoreView(gc, this.gameController.getGame().getInGame().getPlayer().getScore());
 	}
 	
 	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		super.enter(container, game);
-		this.newHighscoreView = new NewHighscoreView(container, this.gameController.getGame().getInGame().getPlayer().getScore());
+		newHighscoreView.reset(this.gameController.getGame().getInGame().getPlayer().getScore());
 		this.newHighscoreView.getTextField().addListener(this);
+		newHighscoreView.getTextField().setFocus(true);
 	}
 
 	@Override
@@ -69,7 +71,7 @@ public class NewHighscoreController extends BasicGameState implements ComponentL
 				this.newHighscoreView.getTextField().getText());
 		textField.setFocus(false);
 		sbg.enterState(HighScore.STATE_ID);
-		
+		textField.removeListener(this);
 	}
 
 }
