@@ -66,7 +66,7 @@ public class CharacterController {
 	}
 	
 	/**
-	 * If on ground, then jump.
+	 * If the character is on ground, allow the character to jump.
 	 */
 	public void tryToJumpCharacter() {
 		if(characterView.getCharacterBody().getLinearVelocity().y <= 0.0001 && characterView.getCharacterBody().getLinearVelocity().y >= -0.0001){

@@ -75,6 +75,7 @@ public class InGameController extends BasicGameState {
 			throws SlickException {
 		super.enter(container, game);
 		gameController.getInGameMusic().setVolume(1f);
+		
 		if (!inGame.isPaused()) {
 			if (inGame.isNewGame()) {
 				inGame.resetLevel();
@@ -98,7 +99,7 @@ public class InGameController extends BasicGameState {
 			final int nbrOfVersions = LevelUtils.getNbrOfFiles(this.inGame.getLevel());
 			//Get a new level, randomize between different level versions (i.e. there are many level 1 to randomize from)
 			this.blockMapController = new BlockMapController(this, new TiledMap(BlockMapUtils.getTmxFile(this.inGame.getLevel(), inGame.randomizeVersion(nbrOfVersions)), "levels"));
-			/*Create candy monster and its items*/
+			/*Create candy monster and their items*/
 			for (int i = 0; i < blockMapController.getCandyMonsterMap().getBlockList().size(); i++){
 				this.candyMonsterControllers.add(new CandyMonsterController(this, blockMapController.getBlockMapView().getCandyMonsterNbrMap().get(i), i));
 				this.itemControllers.add(new ItemController(this, blockMapController.getBlockMapView().getItemNbrMap().get(i), i));

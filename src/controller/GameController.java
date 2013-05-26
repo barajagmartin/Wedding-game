@@ -79,6 +79,9 @@ public class GameController extends StateBasedGame {
 		return inGameMusic;
 	}
 	
+	/**
+	 * Allows the change to fullscreen if demanded
+	 */
 	public void changeFullscreen (GameContainer gc) {
 		AppGameContainer agc = (AppGameContainer) gc;
 		try {
