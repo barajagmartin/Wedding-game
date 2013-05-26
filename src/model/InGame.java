@@ -2,8 +2,6 @@ package model;
 
 import java.util.Random;
 
-import utils.LevelUtils;
-
 public class InGame {
 	public static final int STATE_ID = 1;
 	private Player player;
