@@ -5,7 +5,11 @@ import org.newdawn.slick.SlickException;
 import view.MoveableBoxView;
 import model.FixedPosition;
 import model.MoveableBox;
-
+/**
+ * This class represent the boxes in the game that the character can move around
+ * @author Josefin, Martin, Sara, Kino
+ *
+ */
 public class MoveableBoxController {
 	private final MoveableBox moveableBox;
 	private final MoveableBoxView moveableBoxView;

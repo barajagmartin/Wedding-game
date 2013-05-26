@@ -26,6 +26,9 @@ public class ItemController {
 		return itemView;
 	}
 	
+	/**
+	 * Update the item's position
+	 */
 	public void updateItemShape(){
 		this.itemView.getShape().setX(this.item.getPos().getX());
 		this.itemView.getShape().setY(this.item.getPos().getY());

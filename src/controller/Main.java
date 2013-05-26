@@ -11,9 +11,12 @@ import org.newdawn.slick.SlickException;
 
 public class Main {
 	private static final String GAME_NAME = "Candy Monsters";
+	
 	/**
+	 * Creates and starts the game.
+	 * Set icons on window
+	 * Remove the FPS tag on screen
 	 * @param args
-	 * 
 	 */
 	public static void main(String[] args) {
 		AppGameContainer app;
