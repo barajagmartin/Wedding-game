@@ -1,13 +1,11 @@
 package controller;
 
-import model.Game;
 import model.PauseMenu;
 import model.StartMenu;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
-import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -83,10 +81,10 @@ public class PauseMenuController extends BasicGameState{
 						}
 						break;
 				case 2: if(gameController.getGame().isMusicOn()) {
-							gameController.getInGameMusic().pause();	//TODO
+							gameController.getInGameMusic().pause();	
 							gameController.getGame().setMusicOn(false);
 						} else {
-							gameController.getInGameMusic().play(1.0f, 0.3f); //TODO
+							gameController.getInGameMusic().play(1.0f, 0.3f); 
 							gameController.getGame().setMusicOn(true);
 						}	
 						break;

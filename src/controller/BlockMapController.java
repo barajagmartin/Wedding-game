@@ -1,16 +1,11 @@
 package controller;
 
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-
-import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 
 import view.BlockMapView;
 import model.BlockMap;
 
 public class BlockMapController {
-	private InGameController inGameController;
 	private BlockMap solidGroundMap;
 	private BlockMap iceMap;
 	private BlockMap springMap;
@@ -22,7 +17,6 @@ public class BlockMapController {
 	private BlockMapView blockMapView;
 	
 	public BlockMapController(InGameController inGameController, TiledMap tiledMap) {
-		this.inGameController = inGameController;
 		solidGroundMap = new BlockMap();
 		iceMap = new BlockMap();
 		springMap = new BlockMap();

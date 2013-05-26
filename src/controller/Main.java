@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 
 import model.Game;
 
-import org.lwjgl.opengl.Display;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.SlickException;
 

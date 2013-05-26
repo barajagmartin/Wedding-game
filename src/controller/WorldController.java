@@ -11,7 +11,6 @@ import org.jbox2d.dynamics.contacts.Contact;
 
 import utils.WorldBodyFactory;
 import utils.WorldObjects;
-import utils.WorldUtils;
 import view.CandyMonsterView;
 import view.CharacterView;
 import view.ItemView;
@@ -20,7 +19,6 @@ import view.SpikesView;
 import view.WorldView;
 
 import model.CandyMonster;
-import model.Character;
 import model.Game;
 import model.Item;
 import model.MoveableBox;
@@ -28,15 +26,11 @@ import model.Spikes;
 import model.World;
 
 public class WorldController implements ContactListener {
-	private InGameController inGameController;
 	private ArrayList<MoveableBox> moveableBoxes;
 	private ArrayList<CandyMonster> candyMonsters;
 	private ArrayList<Item> items;
 	private ArrayList<Spikes> spikes;
-	private ArrayList<MoveableBoxView> moveableBoxViewList;
-	private ArrayList<CandyMonsterView> candyMonsterViewList;
 	private ArrayList<ItemView> itemViewList;
-	private ArrayList<SpikesView> spikesViewList;
 	private model.World world;
 	private WorldView worldView;
 	
@@ -46,15 +40,13 @@ public class WorldController implements ContactListener {
 			ArrayList<CandyMonsterView> candyMonsterViewList,
 			ArrayList<ItemView> itemViewList,
 			ArrayList<SpikesView> spikesViewList) {
-		this.inGameController = inGameController;
 		moveableBoxes = new ArrayList<MoveableBox>();
 		candyMonsters = new ArrayList<CandyMonster>();
 		items = new ArrayList<Item>();
 		spikes = new ArrayList<Spikes>();
-		this.moveableBoxViewList = moveableBoxViewList;;
-		this.candyMonsterViewList = candyMonsterViewList;
+		;
 		this.itemViewList = itemViewList;
-		this.spikesViewList = spikesViewList;;
+		;
 		
 		for (MoveableBoxView moveableBoxView : moveableBoxViewList) {
 			moveableBoxes.add(moveableBoxView.getMoveableBox());

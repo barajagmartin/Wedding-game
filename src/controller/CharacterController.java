@@ -4,15 +4,11 @@ package controller;
 import model.Character;
 import model.Item;
 
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
-import org.newdawn.slick.KeyListener;
 import org.newdawn.slick.SlickException;
 
 import view.CharacterView;
-import view.WorldView;
 
 
 public class CharacterController {

@@ -1,16 +1,9 @@
 package controller;
 
-import java.io.File;
-import java.io.FilenameFilter;
 import java.util.ArrayList;
-import java.util.Random;
-
-import org.newdawn.slick.AppGameContainer;
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
-import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 import org.newdawn.slick.state.BasicGameState;
@@ -27,7 +20,6 @@ import view.SpikesView;
 import model.Character;
 import model.EndOfLevel;
 import model.FixedPosition;
-import model.Game;
 import model.InGame;
 import model.Item;
 import model.PauseMenu;
@@ -60,7 +52,7 @@ public class InGameController extends BasicGameState {
 	
 	public InGameController(GameController gameController) {
 		this.gameController = gameController;
-		this.playerController = new PlayerController(this);
+		this.playerController = new PlayerController();
 		this.inGame = new InGame(playerController.getPlayer());
 	}
 
@@ -262,7 +254,7 @@ public class InGameController extends BasicGameState {
 				lastHeldItem = characterController.getCharacter().getHeldItem();
 				characterController.getCharacter().dropDownItem(lastHeldItem);
 				this.itemControllers.get(blockMapController.getBlockMapView().getItemNbrMap().indexOf(lastHeldItem.CANDY_NUMBER)).updateItemShape();
-				if(candyMonsterControllers.get(blockMapController.getBlockMapView().getCandyMonsterNbrMap().indexOf(lastHeldItem.CANDY_NUMBER)).isDroppedOnMonster(lastHeldItem) && gameController.getGame().isSoundOn()) { //här är problemet FIXME
+				if(candyMonsterControllers.get(blockMapController.getBlockMapView().getCandyMonsterNbrMap().indexOf(lastHeldItem.CANDY_NUMBER)).isDroppedOnMonster(lastHeldItem) && gameController.getGame().isSoundOn()) {
 					this.happySound.play();
 				}
 			}
