@@ -17,6 +17,22 @@ public class InGameTest {
 	}
 	
 	@Test
+	public void testIsNewGame() {
+		InGame inGame = new InGame(new Player());
+		assertTrue(inGame.isNewGame());
+		inGame.setNewGame(false);
+		assertTrue(!inGame.isNewGame());
+	}
+	
+	@Test
+	public void testIsGameOver() {
+		InGame inGame = new InGame(new Player());
+		assertTrue(!inGame.isGameOver());
+		inGame.setGameOver(true);
+		assertTrue(inGame.isGameOver());
+	}
+	
+	@Test
 	public void testReset() {
 		InGame inGame = new InGame(new Player());
 		inGame.setGameOver(true);
@@ -38,6 +54,14 @@ public class InGameTest {
 	}
 	
 	@Test
+	public void testIsPaused() {
+		InGame inGame = new InGame(new Player());
+		assertTrue(!inGame.isPaused());
+		inGame.setPaused(true);
+		assertTrue(inGame.isPaused());
+	}
+	
+	@Test
 	public void testIfGameIsOver() {
 		InGame inGame = new InGame(new Player());
 		inGame.setTime(10);
@@ -53,7 +77,26 @@ public class InGameTest {
 		inGame.setTime(10);
 		inGame.getPlayer().loseOneLife();
 		assertTrue(inGame.checkIfGameIsOver(3));
-		
 	}
-
+	
+	@Test
+	public void testIncreaseItemsDelivered() {
+		InGame inGame = new InGame(new Player());
+		inGame.increaseItemsDelivered();
+		assertTrue(inGame.getItemsDelivered() == 1);
+		inGame.increaseItemsDelivered();
+		assertTrue(inGame.getItemsDelivered() == 2);
+	}
+	
+	@Test
+	public void testIsTimeRunningOut() {
+		InGame inGame = new InGame(new Player());
+		inGame.setLevelTime(10f);
+		inGame.setTime(5f);
+		assertTrue(!inGame.isTimeRunningOut());
+		inGame.setTime(1f);
+		assertTrue(!inGame.isTimeRunningOut());
+		inGame.setTime(0.9f);
+		assertTrue(inGame.isTimeRunningOut());
+	}
 }
