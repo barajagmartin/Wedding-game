@@ -4,7 +4,10 @@ import org.newdawn.slick.SlickException;
 
 import view.ItemView;
 import model.Item;
-
+/**
+ * This class represent the different candies in the world the candymonsters wants.
+ * @author Josefin, Martin, Sara, Kino
+ */
 public class ItemController {
 	
 	private Item item;

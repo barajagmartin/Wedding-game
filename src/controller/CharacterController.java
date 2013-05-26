@@ -10,7 +10,11 @@ import org.newdawn.slick.SlickException;
 
 import view.CharacterView;
 
-
+/**
+ * This is the Player's character, the one being controlled and moved around in the world.
+ * @author Josefin, Martin, Sara, Kino
+ *
+ */
 public class CharacterController {
 	private final InGameController inGameController;
 	private Character character;

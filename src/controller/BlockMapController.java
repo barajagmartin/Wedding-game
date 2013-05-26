@@ -5,6 +5,11 @@ import org.newdawn.slick.tiled.TiledMap;
 import view.BlockMapView;
 import model.BlockMap;
 
+/**
+ * Blockmap is essentially a list of fixed positions. Blocks that creates the map.
+ * @author Josefin
+ *
+ */
 public class BlockMapController {
 	private final BlockMap candyMonsterMap;
 	private final BlockMap spikesMap;

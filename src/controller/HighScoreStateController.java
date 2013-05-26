@@ -12,6 +12,11 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import view.HighScoreStateView;
 
+/**
+ * The state which shows the current highscore list of the game
+ * @author Josefin, Martin, Sara, Kino
+ *
+ */
 public class HighScoreStateController extends BasicGameState{
 	
 	private final GameController gameController;

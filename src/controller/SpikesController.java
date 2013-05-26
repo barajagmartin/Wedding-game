@@ -5,6 +5,11 @@ import org.newdawn.slick.SlickException;
 import model.Spikes;
 import view.SpikesView;
 
+/**
+ * This class represent the spikes that can hurt the character in the game.
+ * @author Josefin, Martin, Sara, Kino
+ *
+ */
 public class SpikesController {
 	
 	private final Spikes spikes;

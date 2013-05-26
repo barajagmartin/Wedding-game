@@ -15,7 +15,11 @@ import org.newdawn.slick.gui.ComponentListener;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-
+/**
+ * This class represent the state where the player can enter his/her's new highscore, if acheived.
+ * @author Josefin, Martin, Sara, Kino
+ *
+ */
 public class NewHighscoreController extends BasicGameState implements ComponentListener {
 	private final GameController gameController;
 	private NewHighscoreView newHighscoreView;
@@ -33,6 +37,7 @@ public class NewHighscoreController extends BasicGameState implements ComponentL
 		this.newHighscoreView = new NewHighscoreView(gc, this.gameController.getGame().getInGame().getPlayer().getScore());
 	}
 	
+	@Override
 	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		super.enter(container, game);

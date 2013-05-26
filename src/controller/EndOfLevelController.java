@@ -18,7 +18,11 @@ import org.newdawn.slick.state.StateBasedGame;
 import utils.LevelUtils;
 import utils.SaveUtils;
 import view.EndOfLevelView;
-
+/**
+ * This state is shown when a level are cleared and you can move on to the next level. This state also shows your current score.
+ * @author Josefin, Martin, Sara, Kino
+ *
+ */
 public class EndOfLevelController extends BasicGameState{
 	private EndOfLevelView endOflevelView;
 	private final GameController gameController;
