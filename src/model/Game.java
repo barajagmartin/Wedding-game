@@ -1,13 +1,5 @@
 package model;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Scanner;
-
-import utils.SaveUtils;
 
 public class Game {
 	
@@ -16,7 +8,6 @@ public class Game {
 	
 	private boolean isMusicOn;
 	private boolean isSoundOn;
-	
 	
 	private InGame inGame;
 	private StartMenu startMenu;
@@ -27,7 +18,6 @@ public class Game {
 		this.isSoundOn = true;
 	}
 	
-
 	public StartMenu getStartMenu() {
 		return startMenu;
 	}
@@ -36,7 +26,6 @@ public class Game {
 		return inGame;
 	}
 
-	
 	public void setSoundOn(boolean isSoundOn){
 		this.isSoundOn = isSoundOn;
 	}
