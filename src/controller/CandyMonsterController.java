@@ -10,7 +10,6 @@ public class CandyMonsterController {
 	private CandyMonsterView candyMonsterView;
 	private CandyMonster candyMonster;
 	private InGameController inGameController;
-	boolean isSoundPlayed = false;
 	
 	public CandyMonsterController(InGameController inGameController, int candyNumber, int index) throws SlickException{
 		this.inGameController = inGameController;
@@ -44,9 +43,5 @@ public class CandyMonsterController {
 			return true;
 		}
 		return false;
-	}
-	
-	public boolean isSoundPlayed() {
-		return isSoundPlayed;
 	}
 }

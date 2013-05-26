@@ -42,84 +42,31 @@ public class CharacterController {
 		return characterView;
 	}
 
-
-	/*Getters for keypresses*/
-	public int getKeyRight() {
-		return this.keyRight;
-	}
-	
-	public int getKeyLeft() {
-		return this.keyLeft;
-	}
-	
-	public int getKeyUp() {
-		return this.keyUp;
-	}
-	
-	public int getKeyDown() {
-		return this.keyDown;
-	}
-	
-	/*Setters for keypresses*/
-	public void setKeyRight(int keyRight) {
-		this.keyRight = keyRight;
-	}
-	
-	public void setKeyLeft(int keyLeft) {
-		this.keyLeft = keyLeft;
-	}
-	
-	public void setKeyUp(int keyUp) {
-		this.keyUp = keyUp;
-	}
-	
-	public void setKeyDown(int keyDown) {
-		this.keyDown = keyDown;
-	}
-	
-	/*Check the key pressed matches the right key*/
-
-	public boolean isControllerRight(int key) {
-		return this.keyRight == key;
-	}
-	
-	public boolean isControllerLeft(int key) {
-		return this.keyLeft == key;
-	}
-	
-	public boolean isControllerUp(int key) {
-		return this.keyUp == key;
-	}
-	
-	public boolean isControllerDown(int key) {
-		return this.keyUp == key;
-	}
-		
 	//check which key is pressed
 	public void keyPressedUpdate(GameContainer gc) {
 		Input input = gc.getInput();		
 		
 		if(input.isKeyDown(Input.KEY_RIGHT)) {
 			inGameController.getWorldController().moveBodyRight();
-			if(!characterView.isBlinking()) {
-				characterView.animateWalkingRight();
-			} else {
+			if(characterView.isBlinking()) {
 				characterView.animateBlinkingRight();
+			} else {
+				characterView.animateWalkingRight();
 			}
 		}else if(input.isKeyDown(Input.KEY_LEFT)) {
 			inGameController.getWorldController().moveBodyLeft();
-			if(!characterView.isBlinking()) {
-				characterView.animateWalkingLeft();
-			} else {
+			if(characterView.isBlinking()) {
 				characterView.animateBlinkingLeft();
+			} else {
+				characterView.animateWalkingLeft();
 			}
-		} else {
+		} else { //if no key is pressed
 			if(characterView.isWalkingLeft() || characterView.isStandingLeft()) {
 				characterView.animateStandingLeft();
 			} else {
 				characterView.animateStandingRight();
 			}
-		}
+		} 
 	}
 	
 	/**

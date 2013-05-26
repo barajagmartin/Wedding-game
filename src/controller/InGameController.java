@@ -184,6 +184,12 @@ public class InGameController extends BasicGameState {
 			} else {
 				characterController.getCharacterView().animateBlinkingRight();
 			}
+		} else if (this.characterController.getCharacter().getTimeSinceHit() > 1 && characterController.getCharacterView().isBlinking()) {
+			if(characterController.getCharacterView().isBlinkingLeft()) {
+				characterController.getCharacterView().animateWalkingLeft();
+			} else {
+				characterController.getCharacterView().animateWalkingRight();
+			}
 		}
 		
 		//update the timeBar
