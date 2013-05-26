@@ -39,6 +39,7 @@ public class GameController extends StateBasedGame {
 		this.pauseMenuController = new PauseMenuController(this);
 		this.endOfLevelController = new EndOfLevelController(this);
 		this.controlsController = new ControlsController(this);
+		
 		this.addState(inGameController);
 		this.addState(highScoreStateController);
 		this.addState(pauseMenuController);

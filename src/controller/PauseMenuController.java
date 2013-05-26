@@ -73,14 +73,17 @@ public class PauseMenuController extends BasicGameState{
 		}
 		if(key == Input.KEY_ENTER) {
 			switch(pauseMenu.isMarked()) {
+				//Resume
 				case 0:	sbg.enterState(PauseMenuController.previousState);
 						break;
+				//Sound
 				case 1: if(gameController.getGame().isSoundOn()) {
 							gameController.getGame().setSoundOn(false);
 						} else {
 							gameController.getGame().setSoundOn(true);
 						}
 						break;
+				//Music
 				case 2: if(gameController.getGame().isMusicOn()) {
 							gameController.getInGameMusic().pause();	
 							gameController.getGame().setMusicOn(false);
@@ -89,8 +92,10 @@ public class PauseMenuController extends BasicGameState{
 							gameController.getGame().setMusicOn(true);
 						}	
 						break;
+				//Controls
 				case 3: sbg.enterState(Controls.STATE_ID);
 						break;
+				//Return to menu
 				case 4: gameController.getGame().getInGame().setPaused(false);
 						gameController.getInGameMusic().stop(); //Stop current thread
 						sbg.enterState(StartMenu.STATE_ID);

@@ -44,6 +44,7 @@ public class ControlsController extends BasicGameState {
 
 	}
 	
+	@Override
 	public void keyPressed(int key, char c) {
 		if(key == Input.KEY_TAB) {
 			this.gameController.changeFullscreen(this.gc);

@@ -36,7 +36,9 @@ public class CharacterController {
 		return characterView;
 	}
 
-	//check which key is pressed
+	/**
+	 * Checks which key is pressed down in terms of the character's movement 
+	 */
 	public void keyPressedUpdate(GameContainer gc) {
 		Input input = gc.getInput();		
 		

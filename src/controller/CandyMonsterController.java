@@ -26,7 +26,8 @@ public class CandyMonsterController {
 	public CandyMonsterView getCandyMonsterView(){
 		return this.candyMonsterView;
 	}
-	/*Checks if the item is dropped correctly by checking if: the item is picked up, the candynumbers are the same
+	/**
+	 * Checks if the item is dropped correctly by checking if: the item is picked up, the candynumbers are the same
 	 * and if the item contains/intersects with the character*/
 	public boolean isDroppedOnMonster(Item item){
 		if(!item.isPickedUp() && item.CANDY_NUMBER == candyMonster.CANDY_NUMBER && 

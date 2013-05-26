@@ -36,17 +36,18 @@ public class EndOfLevelController extends BasicGameState{
 		this.gc = gc;
 	}
 	
+	@Override
 	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		super.enter(container, game);
 		
-		//kolla om det finns fler banor?
+		//Checks if there's any more levels
 		this.victory = LevelUtils.getNbrOfFiles(this.gameController.getGame().getInGame().getLevel() + 1) == 0;
-		//kolla om spelaren förlorat
+		//Checks if the game is lost
 		this.gameOver = (this.gameController.getGame().getInGame().isGameOver());
-		//kolla om newHighScore
+		//Checks if there's a new higscore
 		this.newHighScore = (this.gameController.getGame().getInGame().getPlayer().getScore() > SaveUtils.getScoreList()[9]);
-			
+		
 		this.endOflevelView = new EndOfLevelView(this.gameController.getGame().getInGame().getPlayer().getScore(), gameOver, victory);
 	}
 
@@ -61,6 +62,7 @@ public class EndOfLevelController extends BasicGameState{
 			throws SlickException {
 	}
 	
+	@Override
 	public void keyPressed (int key, char c) {
 		if(key == Input.KEY_TAB) {
 			this.gameController.changeFullscreen(this.gc);
