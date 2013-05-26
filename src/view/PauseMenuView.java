@@ -46,7 +46,7 @@ public class PauseMenuView extends AbstractMenuView {
 		for(int i = 0; i < 5; i++){
 			this.buttonList.add(new Rectangle(buttonX, buttonY, buttonWidth, buttonHeight));
 
-			if(buttonList.indexOf(buttonList.get(i)) == pauseMenu.getIsMarked()) {
+			if(buttonList.indexOf(buttonList.get(i)) == pauseMenu.isMarked()) {
 				g.setColor(new Color(0f, 0f, 0f, 0.8f));
 				g.fill(buttonList.get(i));
 			} else {

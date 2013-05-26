@@ -68,7 +68,7 @@ public class StartMenuController extends BasicGameState {
 			startMenu.markButtonUp();
 		}
 		if(key == Input.KEY_ENTER) {
-			switch(startMenu.getIsMarked()) {
+			switch(startMenu.isMarked()) {
 				case 0: sbg.enterState(InGame.STATE_ID);
 						break;
 				case 1: sbg.enterState(HighScore.STATE_ID);

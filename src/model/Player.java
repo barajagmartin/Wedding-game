@@ -1,13 +1,11 @@
 package model;
 
-
 public class Player {
 	private int score;
 	private int life;
 
 	public Player() {
-		this.score = 0;
-		this.life = 3;
+		reset();
 	}
 
 	public int getScore() {
@@ -45,5 +43,4 @@ public class Player {
 		life = 3;
 		score = 0;
 	}
-
 }

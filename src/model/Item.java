@@ -3,7 +3,7 @@ package model;
 public class Item {
 	private Position pos;
 	private boolean isPickedUp;
-	public boolean isDelivered;
+	private boolean isDelivered;
 	public static final int WIDTH = 15;
 	public static final int HEIGHT = 15;
 	public final int CANDY_NUMBER;

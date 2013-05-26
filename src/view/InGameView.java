@@ -62,7 +62,7 @@ public class InGameView {
 					worldView.getCandyMonsterViewList().get(j).getCandyMonster().getPos().getY());
 
 			//clouds w. candy
-			if (!worldView.getCandyMonsterViewList().get(j).getCandyMonster().isHappy) {
+			if (!worldView.getCandyMonsterViewList().get(j).getCandyMonster().isHappy()) {
 				this.g.drawImage(this.cloud, worldView.getCandyMonsterViewList().get(j).getCandyMonster().getPos().getX(),
 						worldView.getCandyMonsterViewList().get(j).getCandyMonster().getPos().getY()-30);
 				for (int k = 0; k < this.worldView.getItemViewList().size(); k++) {
