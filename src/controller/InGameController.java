@@ -11,6 +11,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
 import utils.BlockMapUtils;
+import utils.LevelUtils;
 import utils.WorldUtils;
 import view.CandyMonsterView;
 import view.InGameView;
@@ -91,7 +92,7 @@ public class InGameController extends BasicGameState {
 			this.spikesControllers = new ArrayList<SpikesController>();
 			this.moveableBoxControllers = new ArrayList<MoveableBoxController>();
 
-			int nbrOfVersions = inGame.getNbrOfFiles(this.inGame.getLevel());
+			int nbrOfVersions = LevelUtils.getNbrOfFiles(this.inGame.getLevel());
 			//Get a new level, randomize between different level versions (i.e. there are many level 1 to randomize from)
 			this.blockMapController = new BlockMapController(this, new TiledMap(BlockMapUtils.getTmxFile(this.inGame.getLevel(), inGame.randomizeVersion(nbrOfVersions)), "levels"));
 			/*Create candy monster and its items*/
@@ -197,7 +198,7 @@ public class InGameController extends BasicGameState {
 			}
 		}
 		//check if the game is over
-		if (inGame.checkIfGameIsOver(itemControllers.size())) {
+		if (inGame.checkIfGameIsOver(itemControllers.size(),LevelUtils.getNbrOfFiles(inGame.getLevel() + 1))) {
 			gameController.getInGameMusic().stop();
 			sbg.enterState(EndOfLevel.STATE_ID);
 		}

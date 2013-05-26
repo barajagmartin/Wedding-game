@@ -9,6 +9,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import utils.LevelUtils;
 import utils.SaveUtils;
 import view.EndOfLevelView;
 
@@ -40,7 +41,7 @@ public class EndOfLevelController extends BasicGameState{
 		super.enter(container, game);
 		
 		//kolla om det finns fler banor?
-		this.victory = this.gameController.getGame().getInGame().getNbrOfFiles(this.gameController.getGame().getInGame().getLevel() + 1) == 0;
+		this.victory = LevelUtils.getNbrOfFiles(this.gameController.getGame().getInGame().getLevel() + 1) == 0;
 		//kolla om spelaren förlorat
 		this.gameOver = (this.gameController.getGame().getInGame().isGameOver());
 		//kolla om newHighScore
