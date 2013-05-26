@@ -11,25 +11,41 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import utils.SaveUtils;
 
-public class HighScoreStateView {	
-	public HighScoreStateView () {}
+public class HighScoreStateView {
+	private Image background;
+	private StringBuilder stringBuilder;
+	
+	public HighScoreStateView () throws SlickException {
+		background = new Image("pics/highscore_background.png");
+		stringBuilder = new StringBuilder();
+	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-		Image background = new Image("pics/highscore_background.png");
 		background.draw();
 		g.setColor(Color.green);
 		int y = 200;
+		
 		String space = " ";
 		for (int i = 0; i < 10; i++) {
+			stringBuilder.delete(0, stringBuilder.length());
 			if (i == 9) {
 				space = "";
 			}
-			g.drawString(Integer.toString(i+1) + ". " + space + SaveUtils.getNameList()[i] +
-					" .................................... " + Integer.toString(SaveUtils.getScoreList()[i]), (Game.WINDOW_WIDTH/2-200), y);
+			stringBuilder.append(Integer.toString(i+1)).append(". ").append(space).append(SaveUtils.getNameList()[i]);
+			if (SaveUtils.getNameList()[i].length() == 0) {
+				stringBuilder.append(".");
+			} else {
+				stringBuilder.append(" ");
+			}
+			for (int j = 0 ; j < 36 - SaveUtils.getNameList()[i].length()
+					- String.valueOf(SaveUtils.getScoreList()[i]).length() + 1; j++) {
+				stringBuilder.append(".");
+			}
+			stringBuilder.append(Integer.toString(SaveUtils.getScoreList()[i]));
+			
+			g.drawString(stringBuilder.toString(), (Game.WINDOW_WIDTH/2-200), y);
 			y = y + 40;
 		}
-		
 	}
-	
 }

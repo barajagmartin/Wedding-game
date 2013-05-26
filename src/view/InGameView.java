@@ -15,9 +15,6 @@ import model.MoveableBox;
 import model.Spikes;
 import model.StatusBar;
 
-/**
- * 	Visar upp World & StatusBar.
- */
 public class InGameView {
 	private InGame inGame;
 	private WorldView worldView;
@@ -27,11 +24,12 @@ public class InGameView {
 	private ArrayList<SpikesView> spikesViewList;
 	private Image pauseImage;
 	private Image cloud;
+	private Graphics g;
+	private int level;
+
 	public CharacterView getCharacterView() {
 		return characterView;
 	}
-	private Graphics g;
-	private int level;
 
 	public InGameView(InGame inGame, WorldView worldView, StatusBarView statusBarView, CharacterView characterView, ArrayList<MoveableBoxView> tmpMoveableBoxViewList, ArrayList<SpikesView> spikesViewList, int level) {
 		this.inGame = inGame;
@@ -54,6 +52,7 @@ public class InGameView {
 		Image background = new Image("pics/bg_"+level+".jpg");
 		background.draw();
 		worldView.getBlockMapView().getTiledMap().render(0, 0, worldView.getBlockMapView().getTiledMap().getLayerIndex("solids"));
+
 		//draw candyMonsters and clouds
 		for (int j = 0; j < worldView.getCandyMonsterViewList().size(); j++) {
 			this.g.setColor(Color.transparent);
@@ -61,8 +60,9 @@ public class InGameView {
 			this.g.drawImage(worldView.getCandyMonsterViewList().get(j).getImage(),
 					worldView.getCandyMonsterViewList().get(j).getCandyMonster().getPos().getX(),
 					worldView.getCandyMonsterViewList().get(j).getCandyMonster().getPos().getY());
+
 			//clouds w. candy
-			if (!worldView.getCandyMonsterViewList().get(j).getCandyMonster().isHappy) {
+			if (!worldView.getCandyMonsterViewList().get(j).getCandyMonster().isHappy()) {
 				this.g.drawImage(this.cloud, worldView.getCandyMonsterViewList().get(j).getCandyMonster().getPos().getX(),
 						worldView.getCandyMonsterViewList().get(j).getCandyMonster().getPos().getY()-30);
 				for (int k = 0; k < this.worldView.getItemViewList().size(); k++) {
@@ -72,7 +72,6 @@ public class InGameView {
 					}
 				}
 			}
-			
 		}
 
 		//draw spikes
@@ -84,8 +83,9 @@ public class InGameView {
 					spikesViewList.get(j).getSpikes().getPos().getY() - Spikes.RADIUS - 3);
 		}
 
-		//draw Nelson
-		characterView.getAnimation().draw(characterView.getCharacter().getX(), characterView.getCharacter().getY());
+		//draw character
+		characterView.getAnimation().draw(characterView.getCharacter().getPos().getX(),
+				characterView.getCharacter().getPos().getY());
 
 		//draw items
 		for (int j = 0; j < worldView.getItemViewList().size(); j++) {
@@ -95,16 +95,13 @@ public class InGameView {
 					worldView.getItemViewList().get(j).getItem().getPos().getX(),
 					worldView.getItemViewList().get(j).getItem().getPos().getY());
 		}
-		
-		for (MoveableBoxView moveableBoxView : moveableBoxViewList) {
-			g.drawImage(moveableBoxView.getImage(), moveableBoxView.getMoveableBox().getPos().getX()-MoveableBox.HALF_WIDTH,
-					moveableBoxView.getMoveableBox().getPos().getY()-MoveableBox.HALF_HEIGHT+1); // +1 is to correct position which
-			// probably is rounded incorrectly
-		}
 
-		
-		//draw a temporary timer
-		this.g.drawString("Time : " + this.inGame.getTime(), 10, 25);
+		//draw moveable boxes
+		for (MoveableBoxView moveableBoxView : moveableBoxViewList) {
+			//+1 is to correct position which probably is rounded incorrectly
+			g.drawImage(moveableBoxView.getImage(), moveableBoxView.getMoveableBox().getPos().getX()-MoveableBox.HALF_WIDTH,
+					moveableBoxView.getMoveableBox().getPos().getY()-MoveableBox.HALF_HEIGHT+1);
+		}
 
 		//draw status bar
 		for(int k = 0; k < inGame.getPlayer().getLife(); k++) {
@@ -123,9 +120,8 @@ public class InGameView {
 			this.g.setColor(Color.green);
 		}
 		this.g.fill(statusBarView.getTimeBar());
-
-
 	}
+	
 	/**Save all graphics in an Image to create an illusion of a paused screen in PauseView
 	 * @throws SlickException */
 	public void createPauseImage() throws SlickException {

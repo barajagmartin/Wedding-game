@@ -17,8 +17,8 @@ public class CharacterView {
 	
 	public CharacterView(Character character) throws SlickException {
 		this.character = character;
-		this.slickShape = new Circle(this.character.getX()-(Character.RADIUS/2f), 
-			this.character.getY()-(Character.RADIUS/2f), Character.RADIUS);
+		this.slickShape = new Circle(this.character.getPos().getX()-(Character.RADIUS/2f), 
+			this.character.getPos().getY()-(Character.RADIUS/2f), Character.RADIUS);
 		
 		//load images
 		Image imageRight1 = new Image("pics/nelson1.png");

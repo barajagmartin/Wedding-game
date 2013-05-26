@@ -18,7 +18,7 @@ public abstract class AbstractMenuView {
 	private Image exitGameLabel;	
 	private Image resumeLabel;
 	private Image exitToMenuLabel;
-	
+
 	public AbstractMenuView() throws SlickException {
 		background = new Image("pics/start_background.png");
 		candyMonsterTitle = new Image("pics/candy_monsters_orange.png");
@@ -81,5 +81,4 @@ public abstract class AbstractMenuView {
 	public Image getExitToMenuLabel() {
 		return this.exitToMenuLabel;
 	}
-	
 }

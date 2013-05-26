@@ -33,7 +33,6 @@ public class StartMenuView extends AbstractMenuView {
 		g.drawImage(super.getBackground(), 0, 0);
 		g.drawImage(super.getCandyMonsterTitle(), 0, 0);
 		createButtons(gc, g);
-
 	}
 	
 	public void createButtons(GameContainer gc, Graphics g) throws SlickException {
@@ -44,7 +43,7 @@ public class StartMenuView extends AbstractMenuView {
 		for(int i = 0; i < 6; i++){
 			this.buttonList.add(new Rectangle(buttonX, buttonY, buttonWidth, buttonHeight));
 
-			if(buttonList.indexOf(buttonList.get(i)) == startMenu.getIsMarked()) {
+			if(buttonList.indexOf(buttonList.get(i)) == startMenu.isMarked()) {
 				g.setColor(new Color(0f, 0f, 0f, 0.7f));
 				g.fill(buttonList.get(i));
 			} else {
@@ -83,5 +82,4 @@ public class StartMenuView extends AbstractMenuView {
 			buttonY = buttonY + buttonHeight;
 		}
 	}
-
 }

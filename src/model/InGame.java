@@ -1,9 +1,8 @@
 package model;
 
-import java.io.File;
-import java.io.FilenameFilter;
 import java.util.Random;
 
+import utils.LevelUtils;
 
 public class InGame {
 	public static final int STATE_ID = 1;
@@ -16,7 +15,6 @@ public class InGame {
 	private float time;
 	private boolean isNewGame;
 	private boolean gameOver;
-	private File folder;
 	private boolean isPaused;
 	private int itemsDelivered;
 
@@ -24,7 +22,6 @@ public class InGame {
 	public InGame(Player player) {
 		this.player = player;
 		this.isNewGame = true;
-		this.folder = new File("levels");
 		resetLevel();
 		reset();
 	}
@@ -96,29 +93,6 @@ public class InGame {
 		this.itemsDelivered = 0;
 	}
 	
-	/**
-	 * Find files that are on the form levelx.y.tmx.
-	 * 
-	 * x is the level
-	 * y is the level version
-	 * @return the filenameFilter
-	 */
-	public FilenameFilter findFiles(final int level) {
-		FilenameFilter filenameFilter = new FilenameFilter() {
-
-			@Override
-			public boolean accept(File dir, String name) {
-				return name.matches("level" + String.valueOf(level) + ".\\d.tmx");
-			}
-		};
-		return filenameFilter;
-	}
-	
-	public int getNbrOfFiles(int level) {
-		return folder.listFiles(findFiles(level)).length;
-		
-	}
-	
 	public boolean isPaused() {
 		return isPaused;
 	}
@@ -136,9 +110,9 @@ public class InGame {
 	 * and the items left in the world.
 	 * 
 	 */
-	public boolean checkIfGameIsOver(int totalAmountOfItems) {
+	public boolean checkIfGameIsOver(int totalAmountOfItems, int levelsLeft) {
 		if (totalAmountOfItems == itemsDelivered) {
-			if (getNbrOfFiles(level + 1) == 0) {
+			if (levelsLeft == 0) {
 				player.setScore(time < 1 ? 1 : (int)time, this.itemsDelivered, player.getLife());
 			} else {
 				player.setScore(time < 1 ? 1 : (int)time, this.itemsDelivered);

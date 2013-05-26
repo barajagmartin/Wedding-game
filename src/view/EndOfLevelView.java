@@ -1,13 +1,13 @@
 package view;
 
-import model.Game;
-
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
+
+import model.Game;
 
 public class EndOfLevelView {
 	private int score;
@@ -16,8 +16,7 @@ public class EndOfLevelView {
 	private Image gameOverImage;
 	private Image victoryImage;
 	private Image levelClearedImage;
-	
-	
+
 	public EndOfLevelView (int score, boolean gameOver, boolean victory) throws SlickException {
 		this.score = score;
 		this.gameOver = gameOver;
@@ -43,7 +42,4 @@ public class EndOfLevelView {
 		g.drawString("ESC - back to menu", Game.WINDOW_WIDTH/2 - 30, Game.WINDOW_HEIGHT/2 + 60);
 		g.drawString("Score: " + this.score, Game.WINDOW_WIDTH/2 - 30, Game.WINDOW_HEIGHT/2 + 90);
 	}
-	
-
-
 }

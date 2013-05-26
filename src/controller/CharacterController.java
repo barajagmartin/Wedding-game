@@ -85,7 +85,7 @@ public class CharacterController {
 		for (int i = 0; i < inGameController.getWorldController().getItemViewList().size(); i++) {
 			if ((characterView.getSlickShape().intersects(inGameController.getWorldController().getItemViewList().get(i).getShape()) ||
 					characterView.getSlickShape().contains(inGameController.getWorldController().getItemViewList().get(i).getShape()))
-					&& !inGameController.getWorldController().getItemViewList().get(i).getItem().isDelivered) {
+					&& !inGameController.getWorldController().getItemViewList().get(i).getItem().isDelivered()) {
 				return inGameController.getWorldController().getItemViewList().get(i).getItem();
 			}
 		}

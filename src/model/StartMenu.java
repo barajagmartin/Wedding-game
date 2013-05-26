@@ -18,8 +18,7 @@ public class StartMenu implements IMenu {
 		isMarked = (isMarked + 5) % 6; //add 5 to make positive (--isMarked + 6)
 	}
 	
-	public int getIsMarked(){
+	public int isMarked() {
 		return isMarked;
 	}
-
 }

@@ -41,7 +41,7 @@ public class StartMenuController extends BasicGameState {
 	public void enter(GameContainer container, StateBasedGame game) throws SlickException {
 		super.enter(container, game);
 		this.gameController.getGame().getInGame().setNewGame(true);
-		if(gameController.getGame().isMusicOn()) {
+		if(gameController.getGame().isMusicOn() && !this.startMenuMusic.playing()) {
 			this.startMenuMusic.loop();
 		}
 	}
@@ -68,7 +68,7 @@ public class StartMenuController extends BasicGameState {
 			startMenu.markButtonUp();
 		}
 		if(key == Input.KEY_ENTER) {
-			switch(startMenu.getIsMarked()) {
+			switch(startMenu.isMarked()) {
 				case 0: sbg.enterState(InGame.STATE_ID);
 						break;
 				case 1: sbg.enterState(HighScore.STATE_ID);

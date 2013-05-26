@@ -71,7 +71,7 @@ public class PauseMenuController extends BasicGameState{
 			pauseMenu.markButtonUp();
 		}
 		if(key == Input.KEY_ENTER) {
-			switch(pauseMenu.getIsMarked()) {
+			switch(pauseMenu.isMarked()) {
 				case 0:	sbg.enterState(PauseMenuController.previousState);
 						break;
 				case 1: if(gameController.getGame().isSoundOn()) {

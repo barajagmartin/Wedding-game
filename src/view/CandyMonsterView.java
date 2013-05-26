@@ -5,6 +5,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
+
 import model.CandyMonster;
 
 public class CandyMonsterView {
@@ -19,16 +20,6 @@ public class CandyMonsterView {
 		this.shape = new Rectangle(candyMonster.getPos().getX(), candyMonster.getPos().getY(), CandyMonster.WIDTH, CandyMonster.HEIGHT);
 		happyImage = new Image("pics/happyCandyMonster" + String.valueOf(candyMonster.CANDY_NUMBER) + ".png");
 		sadImage = new Image("pics/sadCandyMonster" + String.valueOf(candyMonster.CANDY_NUMBER) + ".png");
-
-		/*Set the color of a candy monster depending on its ID*/
-		switch(candyMonster.CANDY_NUMBER){
-			case 0: color = Color.cyan;
-					break;
-			case 1: color = Color.magenta;
-					break;
-			case 2: color = Color.pink;
-					break;
-		}
 	}
 	
 	public CandyMonster getCandyMonster() {

@@ -8,7 +8,6 @@ import org.newdawn.slick.geom.Shape;
 import model.StatusBar;
 
 public class StatusBarView {
-
 	private Image[] heart;
 	private Rectangle fixedBar;
 	private Rectangle timeBar;
@@ -18,8 +17,10 @@ public class StatusBarView {
 		heart[0] = new Image("pics/heart.png");
 		heart[1] = heart[0].copy();
 		heart[2] = heart[0].copy();
-		fixedBar = new Rectangle(StatusBar.FIXED_BAR_POSX, StatusBar.HEART_POSY, StatusBar.FIXED_BAR_WIDTH, StatusBar.FIXED_BAR_HEIGHT);
-		timeBar = new Rectangle(fixedBar.getX()+5, fixedBar.getY()+5, fixedBar.getWidth()-10, fixedBar.getHeight()-10);
+		fixedBar = new Rectangle(StatusBar.FIXED_BAR_POSX, StatusBar.HEART_POSY,
+				StatusBar.FIXED_BAR_WIDTH, StatusBar.FIXED_BAR_HEIGHT);
+				timeBar = new Rectangle(fixedBar.getX()+5, fixedBar.getY()+5,
+				fixedBar.getWidth()-10, fixedBar.getHeight()-10);
 	}
 	
 	public void updateTimeBar (float levelTime, float remainingTime) {

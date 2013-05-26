@@ -1,14 +1,11 @@
 package model;
 
-
 public class Game {
-	
 	public static final int WINDOW_WIDTH = 1024;
 	public static final int WINDOW_HEIGHT = 768;
-	
+
 	private boolean isMusicOn;
 	private boolean isSoundOn;
-	
 	private InGame inGame;
 	private StartMenu startMenu;
 	
@@ -41,5 +38,4 @@ public class Game {
 	public boolean isMusicOn() {
 		return isMusicOn;
 	}
-	
 }

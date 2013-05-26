@@ -11,6 +11,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.tiled.TiledMap;
 
 import utils.BlockMapUtils;
+import utils.LevelUtils;
 import utils.WorldUtils;
 import view.CandyMonsterView;
 import view.InGameView;
@@ -91,7 +92,7 @@ public class InGameController extends BasicGameState {
 			this.spikesControllers = new ArrayList<SpikesController>();
 			this.moveableBoxControllers = new ArrayList<MoveableBoxController>();
 
-			int nbrOfVersions = inGame.getNbrOfFiles(this.inGame.getLevel());
+			int nbrOfVersions = LevelUtils.getNbrOfFiles(this.inGame.getLevel());
 			//Get a new level, randomize between different level versions (i.e. there are many level 1 to randomize from)
 			this.blockMapController = new BlockMapController(this, new TiledMap(BlockMapUtils.getTmxFile(this.inGame.getLevel(), inGame.randomizeVersion(nbrOfVersions)), "levels"));
 			/*Create candy monster and its items*/
@@ -203,7 +204,7 @@ public class InGameController extends BasicGameState {
 			}
 		}
 		//check if the game is over
-		if (inGame.checkIfGameIsOver(itemControllers.size())) {
+		if (inGame.checkIfGameIsOver(itemControllers.size(),LevelUtils.getNbrOfFiles(inGame.getLevel() + 1))) {
 			gameController.getInGameMusic().stop();
 			sbg.enterState(EndOfLevel.STATE_ID);
 		}
@@ -216,10 +217,10 @@ public class InGameController extends BasicGameState {
 		}
 		worldController.getWorldView().getjBox2DWorld().step(timeStep, velocityIterations, positionIterations);
 		
-		characterController.getCharacter().setX(WorldUtils.meter2Pixel(
+		characterController.getCharacter().getPos().setX(WorldUtils.meter2Pixel(
 				inGameView.getCharacterView().getCharacterBody().getPosition().x) -
 				Character.RADIUS);
-		characterController.getCharacter().setY(WorldUtils.meter2Pixel(
+		characterController.getCharacter().getPos().setY(WorldUtils.meter2Pixel(
 				inGameView.getCharacterView().getCharacterBody().getPosition().y) -
 				Character.RADIUS);
 		
@@ -238,12 +239,12 @@ public class InGameController extends BasicGameState {
 		
 		worldController.updateCharacterSlickShape();
 		worldController.updateItemSlickShapePosition(worldController.getItemViewList(), characterController.getCharacterView());
-		characterController.getCharacter().setX((int)characterController.getCharacterView().getSlickShape().getX());
-		characterController.getCharacter().setY((int)characterController.getCharacterView().getSlickShape().getY());
+		characterController.getCharacter().getPos().setX((int)characterController.getCharacterView().getSlickShape().getX());
+		characterController.getCharacter().getPos().setY((int)characterController.getCharacterView().getSlickShape().getY());
 		for (int i = 0; i < moveableBoxControllers.size(); i++) {
-			moveableBoxControllers.get(i).getMoveableBox().setX(WorldUtils.meter2Pixel(
+			moveableBoxControllers.get(i).getMoveableBox().getPos().setX(WorldUtils.meter2Pixel(
 					moveableBoxControllers.get(i).getMoveableBoxView().getBoxBody().getPosition().x));
-			moveableBoxControllers.get(i).getMoveableBox().setY(WorldUtils.meter2Pixel(
+			moveableBoxControllers.get(i).getMoveableBox().getPos().setY(WorldUtils.meter2Pixel(
 					moveableBoxControllers.get(i).getMoveableBoxView().getBoxBody().getPosition().y));
 		}
 		

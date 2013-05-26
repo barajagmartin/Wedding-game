@@ -14,16 +14,16 @@ public class SaveUtils {
 	private static File nameFile = new File("savings/nameList.txt");
 	private static Scanner scoreScanner;
 	private static Scanner nameScanner;
-	
-	@SuppressWarnings("null")
+
 	public static void init() {
-		
+
 		try {
 			scoreScanner = new Scanner(scoreFile);
 			nameScanner = new Scanner(nameFile);
 			readScoreList();
 			readNameList();
 		} catch (IOException e) {
+			//Create new files if there are none
 			File savingsDir = new File("savings");
 			savingsDir.mkdir();
 			PrintWriter newScoreFile = null;
@@ -45,13 +45,9 @@ public class SaveUtils {
 			} catch (IOException e1) {
 				System.exit(0);
 			}
-			
 		}
-		
-		
-		
 	}
-	
+
 	public static int[] getScoreList() {
 		return scoreList;
 	}
@@ -59,19 +55,19 @@ public class SaveUtils {
 	public static String[] getNameList() {
 		return nameList;
 	}
-	
+
 	public static void readScoreList () throws IOException {
 		for (int i = 0; i < scoreList.length; i++) {
 			scoreList[i] = scoreScanner.nextInt();
 		}
 	}
-	
+
 	public static void readNameList () throws IOException {
 		for (int i = 0; i < nameList.length; i++) {
 			nameList[i] = nameScanner.nextLine();
 		}
 	}
-	
+
 	/**
 	 * saves your score to the file if it is high enough
 	 * @param newScore the new score you want to save
@@ -109,7 +105,7 @@ public class SaveUtils {
 				outputWriterS.newLine();
 				outputWriterN.write(nameList[j]);
 				outputWriterN.newLine();
-				
+
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

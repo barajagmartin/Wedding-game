@@ -21,14 +21,14 @@ public class WorldBodyFactory {
 		Shape shape;
 		FixtureDef fixtureDef = new FixtureDef();
 		BodyDef bodyDef = new BodyDef();
-		Body body = null; //TODO is it needed to check if it is null at the end?
+		Body body = null;
 
 		if (worldObject.equals(WorldObjects.CHARACTER)) {
 			shape = new CircleShape();
 			shape.m_radius = WorldUtils.pixel2Meter(Character.RADIUS);
 
 			fixtureDef.shape = shape;
-			fixtureDef.density = 1f; //gör till konstanter TODO
+			fixtureDef.density = 1f;
 			fixtureDef.friction = 0.8f;
 			fixtureDef.restitution = 0f;
 			fixtureDef.userData = "player";
@@ -45,11 +45,13 @@ public class WorldBodyFactory {
 			antiFrictionShape.m_radius = WorldUtils.pixel2Meter(Character.RADIUS);
 
 			BodyDef leftAntiFrictionBodyDef = new BodyDef();
-			leftAntiFrictionBodyDef.position.set(WorldUtils.pixel2Meter(pos.getX()-1), WorldUtils.pixel2Meter(pos.getY()-1));
+			leftAntiFrictionBodyDef.position.set(WorldUtils.pixel2Meter(pos.getX()-1),
+					WorldUtils.pixel2Meter(pos.getY()-1));
 			leftAntiFrictionBodyDef.type = BodyType.DYNAMIC;
 
 			BodyDef rightAntiFrictionBodyDef = new BodyDef();
-			rightAntiFrictionBodyDef.position.set(WorldUtils.pixel2Meter(pos.getX()+1), WorldUtils.pixel2Meter(pos.getY()-1));
+			rightAntiFrictionBodyDef.position.set(WorldUtils.pixel2Meter(pos.getX()+1),
+					WorldUtils.pixel2Meter(pos.getY()-1));
 			rightAntiFrictionBodyDef.type = BodyType.DYNAMIC;
 
 			FixtureDef antiFrictionFixtureDef = new FixtureDef();
@@ -81,24 +83,26 @@ public class WorldBodyFactory {
 			rightWeldJointDef.localAnchorB.set(0, 0);
 			rightWeldJointDef.initialize(rightAntiFrictionBody, body, body.getWorldCenter());
 			jBox2DWorld.createJoint(rightWeldJointDef);
-			
+
 		} else if (worldObject.equals(WorldObjects.MOVEABLE_BOX)) {
 			shape = new PolygonShape();
-			((PolygonShape) shape).setAsBox(WorldUtils.pixel2Meter(MoveableBox.HALF_WIDTH), WorldUtils.pixel2Meter(MoveableBox.HALF_HEIGHT));
-			
+			((PolygonShape) shape).setAsBox(WorldUtils.pixel2Meter(MoveableBox.HALF_WIDTH),
+					WorldUtils.pixel2Meter(MoveableBox.HALF_HEIGHT));
+
 			fixtureDef.shape = shape;
 			fixtureDef.density = 1f;
 			fixtureDef.friction = 0.7f;
 			fixtureDef.restitution = 0f;
 			fixtureDef.userData = "moveableBox";
-			
+
 			bodyDef.type = BodyType.DYNAMIC;
 			bodyDef.fixedRotation = true;
-			bodyDef.position.set(WorldUtils.pixel2Meter(pos.getX()+MoveableBox.HALF_WIDTH-3), // -3 is for correcting starting position with pixel precision
-					WorldUtils.pixel2Meter(pos.getY()+MoveableBox.HALF_HEIGHT));				 // to make it look good
+			// -3 is for correcting starting position with pixel precision, to make it look good
+			bodyDef.position.set(WorldUtils.pixel2Meter(pos.getX()+MoveableBox.HALF_WIDTH-3),
+					WorldUtils.pixel2Meter(pos.getY()+MoveableBox.HALF_HEIGHT));
 			bodyDef.allowSleep = true;
 			bodyDef.awake = true;
-			
+
 			body = jBox2DWorld.createBody(bodyDef);
 			body.createFixture(fixtureDef);
 			body.m_mass = 2000f;
@@ -106,21 +110,21 @@ public class WorldBodyFactory {
 			shape = new CircleShape();
 			shape.m_radius = WorldUtils.pixel2Meter(Spikes.RADIUS);
 			bodyDef = new BodyDef();
-			bodyDef.position.set(WorldUtils.pixel2Meter(pos.getX()), WorldUtils.pixel2Meter(pos.getY())); //FIXME jbox sensor should be in the center
+			bodyDef.position.set(WorldUtils.pixel2Meter(pos.getX()), WorldUtils.pixel2Meter(pos.getY()));
 			bodyDef.type = BodyType.STATIC;
 			bodyDef.fixedRotation = true;
-			
+
 			fixtureDef = new FixtureDef();
 			fixtureDef.isSensor = true;
 			fixtureDef.shape = shape;
 			fixtureDef.userData = "spikes";
-					
+
 			body = jBox2DWorld.createBody(bodyDef);
 			body.createFixture(fixtureDef);
 		}
 		return body;
 	}
-	
+
 	public static void addSolidGround(final Vec2 pos, final Vec2 size, final float friction, final float restitution, World jBox2DWorld) {
 		PolygonShape polygonShape = new PolygonShape();
 		polygonShape.setAsBox(size.x, size.y);
@@ -129,12 +133,12 @@ public class WorldBodyFactory {
 		fixtureDef.friction = friction;
 		fixtureDef.density = 1f;
 		fixtureDef.restitution = restitution;
-		
+
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.position.set(pos);
 		bodyDef.type = BodyType.STATIC;
 		bodyDef.fixedRotation = true;
-		
+
 		Body body = jBox2DWorld.createBody(bodyDef);
 		body.createFixture(fixtureDef);
 	}

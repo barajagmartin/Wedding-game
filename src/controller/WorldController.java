@@ -123,8 +123,8 @@ public class WorldController implements ContactListener {
 	}
 	
 	public void updateCharacterSlickShape() {
-		worldView.getCharacterView().getSlickShape().setX(world.getCharacter().getX());
-		worldView.getCharacterView().getSlickShape().setY(world.getCharacter().getY());
+		worldView.getCharacterView().getSlickShape().setX(world.getCharacter().getPos().getX());
+		worldView.getCharacterView().getSlickShape().setY(world.getCharacter().getPos().getY());
 	}
 	
 	public void updateItemSlickShapePosition(ArrayList<ItemView> itemViewList, CharacterView characterView){

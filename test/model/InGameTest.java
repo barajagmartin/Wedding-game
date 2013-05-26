@@ -70,17 +70,17 @@ public class InGameTest {
 		InGame inGame = new InGame(new Player());
 		inGame.setTime(10);
 		inGame.increaseItemsDelivered();
-		assertFalse(inGame.checkIfGameIsOver(2));
+		assertFalse(inGame.checkIfGameIsOver(2, 0));
 		inGame.increaseItemsDelivered();
-		assertTrue(inGame.checkIfGameIsOver(2));
+		assertTrue(inGame.checkIfGameIsOver(2, 0));
 		inGame.getPlayer().loseOneLife();
-		assertFalse(inGame.checkIfGameIsOver(3));
+		assertFalse(inGame.checkIfGameIsOver(3, 0));
 		inGame.getPlayer().loseOneLife();
 		inGame.setTime(0);
-		assertTrue(inGame.checkIfGameIsOver(3));
+		assertTrue(inGame.checkIfGameIsOver(3, 0));
 		inGame.setTime(10);
 		inGame.getPlayer().loseOneLife();
-		assertTrue(inGame.checkIfGameIsOver(3));
+		assertTrue(inGame.checkIfGameIsOver(3, 0));
 	}
 	
 	@Test
