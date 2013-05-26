@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * Model for the items (candy) that the player are suppose to bring to the CandyMonsters
+ */
 public class Item {
 	private Position pos;
 	private boolean isPickedUp;

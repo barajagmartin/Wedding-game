@@ -1,8 +1,10 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Model of the figure on the screen that interacts with the environment.
+ */
 public class Character {
 	public static final int RADIUS = 25;
 	private Position pos;
