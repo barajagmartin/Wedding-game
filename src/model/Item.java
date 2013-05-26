@@ -11,6 +11,7 @@ public class Item {
 	public Item(final int x, final int y, final int candyNumber) {
 		this(new Position(x,y), candyNumber);
 	}
+	
 	public Item(final Position pos, final int candyNumber) {
 		this.pos = pos;
 		this.isPickedUp = false;
@@ -18,7 +19,6 @@ public class Item {
 		this.CANDY_NUMBER = candyNumber;
 	}
 
-	
 	public Position getPos() {
 		return this.pos;
 	}

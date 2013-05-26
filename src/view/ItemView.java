@@ -12,7 +12,6 @@ public class ItemView {
 	
 	private Item item;
 	private Shape shape;
-	private Color color;
 	private Image image;
 	
 	public ItemView(Item item) throws SlickException {
