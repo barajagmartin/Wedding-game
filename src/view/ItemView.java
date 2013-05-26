@@ -1,14 +1,13 @@
 package view;
 
-import model.Item;
-
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 
+import model.Item;
+
 public class ItemView {
-	
 	private Item item;
 	private Shape shape;
 	private Image image;
