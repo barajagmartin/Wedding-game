@@ -16,8 +16,7 @@ public class CharacterView {
 	private Character character;
 	private Shape slickShape;
 	private Body characterBody;
-
-	private Animation nelson, walkRight, walkLeft, blinkLeft, blinkRight;
+	private Animation nelson, walkRight, walkLeft, blinkLeft, blinkRight, standRight, standLeft;
 	
 	public CharacterView(Character character) throws SlickException {
 		this.character = character;
@@ -33,12 +32,16 @@ public class CharacterView {
 		Image[] walkingLeft = {imageLeft1, imageLeft2};
 		Image[] blinkingRight = {invisibleNelson, imageRight1, imageRight2};
 		Image[] blinkingLeft = {invisibleNelson, imageLeft1, imageLeft2};
+		Image[] standingRight = {imageRight1, imageRight1};
+		Image[] standingLeft = {imageLeft1, imageLeft1};
 		
 		int duration = 300;		
 		walkRight = new Animation(walkingRight, duration);
 		walkLeft = new Animation(walkingLeft, duration);
 		blinkLeft = new Animation(blinkingLeft, duration);
 		blinkRight = new Animation(blinkingRight, duration);
+		standRight = new Animation(standingRight, duration);
+		standLeft = new Animation(standingLeft, duration);
 		nelson = walkLeft;
 	}
 
@@ -80,6 +83,7 @@ public class CharacterView {
 	
 	public void animateWalkingRight() {
 		this.nelson = walkRight;
+		walkRight.start();
 	}
 	
 	public void animateWalkingLeft() {
@@ -92,5 +96,19 @@ public class CharacterView {
 
 	public boolean isBlinkingLeft() {
 		return this.nelson == blinkLeft;
-	}	
+	}
+
+	public void animateStandingRight() {
+		this.nelson = standRight;
+	}
+	
+	public void animateStandingLeft() {
+		this.nelson = standLeft;
+	}
+
+	public boolean isStandingLeft() {
+		return this.nelson == standLeft;
+	}
+
+	
 }

@@ -175,7 +175,7 @@ public class InGameController extends BasicGameState {
 		this.inGame.setTime(this.inGame.getTime()-(delta/1000f));
 		this.characterController.getCharacter().setTimeSinceHit(this.characterController.getCharacter().getTimeSinceHit() + delta/1000f);
 		//update animation so that it animates at the right speed
-//		characterController.getCharacterView().getAnimation().update(delta);
+		characterController.getCharacterView().getAnimation().update(delta);
 		//check if the player is hit by spikes
 		if(this.characterController.getCharacter().isOnSpikes() && this.characterController.getCharacter().getTimeSinceHit() > 1) {
 			//plays hurt sound if sound is on
@@ -217,6 +217,7 @@ public class InGameController extends BasicGameState {
 		}
 		//check key presses
 		characterController.keyPressedUpdate(gc);
+
 		//simulate the JBox2D world, timeStep --> delta
 		if(delta > 0) {
 			this.timeStep = (float) delta / 1000f * 4; //4 is for getting a good speed

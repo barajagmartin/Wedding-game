@@ -110,13 +110,18 @@ public class CharacterController {
 			} else {
 				characterView.animateBlinkingRight();
 			}
-		}
-		if(input.isKeyDown(Input.KEY_LEFT)) {
+		}else if(input.isKeyDown(Input.KEY_LEFT)) {
 			inGameController.getWorldController().moveBodyLeft();
 			if(!characterView.isBlinking()) {
 				characterView.animateWalkingLeft();
 			} else {
 				characterView.animateBlinkingLeft();
+			}
+		} else {
+			if(characterView.isWalkingLeft() || characterView.isStandingLeft()) {
+				characterView.animateStandingLeft();
+			} else {
+				characterView.animateStandingRight();
 			}
 		}
 	}
