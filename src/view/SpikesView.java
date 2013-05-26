@@ -9,13 +9,13 @@ import org.newdawn.slick.geom.Circle;
 import model.Spikes;
 
 public class SpikesView {
-	private Image image;
-	private Circle circle;
-	private Spikes spikes;
-	private Color color;
+	final private Image image;
+	final private Circle circle;
+	final private Spikes spikes;
+	final private Color color;
 	private Body body;
 
-	public SpikesView(Spikes spikes) throws SlickException {
+	public SpikesView(final Spikes spikes) throws SlickException {
 		this.spikes = spikes;
 		this.color = Color.gray;
 		this.circle = new Circle(spikes.getPos().getX(), spikes.getPos().getY(), Spikes.RADIUS);
@@ -26,7 +26,7 @@ public class SpikesView {
 		return body;
 	}
 
-	public void setBody(Body body) {
+	public void setBody(final Body body) {
 		this.body = body;
 	}
 

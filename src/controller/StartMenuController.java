@@ -17,13 +17,14 @@ import view.StartMenuView;
 
 public class StartMenuController extends BasicGameState {
 	private StartMenuView startMenuView;
-	private StartMenu startMenu;
+	private final StartMenu startMenu;
 	private StateBasedGame sbg;
-	private GameController gameController;
+	private final GameController gameController;
 	private Music startMenuMusic;
 	private GameContainer gc;
 	
-	public StartMenuController(GameController gameController) {
+	public StartMenuController(final GameController gameController) {
+		super();
 		this.gameController = gameController;
 		this.startMenu = new StartMenu();
 	}
@@ -60,6 +61,7 @@ public class StartMenuController extends BasicGameState {
 		
 	}
 	
+	@Override
 	public void keyPressed (int key, char c) {
 		if(key == Input.KEY_DOWN) {
 			startMenu.markButtonDown();
@@ -69,16 +71,20 @@ public class StartMenuController extends BasicGameState {
 		}
 		if(key == Input.KEY_ENTER) {
 			switch(startMenu.isMarked()) {
+				//Start game
 				case 0: sbg.enterState(InGame.STATE_ID);
 						break;
+				//Highscore
 				case 1: sbg.enterState(HighScore.STATE_ID);
 						break;
+				//Sound
 				case 2: if(gameController.getGame().isSoundOn()) {
 							gameController.getGame().setSoundOn(false);
 						} else {
 							gameController.getGame().setSoundOn(true);
 						}
 						break;
+				//Music
 				case 3: if(gameController.getGame().isMusicOn()) {
 							this.startMenuMusic.pause();
 							gameController.getGame().setMusicOn(false);
@@ -87,8 +93,10 @@ public class StartMenuController extends BasicGameState {
 							gameController.getGame().setMusicOn(true);
 						}	
 						break;
+				//Controls
 				case 4: sbg.enterState(Controls.STATE_ID);
 						break;
+				//Exit game
 				case 5: System.exit(0);
 			}
 		}
@@ -109,5 +117,4 @@ public class StartMenuController extends BasicGameState {
 	public int getID() {
 		return StartMenu.STATE_ID;
 	}
-
 }

@@ -7,7 +7,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class ControlsView {
-	private Image image;
+	final private Image image;
 	
 	public ControlsView() throws SlickException {
 		image = new Image("pics/controls_image3.jpg");

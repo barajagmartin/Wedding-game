@@ -16,11 +16,12 @@ import view.ControlsView;
 public class ControlsController extends BasicGameState {
 	
 	private ControlsView controlsView;
-	private GameController gameController;
+	private final GameController gameController;
 	private StateBasedGame sbg;
 	private GameContainer gc;
 
 	public ControlsController(GameController gameController) {
+		super();
 		this.gameController = gameController;
 	}
 	
@@ -44,6 +45,7 @@ public class ControlsController extends BasicGameState {
 
 	}
 	
+	@Override
 	public void keyPressed(int key, char c) {
 		if(key == Input.KEY_TAB) {
 			this.gameController.changeFullscreen(this.gc);

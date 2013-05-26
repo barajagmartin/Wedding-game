@@ -17,11 +17,12 @@ import org.newdawn.slick.state.StateBasedGame;
 
 
 public class NewHighscoreController extends BasicGameState implements ComponentListener {
-	private GameController gameController;
+	private final GameController gameController;
 	private NewHighscoreView newHighscoreView;
 	private StateBasedGame sbg;
 	private GameContainer gc;
-	public NewHighscoreController(GameController gameController) {
+	
+	public NewHighscoreController(final GameController gameController) {
 		this.gameController = gameController;
 	}
 

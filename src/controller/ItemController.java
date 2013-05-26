@@ -7,14 +7,13 @@ import model.Item;
 
 public class ItemController {
 	
-	private InGameController inGameController;
 	private Item item;
 	private ItemView itemView;
 	
-	public ItemController(InGameController inGameController, int candyNumber, int index) throws SlickException {
-		this.inGameController = inGameController;
-		this.item = new Item(this.inGameController.getBlockMapController().getItemMap().getBlockList().get(index).getPosX(), 
-								this.inGameController.getBlockMapController().getItemMap().getBlockList().get(index).getPosY(), 
+	public ItemController(InGameController iGController, int candyNumber, int index) throws SlickException {
+		InGameController inGameController = iGController;
+		this.item = new Item(inGameController.getBlockMapController().getItemMap().getBlockList().get(index).getPosX(), 
+								inGameController.getBlockMapController().getItemMap().getBlockList().get(index).getPosY(), 
 								candyNumber); //x, y, candyNumber
 		this.itemView = new ItemView(this.item); 
 	}
@@ -27,6 +26,9 @@ public class ItemController {
 		return itemView;
 	}
 	
+	/**
+	 * Update the item's position
+	 */
 	public void updateItemShape(){
 		this.itemView.getShape().setX(this.item.getPos().getX());
 		this.itemView.getShape().setY(this.item.getPos().getY());

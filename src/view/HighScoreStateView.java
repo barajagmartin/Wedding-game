@@ -12,8 +12,8 @@ import org.newdawn.slick.state.StateBasedGame;
 import utils.SaveUtils;
 
 public class HighScoreStateView {
-	private Image background;
-	private StringBuilder stringBuilder;
+	final private Image background;
+	final private StringBuilder stringBuilder;
 	
 	public HighScoreStateView () throws SlickException {
 		background = new Image("pics/highscore_background.png");

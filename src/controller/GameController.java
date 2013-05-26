@@ -14,18 +14,15 @@ import view.GameView;
 
 
 public class GameController extends StateBasedGame {
-	private Game game;
-	private GameView gameView;
-	private StartMenuController startMenuController;
-	private InGameController inGameController;
-	private PauseMenuController pauseMenuController;
-	private EndOfLevelController endOfLevelController;
-	private HighScoreStateController highScoreStateController;
-	private NewHighscoreController newHighscoreController;
-	private ControlsController controlsController;
-	private Music inGameMusic;
+	private final Game game;
+	private final GameView gameView;
+	private final StartMenuController startMenuController;
+	private final InGameController inGameController;
+	private final PauseMenuController pauseMenuController;
+	private final HighScoreStateController highScoreStateController;
+	private final Music inGameMusic;
 	
-	public GameController(String name) throws SlickException {
+	public GameController(final String name) throws SlickException {
 		super(name);
 		this.inGameMusic = new Music("music/game_music_regular.wav");
 		this.inGameController = new InGameController(this);
@@ -34,11 +31,10 @@ public class GameController extends StateBasedGame {
 		this.startMenuController = new StartMenuController(this);
 		this.gameView = new GameView(this.game);
 		this.highScoreStateController = new HighScoreStateController(this);
-		this.newHighscoreController = new NewHighscoreController(this);
-		this.gameView = new GameView(this.game);
+		final NewHighscoreController newHighscoreController = new NewHighscoreController(this);
 		this.pauseMenuController = new PauseMenuController(this);
-		this.endOfLevelController = new EndOfLevelController(this);
-		this.controlsController = new ControlsController(this);
+		final EndOfLevelController endOfLevelController = new EndOfLevelController(this);
+		final ControlsController controlsController = new ControlsController(this);
 		this.addState(startMenuController);
 		this.addState(inGameController);
 		this.addState(highScoreStateController);
@@ -50,7 +46,7 @@ public class GameController extends StateBasedGame {
 	}
 	
 	@Override
-	public void initStatesList(GameContainer container) throws SlickException {
+	public void initStatesList(GameContainer gc) throws SlickException {
 		this.enterState(startMenuController.getID());
 	}
 	
@@ -82,21 +78,21 @@ public class GameController extends StateBasedGame {
 		return inGameMusic;
 	}
 	
+	/**
+	 * Allows the change to fullscreen if demanded
+	 */
 	public void changeFullscreen (GameContainer gc) {
 		AppGameContainer agc = (AppGameContainer) gc;
 		try {
-        	if (!gc.isFullscreen()) {
-        		agc.setDisplayMode(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT, true);
-    			gc.setMouseGrabbed(true);
+        	if (gc.isFullscreen()) {
+        		agc.setDisplayMode(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT, false);
+    			gc.setMouseGrabbed(false);
 			} else 	{
-				agc.setDisplayMode(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT, false);
-				gc.setMouseGrabbed(false);
+				agc.setDisplayMode(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT, true);
+				gc.setMouseGrabbed(true);
 			}
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
 	}
-
-
-
 }

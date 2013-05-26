@@ -12,11 +12,11 @@ import view.CharacterView;
 
 
 public class CharacterController {
-	private InGameController inGameController;
+	private final InGameController inGameController;
 	private Character character;
-	private CharacterView characterView;
+	private final CharacterView characterView;
 	
-	public CharacterController(InGameController inGameController) throws SlickException {
+	public CharacterController(final InGameController inGameController) throws SlickException {
 		this.inGameController = inGameController;
 		if (this.inGameController.getBlockMapController().getBlockMapView().getStartingPos() == null) {
 			this.character = new Character(400, 100);
@@ -36,9 +36,11 @@ public class CharacterController {
 		return characterView;
 	}
 
-	//check which key is pressed
+	/**
+	 * Checks which key is pressed down in terms of the character's movement 
+	 */
 	public void keyPressedUpdate(GameContainer gc) {
-		Input input = gc.getInput();		
+		final Input input = gc.getInput();		
 		
 		if(input.isKeyDown(Input.KEY_RIGHT)) {
 			inGameController.getWorldController().moveBodyRight();
@@ -64,7 +66,7 @@ public class CharacterController {
 	}
 	
 	/**
-	 * If on ground, then jump.
+	 * If the character is on ground, allow the character to jump.
 	 */
 	public void tryToJumpCharacter() {
 		if(characterView.getCharacterBody().getLinearVelocity().y <= 0.0001 && characterView.getCharacterBody().getLinearVelocity().y >= -0.0001){

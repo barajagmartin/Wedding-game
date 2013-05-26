@@ -1,6 +1,8 @@
 package view;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -12,13 +14,13 @@ import model.Game;
 import model.PauseMenu;
 
 public class PauseMenuView extends AbstractMenuView {
-	private PauseMenu pauseMenu;
-	private GameView gameView;
-	private int buttonHeight;
-	private int buttonWidth;
-	private ArrayList<Rectangle> buttonList;
+	final private PauseMenu pauseMenu;
+	final private GameView gameView;
+	final private int buttonHeight;
+	final private int buttonWidth;
+	final private List<Rectangle> buttonList;
 
-	public PauseMenuView(PauseMenu pauseMenu, GameView gameView) throws SlickException {
+	public PauseMenuView(final PauseMenu pauseMenu, final GameView gameView) throws SlickException {
 		this.pauseMenu = pauseMenu;
 		this.gameView = gameView;
 		this.buttonWidth = Game.WINDOW_WIDTH;
@@ -40,7 +42,7 @@ public class PauseMenuView extends AbstractMenuView {
 	
 	public void createButtons(GameContainer gc, Graphics g) throws SlickException {
 		//start position
-		int buttonX = 0;
+		final int buttonX = 0;
 		int buttonY = Game.WINDOW_HEIGHT/7;
 		/*Create rectangles as buttons*/
 		for(int i = 0; i < 5; i++){

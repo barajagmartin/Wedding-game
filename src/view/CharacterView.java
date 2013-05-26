@@ -10,31 +10,37 @@ import org.newdawn.slick.geom.Shape;
 import model.Character;
 
 public class CharacterView {
-	private Character character;
-	private Shape slickShape;
+	private final Character character;
+	private final Shape slickShape;
 	private Body characterBody;
-	private Animation nelson, walkRight, walkLeft, blinkLeft, blinkRight, standRight, standLeft;
+	private Animation nelson;
+	private final Animation walkRight;
+	private final Animation walkLeft;
+	private final Animation blinkLeft;
+	private final Animation blinkRight;
+	private final Animation standRight;
+	private final Animation standLeft;
 	
-	public CharacterView(Character character) throws SlickException {
+	public CharacterView(final Character character) throws SlickException {
 		this.character = character;
 		this.slickShape = new Circle(this.character.getPos().getX()-(Character.RADIUS/2f), 
 			this.character.getPos().getY()-(Character.RADIUS/2f), Character.RADIUS);
 		
 		//load images
-		Image imageRight1 = new Image("pics/nelson1.png");
-		Image imageRight2 = new Image("pics/nelson2.png");
-		Image invisibleNelson = new Image("pics/invisibleNelson.png");
-		Image imageLeft1 = imageRight1.getFlippedCopy(true, false);
-		Image imageLeft2 = imageRight2.getFlippedCopy(true, false);
+		final Image imageRight1 = new Image("pics/nelson1.png");
+		final Image imageRight2 = new Image("pics/nelson2.png");
+		final Image invisibleNelson = new Image("pics/invisibleNelson.png");
+		final Image imageLeft1 = imageRight1.getFlippedCopy(true, false);
+		final Image imageLeft2 = imageRight2.getFlippedCopy(true, false);
 		//create image arrays to be used in animations
-		Image[] walkingRight = {imageRight1, imageRight2};
-		Image[] walkingLeft = {imageLeft1, imageLeft2};
-		Image[] blinkingRight = {invisibleNelson, imageRight1, imageRight2};
-		Image[] blinkingLeft = {invisibleNelson, imageLeft1, imageLeft2};
-		Image[] standingRight = {imageRight1, imageRight1};
-		Image[] standingLeft = {imageLeft1, imageLeft1};
+		final Image[] walkingRight = {imageRight1, imageRight2};
+		final Image[] walkingLeft = {imageLeft1, imageLeft2};
+		final Image[] blinkingRight = {invisibleNelson, imageRight1, imageRight2};
+		final Image[] blinkingLeft = {invisibleNelson, imageLeft1, imageLeft2};
+		final Image[] standingRight = {imageRight1, imageRight1};
+		final Image[] standingLeft = {imageLeft1, imageLeft1};
 		
-		int duration = 300;	//change animation image every 300 ms	
+		final int duration = 300;	//change animation image every 300 ms	
 		walkRight = new Animation(walkingRight, duration);
 		walkLeft = new Animation(walkingLeft, duration);
 		blinkLeft = new Animation(blinkingLeft, duration);
@@ -56,7 +62,7 @@ public class CharacterView {
 		return this.characterBody;
 	}
 
-	public void setCharacterBody(Body characterBody) {
+	public void setCharacterBody(final Body characterBody) {
 		this.characterBody = characterBody;
 	}
 

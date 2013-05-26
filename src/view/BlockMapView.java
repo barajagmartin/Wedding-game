@@ -1,6 +1,8 @@
 package view;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import org.newdawn.slick.tiled.TiledMap;
 
 import model.FixedPosition;
@@ -10,21 +12,21 @@ import model.InGame;
 import model.Item;
 
 public class BlockMapView {
-	private BlockMap solidGroundMap;
-	private BlockMap iceMap;
-	private BlockMap springMap;
-	private BlockMap iceSpringMap;
-	private BlockMap candyMonsterMap;
-	private BlockMap spikesMap;
-	private BlockMap itemMap;
-	private BlockMap moveableBoxMap;
-	private TiledMap tiledMap;
+	private final BlockMap solidGroundMap;
+	private final BlockMap iceMap;
+	private final BlockMap springMap;
+	private final BlockMap iceSpringMap;
+	private final BlockMap candyMonsterMap;
+	private final BlockMap spikesMap;
+	private final BlockMap itemMap;
+	private final BlockMap moveableBoxMap;
+	private final TiledMap tiledMap;
 	private FixedPosition startingPos;
-	private ArrayList<Integer> candyMonsterNbrMap;
-	private ArrayList<Integer> itemNbrMap;
+	private final List<Integer> candyMonsterNbrMap;
+	private final List<Integer> itemNbrMap;
 
-	public BlockMapView(BlockMap solidGroundMap, BlockMap iceMap, BlockMap springMap, BlockMap iceSpringMap, BlockMap candyMonsterMap,
-			BlockMap spikesMap, BlockMap itemMap, BlockMap moveableBoxMap, TiledMap tiledMap, InGame inGame) {
+	public BlockMapView(final BlockMap solidGroundMap, final BlockMap iceMap, final BlockMap springMap, final BlockMap iceSpringMap, final BlockMap candyMonsterMap,
+			final BlockMap spikesMap, final BlockMap itemMap, final BlockMap moveableBoxMap, final TiledMap tiledMap, final InGame inGame) {
 		this.solidGroundMap = solidGroundMap;
 		this.iceMap = iceMap;
 		this.springMap = springMap;
@@ -41,10 +43,10 @@ public class BlockMapView {
 		//loop through map and save positions of tiles
 		for (int x = 0; x < tiledMap.getWidth(); x++) {
 			for (int y = 0; y < tiledMap.getHeight(); y++) {
-				int solidsID = tiledMap.getTileId(x, y, tiledMap.getLayerIndex("solids"));
-				int positionID = tiledMap.getTileId(x, y, tiledMap.getLayerIndex("position"));
-				String layerTileProperty = tiledMap.getTileProperty(solidsID, "property", "nothing"); //If there were no value it would return false
-				String positionTileProperty = tiledMap.getTileProperty(positionID, "property", "nothing"); //If there were no value it would return false
+				final int solidsID = tiledMap.getTileId(x, y, tiledMap.getLayerIndex("solids"));
+				final int positionID = tiledMap.getTileId(x, y, tiledMap.getLayerIndex("position"));
+				final String layerTileProperty = tiledMap.getTileProperty(solidsID, "property", "nothing"); //If there were no value it would return false
+				final String positionTileProperty = tiledMap.getTileProperty(positionID, "property", "nothing"); //If there were no value it would return false
 				if (layerTileProperty.equals("solidGround")) { //if the tile is solid ground, then add its properties to a Block-list
 					solidGroundMap.getBlockList().add(new FixedPosition(x * tiledMap.getTileWidth(),
 							y * tiledMap.getTileHeight()));
@@ -60,7 +62,7 @@ public class BlockMapView {
 				} else if (positionTileProperty.equals("candyMonster")) {
 					candyMonsterMap.getBlockList().add(new FixedPosition(x * tiledMap.getTileWidth()+(tiledMap.getTileWidth()/2 - CandyMonster.WIDTH/2),
 							y * tiledMap.getTileHeight()+(tiledMap.getTileHeight() - CandyMonster.HEIGHT)));
-					String candyNumber = tiledMap.getTileProperty(positionID, "candyNumber", "1");
+					final String candyNumber = tiledMap.getTileProperty(positionID, "candyNumber", "1");
 					candyMonsterNbrMap.add(Integer.valueOf(candyNumber));
 				} else if (positionTileProperty.equals("spikes")) {
 					spikesMap.getBlockList().add(new FixedPosition(x * tiledMap.getTileWidth() + (tiledMap.getTileWidth()/2),
@@ -125,11 +127,11 @@ public class BlockMapView {
 		return startingPos;
 	}
 
-	public ArrayList<Integer> getCandyMonsterNbrMap() {
+	public List<Integer> getCandyMonsterNbrMap() {
 		return candyMonsterNbrMap;
 	}
 
-	public ArrayList<Integer> getItemNbrMap() {
+	public List<Integer> getItemNbrMap() {
 		return itemNbrMap;
 	}
 }

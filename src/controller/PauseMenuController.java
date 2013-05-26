@@ -15,13 +15,14 @@ import view.PauseMenuView;
 
 public class PauseMenuController extends BasicGameState{
 	private StateBasedGame sbg;
-	private GameController gameController;
+	private final GameController gameController;
 	private PauseMenuView pauseView;
 	private PauseMenu pauseMenu;
 	private GameContainer gc;
 	private static int previousState;
 	
 	public PauseMenuController(GameController gameController) {
+		super();
 		this.gameController = gameController;
 		PauseMenuController.setPreviousState(-1);
 	}
@@ -39,7 +40,6 @@ public class PauseMenuController extends BasicGameState{
 		this.pauseMenu.resetIsMarked();
 	}
 	
-	/*Render in view*/
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
@@ -61,8 +61,6 @@ public class PauseMenuController extends BasicGameState{
 			//check if we have a valid previous state
 			if(PauseMenuController.previousState >= 0){
 				sbg.enterState(PauseMenuController.previousState);
-			} else {
-				System.out.println("ERROR: previousState has not been initialized");
 			}
 		}
 		if(key == Input.KEY_DOWN) {
@@ -73,14 +71,17 @@ public class PauseMenuController extends BasicGameState{
 		}
 		if(key == Input.KEY_ENTER) {
 			switch(pauseMenu.isMarked()) {
+				//Resume
 				case 0:	sbg.enterState(PauseMenuController.previousState);
 						break;
+				//Sound
 				case 1: if(gameController.getGame().isSoundOn()) {
 							gameController.getGame().setSoundOn(false);
 						} else {
 							gameController.getGame().setSoundOn(true);
 						}
 						break;
+				//Music
 				case 2: if(gameController.getGame().isMusicOn()) {
 							gameController.getInGameMusic().pause();	
 							gameController.getGame().setMusicOn(false);
@@ -89,8 +90,10 @@ public class PauseMenuController extends BasicGameState{
 							gameController.getGame().setMusicOn(true);
 						}	
 						break;
+				//Controls
 				case 3: sbg.enterState(Controls.STATE_ID);
 						break;
+				//Return to menu
 				case 4: gameController.getGame().getInGame().setPaused(false);
 						gameController.getInGameMusic().stop(); //Stop current thread
 						sbg.enterState(StartMenu.STATE_ID);
@@ -115,6 +118,4 @@ public class PauseMenuController extends BasicGameState{
 	public int getID() {
 		return PauseMenu.STATE_ID;
 	}
-	
-
 }
