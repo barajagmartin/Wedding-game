@@ -15,12 +15,6 @@ public class CharacterController {
 	private InGameController inGameController;
 	private Character character;
 	private CharacterView characterView;
-
-	/*Default key values*/
-	private int keyRight = Input.KEY_RIGHT;
-	private int keyLeft = Input.KEY_LEFT;
-	private int keyDown = Input.KEY_DOWN;
-	private int keyUp = Input.KEY_UP;
 	
 	public CharacterController(InGameController inGameController) throws SlickException {
 		this.inGameController = inGameController;
