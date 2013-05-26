@@ -1,6 +1,8 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -26,32 +28,33 @@ import model.Item;
 import model.PauseMenu;
 
 public class InGameController extends BasicGameState {
-	private InGame inGame;
+	private final InGame inGame;
 	private InGameView inGameView;
 	private CharacterController characterController;
-	private PlayerController playerController;
+	private final PlayerController playerController;
 	private WorldController worldController;
 	private StatusBarController statusBarController;
 	private BlockMapController blockMapController;
-	private ArrayList <CandyMonsterController> candyMonsterControllers;
-	private ArrayList <ItemController> itemControllers;
-	private ArrayList <SpikesController> spikesControllers;
-	private ArrayList <MoveableBoxController> moveableBoxControllers;
-	private ArrayList <Item> itemList; //used when checking if pickedUp in update
+	private List<CandyMonsterController> candyMonsterControllers;
+	private List<ItemController> itemControllers;
+	private List<SpikesController> spikesControllers;
+	private List<MoveableBoxController> moveableBoxControllers;
+	private List<Item> itemList; //used when checking if pickedUp in update
 	private Item lastHeldItem;
 	private StateBasedGame sbg;
-	private GameController gameController;
+	private final GameController gameController;
 	private GameContainer gameContainer;
 	//should be based on the frame update (delta or something like that)
 	private float timeStep = 1.0f / 60.0f;
-	private int velocityIterations = 6;
-	private int positionIterations = 2;
+	private final int velocityIterations = 6;
+	private final int positionIterations = 2;
 	private Sound happySound;
 	private Sound hurtSound;
 	private boolean isMusicHighPitched;
 	
 	
-	public InGameController(GameController gameController) {
+	public InGameController(final GameController gameController) {
+		super();
 		this.gameController = gameController;
 		this.playerController = new PlayerController();
 		this.inGame = new InGame(playerController.getPlayer());
@@ -92,7 +95,7 @@ public class InGameController extends BasicGameState {
 			this.spikesControllers = new ArrayList<SpikesController>();
 			this.moveableBoxControllers = new ArrayList<MoveableBoxController>();
 
-			int nbrOfVersions = LevelUtils.getNbrOfFiles(this.inGame.getLevel());
+			final int nbrOfVersions = LevelUtils.getNbrOfFiles(this.inGame.getLevel());
 			//Get a new level, randomize between different level versions (i.e. there are many level 1 to randomize from)
 			this.blockMapController = new BlockMapController(this, new TiledMap(BlockMapUtils.getTmxFile(this.inGame.getLevel(), inGame.randomizeVersion(nbrOfVersions)), "levels"));
 			/*Create candy monster and its items*/
@@ -197,12 +200,11 @@ public class InGameController extends BasicGameState {
 		this.statusBarController.getStatusBarView().updateTimeBar(this.inGame.getLevelTime(), this.inGame.getTime());
 		
 		//increase pitch when time is running out
-		if(this.gameController.getGame().isMusicOn()) {
-			if(inGame.isTimeRunningOut() && !isMusicHighPitched) {
+		if(this.gameController.getGame().isMusicOn() && inGame.isTimeRunningOut() && !isMusicHighPitched) {
 				gameController.getInGameMusic().play(1.4f, 1f);
 				isMusicHighPitched = true;
-			}
 		}
+		
 		//check if the game is over
 		if (inGame.checkIfGameIsOver(itemControllers.size(),LevelUtils.getNbrOfFiles(inGame.getLevel() + 1))) {
 			gameController.getInGameMusic().stop();
@@ -316,22 +318,22 @@ public class InGameController extends BasicGameState {
 	}
 
 
-	public ArrayList<MoveableBoxController> getMoveableBoxControllers() {
+	public List<MoveableBoxController> getMoveableBoxControllers() {
 		return moveableBoxControllers;
 	}
 
 
-	public ArrayList<CandyMonsterController> getCandyMonsterControllers() {
+	public List<CandyMonsterController> getCandyMonsterControllers() {
 		return candyMonsterControllers;
 	}
 
 
-	public ArrayList<ItemController> getItemControllers() {
+	public List<ItemController> getItemControllers() {
 		return itemControllers;
 	}
 
 
-	public ArrayList<SpikesController> getSpikesControllers() {
+	public List<SpikesController> getSpikesControllers() {
 		return spikesControllers;
 	}
 

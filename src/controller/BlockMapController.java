@@ -6,25 +6,20 @@ import view.BlockMapView;
 import model.BlockMap;
 
 public class BlockMapController {
-	private BlockMap solidGroundMap;
-	private BlockMap iceMap;
-	private BlockMap springMap;
-	private BlockMap iceSpringMap;
-	private BlockMap candyMonsterMap;
-	private BlockMap spikesMap;
-	private BlockMap itemMap;
-	private BlockMap moveableBoxMap;
-	private BlockMapView blockMapView;
+	private final BlockMap candyMonsterMap;
+	private final BlockMap spikesMap;
+	private final BlockMap itemMap;
+	private final BlockMapView blockMapView;
 	
-	public BlockMapController(InGameController inGameController, TiledMap tiledMap) {
-		solidGroundMap = new BlockMap();
-		iceMap = new BlockMap();
-		springMap = new BlockMap();
-		iceSpringMap = new BlockMap();
+	public BlockMapController(final InGameController inGameController, final TiledMap tiledMap) {
+		final BlockMap solidGroundMap = new BlockMap();
+		final BlockMap iceMap = new BlockMap();
+		final BlockMap springMap = new BlockMap();
+		final BlockMap iceSpringMap = new BlockMap();
 		candyMonsterMap = new BlockMap();
 		spikesMap = new BlockMap();
 		itemMap = new BlockMap();
-		moveableBoxMap = new BlockMap();
+		final BlockMap moveableBoxMap = new BlockMap();
 		blockMapView = new BlockMapView(solidGroundMap, iceMap, springMap, iceSpringMap, candyMonsterMap,
 				spikesMap, itemMap, moveableBoxMap, tiledMap, inGameController.getInGame());
 	}
@@ -33,21 +28,15 @@ public class BlockMapController {
 		return this.blockMapView;
 	}
 
-	public BlockMap getSolidGroundMap() {
-		return solidGroundMap;
-	}
-
 	public BlockMap getCandyMonsterMap() {
-		return candyMonsterMap;
+		return this.candyMonsterMap;
 	}
 
 	public BlockMap getSpikesMap() {
-		return spikesMap;
+		return this.spikesMap;
 	}
 
 	public BlockMap getItemMap() {
-		return itemMap;
+		return this.itemMap;
 	}
-	
-
 }

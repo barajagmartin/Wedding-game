@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.jbox2d.callbacks.ContactImpulse;
 import org.jbox2d.callbacks.ContactListener;
@@ -26,27 +27,25 @@ import model.Spikes;
 import model.World;
 
 public class WorldController implements ContactListener {
-	private ArrayList<MoveableBox> moveableBoxes;
-	private ArrayList<CandyMonster> candyMonsters;
-	private ArrayList<Item> items;
-	private ArrayList<Spikes> spikes;
-	private ArrayList<ItemView> itemViewList;
+	private List<MoveableBox> moveableBoxes;
+	private List<CandyMonster> candyMonsters;
+	private List<Item> items;
+	private List<Spikes> spikes;
+	private List<ItemView> itemViewList;
 	private model.World world;
 	private WorldView worldView;
 	
 	
 	public WorldController(InGameController inGameController, CharacterView characterView,
-			ArrayList<MoveableBoxView> moveableBoxViewList,
-			ArrayList<CandyMonsterView> candyMonsterViewList,
-			ArrayList<ItemView> itemViewList,
-			ArrayList<SpikesView> spikesViewList) {
+			List<MoveableBoxView> moveableBoxViewList,
+			List<CandyMonsterView> candyMonsterViewList,
+			List<ItemView> itemViewList,
+			List<SpikesView> spikesViewList) {
 		moveableBoxes = new ArrayList<MoveableBox>();
 		candyMonsters = new ArrayList<CandyMonster>();
 		items = new ArrayList<Item>();
 		spikes = new ArrayList<Spikes>();
-		;
 		this.itemViewList = itemViewList;
-		;
 		
 		for (MoveableBoxView moveableBoxView : moveableBoxViewList) {
 			moveableBoxes.add(moveableBoxView.getMoveableBox());
@@ -95,7 +94,7 @@ public class WorldController implements ContactListener {
 		return worldView;
 	}
 
-	public ArrayList<ItemView> getItemViewList() {
+	public List<ItemView> getItemViewList() {
 		return itemViewList;
 	}
 
@@ -127,19 +126,19 @@ public class WorldController implements ContactListener {
 		worldView.getCharacterView().getSlickShape().setY(world.getCharacter().getPos().getY());
 	}
 	
-	public void updateItemSlickShapePosition(ArrayList<ItemView> itemViewList, CharacterView characterView){
-		for (int i = 0; i < itemViewList.size(); i++) {
-			if (itemViewList.get(i).getItem().isPickedUp()) {
-				itemViewList.get(i).getShape().setX(itemViewList.get(i).getItem().getPos().getX()); 
-				itemViewList.get(i).getShape().setY(itemViewList.get(i).getItem().getPos().getY());
+	public void updateItemSlickShapePosition(List<ItemView> list, CharacterView characterView){
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).getItem().isPickedUp()) {
+				list.get(i).getShape().setX(list.get(i).getItem().getPos().getX()); 
+				list.get(i).getShape().setY(list.get(i).getItem().getPos().getY());
 			}
 		}
 	}
 	
 	@Override
 	public void beginContact(Contact contact) {
-		Fixture fixtA = contact.getFixtureA();
-		Fixture fixtB = contact.getFixtureB();
+		final Fixture fixtA = contact.getFixtureA();
+		final Fixture fixtB = contact.getFixtureB();
 		if(fixtA.getUserData() != null && fixtB.getUserData() != null) {
 			if((fixtA.getUserData().equals("spikes") && fixtB.getUserData().equals("player") ||
 					fixtA.getUserData().equals("player") && fixtB.getUserData().equals("spikes")) && 
@@ -151,8 +150,8 @@ public class WorldController implements ContactListener {
 
 	@Override
 	public void endContact(Contact contact) {
-		Fixture fixtA = contact.getFixtureA();
-		Fixture fixtB = contact.getFixtureB();
+		final Fixture fixtA = contact.getFixtureA();
+		final Fixture fixtB = contact.getFixtureB();
 		if(fixtA.getUserData() != null && fixtB.getUserData() != null) {
 			if(fixtA.getUserData().equals("spikes") && fixtB.getUserData().equals("player") ||
 					fixtA.getUserData().equals("player") && fixtB.getUserData().equals("spikes")) {

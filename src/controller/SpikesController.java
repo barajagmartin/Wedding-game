@@ -7,9 +7,9 @@ import view.SpikesView;
 
 public class SpikesController {
 	
-	private Spikes spikes;
-	private SpikesView spikesView;
-	public SpikesController(InGameController inGameController, int index) throws SlickException{
+	private final Spikes spikes;
+	private final SpikesView spikesView;
+	public SpikesController(final InGameController inGameController, final int index) throws SlickException{
 		this.spikes = new Spikes(inGameController.getBlockMapController().getSpikesMap().getBlockList().get(index).getPosX(), 
 								inGameController.getBlockMapController().getSpikesMap().getBlockList().get(index).getPosY());
 		this.spikesView = new SpikesView(this.spikes);

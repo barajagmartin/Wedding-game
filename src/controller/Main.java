@@ -1,7 +1,6 @@
 package controller;
 
 
-import java.io.FileNotFoundException;
 
 import model.Game;
 
@@ -14,7 +13,7 @@ public class Main {
 	private static final String GAME_NAME = "Candy Monsters";
 	/**
 	 * @param args
-	 * @throws FileNotFoundException 
+	 * 
 	 */
 	public static void main(String[] args) {
 		AppGameContainer app;

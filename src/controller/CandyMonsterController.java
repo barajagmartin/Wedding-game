@@ -7,11 +7,11 @@ import model.Item;
 import view.CandyMonsterView;
 
 public class CandyMonsterController {
-	private CandyMonsterView candyMonsterView;
-	private CandyMonster candyMonster;
-	private InGameController inGameController;
+	private final CandyMonsterView candyMonsterView;
+	private final CandyMonster candyMonster;
+	private final InGameController inGameController;
 	
-	public CandyMonsterController(InGameController inGameController, int candyNumber, int index) throws SlickException{
+	public CandyMonsterController(final InGameController inGameController, final int candyNumber, final int index) throws SlickException{
 		this.inGameController = inGameController;
 		this.candyMonster = new CandyMonster(this.inGameController.getBlockMapController().getCandyMonsterMap().getBlockList().get(index).getPosX(), 
 											this.inGameController.getBlockMapController().getCandyMonsterMap().getBlockList().get(index).getPosY(), 
@@ -29,7 +29,7 @@ public class CandyMonsterController {
 	/**
 	 * Checks if the item is dropped correctly by checking if: the item is picked up, the candynumbers are the same
 	 * and if the item contains/intersects with the character*/
-	public boolean isDroppedOnMonster(Item item){
+	public boolean isDroppedOnMonster(final Item item){
 		if(!item.isPickedUp() && item.CANDY_NUMBER == candyMonster.CANDY_NUMBER && 
 				(candyMonsterView.getShape().contains(inGameController.getItemControllers().
 						get(inGameController.getBlockMapController().getBlockMapView().getItemNbrMap().

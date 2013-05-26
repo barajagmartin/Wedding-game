@@ -1,6 +1,12 @@
 package controller;
 
-import model.*;
+
+
+import model.EndOfLevel;
+import model.HighScore;
+import model.InGame;
+import model.NewHighscore;
+import model.StartMenu;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -15,14 +21,15 @@ import view.EndOfLevelView;
 
 public class EndOfLevelController extends BasicGameState{
 	private EndOfLevelView endOflevelView;
-	private GameController gameController;
+	private final GameController gameController;
 	private StateBasedGame sbg;
 	private GameContainer gc;
 	private boolean gameOver;
 	private boolean victory;
 	private boolean newHighScore;
 	
-	public EndOfLevelController (GameController gameController) {
+	public EndOfLevelController (final GameController gameController) {
+		super();
 		this.gameController = gameController;
 		this.gameOver = false;
 		this.victory = false;
@@ -36,10 +43,14 @@ public class EndOfLevelController extends BasicGameState{
 		this.gc = gc;
 	}
 	
+<<<<<<< HEAD
 	@Override
 	public void enter(GameContainer container, StateBasedGame game)
+=======
+	public void enter(GameContainer gc, StateBasedGame game)
+>>>>>>> 4a6d6af6b6bc60aa0fcda3603524fe88ac1cc707
 			throws SlickException {
-		super.enter(container, game);
+		super.enter(gc, game);
 		
 		//Checks if there's any more levels
 		this.victory = LevelUtils.getNbrOfFiles(this.gameController.getGame().getInGame().getLevel() + 1) == 0;

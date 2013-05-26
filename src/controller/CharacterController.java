@@ -12,11 +12,11 @@ import view.CharacterView;
 
 
 public class CharacterController {
-	private InGameController inGameController;
+	private final InGameController inGameController;
 	private Character character;
-	private CharacterView characterView;
+	private final CharacterView characterView;
 	
-	public CharacterController(InGameController inGameController) throws SlickException {
+	public CharacterController(final InGameController inGameController) throws SlickException {
 		this.inGameController = inGameController;
 		if (this.inGameController.getBlockMapController().getBlockMapView().getStartingPos() == null) {
 			this.character = new Character(400, 100);
@@ -36,11 +36,17 @@ public class CharacterController {
 		return characterView;
 	}
 
+<<<<<<< HEAD
 	/**
 	 * Checks which key is pressed down in terms of the character's movement 
 	 */
 	public void keyPressedUpdate(GameContainer gc) {
 		Input input = gc.getInput();		
+=======
+	//check which key is pressed
+	public void keyPressedUpdate(final GameContainer gc) {
+		final Input input = gc.getInput();		
+>>>>>>> 4a6d6af6b6bc60aa0fcda3603524fe88ac1cc707
 		
 		if(input.isKeyDown(Input.KEY_RIGHT)) {
 			inGameController.getWorldController().moveBodyRight();
