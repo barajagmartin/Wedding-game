@@ -28,7 +28,7 @@ public class CharacterTest {
 		Character character = new Character(0, 0);
 		character.pickUpItem(item);
 		character.dropDownItem(item);
-		//OBS! testa så att positionen på item stämmer!
+		assertTrue(item.getPos().getY() == character.getY()+Character.RADIUS-Item.HEIGHT);
 		assertTrue(!item.isPickedUp());
 		assertTrue(character.getHeldItem() == null);
 	}

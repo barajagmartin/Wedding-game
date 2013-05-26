@@ -10,12 +10,12 @@ public class CandyMonster {
 	public CandyMonster(int x, int y, int candyNumber) {
 		this(new Position(x, y), candyNumber);
 	}
+	
 	public CandyMonster(final Position pos, final int candyNumber) {
 		this.pos = pos;
 		this.CANDY_NUMBER = candyNumber;
 		this.isHappy = false;
 	}
-	
 	
 	public Position getPos() {
 		return this.pos;
@@ -24,8 +24,8 @@ public class CandyMonster {
 	public boolean isHappy() {
 		return isHappy;
 	}
+	
 	public void setIsHappy(boolean isHappy) {
 		this.isHappy = isHappy;
-		
 	}
 }
