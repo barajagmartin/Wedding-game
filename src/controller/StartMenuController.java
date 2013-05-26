@@ -41,7 +41,7 @@ public class StartMenuController extends BasicGameState {
 	public void enter(GameContainer container, StateBasedGame game) throws SlickException {
 		super.enter(container, game);
 		this.gameController.getGame().getInGame().setNewGame(true);
-		if(gameController.getGame().isMusicOn()) {
+		if(gameController.getGame().isMusicOn() && !this.startMenuMusic.playing()) {
 			this.startMenuMusic.loop();
 		}
 	}
