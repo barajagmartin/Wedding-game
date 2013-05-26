@@ -55,6 +55,7 @@ public class InGameController extends BasicGameState {
 	private int positionIterations = 2;
 	private Sound happySound;
 	private Sound hurtSound;
+	private boolean isMusicHighPitched;
 	
 	
 	public InGameController(GameController gameController) {
@@ -92,6 +93,7 @@ public class InGameController extends BasicGameState {
 			
 			this.inGame.reset();
 			this.inGame.setGameOver(false);
+			this.isMusicHighPitched = false;
 			this.candyMonsterControllers = new ArrayList<CandyMonsterController>();
 			this.itemControllers = new ArrayList<ItemController>();
 			this.spikesControllers = new ArrayList<SpikesController>();
@@ -202,14 +204,12 @@ public class InGameController extends BasicGameState {
 		this.statusBarController.getStatusBarView().updateTimeBar(this.inGame.getLevelTime(), this.inGame.getTime());
 		
 		//increase pitch when time is running out
-//		if(this.gameController.getGame().isMusicOn()) {
-//			if(inGame.timeIsRunningOut()) {
-//				gameController.getInGameMusic().pause();
-//				gameController.getInGameMusic().play(1.3f, 1f);
-//			} else if(inGame.timeIsReallyRunningOut()) {
-//				gameController.getInGameMusic().play(1.5f, 1f);
-//			}
-//		}
+		if(this.gameController.getGame().isMusicOn()) {
+			if(inGame.isTimeRunningOut() && !isMusicHighPitched) {
+				gameController.getInGameMusic().play(1.4f, 1f);
+				isMusicHighPitched = true;
+			}
+		}
 		//check if the game is over
 		if (inGame.checkIfGameIsOver(itemControllers.size())) {
 			gameController.getInGameMusic().stop();

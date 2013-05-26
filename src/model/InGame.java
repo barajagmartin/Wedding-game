@@ -155,11 +155,7 @@ public class InGame {
 		itemsDelivered++;
 	}
 	
-	public boolean timeIsRunningOut() {
-		return this.time/this.levelTime < 0.8 && this.time/this.levelTime > 0.4;
-	}
-	
-	public boolean timeIsReallyRunningOut() {
+	public boolean isTimeRunningOut() {
 		return this.time/this.levelTime < 0.1;
 	}
 }
