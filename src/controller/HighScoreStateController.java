@@ -14,12 +14,13 @@ import view.HighScoreStateView;
 
 public class HighScoreStateController extends BasicGameState{
 	
-	private GameController gameController;
+	private final GameController gameController;
 	private HighScoreStateView highScoreStateView;
 	private GameContainer gc;
 	private StateBasedGame sbg;
 	
 	public HighScoreStateController (GameController gameController) {
+		super();
 		this.gameController = gameController;
 	}
 

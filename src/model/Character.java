@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Character {
 	public static final int RADIUS = 25;
@@ -60,9 +61,9 @@ public class Character {
 	 * 
 	 * @return true if the a character is holding an item.
 	 */
-	public boolean isHoldingItem(ArrayList<Item> items) {
-		for (int i = 0; i < items.size(); i++) {
-			if (items.get(i).isPickedUp()) {
+	public boolean isHoldingItem(List<Item> itemList) {
+		for (int i = 0; i < itemList.size(); i++) {
+			if (itemList.get(i).isPickedUp()) {
 				return true;
 			}
 		}

@@ -4,7 +4,7 @@ import model.Player;
 
 public class PlayerController {
 	
-	private Player player;
+	private final Player player;
 	public PlayerController() {
 		this.player = new Player();
 	}

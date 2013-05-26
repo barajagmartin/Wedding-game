@@ -17,13 +17,14 @@ import view.StartMenuView;
 
 public class StartMenuController extends BasicGameState {
 	private StartMenuView startMenuView;
-	private StartMenu startMenu;
+	private final StartMenu startMenu;
 	private StateBasedGame sbg;
-	private GameController gameController;
+	private final GameController gameController;
 	private Music startMenuMusic;
 	private GameContainer gc;
 	
-	public StartMenuController(GameController gameController) {
+	public StartMenuController(final GameController gameController) {
+		super();
 		this.gameController = gameController;
 		this.startMenu = new StartMenu();
 	}
@@ -109,5 +110,4 @@ public class StartMenuController extends BasicGameState {
 	public int getID() {
 		return StartMenu.STATE_ID;
 	}
-
 }

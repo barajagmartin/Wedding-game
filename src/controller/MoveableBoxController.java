@@ -7,10 +7,10 @@ import model.FixedPosition;
 import model.MoveableBox;
 
 public class MoveableBoxController {
-	private MoveableBox moveableBox;
-	private MoveableBoxView moveableBoxView;
+	private final MoveableBox moveableBox;
+	private final MoveableBoxView moveableBoxView;
 	
-	public MoveableBoxController(FixedPosition pos) throws SlickException {
+	public MoveableBoxController(final FixedPosition pos) throws SlickException {
 		moveableBox = new MoveableBox(pos.getPosX(), pos.getPosY());
 		moveableBoxView = new MoveableBoxView(moveableBox);
 	}
