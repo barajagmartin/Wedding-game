@@ -1,5 +1,6 @@
 package controller;
 
+import model.Controls;
 import model.PauseMenu;
 import model.StartMenu;
 
@@ -88,7 +89,7 @@ public class PauseMenuController extends BasicGameState{
 							gameController.getGame().setMusicOn(true);
 						}	
 						break;
-				case 3: //Enter state "Controls"
+				case 3: sbg.enterState(Controls.STATE_ID);
 						break;
 				case 4: gameController.getGame().getInGame().setPaused(false);
 						gameController.getInGameMusic().stop(); //Stop current thread

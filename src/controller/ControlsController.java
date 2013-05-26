@@ -1,6 +1,7 @@
 package controller;
 
 import model.Controls;
+import model.PauseMenu;
 import model.StartMenu;
 
 import org.newdawn.slick.GameContainer;
@@ -48,7 +49,12 @@ public class ControlsController extends BasicGameState {
 			this.gameController.changeFullscreen(this.gc);
 		}
 		else if (key == Input.KEY_ENTER || key == Input.KEY_ESCAPE) {
-			sbg.enterState(StartMenu.STATE_ID);
+			if (gameController.getGame().getInGame().isPaused()) {
+				sbg.enterState(PauseMenu.STATE_ID);
+			} else {
+				sbg.enterState(StartMenu.STATE_ID);
+			}
+			
 		}
 	}
 
