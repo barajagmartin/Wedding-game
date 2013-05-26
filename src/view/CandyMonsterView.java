@@ -9,17 +9,17 @@ import org.newdawn.slick.geom.Shape;
 import model.CandyMonster;
 
 public class CandyMonsterView {
-	private CandyMonster candyMonster;
-	private Shape shape;
+	final private CandyMonster candyMonster;
+	final private Shape shape;
 	private Color color;
-	private Image happyImage;
-	private Image sadImage;
+	final private Image happyImage;
+	final private Image sadImage;
 	
-	public CandyMonsterView(CandyMonster candyMonster) throws SlickException {
+	public CandyMonsterView(final CandyMonster candyMonster) throws SlickException {
 		this.candyMonster = candyMonster;
 		this.shape = new Rectangle(candyMonster.getPos().getX(), candyMonster.getPos().getY(), CandyMonster.WIDTH, CandyMonster.HEIGHT);
-		happyImage = new Image("pics/happyCandyMonster" + String.valueOf(candyMonster.CANDY_NUMBER) + ".png");
-		sadImage = new Image("pics/sadCandyMonster" + String.valueOf(candyMonster.CANDY_NUMBER) + ".png");
+		happyImage = new Image("pics/happyCandyMonster" + (candyMonster.CANDY_NUMBER) + ".png");
+		sadImage = new Image("pics/sadCandyMonster" + (candyMonster.CANDY_NUMBER) + ".png");
 	}
 	
 	public CandyMonster getCandyMonster() {
@@ -34,7 +34,7 @@ public class CandyMonsterView {
 		return this.color;
 	}
 	
-	public void setColor(Color color){
+	public void setColor(final Color color){
 		this.color = color;
 	}
 

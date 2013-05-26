@@ -1,6 +1,7 @@
 package view;		
 
 import java.util.ArrayList;
+import java.util.List;
 
 import model.Game;
 import model.StartMenu;
@@ -13,13 +14,13 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class StartMenuView extends AbstractMenuView {
-	private StartMenu startMenu;
-	private GameView gameView;
-	private int buttonWidth;
-	private int buttonHeight;
-	private ArrayList<Rectangle> buttonList;
+	private final StartMenu startMenu;
+	private final GameView gameView;
+	private final int buttonWidth;
+	private final int buttonHeight;
+	private final List<Rectangle> buttonList;
 
-	public StartMenuView(StartMenu startMenu, GameView gameView) throws SlickException {
+	public StartMenuView(final StartMenu startMenu, final GameView gameView) throws SlickException {
 		this.startMenu = startMenu;
 		this.gameView = gameView;
 		this.buttonWidth = Game.WINDOW_WIDTH;

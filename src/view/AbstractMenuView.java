@@ -4,20 +4,20 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 /**All menuView's shall extend this class to get basic logic*/
-public abstract class AbstractMenuView {
+public class AbstractMenuView {
 	/*Images for menus*/
-	private Image background;
-	private Image candyMonsterTitle;
-	private Image startGameLabel;
-	private Image highscoreLabel;
-	private Image soundOnLabel;
-	private Image soundOffLabel;
-	private Image musicOnLabel;
-	private Image musicOffLabel;
-	private Image controlsLabel;
-	private Image exitGameLabel;	
-	private Image resumeLabel;
-	private Image exitToMenuLabel;
+	private final Image background;
+	private final Image candyMonsterTitle;
+	private final Image startGameLabel;
+	private final Image highscoreLabel;
+	private final Image soundOnLabel;
+	private final Image soundOffLabel;
+	private final Image musicOnLabel;
+	private final Image musicOffLabel;
+	private final Image controlsLabel;
+	private final Image exitGameLabel;	
+	private final Image resumeLabel;
+	private final Image exitToMenuLabel;
 
 	public AbstractMenuView() throws SlickException {
 		background = new Image("pics/start_background.png");
