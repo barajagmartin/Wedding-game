@@ -15,7 +15,7 @@ public class InGameTest {
 		inGame.levelUp();
 		assertSame(inGame.getLevel(), 3);
 	}
-	
+
 	@Test
 	public void testIsNewGame() {
 		InGame inGame = new InGame(new Player());
@@ -23,7 +23,7 @@ public class InGameTest {
 		inGame.setNewGame(false);
 		assertFalse(inGame.isNewGame());
 	}
-	
+
 	@Test
 	public void testIsGameOver() {
 		InGame inGame = new InGame(new Player());
@@ -31,7 +31,7 @@ public class InGameTest {
 		inGame.setGameOver(true);
 		assertTrue(inGame.isGameOver());
 	}
-	
+
 	@Test
 	public void testReset() {
 		InGame inGame = new InGame(new Player());
@@ -46,7 +46,7 @@ public class InGameTest {
 		assertSame(inGame.isPaused(), false);
 		assertSame(inGame.getItemsDelivered(), 0);
 	}
-	
+
 	@Test
 	public void testResetLevel() {
 		InGame inGame = new InGame(new Player());
@@ -56,7 +56,7 @@ public class InGameTest {
 		inGame.resetLevel();
 		assertSame(inGame.getLevel(), 1);
 	}
-	
+
 	@Test
 	public void testIsPaused() {
 		InGame inGame = new InGame(new Player());
@@ -64,7 +64,7 @@ public class InGameTest {
 		inGame.setPaused(true);
 		assertTrue(inGame.isPaused());
 	}
-	
+
 	@Test
 	public void testIfGameIsOver() {
 		InGame inGame = new InGame(new Player());
@@ -82,7 +82,7 @@ public class InGameTest {
 		inGame.getPlayer().loseOneLife();
 		assertTrue(inGame.checkIfGameIsOver(3, 0));
 	}
-	
+
 	@Test
 	public void testIncreaseItemsDelivered() {
 		InGame inGame = new InGame(new Player());
@@ -91,7 +91,7 @@ public class InGameTest {
 		inGame.increaseItemsDelivered();
 		assertTrue(inGame.getItemsDelivered() == 2);
 	}
-	
+
 	@Test
 	public void testIsTimeRunningOut() {
 		InGame inGame = new InGame(new Player());
@@ -102,5 +102,17 @@ public class InGameTest {
 		assertFalse(inGame.isTimeRunningOut());
 		inGame.setTime(0.9f);
 		assertTrue(inGame.isTimeRunningOut());
+	}
+
+	@Test
+	public void testRandomizeVersion() {
+		InGame inGame = new InGame(new Player());
+		for (int versions = 1; versions < 1000; versions++) {
+			int rand = inGame.randomizeVersion(versions);
+			for (int i = 0; i < 10000000; i++) {
+				assertTrue(rand >= 1);
+				assertTrue(rand <= versions);
+			}
+		}
 	}
 }
