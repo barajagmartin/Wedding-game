@@ -4,20 +4,9 @@ import java.util.ArrayList;
 
 import model.FixedPosition;
 
-import org.jbox2d.callbacks.ContactImpulse;
-import org.jbox2d.callbacks.ContactListener;
-import org.jbox2d.collision.Manifold;
-import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
-import org.jbox2d.dynamics.BodyDef;
-import org.jbox2d.dynamics.BodyType;
-import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
-import org.jbox2d.dynamics.contacts.Contact;
-import org.jbox2d.dynamics.joints.Joint;
-import org.jbox2d.dynamics.joints.WeldJointDef;
-
 import utils.WorldBodyFactory;
 import utils.WorldUtils;
 
@@ -33,9 +22,6 @@ public class WorldView {
 	boolean doSleep;
 	private World jBox2DWorld;
 	private Body groundBody;
-	private Body leftWallBody;
-	private Body rightWallBody;
-	private Body roofBody;
 	private BlockMapView blockMapView;
 	private ArrayList<ItemView> itemViewList;
 	private ArrayList<CandyMonsterView> candyMonsterViewList;

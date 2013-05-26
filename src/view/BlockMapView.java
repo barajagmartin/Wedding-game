@@ -1,6 +1,5 @@
 package view;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 
 import model.FixedPosition;
@@ -8,9 +7,6 @@ import model.BlockMap;
 import model.CandyMonster;
 import model.InGame;
 import model.Item;
-import model.Spikes;
-
-import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 
 public class BlockMapView {

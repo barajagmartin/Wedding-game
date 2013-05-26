@@ -12,7 +12,7 @@ public class MoveableBoxController {
 	
 	public MoveableBoxController(InGameController inGameController, FixedPosition pos) throws SlickException {
 		moveableBox = new MoveableBox(pos.getPosX(), pos.getPosY());
-		moveableBoxView = new MoveableBoxView(moveableBox, inGameController.getWorldController().getWorldView());
+		moveableBoxView = new MoveableBoxView(moveableBox);
 	}
 
 	public MoveableBox getMoveableBox() {

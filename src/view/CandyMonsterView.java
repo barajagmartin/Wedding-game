@@ -6,7 +6,6 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 import model.CandyMonster;
-import model.Item;
 
 public class CandyMonsterView {
 	private CandyMonster candyMonster;

@@ -1,7 +1,5 @@
 package utils;
 
-import view.WorldView;
-
 public class WorldUtils {
 	public static float SCALE = 25;
 	

@@ -9,8 +9,6 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-import controller.GameController;
-
 public class EndOfLevelView {
 	private int score;
 	private boolean gameOver;

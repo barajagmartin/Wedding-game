@@ -8,10 +8,6 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Circle;
 
-import utils.WorldBodyFactory;
-import utils.WorldObjects;
-import utils.WorldUtils;
-
 
 public class SpikesView {
 	private Image image;
@@ -22,7 +18,7 @@ public class SpikesView {
 
 	public SpikesView(Spikes spikes) throws SlickException {
 		this.spikes = spikes;
-		this.color = color.gray;
+		this.color = Color.gray;
 		this.circle = new Circle(spikes.getPos().getX(), spikes.getPos().getY(), Spikes.RADIUS);
 		image = new Image("pics/spikes2.png");
 	}

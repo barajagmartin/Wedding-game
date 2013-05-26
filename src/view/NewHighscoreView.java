@@ -3,8 +3,6 @@ package view;
 import java.awt.Font;
 
 import model.Game;
-import model.NewHighscore;
-
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
