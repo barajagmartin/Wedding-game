@@ -43,12 +43,8 @@ public class EndOfLevelController extends BasicGameState{
 		this.gc = gc;
 	}
 	
-<<<<<<< HEAD
 	@Override
 	public void enter(GameContainer container, StateBasedGame game)
-=======
-	public void enter(GameContainer gc, StateBasedGame game)
->>>>>>> 4a6d6af6b6bc60aa0fcda3603524fe88ac1cc707
 			throws SlickException {
 		super.enter(gc, game);
 		
