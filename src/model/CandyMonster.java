@@ -5,7 +5,7 @@ public class CandyMonster {
 	private Position pos;
 	public static final int WIDTH = 25;
 	public static final int HEIGHT = 30;
-	public boolean isHappy;
+	private boolean isHappy;
 	
 	public CandyMonster(int x, int y, int candyNumber) {
 		this(new Position(x, y), candyNumber);
