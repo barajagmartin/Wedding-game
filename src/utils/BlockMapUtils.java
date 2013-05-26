@@ -6,7 +6,7 @@ import java.io.InputStream;
 
 public class BlockMapUtils {
 
-	private BlockMapUtils() {} //not used
+	private BlockMapUtils() {} 
 	
 	public static InputStream getTmxFile(int level, int version) {
 		try {
