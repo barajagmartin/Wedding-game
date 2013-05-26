@@ -8,9 +8,9 @@ import org.newdawn.slick.geom.Shape;
 import model.StatusBar;
 
 public class StatusBarView {
-	private Image[] heart;
-	private Rectangle fixedBar;
-	private Rectangle timeBar;
+	final private Image[] heart;
+	final private Rectangle fixedBar;
+	final private Rectangle timeBar;
 	
 	public StatusBarView() throws SlickException {
 		heart = new Image[3];
@@ -23,7 +23,7 @@ public class StatusBarView {
 				fixedBar.getWidth()-10, fixedBar.getHeight()-10);
 	}
 	
-	public void updateTimeBar (float levelTime, float remainingTime) {
+	public void updateTimeBar (final float levelTime, final float remainingTime) {
 		this.timeBar.setWidth((fixedBar.getWidth()-10)*(remainingTime/levelTime));
 	}
 

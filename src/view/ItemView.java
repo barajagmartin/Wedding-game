@@ -8,14 +8,14 @@ import org.newdawn.slick.geom.Shape;
 import model.Item;
 
 public class ItemView {
-	private Item item;
-	private Shape shape;
-	private Image image;
+	final private Item item;
+	final private Shape shape;
+	final private Image image;
 	
-	public ItemView(Item item) throws SlickException {
+	public ItemView(final Item item) throws SlickException {
 		this.item = item;
 		this.shape = new Rectangle(item.getPos().getX(), item.getPos().getY(), Item.WIDTH, Item.HEIGHT);
-		this.image = new Image("pics/item" + String.valueOf(item.CANDY_NUMBER) +".png");
+		this.image = new Image("pics/item" + (item.CANDY_NUMBER) +".png");
 	}
 	
 	public Item getItem(){

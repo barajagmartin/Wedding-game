@@ -12,12 +12,12 @@ import org.newdawn.slick.state.StateBasedGame;
 import model.Game;
 
 public class NewHighscoreView {
-	private TextField textField;
-	private TrueTypeFont font;
+	final private TextField textField;
+	final private TrueTypeFont font;
 	private int score;
 	private final int POSX = Game.WINDOW_WIDTH/5;
 	
-	public NewHighscoreView(GameContainer gc, int score) {
+	public NewHighscoreView(final GameContainer gc, final int score) {
 		this.font = new TrueTypeFont(new Font(Font.MONOSPACED, Font.BOLD, 50), false);
 		this.textField = new TextField(gc, font, POSX + 330, Game.WINDOW_HEIGHT/2, 300, font.getHeight() + 5);
 		this.textField.setMaxLength(8);

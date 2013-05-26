@@ -5,10 +5,10 @@ import org.newdawn.slick.Image;
 import model.Game;
 
 public class GameView {
-	private Game game;
+	final private Game game;
 	private Image pauseImage;
 	
-	public GameView(Game game) {
+	public GameView(final Game game) {
 		this.game = game;
 	}
 	
@@ -20,7 +20,7 @@ public class GameView {
 		return pauseImage;
 	}
 
-	public void setPauseImage(Image pauseImage) {
+	public void setPauseImage(final Image pauseImage) {
 		this.pauseImage = pauseImage;
 	}
 }

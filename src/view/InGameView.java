@@ -1,6 +1,6 @@
 package view;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -16,22 +16,22 @@ import model.Spikes;
 import model.StatusBar;
 
 public class InGameView {
-	private InGame inGame;
-	private WorldView worldView;
-	private StatusBarView statusBarView;
-	private CharacterView characterView;
-	private ArrayList<MoveableBoxView> moveableBoxViewList;
-	private ArrayList<SpikesView> spikesViewList;
+	final private InGame inGame;
+	final private WorldView worldView;
+	final private StatusBarView statusBarView;
+	final private CharacterView characterView;
+	final private List<MoveableBoxView> moveableBoxViewList;
+	final private List<SpikesView> spikesViewList;
 	private Image pauseImage;
 	private Image cloud;
 	private Graphics g;
-	private int level;
+	final private int level;
 
 	public CharacterView getCharacterView() {
 		return characterView;
 	}
 
-	public InGameView(InGame inGame, WorldView worldView, StatusBarView statusBarView, CharacterView characterView, ArrayList<MoveableBoxView> tmpMoveableBoxViewList, ArrayList<SpikesView> spikesViewList, int level) {
+	public InGameView(final InGame inGame, final WorldView worldView, final StatusBarView statusBarView, final CharacterView characterView, final List<MoveableBoxView> tmpMoveableBoxViewList, final List<SpikesView> spikesViewList, final int level) {
 		this.inGame = inGame;
 		this.worldView = worldView;
 		this.statusBarView = statusBarView;
@@ -49,7 +49,7 @@ public class InGameView {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		this.g = g;
-		Image background = new Image("pics/bg_"+level+".jpg");
+		final Image background = new Image("pics/bg_"+level+".jpg");
 		background.draw();
 		worldView.getBlockMapView().getTiledMap().render(0, 0, worldView.getBlockMapView().getTiledMap().getLayerIndex("solids"));
 

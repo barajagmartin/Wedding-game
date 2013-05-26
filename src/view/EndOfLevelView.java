@@ -10,14 +10,14 @@ import org.newdawn.slick.state.StateBasedGame;
 import model.Game;
 
 public class EndOfLevelView {
-	private int score;
-	private boolean gameOver;
-	private boolean victory;
-	private Image gameOverImage;
-	private Image victoryImage;
-	private Image levelClearedImage;
+	final private int score;
+	final private boolean gameOver;
+	final private boolean victory;
+	final private Image gameOverImage;
+	final private Image victoryImage;
+	final private Image levelClearedImage;
 
-	public EndOfLevelView (int score, boolean gameOver, boolean victory) throws SlickException {
+	public EndOfLevelView (final int score, final boolean gameOver, final boolean victory) throws SlickException {
 		this.score = score;
 		this.gameOver = gameOver;
 		this.victory = victory;

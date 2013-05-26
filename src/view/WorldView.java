@@ -1,6 +1,8 @@
 package view;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.World;
@@ -15,21 +17,21 @@ public class WorldView {
 	public static final float NO_BOUNCE_RESTITUTION = 0f;
 	public static final float BOUNCE_RESTITUTION = 1f;
 	
-	private model.World world;
-	private Vec2 gravity;
-	boolean doSleep;
-	private World jBox2DWorld;
+	final private model.World world;
+	final private Vec2 gravity;
+	final boolean doSleep;
+	final private World jBox2DWorld;
 	private Body groundBody;
-	private BlockMapView blockMapView;
-	private ArrayList<ItemView> itemViewList;
-	private ArrayList<CandyMonsterView> candyMonsterViewList;
-	private float worldWidthMeter;
-	private float worldHeightMeter;
-	public CharacterView characterView;
+	final private BlockMapView blockMapView;
+	final private List<ItemView> itemViewList;
+	final private List<CandyMonsterView> candyMonsterViewList;
+	final private float worldWidthMeter;
+	final private float worldHeightMeter;
+	final public CharacterView characterView;
 	
-	public WorldView(model.World world, CharacterView characterView, BlockMapView blockMapView, 
-			ArrayList<ItemView> itemViewList, 
-			ArrayList<CandyMonsterView> candyMonsterViewList) {
+	public WorldView(final model.World world, final CharacterView characterView, final BlockMapView blockMapView, 
+			final List<ItemView> itemViewList, 
+			final List<CandyMonsterView> candyMonsterViewList) {
 		this.world = world;
 		this.characterView = characterView;
 		worldWidthMeter = WorldUtils.pixel2Meter(world.getWorldWidthPx());
@@ -83,11 +85,11 @@ public class WorldView {
 		return blockMapView;
 	}
 
-	public ArrayList<ItemView> getItemViewList() {
+	public List<ItemView> getItemViewList() {
 		return itemViewList;
 	}
 
-	public ArrayList<CandyMonsterView> getCandyMonsterViewList() {
+	public List<CandyMonsterView> getCandyMonsterViewList() {
 		return candyMonsterViewList;
 	}
 
