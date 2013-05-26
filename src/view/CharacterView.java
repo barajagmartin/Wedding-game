@@ -13,7 +13,7 @@ public class CharacterView {
 	private final Character character;
 	private final Shape slickShape;
 	private Body characterBody;
-	private Animation nelson;
+	private Animation animation;
 	private final Animation walkRight;
 	private final Animation walkLeft;
 	private final Animation blinkLeft;
@@ -47,7 +47,7 @@ public class CharacterView {
 		blinkRight = new Animation(blinkingRight, duration);
 		standRight = new Animation(standingRight, duration);
 		standLeft = new Animation(standingLeft, duration);
-		nelson = walkLeft; //set starting animation to walking left
+		animation = walkLeft; //set starting animation to walking left
 	}
 
 	public Character getCharacter() {
@@ -67,46 +67,46 @@ public class CharacterView {
 	}
 
 	public Animation getAnimation() {
-		return this.nelson;
+		return this.animation;
 	}
 
 	public boolean isBlinking() {
-		return this.nelson == this.blinkLeft || this.nelson == this.blinkRight;
+		return this.animation == this.blinkLeft || this.animation == this.blinkRight;
 	}
 
 	public void animateBlinkingLeft() {
-		this.nelson = this.blinkLeft;
+		this.animation = this.blinkLeft;
 	}
 	
 	public void animateBlinkingRight() {
-		this.nelson = this.blinkRight;
+		this.animation = this.blinkRight;
 	}
 	
 	public void animateWalkingRight() {
-		this.nelson = this.walkRight;
+		this.animation = this.walkRight;
 	}
 	
 	public void animateWalkingLeft() {
-		this.nelson = this.walkLeft;
+		this.animation = this.walkLeft;
 	}
 
 	public boolean isWalkingLeft() {
-		return this.nelson == this.walkLeft;
+		return this.animation == this.walkLeft;
 	}
 	
 	public boolean isBlinkingLeft() {
-		return this.nelson == this.blinkLeft;
+		return this.animation == this.blinkLeft;
 	}
 
 	public void animateStandingRight() {
-		this.nelson = this.standRight;
+		this.animation = this.standRight;
 	}
 	
 	public void animateStandingLeft() {
-		this.nelson = this.standLeft;
+		this.animation = this.standLeft;
 	}
 
 	public boolean isStandingLeft() {
-		return this.nelson == this.standLeft;
+		return this.animation == this.standLeft;
 	}
 }
