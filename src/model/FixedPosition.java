@@ -1,8 +1,7 @@
 package model;
 
 public class FixedPosition {
-	
-	private Position pos;
+	private final Position pos;
 	
 	public FixedPosition(final int posX, final int posY) {
 		pos = new Position(posX, posY);
