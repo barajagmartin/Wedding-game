@@ -15,8 +15,8 @@ public class CharacterTest {
 		Item item = new Item(20, 30, 2);
 		Character character = new Character(0, 0);
 		character.pickUpItem(item);
-		assertSame(item.getPos().getX(), character.getX());
-		assertSame(item.getPos().getY(), character.getY());
+		assertSame(item.getPos().getX(), character.getPos().getX());
+		assertSame(item.getPos().getY(), character.getPos().getY());
 		assertTrue(item.isPickedUp());
 		assertSame(character.getHeldItem(), item);
 	}
@@ -28,7 +28,7 @@ public class CharacterTest {
 		Character character = new Character(0, 0);
 		character.pickUpItem(item);
 		character.dropDownItem(item);
-		assertSame(item.getPos().getY(), character.getY()+Character.RADIUS-Item.HEIGHT);
+		assertSame(item.getPos().getY(), character.getPos().getY()+Character.RADIUS-Item.HEIGHT);
 		assertFalse(item.isPickedUp());
 		assertSame(character.getHeldItem(), null);
 	}

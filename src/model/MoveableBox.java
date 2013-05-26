@@ -16,12 +16,4 @@ public class MoveableBox {
 	public Position getPos() {
 		return pos;
 	}
-	
-	public void setX(final int x) {
-		this.pos.setX(x);
-	}
-	
-	public void setY(final int y) {
-		this.pos.setY(y);
-	}
 }

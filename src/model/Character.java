@@ -18,25 +18,9 @@ public class Character {
 		this.heldItem = null;
 		this.timeSinceHit = 1;
 	}
-	
-	public int getX() {
-		return this.pos.getX();
-	}
-	
-	public int getY() {
-		return this.pos.getY();
-	}
 
 	public Position getPos() {
 		return pos;
-	}
-	
-	public void setX(final int x) {
-		this.pos.setX(x);
-	}
-	
-	public void setY(final int y) {
-		this.pos.setY(y);
 	}
 	
 	public float getTimeSinceHit() {

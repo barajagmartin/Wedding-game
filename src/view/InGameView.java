@@ -84,7 +84,8 @@ public class InGameView {
 		}
 
 		//draw character
-		characterView.getAnimation().draw(characterView.getCharacter().getX(), characterView.getCharacter().getY());
+		characterView.getAnimation().draw(characterView.getCharacter().getPos().getX(),
+				characterView.getCharacter().getPos().getY());
 
 		//draw items
 		for (int j = 0; j < worldView.getItemViewList().size(); j++) {

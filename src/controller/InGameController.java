@@ -210,10 +210,10 @@ public class InGameController extends BasicGameState {
 		}
 		worldController.getWorldView().getjBox2DWorld().step(timeStep, velocityIterations, positionIterations);
 		
-		characterController.getCharacter().setX(WorldUtils.meter2Pixel(
+		characterController.getCharacter().getPos().setX(WorldUtils.meter2Pixel(
 				inGameView.getCharacterView().getCharacterBody().getPosition().x) -
 				Character.RADIUS);
-		characterController.getCharacter().setY(WorldUtils.meter2Pixel(
+		characterController.getCharacter().getPos().setY(WorldUtils.meter2Pixel(
 				inGameView.getCharacterView().getCharacterBody().getPosition().y) -
 				Character.RADIUS);
 		
@@ -232,12 +232,12 @@ public class InGameController extends BasicGameState {
 		
 		worldController.updateCharacterSlickShape();
 		worldController.updateItemSlickShapePosition(worldController.getItemViewList(), characterController.getCharacterView());
-		characterController.getCharacter().setX((int)characterController.getCharacterView().getSlickShape().getX());
-		characterController.getCharacter().setY((int)characterController.getCharacterView().getSlickShape().getY());
+		characterController.getCharacter().getPos().setX((int)characterController.getCharacterView().getSlickShape().getX());
+		characterController.getCharacter().getPos().setY((int)characterController.getCharacterView().getSlickShape().getY());
 		for (int i = 0; i < moveableBoxControllers.size(); i++) {
-			moveableBoxControllers.get(i).getMoveableBox().setX(WorldUtils.meter2Pixel(
+			moveableBoxControllers.get(i).getMoveableBox().getPos().setX(WorldUtils.meter2Pixel(
 					moveableBoxControllers.get(i).getMoveableBoxView().getBoxBody().getPosition().x));
-			moveableBoxControllers.get(i).getMoveableBox().setY(WorldUtils.meter2Pixel(
+			moveableBoxControllers.get(i).getMoveableBox().getPos().setY(WorldUtils.meter2Pixel(
 					moveableBoxControllers.get(i).getMoveableBoxView().getBoxBody().getPosition().y));
 		}
 		
