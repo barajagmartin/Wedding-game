@@ -1,5 +1,9 @@
 package model;
 
+/**
+ * Model for the CandyMonster that the player are suppose to get the items for.
+ * They can be happy or sad depending on if they have their item or not.
+ */
 public class CandyMonster {
 	public final int CANDY_NUMBER;
 	private Position pos;
