@@ -29,7 +29,5 @@ public class HighScoreStateView {
 					" .................................... " + Integer.toString(SaveUtils.getScoreList()[i]), (Game.WINDOW_WIDTH/2-200), y);
 			y = y + 40;
 		}
-		
 	}
-	
 }
