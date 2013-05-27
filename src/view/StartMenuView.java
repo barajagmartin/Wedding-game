@@ -12,7 +12,11 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
-
+/**
+ * 
+ * @author Josefin, Martin, Sara, Kino
+ *
+ */
 public class StartMenuView extends AbstractMenuView {
 	private final StartMenu startMenu;
 	private final GameView gameView;

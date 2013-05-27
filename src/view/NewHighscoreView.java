@@ -10,7 +10,11 @@ import org.newdawn.slick.gui.TextField;
 import org.newdawn.slick.state.StateBasedGame;
 
 import model.Game;
-
+/**
+ * 
+ * @author Josefin, Martin, Sara, Kino
+ *
+ */
 public class NewHighscoreView {
 	final private TextField textField;
 	final private TrueTypeFont font;

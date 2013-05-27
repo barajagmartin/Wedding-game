@@ -3,7 +3,11 @@ package view;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-/**MenuView's shall extend this class to get all images required*/
+/**
+ * MenuView's shall extend this class to get all images required
+ * @author Josefin, Martin, Sara, Kino
+ *
+ */
 public class AbstractMenuView {
 	/*Images for menus*/
 	private final Image background;

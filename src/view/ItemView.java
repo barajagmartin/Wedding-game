@@ -6,7 +6,11 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 
 import model.Item;
-
+/**
+ * 
+ * @author Josefin, Martin, Sara, Kino
+ *
+ */
 public class ItemView {
 	final private Item item;
 	final private Shape shape;

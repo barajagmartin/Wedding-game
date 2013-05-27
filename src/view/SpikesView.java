@@ -7,7 +7,11 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Circle;
 
 import model.Spikes;
-
+/**
+ * 
+ * @author Josefin, Martin, Sara, Kino
+ *
+ */
 public class SpikesView {
 	final private Image image;
 	final private Circle circle;

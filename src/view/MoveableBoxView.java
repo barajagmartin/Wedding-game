@@ -5,7 +5,11 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import model.MoveableBox;
-
+/**
+ * 
+ * @author Josefin, Martin, Sara, Kino
+ *
+ */
 public class MoveableBoxView {
 	final private MoveableBox moveableBox;
 	private Body boxBody;

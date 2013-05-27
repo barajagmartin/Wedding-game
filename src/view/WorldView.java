@@ -10,7 +10,11 @@ import org.jbox2d.dynamics.World;
 import model.FixedPosition;
 import utils.WorldBodyFactory;
 import utils.WorldUtils;
-
+/**
+ * 
+ * @author Josefin, Martin, Sara, Kino
+ *
+ */
 public class WorldView {
 	public static final float NORMAL_FRICTION = 0.7f;
 	public static final float ICE_FRICTION = 0f;

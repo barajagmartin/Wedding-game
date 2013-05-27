@@ -12,7 +12,11 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import model.Game;
 import model.PauseMenu;
-
+/**
+ * 
+ * @author Josefin, Martin, Sara, Kino
+ *
+ */
 public class PauseMenuView extends AbstractMenuView {
 	final private PauseMenu pauseMenu;
 	final private GameView gameView;

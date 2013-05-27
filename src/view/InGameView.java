@@ -14,7 +14,11 @@ import model.InGame;
 import model.MoveableBox;
 import model.Spikes;
 import model.StatusBar;
-
+/**
+ * 
+ * @author Josefin, Martin, Sara, Kino
+ *
+ */
 public class InGameView {
 	final private InGame inGame;
 	final private WorldView worldView;

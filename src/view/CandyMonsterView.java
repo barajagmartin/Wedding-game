@@ -7,7 +7,11 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 
 import model.CandyMonster;
-
+/**
+ * 
+ * @author Josefin, Martin, Sara, Kino
+ *
+ */
 public class CandyMonsterView {
 	final private CandyMonster candyMonster;
 	final private Shape shape;

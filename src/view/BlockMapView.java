@@ -10,7 +10,11 @@ import model.BlockMap;
 import model.CandyMonster;
 import model.InGame;
 import model.Item;
-
+/**
+ * 
+ * @author Josefin, Martin, Sara, Kino
+ *
+ */
 public class BlockMapView {
 	private final BlockMap solidGroundMap;
 	private final BlockMap iceMap;
