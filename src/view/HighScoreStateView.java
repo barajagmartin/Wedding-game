@@ -27,7 +27,7 @@ public class HighScoreStateView {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		background.draw();
-		g.setColor(Color.green);
+		g.setColor(new Color(255,224,244));
 		int y = 200;
 		
 		String space = " ";

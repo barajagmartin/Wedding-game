@@ -24,7 +24,7 @@ public class Main {
 	public static void main(String[] args) {
 		AppGameContainer app;
 		try {
-			app = new AppGameContainer(new GameController(GAME_NAME));
+			app = new AppGameContainer(new GameController("Bröllopsspelet"));
 			app.setDisplayMode(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT, false);
 			app.setShowFPS(false);
 			app.setIcons(new String[]{"pics/icon16.png", "pics/icon32.png"});
