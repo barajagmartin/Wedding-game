@@ -3,6 +3,13 @@ package controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Character;
+import model.EndOfLevel;
+import model.FixedPosition;
+import model.InGame;
+import model.Item;
+import model.PauseMenu;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -20,12 +27,6 @@ import view.InGameView;
 import view.ItemView;
 import view.MoveableBoxView;
 import view.SpikesView;
-import model.Character;
-import model.EndOfLevel;
-import model.FixedPosition;
-import model.InGame;
-import model.Item;
-import model.PauseMenu;
 
 /**
  * This class is the state that is the actual game. It's here all different object in the world are created.
@@ -55,6 +56,7 @@ public class InGameController extends BasicGameState {
 	private final int positionIterations = 2;
 	private Sound happySound;
 	private Sound hurtSound;
+	private Sound skynda;
 	private boolean isMusicHighPitched;
 	
 	
@@ -73,13 +75,15 @@ public class InGameController extends BasicGameState {
 		this.statusBarController = new StatusBarController();
 		this.happySound = new Sound("music/happy0.wav");
 		this.hurtSound = new Sound("music/aj0.wav");
+		this.skynda = new Sound("music/skynda.wav");
 	}
 
 	@Override
 	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		super.enter(container, game);
-		gameController.getInGameMusic().setVolume(1f);
+//		gameController.getStartMenuController().getStartMenuMusic().resume();
+		gameController.getStartMenuController().getStartMenuMusic().setVolume(0.7f);
 		
 		if (!inGame.isPaused()) {
 			if (inGame.isNewGame()) {
@@ -90,7 +94,7 @@ public class InGameController extends BasicGameState {
 				this.inGame.levelUp();
 			}
 			if(this.gameController.getGame().isMusicOn()) {
-				gameController.getInGameMusic().loop();
+//				gameController.getInGameMusic().loop();
 			}
 			
 			this.inGame.reset();
@@ -182,7 +186,7 @@ public class InGameController extends BasicGameState {
 		if(this.characterController.getCharacter().isOnSpikes() && this.characterController.getCharacter().getTimeSinceHit() > 1) {
 			//plays hurt sound if sound is on
 			if(gameController.getGame().isSoundOn()){
-				this.hurtSound.play();  
+				this.hurtSound.play(1.5f, 1.0f);  
 			}
 			this.playerController.getPlayer().loseOneLife();
 			this.characterController.getCharacter().setTimeSinceHit(0);
@@ -206,14 +210,15 @@ public class InGameController extends BasicGameState {
 		this.statusBarController.getStatusBarView().updateTimeBar(this.inGame.getLevelTime(), this.inGame.getTime());
 		
 		//increase pitch when time is running out
-		if(this.gameController.getGame().isMusicOn() && inGame.isTimeRunningOut() && !isMusicHighPitched) {
-				gameController.getInGameMusic().play(1.4f, 1f);
+		if(this.gameController.getGame().isSoundOn() && inGame.isTimeRunningOut() && !isMusicHighPitched) {
+				//FIXME
+			this.skynda.play(1.0f, 1.0f);
+				
 				isMusicHighPitched = true;
 		}
 		
 		//check if the game is over
 		if (inGame.checkIfGameIsOver(itemControllers.size(),LevelUtils.getNbrOfFiles(inGame.getLevel() + 1))) {
-			gameController.getInGameMusic().stop();
 			sbg.enterState(EndOfLevel.STATE_ID);
 		}
 		//check key presses
@@ -288,7 +293,8 @@ public class InGameController extends BasicGameState {
 			//Set previous state to the state you where in before entering pause menu
 			PauseMenuController.setPreviousState(InGame.STATE_ID); 
 			
-			gameController.getInGameMusic().setVolume(0.3f);
+//			gameController.getInGameMusic().setVolume(0.3f);
+			gameController.getStartMenuController().getStartMenuMusic().setVolume(0.3f);
 			sbg.enterState(PauseMenu.STATE_ID);
 		}
 		

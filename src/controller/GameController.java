@@ -5,7 +5,6 @@ import model.Game;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -24,11 +23,9 @@ public class GameController extends StateBasedGame {
 	private final InGameController inGameController;
 	private final PauseMenuController pauseMenuController;
 	private final HighScoreStateController highScoreStateController;
-	private final Music inGameMusic;
 	
 	public GameController(final String name) throws SlickException {
 		super(name);
-		this.inGameMusic = new Music("music/game_music_regular.wav");
 		this.inGameController = new InGameController(this);
 		this.game = new Game(inGameController.getInGame());
 		SaveUtils.init();
@@ -78,9 +75,6 @@ public class GameController extends StateBasedGame {
 		return this.gameView;
 	}
 
-	public Music getInGameMusic() {
-		return inGameMusic;
-	}
 	
 	/**
 	 * Allows the change to fullscreen if demanded

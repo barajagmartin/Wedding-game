@@ -38,7 +38,7 @@ public class StartMenuController extends BasicGameState {
 			throws SlickException {
 		this.sbg = game;
 		this.startMenuView = new StartMenuView(this.startMenu, gameController.getGameView());
-		this.startMenuMusic = new Music("music/Marimba.wav");
+		this.startMenuMusic = new Music("music/bgMusic.wav");
 		
 	}
 	
@@ -49,6 +49,7 @@ public class StartMenuController extends BasicGameState {
 		if(gameController.getGame().isMusicOn() && !this.startMenuMusic.playing()) {
 			this.startMenuMusic.loop();
 		}
+		this.startMenuMusic.setVolume(0.7f);
 	}
 
 	@Override
@@ -93,7 +94,8 @@ public class StartMenuController extends BasicGameState {
 							this.startMenuMusic.pause();
 							gameController.getGame().setMusicOn(false);
 						} else {
-							this.startMenuMusic.play();
+							startMenuMusic.resume();
+							startMenuMusic.setVolume(0.7f);
 							gameController.getGame().setMusicOn(true);
 						}	
 						break;

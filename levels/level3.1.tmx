@@ -113,6 +113,11 @@
     <property name="property" value="solidGround"/>
    </properties>
   </tile>
+  <tile id="14">
+   <properties>
+    <property name="property" value="solidGround"/>
+   </properties>
+  </tile>
   <tile id="15">
    <properties>
     <property name="property" value="solidGround"/>

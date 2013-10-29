@@ -8,12 +8,13 @@ import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.SlickException;
 
 /**
+ * 
+ * 
  * @author Josefin, Martin, Sara, Kino
  * This class, Main, is where the main method is located which creates and starts the game.
  */
 
 public class Main {
-	private static final String GAME_NAME = "Candy Monsters";
 	
 	/**
 	 * Creates and starts the game.

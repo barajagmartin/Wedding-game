@@ -53,7 +53,8 @@ public class InGameView {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		this.g = g;
-		final Image background = new Image("pics/bg_"+level+".jpg");
+		final Image background = new Image("pics/bg_2"
+				+ ".jpg");
 		background.draw();
 		worldView.getBlockMapView().getTiledMap().render(0, 0, worldView.getBlockMapView().getTiledMap().getLayerIndex("solids"));
 
@@ -112,9 +113,9 @@ public class InGameView {
 			statusBarView.getHeart()[k].draw(StatusBar.HEART_POSX[k], StatusBar.HEART_POSY);
 		}
 		this.g.setColor(Color.white);
-		this.g.drawString("LIFE", StatusBar.HEART_POSX[0] - 15, StatusBar.HEART_POSY - 20);
-		this.g.drawString("TIME", StatusBar.FIXED_BAR_POSX - 15, StatusBar.HEART_POSY - 20);
-		this.g.drawString("Lv." + this.level, Game.WINDOW_WIDTH - 60, StatusBar.HEART_POSY - 40);
+		this.g.drawString("LIV", StatusBar.HEART_POSX[0] - 15, StatusBar.HEART_POSY - 20);
+		this.g.drawString("TID", StatusBar.FIXED_BAR_POSX - 15, StatusBar.HEART_POSY - 20);
+		this.g.drawString("Nivå: " + this.level + "/5", Game.WINDOW_WIDTH - 90, StatusBar.HEART_POSY - 40);
 		this.g.setColor(Color.darkGray);
 		this.g.fill(statusBarView.getFixedBar());
 

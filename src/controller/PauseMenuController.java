@@ -87,10 +87,12 @@ public class PauseMenuController extends BasicGameState{
 						break;
 				//Music
 				case 2: if(gameController.getGame().isMusicOn()) {
-							gameController.getInGameMusic().pause();	
+							gameController.getStartMenuController().getStartMenuMusic().pause();	
 							gameController.getGame().setMusicOn(false);
 						} else {
-							gameController.getInGameMusic().play(1.0f, 0.3f); 
+							gameController.getStartMenuController().getStartMenuMusic().resume();
+							gameController.getStartMenuController().getStartMenuMusic().setVolume(0.3f);
+//							gameController.getStartMenuController().getStartMenuMusic().play(1.0f, 0.3f); 
 							gameController.getGame().setMusicOn(true);
 						}	
 						break;
@@ -99,7 +101,7 @@ public class PauseMenuController extends BasicGameState{
 						break;
 				//Return to menu
 				case 4: gameController.getGame().getInGame().setPaused(false);
-						gameController.getInGameMusic().stop(); //Stop current thread
+					//	gameController.getInGameMusic().stop(); //Stop current thread
 						sbg.enterState(StartMenu.STATE_ID);
 						break;
 			}
