@@ -146,7 +146,7 @@
  </tileset>
  <layer name="solids" width="32" height="24">
   <data encoding="base64" compression="zlib">
-   eJztkksKgDAMBb2BuE4Xuf8p3VgIIc3PT6BWeJti34yJsNU9cGXx5+FjIR+DfU/zo30z8VsxH0jaS/xRLzK+1yEzL8mFs70OEX7fr9Yj5Ujyubvlqjlk+PycznQ01y/4mof2H0jOlC91IYmnV9sBfb+Hnlvf69lv5I7ll7l3l1+RfeXXOQGb0h9r
+   eJztkksKgDAMBb2BuE4Xuf8p3VgIIc3PT6BWeJtC34xJYav74Mriz8PHQj4G+57mR/tm4rdiPpC0l/ijXmR8r0NmXpILZ3sdIvy+X61HypHkc3fLVXPI8Pk5nelorl/wNQ/tHUjOlC91IYnnjWk7oB499Nz6X89+I3csv8y9u/yK7Cu/zgmYDh9q
   </data>
  </layer>
  <layer name="data" width="32" height="24">
