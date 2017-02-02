@@ -4,6 +4,9 @@ package controller;
 
 import model.Game;
 
+import java.io.File;
+
+import org.lwjgl.LWJGLUtil;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.SlickException;
 
@@ -25,6 +28,8 @@ public class Main {
 	public static void main(String[] args) {
 		AppGameContainer app;
 		try {
+			System.setProperty("org.lwjgl", new File(new File(System.getProperty("lib"), "native"),
+					LWJGLUtil.getPlatformName()).getAbsolutePath());
 			app = new AppGameContainer(new GameController("Bröllopsspelet"));
 			app.setDisplayMode(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT, false);
 			app.setShowFPS(false);
