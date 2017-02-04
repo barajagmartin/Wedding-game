@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Grupp1/levels/level2.1.tmx&apos; to &apos;level22.1.tmx&apos;" description="Rename resource &apos;level2.1.tmx&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="levels/level2.1.tmx" name="level22.1.tmx" stamp="1484782184507" updateReferences="true"/>
+</session>

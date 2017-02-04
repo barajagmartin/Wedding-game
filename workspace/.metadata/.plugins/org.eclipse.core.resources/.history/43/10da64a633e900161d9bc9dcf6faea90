@@ -1,0 +1,51 @@
+package controller;
+
+
+
+import model.Game;
+
+import java.io.File;
+import java.io.IOException;
+
+import org.lwjgl.LWJGLUtil;
+import org.newdawn.slick.AppGameContainer;
+import org.newdawn.slick.SlickException;
+
+/**
+ * 
+ * 
+ * @author Josefin, Martin, Sara, Kino
+ * This class, Main, is where the main method is located which creates and starts the game.
+ */
+
+public class Main {
+	
+	/**
+	 * Creates and starts the game.
+	 * Set icons on window
+	 * Remove the FPS tag on screen
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		AppGameContainer app;
+		try {
+			//System.setProperty("org.lwjgl", new File(new File(System.getProperty("user.dir"), "native"),
+				//	LWJGLUtil.getPlatformName()).getAbsolutePath());
+			//System.setProperty("net.java.games.input.librarypath", System.getProperty("org.lwjgl"));
+//			System.load(new File("lib/lwjgl-2.9.0/native/" + LWJGLUtil.getPlatformName() + "/lwjgl64.dll").getCanonicalPath());
+//			System.load(new File("lib/lwjgl-2.9.0/native/" + LWJGLUtil.getPlatformName() + "/OpenAL64.dll").getCanonicalPath());
+//			System.load(new File("lib/lwjgl-2.9.0/native/" + LWJGLUtil.getPlatformName() + "/jinput-dx8_64.dll").getCanonicalPath());
+//			System.load(new File("lib/lwjgl-2.9.0/native/" + LWJGLUtil.getPlatformName() + "/jinput-raw_64.dll").getCanonicalPath());
+			
+			System.setProperty("java.library.path", "lib");
+			
+			app = new AppGameContainer(new GameController("Bröllopsspelet"));
+			app.setDisplayMode(Game.WINDOW_WIDTH, Game.WINDOW_HEIGHT, false);
+			app.setShowFPS(false);
+			app.setIcons(new String[]{"pics/icon16.png", "pics/icon32.png"});
+			app.start();
+		} catch (SlickException e) {
+			e.printStackTrace();
+		}
+	}
+}
